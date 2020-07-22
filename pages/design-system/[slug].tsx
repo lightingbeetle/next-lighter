@@ -18,8 +18,6 @@ const DesignSystemPage = ({ filename, title }) => {
 };
 
 export async function getStaticProps({ params }) {
-  console.log(params);
-
   const filename = path.join(
     'components/',
     params.slug,
@@ -50,8 +48,6 @@ export async function getStaticPaths() {
       slug: path.basename(filename, '.docs.mdx'),
     },
   }));
-
-  console.log(paths);
 
   return {
     paths,
