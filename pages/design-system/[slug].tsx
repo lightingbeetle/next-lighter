@@ -4,10 +4,8 @@ import glob from 'glob';
 import dynamic from 'next/dynamic';
 import matter from 'gray-matter';
 
-const Example = (props) => <div className="example" {...props} />;
-
 const DesignSystemPage = ({ filename, title }) => {
-  const MDXContent = dynamic(() => import(`../../${filename}`));
+  const MDXContent = dynamic(() => import(`../../components/${filename}`));
 
   return (
     <div>
@@ -18,14 +16,10 @@ const DesignSystemPage = ({ filename, title }) => {
 };
 
 export async function getStaticProps({ params }) {
-  const filename = path.join(
-    'components/',
-    params.slug,
-    params.slug + '.docs.mdx'
-  );
+  const filename = path.join(params.slug, params.slug + '.docs.mdx');
 
   const mdxPost = fs
-    .readFileSync(path.join(process.cwd(), filename))
+    .readFileSync(path.join(process.cwd(), 'components', filename))
     .toString();
 
   // @ts-ignore
