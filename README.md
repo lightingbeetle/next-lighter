@@ -1,5 +1,3 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
-
 ## Getting Started
 
 First, run the development server:
@@ -12,19 +10,20 @@ yarn dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+## Static scope - pages without React runtime
 
-## Learn More
+This project support pages which don't have React runtime. Instead of that we run `components/static.ts` on this pages. This creates ability to build static pages from React components without dynamic behavior of the components (e.g. no React hooks). Static pages needs to be defined in `static-pages.ts` file.
 
-To learn more about Next.js, take a look at the following resources:
+### Implementation of static scope
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. We took static pages declared in `static-pages.ts`.
+2. Custom `components/static.ts` webpack entry is added in `next.config.js` and `static-build-manifest.json` is created to get filename with hash of this entry.
+3. `pags/_document.tsx` adds replace Next.js `<Head />` and `<NextScripts />` with custom `<StaticHead />` and `<StaticScrips />` on static pages. `<StaticHead />` and `<StaticScrips />` exclude React runtime and include `components/static.ts` on these pages.
+4. Force `next/router` to reload page when static page should be displayed. So we make sure that we have correct document displayed in browser.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### Issues with static scope
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/import?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- Static pages don't support live reloading.
+- We share polyfill file with React scope.
+- Not sure if `components/static.ts` are polyfilled at all
+- `static-pages.ts` could be replaced with detecting of importing `components/static.ts` to page and writing that pages to `static-build-manifest.json` and removing `components/static.ts` from main bundle.
