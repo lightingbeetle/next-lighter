@@ -1,7 +1,8 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 import micromatch from 'micromatch';
-import staticPages from '../static-pages';
-import staticBuildManifest from '../.next/static-build-manifest.json';
+import { promises as fs } from 'fs';
+import path from 'path';
+import customPages from '../custom-pages';
 
 // TODO:
 // - this component is emitting "Warning: Each child in a list should have a unique "key" prop." error. Not sure why.
@@ -22,20 +23,19 @@ class StaticHead extends Head {
 
 class StaticScripts extends NextScript {
   render() {
+    // @ts-ignore
+    const { scripts } = this.props;
     const {
       _devOnlyInvalidateCacheQueryString,
       _documentProps: { files, assetPrefix, isDevelopment },
     } = this.context;
+
     const nextJsFiles = micromatch(files, ['static/chunks/webpack*.js']);
-    const staticFiles = isDevelopment
-      ? ['static/chunks/static.js']
-      : staticBuildManifest.staticFiles;
-    console.log(staticFiles, isDevelopment);
 
     return (
       <>
         {this.getPolyfillScripts()}
-        {[...nextJsFiles, ...staticFiles].map((file) => {
+        {[...nextJsFiles, ...scripts].map((file) => {
           let modernProps = {};
           if (process.env.__NEXT_MODERN_BUILD) {
             modernProps = file.endsWith('.module.js')
@@ -63,25 +63,65 @@ class StaticScripts extends NextScript {
 }
 
 interface MyDocumentProps {
-  isPageStatic: boolean;
+  nextRuntime: boolean;
+  scripts: string[];
 }
 
 class MyDocument extends Document<MyDocumentProps> {
   static async getInitialProps(ctx) {
     const initialProps = await Document.getInitialProps(ctx);
 
-    const isPageStatic = micromatch.isMatch(ctx.pathname, staticPages);
+    let nextRuntime = true;
+    let scripts = [];
 
-    return { ...initialProps, isPageStatic };
+    // check if current page is custom page
+    const customPage =
+      customPages[micromatch.match(ctx.pathname, Object.keys(customPages))];
+
+    if (customPage) {
+      nextRuntime = customPage.nextRuntime;
+
+      const manifestFile = await fs.readFile(
+        path.resolve('.next', 'custom-entries-build-manifest.json'),
+        'utf8'
+      );
+
+      if (manifestFile) {
+        const { customEntries: customScripts } = JSON.parse(manifestFile);
+
+        const scriptsPattern = [
+          ...customPage.scripts,
+          // match [scriptName]-[hash].[extension] filenames too
+          ...customPage.scripts.map((entry) => {
+            // split by last dot
+            const [base, extension] = entry.split(/\.(?=[^\.]+$)/);
+            // pattern to match with hash
+            return `${base}-*.${extension}`;
+          }),
+        ];
+
+        // get additional scripts which should be on the page
+        scripts = micromatch.match(customScripts, scriptsPattern, {
+          basename: true,
+        });
+      }
+    }
+
+    return { ...initialProps, scripts, nextRuntime };
   }
 
   render() {
+    const { nextRuntime, scripts } = this.props;
     return (
       <Html>
-        {this.props.isPageStatic ? <StaticHead /> : <Head />}
+        {nextRuntime ? <Head /> : <StaticHead />}
         <body>
           <Main />
-          {this.props.isPageStatic ? <StaticScripts /> : <NextScript />}
+          {nextRuntime && <NextScript />}
+          {scripts.length !== 0 && (
+            /* @ts-ignore */
+            <StaticScripts scripts={scripts} />
+          )}
         </body>
       </Html>
     );

@@ -3,7 +3,7 @@ const fs = require('fs');
 const withCSS = require('@zeit/next-css');
 const withSASS = require('@zeit/next-sass');
 const frontMatterToMDXRemarkPlugin = require('./utils/frontMatterToMDXRemarkPlugin');
-const StaticBuildManifestPlugin = require('./utils/static-build-manifest-plugin');
+const CustomEntriesBuildManifestPlugin = require('./utils/custom-entries-build-manifest-plugin');
 
 const withMDX = require('@next/mdx')({
   extension: /\.mdx?$/,
@@ -45,7 +45,11 @@ module.exports = withMDX(
           };
 
           // custom build manifest file, because next.js build-manifest.json don't contains 'static' entry and we need to know entry hash in production
-          config.plugins.push(new StaticBuildManifestPlugin());
+          config.plugins.unshift(
+            new CustomEntriesBuildManifestPlugin({
+              entries: ['static'],
+            })
+          );
         }
         return config;
       },

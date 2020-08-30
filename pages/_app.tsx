@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import micromatch from 'micromatch';
-import staticPages from '../static-pages';
+import customPages from '../custom-pages';
 
 export default function MyApp({ Component, pageProps }) {
   const router = useRouter();
@@ -9,7 +9,7 @@ export default function MyApp({ Component, pageProps }) {
   // Reload page when we hit static page. Otherviews React document will stay on static page. Reload of the page fixis it because we will get document with StaticHead and StaticScripts.
   useEffect(() => {
     const handleRouteChange = (url) => {
-      if (micromatch.isMatch(url, staticPages)) {
+      if (micromatch.isMatch(url, Object.keys(customPages))) {
         router.reload();
       }
     };

@@ -15,24 +15,27 @@ function getFilesArray(files) {
 
 // This plugin creates a static-build-manifest.json for 'static' entry that are being output
 // It has a mapping of "static" entry filename to real filename. Because the real filename can be hashed in production
-class BuildManifestPlugin {
-  constructor() {}
+class CustomEntriesBuildManifestPlugin {
+  constructor(options = {}) {
+    this.options = options;
+  }
 
   createAssets(compilation, assets) {
     const namedChunks = compilation.namedChunks;
     const assetMap = {
-      staticFiles: [],
+      customEntries: [],
     };
 
-    const staticJsFile = namedChunks.get('static');
+    for (const entry of this.options.entries) {
+      const entryChunk = namedChunks.get(entry);
+      const entryJsFiles = getFilesArray(entryChunk && entryChunk.files).filter(
+        isJsFile
+      );
 
-    const staticJsFiles = getFilesArray(
-      staticJsFile && staticJsFile.files
-    ).filter(isJsFile);
+      assetMap.customEntries.push(...entryJsFiles);
+    }
 
-    assetMap.staticFiles = staticJsFiles;
-
-    assets['static-build-manifest.json'] = new RawSource(
+    assets['custom-entries-build-manifest.json'] = new RawSource(
       JSON.stringify(assetMap, null, 2)
     );
 
@@ -40,10 +43,13 @@ class BuildManifestPlugin {
   }
 
   apply(compiler) {
-    compiler.hooks.emit.tap('NextJsBuildManifest', (compilation) => {
-      this.createAssets(compilation, compilation.assets);
-    });
+    compiler.hooks.emit.tap(
+      'CustomEntriesBuildManifestPlugin',
+      (compilation) => {
+        this.createAssets(compilation, compilation.assets);
+      }
+    );
   }
 }
 
-module.exports = BuildManifestPlugin;
+module.exports = CustomEntriesBuildManifestPlugin;
