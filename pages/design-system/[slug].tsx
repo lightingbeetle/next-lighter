@@ -4,12 +4,11 @@ import glob from 'glob';
 import dynamic from 'next/dynamic';
 import matter from 'gray-matter';
 
-const DesignSystemPage = ({ filename, title }) => {
+const DesignSystemPage = ({ filename }) => {
   const MDXContent = dynamic(() => import(`../../components/${filename}`));
 
   return (
     <div>
-      <h1>{title}</h1>
       <MDXContent />
     </div>
   );
