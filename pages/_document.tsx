@@ -21,7 +21,7 @@ class StaticHead extends Head {
   }
 }
 
-class StaticScripts extends NextScript {
+class CustomScripts extends NextScript {
   render() {
     // @ts-ignore
     const { scripts } = this.props;
@@ -120,7 +120,7 @@ class MyDocument extends Document<MyDocumentProps> {
           {nextRuntime && <NextScript />}
           {scripts.length !== 0 && (
             /* @ts-ignore */
-            <StaticScripts scripts={scripts} />
+            <CustomScripts scripts={scripts} />
           )}
         </body>
       </Html>

@@ -10,23 +10,31 @@ yarn dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-## Static scope - pages without React runtime
+## Static scope - pages without Next.js runtime (React)
 
-This project support pages which don't have React runtime. Instead of that we run `components/static.ts` on this pages. This creates ability to build static pages from React components without dynamic behavior of the components (e.g. no React hooks). Static pages needs to be defined in `static-pages.ts` file.
+This project support pages which don't have Next.js runtime. Instead of that we run `components/static.ts` on these pages. This creates ability to build static pages from React components without dynamic behavior of the components (e.g. no React hooks). Static pages needs to be defined in `custom-pages.ts` file like on example.
+
+```typescript
+// custom-pages.ts
+const customPages: customPages = {
+  '/static': { nextRuntime: false, scripts: ['static.js'] },
+};
+
+export default customPages;
+```
 
 ### Implementation of static scope
 
-1. We took static pages declared in `static-pages.ts`.
-2. Custom `components/static.ts` webpack entry is added in `next.config.js` and `static-build-manifest.json` is created to get filename with hash of this entry.
-3. `pags/_document.tsx` adds replace Next.js `<Head />` and `<NextScripts />` with custom `<StaticHead />` and `<StaticScrips />` on static pages. `<StaticHead />` and `<StaticScrips />` exclude React runtime and include `components/static.ts` on these pages.
-4. Force `next/router` to reload page when static page should be displayed. So we make sure that we have correct document displayed in browser.
+1. We took static pages declared in `custom-pages.ts`.
+2. Custom `components/static.ts` webpack entry is added in `next.config.js` and `custom-entries-build-manifest.json` is created to get filename with hash of this entry in production or without hash in development.
+3. `pages/_document.tsx` adds replace Next.js runtime `<Head />` and `<NextScripts />` with `<StaticHead />` and `<CustomScripts />` (if `scripts` are defined) on pages with `nextRuntime: false` flag.
+4. Force `next/router` in `pages/_app.tsx` to reload page without Next.js runtime to make sure that we have correct document displayed in browser.
 
-### Issues with static scope
+### Issues with no Next.js runtime
 
 - Static pages don't support live reloading.
 - We share polyfill file with React scope.
-- Not sure if `components/static.ts` are polyfilled at all
-- `static-pages.ts` could be replaced with detecting of importing `components/static.ts` to page and writing that pages to `static-build-manifest.json` and removing `components/static.ts` from main bundle.
+- Not sure if `components/static.ts` are polyfilled at all.
 
 ## CMS (NetlifyCMS)
 
