@@ -2,8 +2,8 @@ const path = require('path');
 const fs = require('fs');
 const withCSS = require('@zeit/next-css');
 const withSASS = require('@zeit/next-sass');
-const frontMatterToMDXRemarkPlugin = require('./utils/frontMatterToMDXRemarkPlugin');
-const CustomEntriesBuildManifestPlugin = require('./utils/custom-entries-build-manifest-plugin');
+const frontMatterToMDXRemarkPlugin = require('./src/utils/frontMatterToMDXRemarkPlugin');
+const CustomEntriesBuildManifestPlugin = require('./src/utils/custom-entries-build-manifest-plugin');
 
 const withMDX = require('@next/mdx')({
   extension: /\.mdx?$/,
@@ -33,13 +33,13 @@ module.exports = withMDX(
         });
 
         // Static entry file without React runtime.
-        if (!options.isServer && fs.existsSync('./components/static.ts')) {
+        if (!options.isServer) {
           // add './components/static.js' as entry to next webpack config
           const originalEntry = config.entry;
           config.entry = async () => {
             const entries = await originalEntry();
 
-            entries['static'] = './components/static.ts';
+            entries['static'] = './src/components/static.ts';
 
             return entries;
           };

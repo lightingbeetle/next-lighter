@@ -18,7 +18,7 @@ export async function getStaticProps({ params }) {
   const filename = path.join(params.slug, params.slug + '.docs.mdx');
 
   const mdxPost = fs
-    .readFileSync(path.join(process.cwd(), 'components', filename))
+    .readFileSync(path.join(process.cwd(), 'src', 'components', filename))
     .toString();
 
   // @ts-ignore
@@ -33,7 +33,7 @@ export async function getStaticProps({ params }) {
 }
 
 export async function getStaticPaths() {
-  const docsFiles = glob.sync('components/**/*.docs.mdx');
+  const docsFiles = glob.sync('src/components/**/*.docs.mdx');
 
   // Loop through all post files and create array of slugs (to create links)
   const paths = docsFiles.map((filename) => ({

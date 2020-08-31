@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import Example from '../components/example/Example';
+import { Example } from '../components';
 
 export default function Home() {
   return (

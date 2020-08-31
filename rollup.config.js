@@ -12,7 +12,7 @@ import postcssFlexbugsFixes from 'postcss-flexbugs-fixes';
 import postcssPresetEnv from 'postcss-preset-env';
 
 export default {
-  input: ['components/index.ts', 'components/static.ts'],
+  input: ['src/components/index.ts', 'src/components/static.ts'],
   output: [
     {
       // file: pkg.module,

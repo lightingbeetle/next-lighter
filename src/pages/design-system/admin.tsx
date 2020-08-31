@@ -1,5 +1,5 @@
 import dynamic from 'next/dynamic';
-import Example from '../../components/example/Example';
+import { Example } from '../../components';
 
 // Netify stuff has to be imported dynamically because their are dependend on window and document so we can't ssr them
 const Admin = dynamic(
@@ -27,7 +27,7 @@ const Admin = dynamic(
               name: 'components',
               label: 'Components docs',
               label_singular: 'Component docs',
-              folder: 'components',
+              folder: 'src/components',
               path: '{{title}}/{{slug}}',
               create: true,
               slug: '{{title}}.docs',
