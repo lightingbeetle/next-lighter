@@ -6,15 +6,22 @@ import Link from 'next/link';
 
 function Blog({ posts }) {
   return (
-    <ul>
-      {posts.map((post) => (
-        <li key={post.slug}>
-          <Link href={post.slug}>
-            <a>{post.title}</a>
-          </Link>
-        </li>
-      ))}
-    </ul>
+    <>
+      <h1>Design system</h1>
+      <Link href="/design-system/admin">
+        <a>Admin</a>
+      </Link>
+      <h2>Component docs</h2>
+      <ul>
+        {posts.map((post) => (
+          <li key={post.slug}>
+            <Link href={post.slug}>
+              <a>{post.title}</a>
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </>
   );
 }
 

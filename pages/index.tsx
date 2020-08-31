@@ -8,8 +8,8 @@ export default function Home() {
       <Example>Example</Example>
       <ul>
         <li>
-          <Link href="/admin">
-            <a>Admin</a>
+          <Link href="/design-system">
+            <a>Design system</a>
           </Link>
         </li>
         <li>

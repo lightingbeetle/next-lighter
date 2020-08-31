@@ -27,3 +27,10 @@ This project support pages which don't have React runtime. Instead of that we ru
 - We share polyfill file with React scope.
 - Not sure if `components/static.ts` are polyfilled at all
 - `static-pages.ts` could be replaced with detecting of importing `components/static.ts` to page and writing that pages to `static-build-manifest.json` and removing `components/static.ts` from main bundle.
+
+## CMS (NetlifyCMS)
+
+### Local development
+
+1. Run `npx netlify-cms-proxy-server` to bypass Github workflow
+2. Run `npm run dev` to start local development server

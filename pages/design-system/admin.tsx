@@ -17,8 +17,8 @@ const Admin = dynamic(
           collections: [
             {
               name: 'components',
-              label: 'Components',
-              label_singular: 'Component',
+              label: 'Components docs',
+              label_singular: 'Component docs',
               folder: 'components',
               path: '{{title}}/{{slug}}',
               create: true,
