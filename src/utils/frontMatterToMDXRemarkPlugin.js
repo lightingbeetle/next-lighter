@@ -17,7 +17,7 @@ const stringifyObject = require('stringify-object');
  */
 module.exports = () => (tree, file) => {
   // we will get the frontMatter using `gray-matter`
-  const { data: frontMatter, content } = matter(file.contents);
+  const { data: frontMatter } = matter(file.contents);
   // the frontMatter holds the json object of the frontmatter
   // the content holds the text of markdown except frontmatter
 

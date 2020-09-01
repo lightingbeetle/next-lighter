@@ -1,5 +1,4 @@
 const path = require('path');
-const fs = require('fs');
 const withCSS = require('@zeit/next-css');
 const withSASS = require('@zeit/next-sass');
 const frontMatterToMDXRemarkPlugin = require('./src/utils/frontMatterToMDXRemarkPlugin');
