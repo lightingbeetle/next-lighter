@@ -1,56 +1,56 @@
-import http from 'http';
-import path from 'path';
-import qs from 'querystring';
-import spawn from 'cross-spawn';
-import getPort from 'get-port';
-import treeKill from 'tree-kill';
-import fetch from 'node-fetch';
+const http = require('http');
+const path = require('path');
+const qs = require('querystring');
+const spawn = require('cross-spawn');
+const getPort = require('get-port');
+const treeKill = require('tree-kill');
+const fetch = require('node-fetch');
 
-export function renderViaAPI(app, pathname, query) {
+function renderViaAPI(app, pathname, query) {
   const url = `${pathname}${query ? `?${qs.stringify(query)}` : ''}`;
   return app.renderToHTML({ url }, {}, pathname, query);
 }
 
-export function renderViaHTTP(appPort, pathname, query) {
+function renderViaHTTP(appPort, pathname, query) {
   return fetchViaHTTP(appPort, pathname, query).then((res) => res.text());
 }
 
-export function fetchViaHTTP(appPort, pathname, query, opts) {
+function fetchViaHTTP(appPort, pathname, query, opts) {
   const url = `http://localhost:${appPort}${pathname}${
     query ? `?${qs.stringify(query)}` : ''
   }`;
   return fetch(url, opts);
 }
 
-export function findPort() {
+function findPort() {
   return getPort();
 }
 
 // Launch the app in dev mode.
-export function launchApp(dir, port, opts) {
+function launchApp(dir, port, opts) {
   return runNextCommandDev([dir, '-p', port], undefined, opts);
 }
 
-export function nextBuild(dir, args = [], opts = {}) {
+function nextBuild(dir, args = [], opts = {}) {
   return runNextCommand(['build', dir, ...args], opts);
 }
 
-export function nextExport(dir, { outdir }, opts = {}) {
+function nextExport(dir, { outdir }, opts = {}) {
   return runNextCommand(['export', dir, '--outdir', outdir], opts);
 }
 
-export function nextExportDefault(dir, opts = {}) {
+function nextExportDefault(dir, opts = {}) {
   return runNextCommand(['export', dir], opts);
 }
 
-export function nextStart(dir, port, opts = {}) {
+function nextStart(dir, port, opts = {}) {
   return runNextCommandDev(['start', '-p', port, dir], undefined, {
     ...opts,
     nextStart: true,
   });
 }
 
-export function runNextCommand(argv, options = {}) {
+function runNextCommand(argv, options = {}) {
   const nextDir = path.dirname(__dirname, '../');
   const nextBin = path.join(nextDir, 'node_modules/next/dist/bin/next');
   const cwd = options.cwd || nextDir;
@@ -63,7 +63,6 @@ export function runNextCommand(argv, options = {}) {
   };
 
   return new Promise((resolve, reject) => {
-    console.log(`Running command "next ${argv.join(' ')}"`);
     const instance = spawn('node', ['--no-deprecation', nextBin, ...argv], {
       ...options.spawnOptions,
       cwd,
@@ -114,7 +113,7 @@ export function runNextCommand(argv, options = {}) {
   });
 }
 
-export function runNextCommandDev(argv, stdOut, opts = {}) {
+function runNextCommandDev(argv, stdOut, opts = {}) {
   const cwd = path.dirname(__dirname, '../');
 
   const env = {
@@ -186,7 +185,7 @@ export function runNextCommandDev(argv, stdOut, opts = {}) {
 }
 
 // Kill a launched app
-export async function killApp(instance) {
+async function killApp(instance) {
   await new Promise((resolve, reject) => {
     treeKill(instance.pid, (err) => {
       if (err) {
@@ -211,7 +210,7 @@ export async function killApp(instance) {
   });
 }
 
-export async function startApp(app) {
+async function startApp(app) {
   await app.prepare();
   const handler = app.getRequestHandler();
   const server = http.createServer(handler);
@@ -221,14 +220,14 @@ export async function startApp(app) {
   return server;
 }
 
-export async function stopApp(server) {
+async function stopApp(server) {
   if (server.__app) {
     await server.__app.close();
   }
   await promiseCall(server, 'close');
 }
 
-export function promiseCall(obj, method, ...args) {
+function promiseCall(obj, method, ...args) {
   return new Promise((resolve, reject) => {
     const newArgs = [
       ...args,
@@ -241,3 +240,18 @@ export function promiseCall(obj, method, ...args) {
     obj[method](...newArgs);
   });
 }
+
+module.exports = {
+  renderViaAPI,
+  renderViaHTTP,
+  fetchViaHTTP,
+  findPort,
+  launchApp,
+  nextBuild,
+  nextStart,
+  nextExport,
+  nextExportDefault,
+  startApp,
+  stopApp,
+  killApp,
+};
