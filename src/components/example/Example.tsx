@@ -5,6 +5,7 @@ import './style.scss';
 type Example = {
   /** This is prop description */
   myProp?: string;
+  myFunc?: (param: string) => void;
 } & JSX.IntrinsicElements['p'];
 
 const Example = (props: Example) => <p className="example" {...props} />;

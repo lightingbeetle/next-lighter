@@ -17,7 +17,7 @@ module.exports = withMDX(
       webpack(config, options) {
         config.module.rules.push({
           test: /\.tsx?$/,
-          include: path.resolve(__dirname, 'components'),
+          include: path.resolve(__dirname, 'src', 'components'),
           use: [
             options.defaultLoaders.babel,
             {
@@ -26,6 +26,12 @@ module.exports = withMDX(
                 // Provide the path to your tsconfig.json so that your stories can
                 // display types from outside each individual story.
                 tsconfigPath: path.resolve(__dirname, 'tsconfig.json'),
+                // Filter types from node_modules, because we don't want to display them in documentation by default
+                propFilter: (props) =>
+                  !(
+                    props.parent &&
+                    props.parent.fileName.includes('node_modules')
+                  ),
               },
             },
           ],
@@ -50,6 +56,7 @@ module.exports = withMDX(
             })
           );
         }
+
         return config;
       },
       pageExtensions: ['js', 'jsx', 'mdx', 'ts', 'tsx'],

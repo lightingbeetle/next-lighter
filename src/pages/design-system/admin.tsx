@@ -1,5 +1,6 @@
 import dynamic from 'next/dynamic';
 import { Example } from '../../components';
+import * as Styleguide from '../../styleguide/';
 
 // Netify stuff has to be imported dynamically because their are dependend on window and document so we can't ssr them
 const Admin = dynamic(
@@ -75,6 +76,9 @@ const Admin = dynamic(
           allowedImports: {
             './Example': {
               ImportDefault: Example,
+            },
+            './../../styleguide/': {
+              Import: Styleguide,
             },
           },
         })
