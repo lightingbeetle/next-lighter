@@ -23,6 +23,7 @@ const Admin = dynamic(
           local_backend: true,
           media_folder: 'public/img',
           public_folder: 'img',
+          load_config_file: false,
           collections: [
             {
               name: 'components',
@@ -42,6 +43,7 @@ const Admin = dynamic(
                   label: 'Docs',
                   name: 'body',
                   widget: 'mdx',
+                  mode: 'raw',
                 },
               ],
               extension: 'mdx',
