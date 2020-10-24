@@ -72,6 +72,14 @@ const Admin = dynamic(
                 {children}
               </h2>
             ),
+            inlineCode: (props) => <Styleguide.Code {...props} />,
+            code: (props) => (
+              <Styleguide.Code
+                inline={false}
+                language={props.className?.replace(/language-/, '')}
+                {...props}
+              />
+            ),
           },
           allowedImports: {
             './Example': {
