@@ -24,9 +24,12 @@
     "netlify-cms-app": "~2.12.27",
     "netlify-cms-widget-mdx": "~0.4.4",
     "next": "9.5.1",
+    "pretty": "~2.0.0",
     "prism-react-renderer": "~1.1.1",
     "react": "16.13.1",
-    "react-dom": "16.13.1"
+    "react-dom": "16.13.1",
+    "react-element-to-jsx-string": "~14.3.1",
+    "unescape-html": "~1.1.0"
   },
   "devDependencies": {
     "@babel/core": "~7.11.5",
