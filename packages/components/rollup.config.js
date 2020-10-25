@@ -1,3 +1,6 @@
+// TODO:
+// - replace 'rollup-plugin-babel' with '@rollup/plugin-babel'
+
 import { DEFAULT_EXTENSIONS } from '@babel/core';
 import babel from 'rollup-plugin-babel';
 import typescript from 'rollup-plugin-typescript2';
@@ -12,7 +15,7 @@ import postcssFlexbugsFixes from 'postcss-flexbugs-fixes';
 import postcssPresetEnv from 'postcss-preset-env';
 
 export default {
-  input: ['src/components/index.ts', 'src/components/static.ts'],
+  input: ['src/index.ts', 'src/static.ts'],
   output: [
     {
       // file: pkg.module,

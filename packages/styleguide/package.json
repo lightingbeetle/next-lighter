@@ -1,0 +1,14 @@
+{
+  "name": "@lighting-beetle/lighter-styleguide",
+  "version": "5.0.0-alpha.1",
+  "main": "src/index.tsx",
+  "scripts": {
+    "build": "echo 'not implemented' && exit 1"
+  },
+  "dependencies": {
+    "pretty": "~2.0.0",
+    "prism-react-renderer": "~1.1.1",
+    "react-element-to-jsx-string": "~14.3.1",
+    "unescape-html": "~1.1.0"
+  }
+}

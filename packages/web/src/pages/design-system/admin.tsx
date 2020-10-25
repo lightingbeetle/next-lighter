@@ -1,6 +1,11 @@
 import dynamic from 'next/dynamic';
-import { Example } from '../../components';
-import * as Styleguide from '../../styleguide/';
+import * as Components from 'components';
+import * as Styleguide from '@lighitng-beetle/lighter-styleguide';
+
+const componentImports = Object.keys(Components).reduce((acc, key) => {
+  acc[`./${key}`] = { ImportDefault: Components[key] };
+  return acc;
+}, {});
 
 // Netify stuff has to be imported dynamically because their are dependend on window and document so we can't ssr them
 const Admin = dynamic(
@@ -21,15 +26,15 @@ const Admin = dynamic(
           },
           // @ts-ignore
           local_backend: true,
-          media_folder: 'public/img',
-          public_folder: 'img',
+          media_folder: 'packages/web/public/img',
+          public_folder: 'packages/web/public',
           load_config_file: false,
           collections: [
             {
               name: 'components',
               label: 'Components docs',
               label_singular: 'Component docs',
-              folder: 'src/components',
+              folder: 'packages/components/src',
               path: '{{title}}/{{slug}}',
               create: true,
               slug: '{{title}}.docs',
@@ -83,11 +88,15 @@ const Admin = dynamic(
               />
             ),
           },
+          scope: {
+            // ...Components,
+          },
           allowedImports: {
-            './Example': {
-              ImportDefault: Example,
+            '..': {
+              Import: Components,
             },
-            './../../styleguide/': {
+            ...componentImports,
+            '@lighitng-beetle/lighter-styleguide': {
               Import: Styleguide,
             },
           },

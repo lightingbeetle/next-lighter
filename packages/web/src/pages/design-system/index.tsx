@@ -26,7 +26,7 @@ function Blog({ posts }) {
 }
 
 export async function getStaticProps() {
-  const docsFiles = glob.sync('src/components/**/*.docs.mdx');
+  const docsFiles = glob.sync('../components/src/**/*.docs.mdx');
 
   const posts = docsFiles.map((filename) => {
     const markdownWithMetadata = fs

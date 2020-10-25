@@ -4,8 +4,8 @@ const mdx = require('@next/mdx');
 const css = require('@zeit/next-css');
 const sass = require('@zeit/next-sass');
 
-const frontMatterToMDXRemarkPlugin = require('./src/utils/frontMatterToMDXRemarkPlugin');
-const CustomEntriesBuildManifestPlugin = require('./src/utils/custom-entries-build-manifest-plugin');
+const frontMatterToMDXRemarkPlugin = require('./utils/frontMatterToMDXRemarkPlugin');
+const CustomEntriesBuildManifestPlugin = require('./utils/custom-entries-build-manifest-plugin');
 
 const staticEntries = (nextConfig = {}) => {
   return Object.assign({}, nextConfig, {
@@ -17,7 +17,7 @@ const staticEntries = (nextConfig = {}) => {
         config.entry = async () => {
           const entries = await originalEntry();
 
-          entries['static'] = './src/components/static.ts';
+          entries['static'] = '../components/src/static.ts';
 
           return entries;
         };
@@ -44,7 +44,7 @@ const reactDocgenTypescript = (nextConfig = {}) => {
     webpack(config, options) {
       config.module.rules.push({
         test: /\.tsx?$/,
-        include: path.resolve(__dirname, 'src', 'components'),
+        include: path.resolve(__dirname, '..', 'components'),
         use: [
           options.defaultLoaders.babel,
           {
@@ -52,7 +52,12 @@ const reactDocgenTypescript = (nextConfig = {}) => {
             options: {
               // Provide the path to your tsconfig.json so that your stories can
               // display types from outside each individual story.
-              tsconfigPath: path.resolve(__dirname, 'tsconfig.json'),
+              tsconfigPath: path.resolve(
+                __dirname,
+                '..',
+                '..',
+                'tsconfig.json'
+              ),
               // Filter types from node_modules, because we don't want to display them in documentation by default
               propFilter: (props) =>
                 !(
@@ -72,22 +77,23 @@ const reactDocgenTypescript = (nextConfig = {}) => {
   });
 };
 
-module.exports = withPlugins(
-  [
-    sass,
-    css,
+module.exports = () =>
+  withPlugins(
     [
-      mdx({
-        extension: /\.mdx?$/,
-        options: {
-          remarkPlugins: [frontMatterToMDXRemarkPlugin],
-        },
-      }),
+      sass,
+      css,
+      [
+        mdx({
+          extension: /\.mdx?$/,
+          options: {
+            remarkPlugins: [frontMatterToMDXRemarkPlugin],
+          },
+        }),
+      ],
+      staticEntries,
+      reactDocgenTypescript,
     ],
-    staticEntries,
-    reactDocgenTypescript,
-  ],
-  {
-    pageExtensions: ['js', 'jsx', 'mdx', 'ts', 'tsx'],
-  }
-);
+    {
+      pageExtensions: ['js', 'jsx', 'mdx', 'ts', 'tsx'],
+    }
+  );
