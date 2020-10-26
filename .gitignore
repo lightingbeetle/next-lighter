@@ -12,6 +12,9 @@ node_modules
 .next
 out
 
+# eslint
+.eslintcache
+
 # production
 build
 dist

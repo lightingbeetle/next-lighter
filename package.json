@@ -35,9 +35,23 @@
     "eslint-plugin-react": "~7.20.6",
     "eslint-plugin-react-hooks": "~2.5.1",
     "get-port": "~5.1.1",
+    "husky": "~4.3.0",
     "jest-cli": "~26.4.2",
+    "lint-staged": "~10.4.2",
     "node-fetch": "~2.6.0",
+    "prettier": "~2.1.2",
     "tree-kill": "~1.2.2",
     "typescript": "~3.9.7"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,ts,tsx,json}": [
+      "eslint --cache --fix",
+      "prettier --write"
+    ]
   }
 }
