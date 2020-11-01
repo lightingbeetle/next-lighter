@@ -13,7 +13,7 @@
     "build": "rollup -c"
   },
   "dependencies": {
-    "@lighitng-beetle/lighter-styleguide": "../styleguide"
+    "@lighting-beetle/lighter-styleguide": "5.0.0-alpha.1"
   },
   "devDependencies": {
     "@babel/core": "~7.11.5",

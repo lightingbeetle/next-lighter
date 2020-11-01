@@ -1,6 +1,6 @@
-import dynamic from 'next/dynamic';
-import * as Components from 'components';
-import * as Styleguide from '@lighitng-beetle/lighter-styleguide';
+import dynamic from "next/dynamic";
+import * as Components from "components";
+import * as Styleguide from "@lighting-beetle/lighter-styleguide";
 
 const componentImports = Object.keys(Components).reduce((acc, key) => {
   acc[`./${key}`] = { ImportDefault: Components[key] };
@@ -12,8 +12,8 @@ const Admin = dynamic(
   // @ts-ignore
   () =>
     Promise.all([
-      import('netlify-cms-app'),
-      import('netlify-cms-widget-mdx'),
+      import("netlify-cms-app"),
+      import("netlify-cms-widget-mdx"),
     ]).then(([{ default: CMS }, WidgetMdx]) => {
       // @ts-ignore
       window.CMS_MANUAL_INIT = true;
@@ -21,61 +21,62 @@ const Admin = dynamic(
       CMS.init({
         config: {
           backend: {
-            name: 'github',
-            repo: 'adammockor/nextjs-mdx-netlify',
+            name: "github",
+            repo: "adammockor/nextjs-mdx-netlify",
           },
           // @ts-ignore
           local_backend: true,
-          media_folder: 'packages/web/public/img',
-          public_folder: 'packages/web/public',
+          media_folder: "packages/web/public/img",
+          public_folder: "packages/web/public",
           load_config_file: false,
           collections: [
             {
-              name: 'components',
-              label: 'Components docs',
-              label_singular: 'Component docs',
-              folder: 'packages/components/src',
-              path: '{{title}}/{{slug}}',
+              name: "components",
+              label: "Components docs",
+              label_singular: "Component docs",
+              folder: "packages/components/src",
+              path: "{{title}}/{{slug}}",
               create: true,
-              slug: '{{title}}.docs',
+              slug: "{{title}}.docs",
               fields: [
                 {
-                  label: 'Title',
-                  name: 'title',
-                  widget: 'string',
+                  label: "Title",
+                  name: "title",
+                  widget: "string",
                 },
                 {
-                  label: 'Docs',
-                  name: 'body',
-                  widget: 'mdx',
-                  mode: 'raw',
+                  label: "Docs",
+                  name: "body",
+                  widget: "mdx",
+                  // @ts-ignore
+                  mode: "raw",
                 },
               ],
-              extension: 'mdx',
-              format: 'frontmatter',
+              extension: "mdx",
+              format: "frontmatter",
             },
           ],
         },
       });
 
-      CMS.registerPreviewStyle('/_next/static/css/styles.chunk.css');
+      CMS.registerPreviewStyle("/_next/static/css/styles.chunk.css");
 
-      CMS.registerPreviewTemplate('components', ({ widgetFor }) =>
-        widgetFor('body')
+      CMS.registerPreviewTemplate("components", ({ widgetFor }) =>
+        widgetFor("body")
       );
 
       CMS.registerWidget(
-        'mdx',
+        "mdx",
         WidgetMdx.MdxControl,
         WidgetMdx.setupPreview({
           components: {
             h1: ({ children, ...props }) => (
-              <h1 style={{ color: 'tomato' }} {...props}>
+              <h1 style={{ color: "tomato" }} {...props}>
                 {children}
               </h1>
             ),
             h2: ({ children, ...props }) => (
-              <h2 style={{ color: 'blue' }} {...props}>
+              <h2 style={{ color: "blue" }} {...props}>
                 {children}
               </h2>
             ),
@@ -83,20 +84,17 @@ const Admin = dynamic(
             code: (props) => (
               <Styleguide.Code
                 inline={false}
-                language={props.className?.replace(/language-/, '')}
+                language={props.className?.replace(/language-/, "")}
                 {...props}
               />
             ),
           },
-          scope: {
-            // ...Components,
-          },
           allowedImports: {
-            '..': {
+            "..": {
               Import: Components,
             },
             ...componentImports,
-            '@lighitng-beetle/lighter-styleguide': {
+            "@lighting-beetle/lighter-styleguide": {
               Import: Styleguide,
             },
           },

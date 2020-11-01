@@ -1,7 +1,7 @@
-import { Language } from 'prism-react-renderer';
-import useCodeHighlight from './useCodeHighlight';
+import { Language } from "prism-react-renderer";
+import useCodeHighlight from "./useCodeHighlight";
 
-type Code = {
+type CodeProps = {
   children: string;
   language: Language;
   inline: boolean;
@@ -9,10 +9,10 @@ type Code = {
 
 const Code = ({
   children,
-  language = 'markup',
+  language = "markup",
   inline = true,
   ...other
-}: Code) => {
+}: CodeProps) => {
   const { highlight } = useCodeHighlight({
     code: children,
     language,

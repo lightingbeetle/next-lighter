@@ -14,17 +14,21 @@ type DocgenInfo = {
   };
 };
 
-type usePropsDocs = {
+type UsePropsDocs = {
   component: React.Component & {
     __docgenInfo?: DocgenInfo;
   };
 };
 
-const usePropsDocs = ({ component }: usePropsDocs): DocgenInfo | null => {
+const usePropsDocs = ({ component }: UsePropsDocs): DocgenInfo => {
   const info = component.__docgenInfo;
 
   if (!info) {
-    return null;
+    return {
+      displayName: null,
+      description: null,
+      props: null,
+    };
   }
 
   return {
@@ -34,18 +38,23 @@ const usePropsDocs = ({ component }: usePropsDocs): DocgenInfo | null => {
   };
 };
 
-type Props = {
+type PropsProps = {
   component: React.Component;
 };
 
-const Props = ({ component }: Props) => {
+const Props = ({ component }: PropsProps) => {
   const { displayName, props } = usePropsDocs({ component });
+
+  // component don't have props?
+  if (!props) {
+    return null;
+  }
 
   return (
     <>
       Name: <b>{displayName}</b>
       <table
-        style={{ textAlign: 'left', border: '1px solid #333', width: '100%' }}
+        style={{ textAlign: "left", border: "1px solid #333", width: "100%" }}
       >
         <thead>
           <tr>
@@ -59,7 +68,7 @@ const Props = ({ component }: Props) => {
         <tbody>
           {Object.keys(props).map((propName) => (
             <tr key={props[propName].name}>
-              <td>{props[propName].required && 'Yes'}</td>
+              <td>{props[propName].required && "Yes"}</td>
               <td>{props[propName].name}</td>
               <td>{props[propName].type.name}</td>
               <td>{props[propName].defaultValue}</td>

@@ -1,5 +1,5 @@
 {
-  "name": "@lighting-beetle/lighter-next-config",
+  "name": "@lighting-beetle/next-lighter-config",
   "version": "0.1.0",
   "devDependencies": {
     "@next/mdx": "~9.5.1",

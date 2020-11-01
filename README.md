@@ -1,14 +1,26 @@
+# Next-Lighter
+
 ## Getting Started
 
-First, run the development server:
+### Install
+
+Currently only `yarn` is supported for installation of this repository.
 
 ```bash
-npm run dev
-# or
-yarn dev
+yarn
 ```
 
+### Development
+
+Run `npm run dev` in root of this repository.
+
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+### Build
+
+Run `npm run build` in root of this repository.
+
+`components` and `web` will be builded for deployment.
 
 ## Static scope - pages without Next.js runtime (React)
 
@@ -40,5 +52,5 @@ export default customPages;
 
 ### Local development
 
-1. Run `npx netlify-cms-proxy-server` to bypass Github workflow
+1. Run `npx netlify-cms-proxy-server` in the root of this repository to bypass Github workflow
 2. Run `npm run dev` to start local development server

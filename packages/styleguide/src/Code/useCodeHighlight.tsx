@@ -1,13 +1,13 @@
-import { useMemo } from 'react';
+import { useMemo } from "react";
 import Prism, {
   defaultProps,
   Language,
   PrismTheme,
-} from 'prism-react-renderer';
+} from "prism-react-renderer";
 
-import oneDarkProTheme from './oneDarkProTheme';
+import oneDarkProTheme from "./oneDarkProTheme";
 
-export type useCodeHighlight = {
+export type UseCodeHighlight = {
   code: string;
   language: Language;
   theme?: PrismTheme;
@@ -16,12 +16,12 @@ export type useCodeHighlight = {
 
 const useCodeHighlight = ({
   code,
-  language = 'markup',
+  language = "markup",
   theme = oneDarkProTheme,
   inline = true,
-}: useCodeHighlight) => {
+}: UseCodeHighlight) => {
   const { highlight } = useMemo(() => {
-    const Tag = inline ? 'span' : 'div';
+    const Tag = inline ? "span" : "div";
 
     const highlight = (
       <Prism code={code} language={language} theme={theme} {...defaultProps}>
@@ -36,7 +36,7 @@ const useCodeHighlight = ({
 
           const code = (
             <code
-              style={{ ...style, display: inline ? 'inline-block' : 'block' }}
+              style={{ ...style, display: inline ? "inline-block" : "block" }}
               className={`code prism-code language-${language} ${className}`}
             >
               {toHighlight}

@@ -1,20 +1,31 @@
-import Document, { Html, Head, Main, NextScript } from 'next/document';
-import micromatch from 'micromatch';
-import { promises as fs } from 'fs';
-import path from 'path';
-import customPages from '../custom-pages';
+import Document, { Html, Head, Main, NextScript } from "next/document";
+import micromatch from "micromatch";
+import { promises as fs } from "fs";
+import path from "path";
+import customPages from "../custom-pages";
+import {
+  getDocumentFiles,
+  getStaticDocumentFiles,
+} from "../utils/get-document-files";
 
 // TODO:
 // - this component is emitting "Warning: Each child in a list should have a unique "key" prop." error. Not sure why.
 class StaticHead extends Head {
   render() {
-    let { head } = this.context._documentProps;
+    let { head } = this.context;
     let children = this.props.children;
+
+    const files = getDocumentFiles(
+      this.context.buildManifest,
+      this.context.__NEXT_DATA__.page
+    );
 
     return (
       <head {...this.props}>
         {head}
-        {this.getCssLinks()}
+        {process.env.__NEXT_OPTIMIZE_FONTS
+          ? this.makeStylesheetInert(this.getCssLinks(files))
+          : this.getCssLinks(files)}
         {children}
       </head>
     );
@@ -25,38 +36,17 @@ class CustomScripts extends NextScript {
   render() {
     // @ts-ignore
     const { scripts } = this.props;
-    const {
-      _devOnlyInvalidateCacheQueryString,
-      _documentProps: { files, assetPrefix, isDevelopment },
-    } = this.context;
 
-    const nextJsFiles = micromatch(files, ['static/chunks/webpack*.js']);
+    const files = getStaticDocumentFiles(
+      this.context.buildManifest,
+      this.context.__NEXT_DATA__.page,
+      scripts
+    );
 
     return (
       <>
         {this.getPolyfillScripts()}
-        {[...nextJsFiles, ...scripts].map((file) => {
-          let modernProps = {};
-          if (process.env.__NEXT_MODERN_BUILD) {
-            modernProps = file.endsWith('.module.js')
-              ? { type: 'module' }
-              : { noModule: true };
-          }
-          return (
-            <script
-              key={file}
-              src={`${assetPrefix}/_next/${encodeURI(
-                file
-              )}${_devOnlyInvalidateCacheQueryString}`}
-              nonce={this.props.nonce}
-              async={!isDevelopment}
-              crossOrigin={
-                this.props.crossOrigin || process.env.__NEXT_CROSS_ORIGIN
-              }
-              {...modernProps}
-            />
-          );
-        })}
+        {this.getScripts(files)}
       </>
     );
   }
@@ -82,28 +72,14 @@ class MyDocument extends Document<MyDocumentProps> {
       nextRuntime = customPage.nextRuntime;
 
       const manifestFile = await fs.readFile(
-        path.resolve('.next', 'custom-entries-build-manifest.json'),
-        'utf8'
+        path.resolve(".next", "custom-entries-build-manifest.json"),
+        "utf8"
       );
 
       if (manifestFile) {
-        const { customEntries: customScripts } = JSON.parse(manifestFile);
+        const { customEntries } = JSON.parse(manifestFile);
 
-        const scriptsPattern = [
-          ...customPage.scripts,
-          // match [scriptName]-[hash].[extension] filenames too
-          ...customPage.scripts.map((entry) => {
-            // split by last dot
-            const [base, extension] = entry.split(/\.(?=[^\.]+$)/);
-            // pattern to match with hash
-            return `${base}-*.${extension}`;
-          }),
-        ];
-
-        // get additional scripts which should be on the page
-        scripts = micromatch.match(customScripts, scriptsPattern, {
-          basename: true,
-        });
+        scripts = customEntries;
       }
     }
 

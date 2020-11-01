@@ -8,40 +8,42 @@
     ]
   },
   "scripts": {
+    "dev": "yarn --cwd packages/web dev",
+    "build": "yarn --cwd packages/components build && yarn --cwd packages/web build",
     "test": "jest --runInBand --config ./jest.config.js",
     "lint": "eslint --fix ."
   },
   "dependencies": {
-    "react": "16.13.1",
-    "react-dom": "16.13.1"
+    "react": "~16.14.0",
+    "react-dom": "~16.14.0"
   },
   "devDependencies": {
-    "@testing-library/dom": "~7.23.0",
-    "@testing-library/jest-dom": "~5.11.4",
-    "@types/node": "~14.0.27",
-    "@types/react": "~16.9.46",
-    "@types/react-dom": "~16.9.8",
-    "@typescript-eslint/eslint-plugin": "~2.34.0",
-    "@typescript-eslint/parser": "~2.34.0",
+    "@testing-library/dom": "~7.26.3",
+    "@testing-library/jest-dom": "~5.11.5",
+    "@types/node": "~14.14.6",
+    "@types/react": "~16.9.55",
+    "@types/react-dom": "~16.9.9",
+    "@typescript-eslint/eslint-plugin": "~4.6.0",
+    "@typescript-eslint/parser": "~4.6.0",
     "babel-eslint": "~10.1.0",
-    "babel-jest": "~26.3.0",
+    "babel-jest": "~26.6.1",
     "cheerio": "~1.0.0-rc.3",
     "cross-spawn": "~7.0.3",
-    "eslint": "~6.8.0",
-    "eslint-config-react-app": "~5.2.1",
-    "eslint-plugin-flowtype": "~4.7.0",
-    "eslint-plugin-import": "~2.22.0",
-    "eslint-plugin-jsx-a11y": "~6.3.1",
-    "eslint-plugin-react": "~7.20.6",
-    "eslint-plugin-react-hooks": "~2.5.1",
+    "eslint": "~7.12.1",
+    "eslint-config-react-app": "~6.0.0",
+    "eslint-plugin-flowtype": "~5.2.0",
+    "eslint-plugin-import": "~2.22.1",
+    "eslint-plugin-jsx-a11y": "~6.4.1",
+    "eslint-plugin-react": "~7.21.5",
+    "eslint-plugin-react-hooks": "~4.2.0",
     "get-port": "~5.1.1",
     "husky": "~4.3.0",
-    "jest-cli": "~26.4.2",
-    "lint-staged": "~10.4.2",
-    "node-fetch": "~2.6.0",
+    "jest-cli": "~26.6.1",
+    "lint-staged": "~10.5.0",
+    "node-fetch": "~2.6.1",
     "prettier": "~2.1.2",
     "tree-kill": "~1.2.2",
-    "typescript": "~3.9.7"
+    "typescript": "~4.0.5"
   },
   "husky": {
     "hooks": {
@@ -49,8 +51,11 @@
     }
   },
   "lint-staged": {
-    "*.{js,ts,tsx,json}": [
+    "*.{js,ts,tsx}": [
       "eslint --cache --fix",
+      "prettier --write"
+    ],
+    "*.{json}": [
       "prettier --write"
     ]
   }
