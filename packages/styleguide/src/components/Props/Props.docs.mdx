@@ -1,6 +1,27 @@
 ---
 title: Props
 ---
+
 import Props from '.';
 
 <Props component={Props} />
+
+## Props
+
+<Props component={Props} />
+
+## Custom UI
+
+```js
+const MyPropsTable = () => {
+  const { props, displayName, description } = usePropsContext();
+
+  return <div />; // UI
+};
+
+const MyProps = () => (
+  <Props component={Component}>
+    <MyPropsTable />
+  </Props>
+);
+```
