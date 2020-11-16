@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import CodeExample from './CodeExample';
+import { useState } from "react";
+import CodeExample from "./CodeExample";
 
 const Preview = ({ children }) => {
   const [showCode, setShowCode] = useState(false);
@@ -7,7 +7,7 @@ const Preview = ({ children }) => {
     <>
       <div>{children}</div>
       <button onClick={() => setShowCode(!showCode)}>
-        {showCode ? 'Hide code' : 'Show code'}
+        {showCode ? "Hide code" : "Show code"}
       </button>
       {showCode && <CodeExample>{children}</CodeExample>}
     </>

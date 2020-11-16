@@ -2,7 +2,7 @@ import { useMemo } from "react";
 import Prism, {
   defaultProps,
   Language,
-  PrismTheme,
+  PrismTheme
 } from "prism-react-renderer";
 
 import oneDarkProTheme from "./oneDarkProTheme";
@@ -18,7 +18,7 @@ const useCodeHighlight = ({
   code,
   language = "markup",
   theme = oneDarkProTheme,
-  inline = true,
+  inline = true
 }: UseCodeHighlight) => {
   const { highlight } = useMemo(() => {
     const Tag = inline ? "span" : "div";
@@ -49,7 +49,7 @@ const useCodeHighlight = ({
     );
 
     return {
-      highlight,
+      highlight
     };
   }, [code, language, theme, inline]);
 

@@ -22,19 +22,20 @@ type UsePropsDocs = {
 
 const usePropsDocs = ({ component }: UsePropsDocs): DocgenInfo => {
   const info = component.__docgenInfo;
+  console.log(info);
 
   if (!info) {
     return {
       displayName: null,
       description: null,
-      props: null,
+      props: null
     };
   }
 
   return {
     displayName: info.displayName,
     description: info.description,
-    props: info.props,
+    props: info.props
   };
 };
 
@@ -66,7 +67,7 @@ const Props = ({ component }: PropsProps) => {
           </tr>
         </thead>
         <tbody>
-          {Object.keys(props).map((propName) => (
+          {Object.keys(props).map(propName => (
             <tr key={props[propName].name}>
               <td>{props[propName].required && "Yes"}</td>
               <td>{props[propName].name}</td>

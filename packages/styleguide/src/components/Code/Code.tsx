@@ -16,7 +16,7 @@ const Code = ({
   const { highlight } = useCodeHighlight({
     code: children,
     language,
-    inline,
+    inline
   });
 
   if (!children) {
