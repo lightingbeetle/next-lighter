@@ -4,16 +4,16 @@ import reactElementToJSXString, { Options } from "react-element-to-jsx-string";
 import unescape from "unescape-html";
 import pretty from "pretty";
 
-export type UseCodeExample = {
+export type UsePreviewCode = {
   code: String | React.ReactNode;
-  type: "html" | "jsx";
+  codeType: "html" | "jsx";
   JSXOptions?: Options;
 };
 
 const getJSXAsStringFromCode = ({
   code,
   JSXOptions = {}
-}: Pick<UseCodeExample, "code" | "JSXOptions">) => {
+}: Pick<UsePreviewCode, "code" | "JSXOptions">) => {
   const { filterProps = [], ...otherOptions } = JSXOptions;
 
   const reactElementToJSXStringOptions = {
@@ -50,18 +50,29 @@ const getJSXAsStringFromCode = ({
   return "";
 };
 
-const useCodeExample = ({ code, type, JSXOptions }: UseCodeExample): string => {
-  switch (type) {
+const usePreviewCode = ({
+  code,
+  codeType,
+  JSXOptions
+}: UsePreviewCode): { codeAsString: string } => {
+  let codeAsString;
+
+  switch (codeType) {
     case "html":
-      return typeof code === "string"
-        ? unescape(code)
-        : pretty(renderToStaticMarkup(code as React.ReactElement));
+      codeAsString =
+        typeof code === "string"
+          ? unescape(code)
+          : pretty(renderToStaticMarkup(code as React.ReactElement));
+      break;
     case "jsx":
-      return getJSXAsStringFromCode({
+      codeAsString = getJSXAsStringFromCode({
         code,
         JSXOptions
       });
+      break;
   }
+
+  return { codeAsString };
 };
 
-export default useCodeExample;
+export default usePreviewCode;

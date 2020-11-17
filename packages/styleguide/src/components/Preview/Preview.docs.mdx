@@ -1,0 +1,64 @@
+---
+title: Preview
+---
+
+import Preview from '.';
+import { Link, Props } from '../';
+
+# Preview
+
+Preview component is dedicated to displaing other components with code preview and colored backgrounds.
+
+## Variants
+
+### Default
+
+<Preview><Link href="#">Link</Link></Preview>
+
+## Props
+
+<Props component={Preview} />
+
+## Custom UI
+
+By default `<Preview />` looks like this:
+
+```js
+<Preview customUI>
+  <PreviewUI />
+  <PreviewCodeToggle />
+  <PreviewCode />
+</Preview>
+```
+
+`<Preview />` UI can be customized with `usePreviewContext` function which will provide default functionality.
+
+```js
+type PreviewContextType = {
+  code: React.ReactNode;
+  showCode: boolean;
+  setShowCode: (showCode: boolean) => void;
+  codeType: UsePreviewCode["codeType"];
+  setCodeType: (codeType: UsePreviewCode["codeType"]) => void;
+  codeAsString: string;
+};
+
+const MyPreviewUI = () => {
+  const { 
+    code,
+    showCode,
+    setShowCodem
+    codeType,
+    setCodeType,
+    codeAsString
+  }: PreviewContextType = usePreviewContext();
+
+  return <div />; // UI
+};
+
+const MyPreview = () => (
+  <Preview>
+    <MyPreviewUI />
+  </Preview>
+);
+```
