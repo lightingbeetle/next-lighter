@@ -1,7 +1,7 @@
 import { MDXProvider, Components } from "@mdx-js/react";
 import Link from "next/link";
 import { Children } from "react";
-import { H1, H2, H3, H4, H5, H6 } from "./components";
+import { Code, H1, H2, H3, H4, H5, H6 } from "./components";
 import { P } from "./components/Typography";
 
 type StyleguideProps = {
@@ -36,7 +36,15 @@ const components: Components = {
   h5: props => <H5 id={`${createHeaderId(props)}`} {...props} />,
   h6: props => <H6 id={`${createHeaderId(props)}`} {...props} />,
   p: P,
-  a: Link
+  a: Link,
+  inlineCode: Code,
+  code: props => (
+    <Code
+      inline={false}
+      language={props.className?.replace(/language-/, "")}
+      {...props}
+    />
+  )
 };
 
 const Styleguide = ({ children }: StyleguideProps) => {

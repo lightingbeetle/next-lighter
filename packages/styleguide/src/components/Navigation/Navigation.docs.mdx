@@ -1,0 +1,58 @@
+---
+title: Navigation
+---
+
+import { Preview, Props } from '..';
+import Navigation, { NavigationItem } from '.';
+
+# Navigation
+
+<Preview>
+  <Navigation activePage="#11">
+    <NavigationItem title="Item 1" href="#1" />
+    <NavigationItem title="Category 1">
+      <NavigationItem title="Category 1 Item 1" href="#11" />
+      <NavigationItem title="Category 1 Item 2" href="#12" />
+    </NavigationItem>
+  </Navigation>
+</Preview>
+
+## Props
+
+<Props component={Navigation} />
+
+## Custom UI
+
+By default `<Navigation />` looks like this:
+
+```js
+<Navigation customUI>
+  <NavigationTree />
+</Preview>
+```
+
+`<Navigation />` UI can be customized with `useNavigationContext` function which will provide default functionality.
+
+```ts
+type NavigationProps = {
+  children: React.ReactNode;
+  activePage: string;
+  customUI: boolean;
+};
+
+const MyNavigationTree = () => {
+  const {
+    children,
+    activePage,
+    customUI,
+  }: NavigationProps = useNavigationContext();
+
+  return <div />; // UI
+};
+
+const MyNavigation = () => (
+  <Navigation>
+    <MyNavigationTree />
+  </Navigation>
+);
+```
