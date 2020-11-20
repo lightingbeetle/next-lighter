@@ -1,8 +1,9 @@
 import { createContext, useContext } from "react";
+import { NavigationItemProps } from "./NavigationItem";
 
-type NavigationContextType = {
-  children: React.ReactNode;
-  activePage: string;
+export type NavigationContextType = {
+  activePage?: string;
+  routes: NavigationItemProps[];
 };
 
 const NavigationContext = createContext<NavigationContextType | undefined>(

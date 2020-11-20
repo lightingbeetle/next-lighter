@@ -1,13 +1,14 @@
 import { Link } from "../Typography";
+import { LinkProps } from "../Typography/Link";
 import { useNavigationContext } from "./useNavigationContext";
 
-type NavigationItemProps = {
+export type NavigationItemProps = {
   title: React.ReactNode;
-  href: string;
-  children?: React.ReactNode;
+  href?: LinkProps["href"];
+  routes?: NavigationItemProps[];
 };
 
-const NavigationItem = ({ title, children, href }: NavigationItemProps) => {
+const NavigationItem = ({ title, href, routes }: NavigationItemProps) => {
   const { activePage } = useNavigationContext();
   return (
     <li>
@@ -18,7 +19,13 @@ const NavigationItem = ({ title, children, href }: NavigationItemProps) => {
       ) : (
         <span>{title}</span>
       )}
-      {children && <ul>{children}</ul>}
+      {routes && (
+        <ul>
+          {routes.map((route, index) => (
+            <NavigationItem key={index} {...route} />
+          ))}
+        </ul>
+      )}
     </li>
   );
 };
