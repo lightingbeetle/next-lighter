@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Children } from "react";
 import styled from "styled-components";
 import { Code, H1, H2, H3, H4, H5, H6 } from "..";
+import { rem } from "../../styles/utils";
 import { P } from "../Typography";
 import Sidebar from "./Sidebar";
 
@@ -10,6 +11,7 @@ type StyleguideProps = {
   children: React.ReactNode;
   components?: Components;
   sidebarArea?: React.ReactNode;
+  headerArea?: React.ReactNode;
 };
 
 /**
@@ -57,17 +59,20 @@ const Page = styled.div`
 
 const Main = styled.main`
   flex: 1 1 auto;
+  padding: ${rem(40)} ${rem(20)};
 `;
 
 const Styleguide = ({
   children,
   components: componentsProp,
-  sidebarArea
+  sidebarArea,
+  headerArea
 }: StyleguideProps) => {
   const components = { ...defaultComponents, ...componentsProp };
 
   return (
     <MDXProvider components={components}>
+      {headerArea}
       <Page>
         {sidebarArea && <Sidebar>{sidebarArea}</Sidebar>}
         <Main>{children}</Main>

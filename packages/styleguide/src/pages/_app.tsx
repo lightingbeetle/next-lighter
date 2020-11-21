@@ -1,6 +1,9 @@
 import Link from "next/link";
 import { Navigation } from "../components";
+import Header, { HeaderLogo } from "../components/Header";
 import Styleguide from "../components/Styleguide";
+import "modern-normalize/modern-normalize.css";
+import HeaderTitle from "../components/Header/HeaderTitle";
 
 const routes = [
   {
@@ -32,7 +35,19 @@ const routes = [
 
 function MyApp({ Component, pageProps }) {
   return (
-    <Styleguide sidebarArea={<Navigation routes={routes} />}>
+    <Styleguide
+      sidebarArea={<Navigation routes={routes} />}
+      headerArea={
+        <Header
+          logoArea={
+            <Link href="/" passHref>
+              <HeaderLogo src="/logo.svg" />
+            </Link>
+          }
+          titleArea={<HeaderTitle>Page title</HeaderTitle>}
+        />
+      }
+    >
       <Component {...pageProps} />
     </Styleguide>
   );

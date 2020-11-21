@@ -10,6 +10,7 @@
     "@mdx-js/react": "^1.6.21",
     "classnames": "~2.2.6",
     "gray-matter": "~4.0.2",
+    "modern-normalize": "^1.0.0",
     "next": "~9.5.5",
     "polished": "^4.0.3",
     "pretty": "~2.0.0",

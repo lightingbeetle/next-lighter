@@ -16,6 +16,7 @@ const theme: DefaultTheme = {
   },
   color: {
     black: "#000",
+    white: "#fff",
     accent: "#f85013"
   },
   space: {

@@ -4,7 +4,7 @@ import { rem } from "../../styles/utils";
 const StyledSidebar = styled.div`
   width: ${rem(200)};
   height: auto;
-  flex: 1 0 auto;
+  flex: 0 0 auto;
 `;
 const StyledSidebarContent = styled.div`
   position: sticky;
