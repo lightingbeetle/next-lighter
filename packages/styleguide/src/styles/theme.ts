@@ -17,10 +17,12 @@ const theme: DefaultTheme = {
   color: {
     black: "#000",
     white: "#fff",
-    accent: "#f85013"
+    accent: "#f85013",
+    grey: "#ddd"
   },
   space: {
-    medium: "1.5rem"
+    medium: "1.5rem",
+    large: "3rem"
   },
   contentWidth: "55ch"
 };

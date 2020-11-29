@@ -3,7 +3,9 @@ import Link from "next/link";
 import { Children } from "react";
 import styled from "styled-components";
 import { Code, H1, H2, H3, H4, H5, H6 } from "..";
+import { theme } from "../../styles";
 import { rem } from "../../styles/utils";
+
 import { P } from "../Typography";
 import Sidebar from "./Sidebar";
 
@@ -59,8 +61,12 @@ const Page = styled.div`
 
 const Main = styled.main`
   flex: 1 1 auto;
-  padding: ${rem(40)} ${rem(20)};
+  padding: ${({ theme }) => `${theme.space.large} ${theme.space.large}`}};
 `;
+
+Main.defaultProps = {
+  theme
+};
 
 const Styleguide = ({
   children,

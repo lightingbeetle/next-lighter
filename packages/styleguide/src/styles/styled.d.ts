@@ -1,7 +1,7 @@
 // import original module declarations
 import "styled-components";
 
-type Colors = "black" | "white" | "accent";
+type Colors = "black" | "white" | "accent" | "grey";
 
 declare module "styled-components" {
   export interface DefaultTheme {
@@ -23,6 +23,7 @@ declare module "styled-components" {
     };
     space: {
       medium: string;
+      large: string;
     };
     contentWidth: string;
   }
