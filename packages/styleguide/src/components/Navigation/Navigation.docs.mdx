@@ -2,19 +2,27 @@
 title: Navigation
 ---
 
-import { Preview, Props } from '..';
+import { Preview, Props, Link } from '..';
 import Navigation, { NavigationItem } from '.';
 
 # Navigation
 
 <Preview>
-  <Navigation activePage="#11">
-    <NavigationItem title="Item 1" href="#1" />
-    <NavigationItem title="Category 1">
-      <NavigationItem title="Category 1 Item 1" href="#11" />
-      <NavigationItem title="Category 1 Item 2" href="#12" />
-    </NavigationItem>
-  </Navigation>
+  <Navigation routes={[
+  {
+    title: "Home",
+    href: <Link href="/" />
+  },
+  {
+    title: "Components",
+    routes: [
+      {
+        title: "Navigation",
+        href: <Link href="/Navigation" />
+      },
+    ]
+  }
+]} />
 </Preview>
 
 ## Props

@@ -22,6 +22,7 @@ declare module "styled-components" {
       [key in keyof typeof Colors]: string;
     };
     space: {
+      xsmall: string;
       small: string;
       medium: string;
       large: string;

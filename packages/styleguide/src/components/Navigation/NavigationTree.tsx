@@ -1,14 +1,15 @@
 import NavigationItem from "./NavigationItem";
+import NavigationList from "./NavigationList";
 import { useNavigationContext } from "./useNavigationContext";
 
 const NavigationTree = () => {
   const { routes } = useNavigationContext();
   return routes ? (
-    <ul>
+    <NavigationList>
       {routes.map((route, index) => (
         <NavigationItem key={index} {...route} />
       ))}
-    </ul>
+    </NavigationList>
   ) : null;
 };
 

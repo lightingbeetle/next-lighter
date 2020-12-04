@@ -22,6 +22,7 @@ const theme: DefaultTheme = {
     grey: "#ddd"
   },
   space: {
+    xsmall: "0.5rem",
     small: "1rem",
     medium: "1.5rem",
     large: "3rem"
