@@ -1,6 +1,6 @@
 import { rem as polishedRem } from "polished";
-import theme from "./theme";
 
-export function rem(value, base = theme.font.size.default) {
+// TODO make base variable
+export function rem(value, base = "16px") {
   return polishedRem(value, base);
 }

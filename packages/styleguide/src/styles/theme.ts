@@ -1,9 +1,10 @@
 import { DefaultTheme } from "styled-components";
+import { rem } from "./utils";
 
 const theme: DefaultTheme = {
   font: {
     size: {
-      default: "16px"
+      default: rem("16px")
     },
     family: 'Arial, "Helvetica Neue", Helvetica, sans-serif',
     weight: {
@@ -21,6 +22,7 @@ const theme: DefaultTheme = {
     grey: "#ddd"
   },
   space: {
+    small: "1rem",
     medium: "1.5rem",
     large: "3rem"
   },
