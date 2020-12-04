@@ -13,6 +13,7 @@ const StyledSidebarContent = styled.div`
   top: ${rem(80)};
   overflow-y: auto;
   overflow-x: hidden;
+  max-height: calc(100vh - ${rem(80)});
 
   &:after {
     content: "";

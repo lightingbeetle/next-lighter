@@ -10,6 +10,7 @@ const StyledHeader = styled.header`
   width: 100%;
   display: flex;
   background-color: ${({ theme }) => theme.color.white};
+  z-index: 1;
 
   &:after {
     content: "";
