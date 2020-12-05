@@ -1,3 +1,4 @@
+import Button from "../Button";
 import Code from "../Code";
 import { usePreviewContext } from "./usePreviewContext";
 
@@ -10,8 +11,8 @@ const PreviewCode = () => {
 
   return (
     <>
-      <button onClick={() => setCodeType("jsx")}>JSX</button>
-      <button onClick={() => setCodeType("html")}>HTML</button>
+      <Button onClick={() => setCodeType("jsx")}>JSX</Button>
+      <Button onClick={() => setCodeType("html")}>HTML</Button>
       <Code inline={false} language={codeType === "html" ? "markup" : codeType}>
         {codeAsString}
       </Code>

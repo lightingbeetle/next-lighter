@@ -4,6 +4,7 @@ import usePreviewCode, { UsePreviewCode } from "./usePreviewCode";
 import PreviewCodeToggle from "./PreviewCodeToggle";
 import PreviewUI from "./PreviewUI";
 import PreviewContext from "./usePreviewContext";
+import PreviewContainer from "./PreviewContainer";
 
 type PreviewProps = {
   children: React.ReactNode;
@@ -37,11 +38,11 @@ const Preview = ({ children, customUI, JSXOptions }: PreviewProps) => {
       {customUI ? (
         customUI
       ) : (
-        <>
+        <PreviewContainer>
           <PreviewUI />
           <PreviewCodeToggle />
           <PreviewCode />
-        </>
+        </PreviewContainer>
       )}
     </PreviewContext.Provider>
   );

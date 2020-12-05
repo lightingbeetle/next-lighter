@@ -1,14 +1,13 @@
+import Button from "../Button";
 import { usePreviewContext } from "./usePreviewContext";
 
 const PreviewCodeToggle = () => {
   const { showCode, setShowCode } = usePreviewContext();
 
   return (
-    <>
-      <button onClick={() => setShowCode(!showCode)}>
-        {showCode ? "Hide code" : "Show code"}
-      </button>
-    </>
+    <Button onClick={() => setShowCode(!showCode)}>
+      {showCode ? "Hide code" : "Show code"}
+    </Button>
   );
 };
 
