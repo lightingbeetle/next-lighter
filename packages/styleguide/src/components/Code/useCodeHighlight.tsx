@@ -5,7 +5,7 @@ import Prism, {
   PrismTheme
 } from "prism-react-renderer";
 
-import oneDarkProTheme from "./oneDarkProTheme";
+import vsCodeLightTheme from "./vsCodeLightTheme";
 
 export type UseCodeHighlight = {
   code: string;
@@ -17,14 +17,14 @@ export type UseCodeHighlight = {
 const useCodeHighlight = ({
   code,
   language = "markup",
-  theme = oneDarkProTheme,
+  theme = vsCodeLightTheme,
   inline = true
 }: UseCodeHighlight) => {
   const { highlight } = useMemo(() => {
     const Tag = inline ? "span" : "div";
 
     const highlight = (
-      <Prism code={code} language={language} theme={theme} {...defaultProps}>
+      <Prism {...defaultProps} code={code} language={language} theme={theme}>
         {({ className, style, tokens, getLineProps, getTokenProps }) => {
           const toHighlight = tokens.map((line, i) => (
             <Tag {...getLineProps({ line, key: i })}>
@@ -37,7 +37,7 @@ const useCodeHighlight = ({
           const code = (
             <code
               style={{ ...style, display: inline ? "inline-block" : "block" }}
-              className={`code prism-code language-${language} ${className}`}
+              className={`code prism-code ${className}`}
             >
               {toHighlight}
             </code>
