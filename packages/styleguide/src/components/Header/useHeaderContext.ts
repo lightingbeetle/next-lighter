@@ -2,7 +2,8 @@ import { createContext, useContext } from "react";
 
 export type HeaderContextType = {
   logoArea?: React.ReactNode;
-  titleArea?: React.ReactNode;
+  mainArea?: React.ReactNode;
+  actionArea?: React.ReactNode;
 };
 
 const HeaderContext = createContext<HeaderContextType | undefined>(undefined);

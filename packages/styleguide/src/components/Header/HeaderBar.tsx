@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { theme } from "../../styles";
 import { rem } from "../../styles/utils";
+import HeaderItem from "./HeaderItem";
 import { useHeaderContext } from "./useHeaderContext";
 
 const StyledHeader = styled.header`
@@ -32,37 +33,43 @@ StyledHeader.defaultProps = {
 const StyledLogoArea = styled.div`
   width: ${rem(200)};
   display: flex;
-
-  position: relative;
-
-  &:after {
-    content: "";
-    position: absolute;
-    right: 0;
-    top: calc(${({ theme }) => theme.space.medium});
-
-    width: 1px;
-    height: calc(100% - 2 * ${({ theme }) => theme.space.medium});
-
-    background-color: ${({ theme }) => theme.color.grey};
-  }
+  flex: 0 0 ${rem(200)};
 `;
 
 StyledLogoArea.defaultProps = {
   theme
 };
 
-const StyledTitleArea = styled.div`
-  width: 100%;
+const StyledMainArea = styled.div`
   display: flex;
+  flex: 1 0 auto;
 `;
 
+const StyledActionArea = styled.div`
+  display: flex;
+  align-items: middle;
+  flex: 0 0 auto;
+`;
+
+StyledActionArea.defaultProps = {
+  theme
+};
+
 const HeaderBar = () => {
-  const { logoArea, titleArea } = useHeaderContext();
+  const { logoArea, mainArea, actionArea } = useHeaderContext();
   return (
     <StyledHeader>
       {logoArea && <StyledLogoArea>{logoArea}</StyledLogoArea>}
-      {titleArea && <StyledTitleArea>{titleArea}</StyledTitleArea>}
+      {mainArea && (
+        <StyledMainArea>
+          <HeaderItem>{mainArea}</HeaderItem>
+        </StyledMainArea>
+      )}
+      {actionArea && (
+        <StyledActionArea>
+          <HeaderItem>{actionArea}</HeaderItem>
+        </StyledActionArea>
+      )}
     </StyledHeader>
   );
 };

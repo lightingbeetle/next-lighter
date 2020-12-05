@@ -6,13 +6,14 @@ type HeaderProps = {
   children?: React.ReactNode;
 } & HeaderContextType;
 
-const Header = ({ children, logoArea, titleArea }: HeaderProps) => {
+const Header = ({ children, logoArea, mainArea, actionArea }: HeaderProps) => {
   const value = useMemo(
     () => ({
       logoArea,
-      titleArea
+      mainArea,
+      actionArea
     }),
-    [logoArea, titleArea]
+    [logoArea, mainArea, actionArea]
   );
 
   return (

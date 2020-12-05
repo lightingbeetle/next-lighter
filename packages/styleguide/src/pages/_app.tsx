@@ -1,33 +1,32 @@
-import Link from "next/link";
-import { Navigation } from "../components";
+import NextLink from "next/link";
+import { Navigation, Link, H2, H4 } from "../components";
 import Header, { HeaderLogo } from "../components/Header";
 import Styleguide from "../components/Styleguide";
 import "modern-normalize/modern-normalize.css";
-import HeaderTitle from "../components/Header/HeaderTitle";
 
 const routes = [
   {
     title: "Home",
-    href: <Link href="/" passHref />
+    href: <NextLink href="/" passHref />
   },
   {
     title: "Components",
     routes: [
       {
         title: "Navigation",
-        href: <Link href="/Navigation" passHref />
+        href: <NextLink href="/Navigation" passHref />
       },
       {
         title: "Preview",
-        href: <Link href="/Preview" passHref />
+        href: <NextLink href="/Preview" passHref />
       },
       {
         title: "Props",
-        href: <Link href="/Props" passHref />
+        href: <NextLink href="/Props" passHref />
       },
       {
         title: "Typography",
-        href: <Link href="/Typography" passHref />
+        href: <NextLink href="/Typography" passHref />
       }
     ]
   }
@@ -40,11 +39,16 @@ function MyApp({ Component, pageProps }) {
       headerArea={
         <Header
           logoArea={
-            <Link href="/" passHref>
+            <NextLink href="/" passHref>
               <HeaderLogo src="/logo.svg" />
-            </Link>
+            </NextLink>
           }
-          titleArea={<HeaderTitle>Page title</HeaderTitle>}
+          mainArea={<H4 as="div">Page title</H4>}
+          actionArea={
+            <NextLink href="/" passHref>
+              <Link>Admin</Link>
+            </NextLink>
+          }
         />
       }
     >
