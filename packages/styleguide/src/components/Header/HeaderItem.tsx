@@ -2,9 +2,17 @@ import styled from "styled-components";
 import { rem } from "../../styles/utils";
 import { theme } from "../../styles";
 
-type HeaderTitleProps = JSX.IntrinsicElements["div"];
+type HeaderTitleProps = {
+  fill?: boolean;
+} & JSX.IntrinsicElements["div"];
 
-const StyledItem = styled.div`
+const StyledItem = styled.div<Pick<HeaderTitleProps, "fill">>`
+  display: flex;
+  align-items: middle;
+  flex: ${props => (props.fill ? 1 : 0)}0 0 auto;
+`;
+
+const StyledItemContent = styled.div`
   height: 100%;
   display: flex;
   align-items: center;
@@ -30,12 +38,16 @@ const StyledItem = styled.div`
   }
 `;
 
-StyledItem.defaultProps = {
+StyledItemContent.defaultProps = {
   theme
 };
 
-const HeaderItem = ({ children, ...other }: HeaderTitleProps) => {
-  return <StyledItem>{children}</StyledItem>;
+const HeaderItem = ({ children, fill, ...other }: HeaderTitleProps) => {
+  return (
+    <StyledItem fill={fill}>
+      <StyledItemContent>{children}</StyledItemContent>
+    </StyledItem>
+  );
 };
 
 export default HeaderItem;

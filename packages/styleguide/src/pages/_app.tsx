@@ -1,6 +1,4 @@
 import NextLink from "next/link";
-import { Navigation, Link, H2, H4 } from "../components";
-import Header, { HeaderLogo } from "../components/Header";
 import Styleguide from "../components/Styleguide";
 import "modern-normalize/modern-normalize.css";
 
@@ -34,24 +32,7 @@ const routes = [
 
 function MyApp({ Component, pageProps }) {
   return (
-    <Styleguide
-      sidebarArea={<Navigation routes={routes} />}
-      headerArea={
-        <Header
-          logoArea={
-            <NextLink href="/" passHref>
-              <HeaderLogo src="/logo.svg" />
-            </NextLink>
-          }
-          mainArea={<H4 as="div">Page title</H4>}
-          actionArea={
-            <NextLink href="/" passHref>
-              <Link>Admin</Link>
-            </NextLink>
-          }
-        />
-      }
-    >
+    <Styleguide routes={routes} currentPage="Page" adminHref="/">
       <Component {...pageProps} />
     </Styleguide>
   );

@@ -1,25 +1,25 @@
-import { useMemo } from "react";
+import HeaderAdmin from "./HeaderAdmin";
 import HeaderBar from "./HeaderBar";
-import HeaderContext, { HeaderContextType } from "./useHeaderContext";
+import HeaderLogo from "./HeaderLogo";
+import HeaderTitle from "./HeaderTitle";
 
 type HeaderProps = {
-  children?: React.ReactNode;
-} & HeaderContextType;
+  customUI?: React.ReactNode;
+};
 
-const Header = ({ children, logoArea, mainArea, actionArea }: HeaderProps) => {
-  const value = useMemo(
-    () => ({
-      logoArea,
-      mainArea,
-      actionArea
-    }),
-    [logoArea, mainArea, actionArea]
-  );
-
+const Header = ({ customUI }: HeaderProps) => {
   return (
-    <HeaderContext.Provider value={value}>
-      {children || <HeaderBar />}
-    </HeaderContext.Provider>
+    <>
+      {customUI ? (
+        customUI
+      ) : (
+        <HeaderBar>
+          <HeaderLogo />
+          <HeaderTitle />
+          <HeaderAdmin />
+        </HeaderBar>
+      )}
+    </>
   );
 };
 

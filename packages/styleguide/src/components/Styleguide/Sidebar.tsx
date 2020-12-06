@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import { rem } from "../../styles/utils";
 import { theme } from "../../styles";
+import Navigation from "../Navigation";
+import { useStyleguideContext } from "./useStyleguideContext";
 
 const StyledSidebar = styled.div`
   width: ${rem(200)};
@@ -32,10 +34,13 @@ StyledSidebarContent.defaultProps = {
   theme
 };
 
-const Sidebar = ({ children }) => {
+const Sidebar = () => {
+  const { routes } = useStyleguideContext();
   return (
     <StyledSidebar>
-      <StyledSidebarContent>{children}</StyledSidebarContent>
+      <StyledSidebarContent>
+        <Navigation routes={routes} />
+      </StyledSidebarContent>
     </StyledSidebar>
   );
 };
