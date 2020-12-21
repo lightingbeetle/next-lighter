@@ -3,20 +3,22 @@ import path from 'path';
 import glob from 'glob';
 import dynamic from 'next/dynamic';
 import matter from 'gray-matter';
+import { Styleguide } from '@lighting-beetle/lighter-styleguide';
 
-const DesignSystemPage = ({ filename }) => {
+const DesignSystemPage = ({ filename, routes ,title}) => {
   const MDXContent = dynamic(
     () => import(`../../../../components/src/${filename}`)
   );
 
   return (
-    <div>
+    <Styleguide routes={routes} currentPage={title} logoSrc="/logo.svg" adminHref="/design-system/admin">
       <MDXContent />
-    </div>
+    </Styleguide>
   );
 };
 
 export async function getStaticProps({ params }) {
+  const docsFiles = glob.sync('../components/src/**/*.docs.mdx');
   const filename = path.join(params.slug, params.slug + '.docs.mdx');
 
   const mdxPost = fs
@@ -26,10 +28,36 @@ export async function getStaticProps({ params }) {
   // @ts-ignore
   const { data } = matter(mdxPost);
 
+  const posts = docsFiles.map((filename) => {
+    const markdownWithMetadata = fs
+      .readFileSync(path.join(process.cwd(), filename))
+      .toString();
+
+    const { data } = matter(markdownWithMetadata);
+
+    return {
+      slug: '/design-system/' + path.basename(filename, '.docs.mdx'),
+      title: data.title,
+    };
+  });
+
   return {
     props: {
       filename,
       title: data.title,
+      routes: [
+        {
+          title: 'Design system',
+          href: '/design-system',
+        },
+        {
+          title: 'Components',
+          routes: posts.map((post) => ({
+            title: post.title,
+            href: post.slug,
+          })),
+        },
+      ],
     },
   };
 }

@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { useRouter } from "next/router";
 import micromatch from "micromatch";
+import "modern-normalize/modern-normalize.css";
 import customPages from "../custom-pages";
-import { Styleguide } from "@lighting-beetle/lighter-styleguide";
 
 export default function MyApp({ Component, pageProps }) {
   const router = useRouter();
@@ -23,8 +23,8 @@ export default function MyApp({ Component, pageProps }) {
   }, [router]);
 
   return (
-    <Styleguide>
+    <div>
       <Component {...pageProps} />
-    </Styleguide>
+    </div>
   );
 }
