@@ -11,6 +11,7 @@
     "dev": "yarn --cwd packages/web dev",
     "build": "npm run build:components && npm run build:web",
     "build:components": "yarn --cwd packages/components build",
+    "build:styleguide": "yarn --cwd packages/styleguide build",
     "build:web": "yarn --cwd packages/web build",
     "release": "npm run build && npx changeset publish",
     "test": "jest --runInBand --config ./jest.config.js",
@@ -48,7 +49,7 @@
     "node-fetch": "~2.6.1",
     "prettier": "~2.1.2",
     "tree-kill": "~1.2.2",
-    "typescript": "~4.0.5"
+    "typescript": "~4.1.3"
   },
   "husky": {
     "hooks": {

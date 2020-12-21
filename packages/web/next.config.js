@@ -18,13 +18,13 @@ const resolveComponents = (nextConfig = {}) => {
       }
 
       return config;
-    },
+    }
   });
 };
 
 // FIX
 // - this should work without .withPlugins([]), but that's probably bug in 'next-compose-plugins'
 module.exports = extend(nextLighterConfig()).withPlugins([
-  transpileModules(["components", "@lighting-beetle/lighter-styleguide"]),
-  resolveComponents,
+  transpileModules(["components"]),
+  resolveComponents
 ]);
