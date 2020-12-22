@@ -1,3 +1,4 @@
+import React from "react";
 import PropsTable from "./PropsTable";
 import useProps from "./useProps";
 import PropsContext from "./usePropsContext";

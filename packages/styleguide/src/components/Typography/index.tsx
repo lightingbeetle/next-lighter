@@ -1,5 +1,4 @@
-import * as React from "react";
-
+import React from "react";
 import H from "./H";
 
 export const H1 = props => <H level={1} {...props} />;

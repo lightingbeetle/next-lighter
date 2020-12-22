@@ -1,3 +1,4 @@
+import React from "react";
 import { useStyleguideContext } from "../Styleguide/useStyleguideContext";
 import HeaderItem from "./HeaderItem";
 import { H4 } from "../Typography";

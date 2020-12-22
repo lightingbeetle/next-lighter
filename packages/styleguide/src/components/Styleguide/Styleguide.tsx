@@ -1,5 +1,5 @@
 import { MDXProvider, Components } from "@mdx-js/react";
-import { useMemo } from "react";
+import React, { useMemo } from "react";
 import StyleguideContext, {
   StyleguideContextType
 } from "./useStyleguideContext";

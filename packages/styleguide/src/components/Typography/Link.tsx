@@ -1,3 +1,4 @@
+import React from "react";
 import { cloneElement, isValidElement } from "react";
 import styled from "styled-components";
 import { theme } from "../../styles/";

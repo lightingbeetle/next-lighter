@@ -1,3 +1,4 @@
+import React from "react";
 import styled from "styled-components";
 import { Link } from "../Typography";
 import { LinkProps } from "../Typography/Link";

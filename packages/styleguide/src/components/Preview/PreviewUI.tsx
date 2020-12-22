@@ -1,3 +1,4 @@
+import React from "react";
 import { usePreviewContext } from "./usePreviewContext";
 
 const PreviewUI = () => {

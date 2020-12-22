@@ -1,12 +1,6 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "baseUrl": "./",
-    "paths": {
-      "components/*": [
-        "../components/src/*"
-      ]
-    },
     "strict": false,
     "jsx": "preserve"
   },

@@ -4,20 +4,24 @@
   "private": true,
   "main": "dist/index.js",
   "module": "dist/index.es.js",
-  "jsnext:main": "dist/index.es.js",
+  "jsnext:main": "dist/index.modern.js",
+  "exports": {
+		".": "./dist/index.modern.js",
+		"./static": "./dist/static.modern.js"
+	},
   "files": [
-    "dist"
+    "dist",
+    "public"
   ],
-  "types": "dist/components/index.d.ts",
+  "types": "dist/index.d.ts",
   "scripts": {
-    "build": "rollup -c"
+    "build": "microbundle src/index.ts src/static.ts --jsx React.createElement --jsxFragment React.Fragment --external react,react-dom"
   },
   "dependencies": {
-    "@lighting-beetle/lighter-styleguide": "5.0.0-alpha.1",
-    "@lighting-beetle/rollup-config": "1.0.0"
+    "@lighting-beetle/lighter-styleguide": "5.0.0-alpha.1"
   },
   "browserslist": ">1%, not ie 11, not op_mini all",
   "devDependencies": {
-    "rollup": "^2.35.1"
+    "microbundle": "^0.13.0"
   }
 }
