@@ -6,7 +6,7 @@ let doc = typeof document !== "undefined" ? document : null;
 
 export default function hookIt(fn) {
   // limit infinite recursion
-  const limitedFn = limit(fn);
+  fn = limit(fn);
 
   // minimal dom-node compatible stub required by react-like libs
   let holder = !doc
@@ -40,7 +40,7 @@ export default function hookIt(fn) {
     currentArgs = args;
     let prevResult = currentResult;
 
-    limitedFn.count = 0;
+    fn.count = 0;
     root = render(createElement(Component), holder);
     let result = currentResult;
     currentResult = prevResult;
@@ -49,11 +49,9 @@ export default function hookIt(fn) {
   }
 
   hookedFn.unhookIt = () => {
-    Promise.resolve().then(() => {
-      render(null, holder, root);
-      end = true;
-      currentArgs = currentCtx = currentResult = root = null;
-    }, 10);
+    render(null, holder, root);
+    end = true;
+    currentArgs = currentCtx = currentResult = root = null;
   };
 
   return hookedFn;

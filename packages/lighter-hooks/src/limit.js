@@ -5,7 +5,7 @@ export default function limit(fn) {
   let dirty;
   let wrapped = function () {
     if (++wrapped.count >= MAX)
-      throw Error(
+      throw new Error(
         "More than " + MAX + " calls, likely there's infinite recursion"
       );
 
