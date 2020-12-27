@@ -1,0 +1,22 @@
+{
+  "name": "@lighting-beetle/lighter-hooks",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "module": "dist/index.es.js",
+  "jsnext:main": "dist/index.modern.js",
+  "files": [
+    "dist"
+  ],
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "microbundle src/index.js --external react,react-dom"
+  },
+  "devDependencies": {
+    "microbundle": "^0.13.0"
+  },
+  "peerDependencies": {
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0"
+  }
+}
