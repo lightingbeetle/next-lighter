@@ -1,4 +1,4 @@
-import exampleInit from "./example/Example.static";
+import exampleInit from "./components/example/Example.static";
 import domReady from "./utils/domReady";
 import moduleFactory from "./utils/moduleFactory";
 

@@ -19,7 +19,7 @@ const DesignSystemPage = ({ filename, routes ,title}) => {
 
 export async function getStaticProps({ params }) {
   const docsFiles = glob.sync('../components/src/**/*.docs.mdx');
-  const filename = path.join(params.slug, params.slug + '.docs.mdx');
+  const filename = path.join('components', params.slug, params.slug + '.docs.mdx');
 
   const mdxPost = fs
     .readFileSync(path.join(process.cwd(), '..', 'components', 'src', filename))
@@ -37,14 +37,14 @@ export async function getStaticProps({ params }) {
 
     return {
       slug: '/design-system/' + path.basename(filename, '.docs.mdx'),
-      title: data.title,
+      title: data.title ?? 'Default title',
     };
   });
 
   return {
     props: {
       filename,
-      title: data.title,
+      title: data.title ?? 'Default title',
       routes: [
         {
           title: 'Design system',

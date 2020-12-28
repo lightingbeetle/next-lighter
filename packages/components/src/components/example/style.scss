@@ -1,0 +1,31 @@
+@use "sass:meta";
+
+$var: orange;
+
+:root {
+  --color-white: #fff;
+}
+
+.example {
+  color: var(--color-white);
+}
+
+.example--color-blue {
+  color: blue;
+}
+
+.example--color-red {
+  color: red;
+}
+
+@function cssvar($name) {
+  @debug meta.inspect(--color-white);
+  @return var(#{$name});
+}
+
+:export {
+  white: #{var(--color-white)};
+  white2: #{--color-white};
+  white3: cssvar(--color-white);
+  white4: meta.inspect(#{--color-white});
+}

@@ -7,7 +7,7 @@ const useExample = () => {
 
   const onClick = useCallback(() => {
     // toggle colors
-    setColor((color) => (color === "blue" ? "red" : "blue"));
+    setColor(color => (color === "blue" ? "red" : "blue"));
   }, []);
 
   return { color, onClick };

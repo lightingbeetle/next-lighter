@@ -32,7 +32,7 @@ export async function getStaticProps() {
 
     return {
       slug: "/design-system/" + path.basename(filename, ".docs.mdx"),
-      title: data.title
+      title: data.title ?? "Default title"
     };
   });
 
