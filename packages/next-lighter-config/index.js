@@ -7,17 +7,18 @@ const sass = require("@zeit/next-sass");
 const frontMatterToMDXRemarkPlugin = require("./utils/frontMatterToMDXRemarkPlugin");
 const CustomEntriesBuildManifestPlugin = require("./utils/custom-entries-build-manifest-plugin");
 
-const staticEntries = (nextConfig = {}) => {
+const staticEntries = ({ entriesMap }) => (nextConfig = {}) => {
   return Object.assign({}, nextConfig, {
     webpack(config, options) {
       // Static entry file without React runtime.
-      if (!options.isServer) {
-        // add './components/static.js' as entry to next webpack config
+      if (!options.isServer && entriesMap) {
+        // add entriesMaps as entries to next webpack config
         const originalEntry = config.entry;
         config.entry = async () => {
           const entries = await originalEntry();
 
-          entries["static"] = "../components/src/static.ts";
+          // mutation is ok here
+          Object.assign(entries, entriesMap);
 
           return entries;
         };
@@ -25,7 +26,7 @@ const staticEntries = (nextConfig = {}) => {
         // custom build manifest file, because next.js build-manifest.json don't contains 'static' entry and we need to know entry hash in production
         config.plugins.unshift(
           new CustomEntriesBuildManifestPlugin({
-            entries: ["static"]
+            entries: Object.keys(entriesMap)
           })
         );
       }
@@ -75,7 +76,7 @@ const reactDocgenTypescript = ({
   });
 };
 
-module.exports = ({ tsConfigPath, componentsPath } = {}) =>
+module.exports = ({ tsConfigPath, componentsPath, staticEntriesMap } = {}) =>
   withPlugins(
     [
       sass,
@@ -88,7 +89,7 @@ module.exports = ({ tsConfigPath, componentsPath } = {}) =>
           }
         })
       ],
-      staticEntries,
+      staticEntries({ entriesMap: staticEntriesMap }),
       reactDocgenTypescript({ tsConfigPath, componentsPath })
     ],
     {

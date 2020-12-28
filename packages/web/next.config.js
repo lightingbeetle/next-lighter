@@ -24,7 +24,8 @@ const resolveComponents = (nextConfig = {}) => {
 
 // FIX
 // - this should work without .withPlugins([]), but that's probably bug in 'next-compose-plugins'
-module.exports = extend(nextLighterConfig()).withPlugins([
-  transpileModules(["components"]),
-  resolveComponents
-]);
+module.exports = extend(
+  nextLighterConfig({
+    staticEntriesMap: { static: "../components/src/static.ts" }
+  })
+).withPlugins([transpileModules(["components"]), resolveComponents]);
