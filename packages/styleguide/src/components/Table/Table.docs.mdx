@@ -1,0 +1,55 @@
+---
+title: Table
+---
+
+import Table from '.';
+import { useMemo } from 'react';
+import { Preview, Props } from '..';
+
+export const TableExample = () => {
+  const columns = useMemo(() => [
+      { accessor: 'first', Header: 'First' },
+      { accessor: 'second', Header: 'Second' },
+    ], []);
+  const data = useMemo(() => [
+      {
+        first: 'First item in first column',
+        second: 'Second item in first column',
+      },
+      {
+        first: 'First item in second column',
+        second: 'Second item in second column',
+      },
+    ], []);
+  return <Table columns={columns} data={data} />
+}
+
+# Table
+
+<TableExample />
+
+## Variants
+
+### Default
+
+<Preview>
+  <TableExample />
+</Preview>
+
+## Props
+
+<Props component={Table} />
+
+## Custom UI
+
+```js
+const MyTable = () => {
+  const tableInstance = useTableContext();
+
+  return <table />; // UI
+};
+
+const MySpecialTable = () => (
+  <Table component={Component} customUI={<MyTable />} />
+);
+```

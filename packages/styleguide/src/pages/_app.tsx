@@ -23,6 +23,10 @@ const routes = [
         href: <NextLink href="/Props" passHref />
       },
       {
+        title: "Table",
+        href: <NextLink href="/Table" passHref />
+      },
+      {
         title: "Typography",
         href: <NextLink href="/Typography" passHref />
       }
