@@ -4,7 +4,7 @@ import useCodeHighlight from "./useCodeHighlight";
 type CodeProps = {
   children: string;
   language: Language;
-  inline: boolean;
+  inline?: boolean;
 };
 
 const Code = ({
@@ -16,7 +16,7 @@ const Code = ({
   const { highlight } = useCodeHighlight({
     code: children,
     language,
-    inline
+    inline,
   });
 
   if (!children) {
