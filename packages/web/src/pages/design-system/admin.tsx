@@ -13,7 +13,7 @@ const Admin = dynamic(
   () =>
     Promise.all([
       import("netlify-cms-app"),
-      import("netlify-cms-widget-mdx")
+      import("netlify-cms-widget-mdx"),
     ]).then(([{ default: CMS }, WidgetMdx]) => {
       // @ts-ignore
       window.CMS_MANUAL_INIT = true;
@@ -22,7 +22,7 @@ const Admin = dynamic(
         config: {
           backend: {
             name: "github",
-            repo: "adammockor/nextjs-mdx-netlify"
+            repo: "adammockor/nextjs-mdx-netlify",
           },
           // @ts-ignore
           local_backend: true,
@@ -42,21 +42,22 @@ const Admin = dynamic(
                 {
                   label: "Title",
                   name: "title",
-                  widget: "string"
+                  widget: "string",
                 },
                 {
                   label: "Docs",
                   name: "body",
+                  // @ts-ignore
                   widget: "mdx",
                   // @ts-ignore
-                  mode: "raw"
-                }
+                  mode: "raw",
+                },
               ],
               extension: "mdx",
-              format: "frontmatter"
-            }
-          ]
-        }
+              format: "frontmatter",
+            },
+          ],
+        },
       });
 
       CMS.registerPreviewStyle("/_next/static/css/styles.chunk.css");
@@ -80,24 +81,24 @@ const Admin = dynamic(
                 {children}
               </h2>
             ),
-            inlineCode: props => <Styleguide.Code {...props} />,
-            code: props => (
+            inlineCode: (props) => <Styleguide.Code {...props} />,
+            code: (props) => (
               <Styleguide.Code
                 inline={false}
                 language={props.className?.replace(/language-/, "")}
                 {...props}
               />
-            )
+            ),
           },
           allowedImports: {
             "..": {
-              Import: Components
+              Import: Components,
             },
             ...componentImports,
             "@lighting-beetle/lighter-styleguide": {
-              Import: Styleguide
-            }
-          }
+              Import: Styleguide,
+            },
+          },
         })
       );
     }),
