@@ -1,7 +1,7 @@
 import { MDXProvider, Components } from "@mdx-js/react";
 import React, { useMemo } from "react";
 import StyleguideContext, {
-  StyleguideContextType
+  StyleguideContextType,
 } from "./useStyleguideContext";
 
 import Sidebar from "./Sidebar";
@@ -10,7 +10,7 @@ import Main from "./Main";
 import Page from "./Page";
 import defaultComponents from "./defaultMDXComponents";
 
-type StyleguideProps = {
+export type StyleguideProps = {
   components?: Components;
   customUI?: React.ReactNode;
 } & Partial<StyleguideContextType>;
@@ -24,7 +24,7 @@ const Styleguide = ({
   logoHref = "/",
   logoAlt = "Lighter",
   currentPage,
-  adminHref
+  adminHref,
 }: StyleguideProps) => {
   const components = { ...defaultComponents, ...componentsProp };
 
@@ -36,7 +36,7 @@ const Styleguide = ({
       logoHref,
       logoAlt,
       currentPage,
-      adminHref
+      adminHref,
     }),
     [children, routes, logoSrc, logoHref, logoAlt, currentPage, adminHref]
   );
