@@ -1,0 +1,58 @@
+---
+title: Desing Tokens
+---
+
+import { TokensTable, prepareTokens, colors } from '.';
+
+# Design tokens
+
+Design tokens are atoms of vizual desing. Specifically, they are named entities which stores visual atributes. We using them instead of hard-coded values (like hexadecimal colors or pixel values for spacing), so we can sustain scaleble and consistent visual system for developing user interfaces.
+
+## Colors
+
+<TokensTable
+  data={prepareTokens({
+    name: 'colors',
+    tokensMap: colors,
+    renderUsageJS: ({ key }) => {
+      const [,color, shade] = key.split('-');
+      return `color('${color}'${shade !== '500' ? `, '${shade}'` : ''})`;
+    },
+    renderUsageSCSS: ({ name, key }) =>{
+      const [,color, shade] = key.split('-');
+      return `color('${color}'${shade !== '500' ? `, '${shade}'` : ''})`;
+    },
+  })}
+/>
+
+## Import to JS
+
+It's possible to import tokens and helper functions from example to app.
+
+```
+import {
+  colorCSSVar,
+  color,
+  colors,
+} from 'components';
+
+const style = {
+  backgroundColor: color('primary'), // css variable (preferred)
+  backgroundColor: colorHex('primary'), // hex value
+  color: colors['color-primary-500'], // hex value
+};
+```
+
+## Import to SCSS
+
+Tokens can be used similarly in SCSS environment.
+
+```scss
+@use 'components/src/tokens';
+
+.component {
+  background-color: tokens.color('primary'); // preferred
+  background-color: map.get(tokens.$colors, 'primary', 500);
+}
+```
+

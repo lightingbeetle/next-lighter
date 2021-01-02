@@ -1,3 +1,4 @@
-import Example from "./components/example/Example";
+import "./styles/index.scss";
 
-export { Example };
+export { default as Example } from "./components/example/Example";
+export { color, colorHex, colors } from "./tokens";

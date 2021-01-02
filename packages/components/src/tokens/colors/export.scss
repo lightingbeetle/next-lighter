@@ -1,0 +1,11 @@
+// This file is intended to be used only to import variables to .js file and has to be named export.scss
+
+@use "./index.scss" as colors;
+
+:export {
+  @each $name, $color in colors.$colors {
+    @each $shade, $value in $color {
+      color-#{$name}-#{$shade}: #{$value};
+    }
+  }
+}

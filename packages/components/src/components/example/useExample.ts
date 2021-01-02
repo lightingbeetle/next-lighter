@@ -1,13 +1,13 @@
 import { useCallback, useState } from "react";
 
-type ExampleColors = "blue" | "red";
+type ExampleColors = "primary" | "error";
 
 const useExample = () => {
-  const [color, setColor] = useState<ExampleColors>("blue");
+  const [color, setColor] = useState<ExampleColors>("primary");
 
   const onClick = useCallback(() => {
     // toggle colors
-    setColor(color => (color === "blue" ? "red" : "blue"));
+    setColor((color) => (color === "primary" ? "error" : "primary"));
   }, []);
 
   return { color, onClick };

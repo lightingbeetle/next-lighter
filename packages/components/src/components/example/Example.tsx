@@ -1,8 +1,6 @@
 import React from "react";
-import style from "./style.scss";
+import "./style.scss";
 import useExample from "./useExample";
-
-console.log(style);
 
 type ExampleProps = {
   /** This is prop description */
