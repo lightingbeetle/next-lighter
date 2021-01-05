@@ -1,5 +1,5 @@
 import { renderSync } from "sass";
-import { color, colorHex } from ".";
+import { color, colorHex, ColorsMap } from ".";
 
 function renderSass(args) {
   return renderSync({
@@ -87,9 +87,13 @@ describe("scss color function", () => {
 });
 
 // there is no way to import SCSS file with exports in jest test so we need to mock it
-const colorPalleteMock = {
-  "color-primary-500": "#ff5722",
-  "color-error-100": "#ffe3e3",
+const colorPalleteMock: ColorsMap = {
+  primary: {
+    500: "#ff5722",
+  },
+  error: {
+    100: "#ffe3e3",
+  },
 };
 
 describe("js color function", () => {
