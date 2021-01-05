@@ -16,7 +16,7 @@ function getColorsMap(): ColorsMap {
       acc[name] = {};
     }
 
-    acc[name][parseInt(shade)] = colors[color];
+    acc[name][parseInt(shade)] = colorsFromSCSS[color];
 
     return acc;
   }, {});

@@ -2,7 +2,7 @@
 title: Desing Tokens
 ---
 
-import { TokensTable, prepareTokens, colors } from '.';
+import { TokensTable, prepareTokens, colors, breakpoints } from '.';
 
 # Design tokens
 
@@ -11,16 +11,35 @@ Design tokens are atoms of vizual desing. Specifically, they are named entities 
 ## Colors
 
 <TokensTable
+  data={
+    Object.keys(colors).reduce(
+    (acc, color) => [
+      ...acc,
+      ...prepareTokens({
+        name: `colors.${color}`,
+        tokensMap: colors[color],
+        renderUsageJS: ({ name, key }) =>
+          `color('${color}'${key !== '500' ? `, '${key}'` : ''})`,
+        renderUsageSCSS: ({ name, key }) =>
+          `color('${color}'${key !== '500' ? `, '${key}'` : ''})`,
+      }),
+    ],
+    []
+  )}
+/>
+
+## Breakpoints
+
+<TokensTable
   data={prepareTokens({
-    name: 'colors',
-    tokensMap: colors,
+    name: 'breakpoint',
+    tokensMap: breakpoints,
     renderUsageJS: ({ key }) => {
-      const [,color, shade] = key.split('-');
-      return `color('${color}'${shade !== '500' ? `, '${shade}'` : ''})`;
+      return `breakpoint('${key}')`;
     },
     renderUsageSCSS: ({ name, key }) =>{
-      const [,color, shade] = key.split('-');
-      return `color('${color}'${shade !== '500' ? `, '${shade}'` : ''})`;
+      const [,color] = key.split('-');
+      return `breakpoint('${key}')`;
     },
   })}
 />

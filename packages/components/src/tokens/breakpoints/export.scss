@@ -1,0 +1,9 @@
+// This file is intended to be used only to import variables to .js file and has to be named export.scss
+
+@use "./index.scss" as breakpoints;
+
+:export {
+  @each $name, $value in breakpoints.$breakpoints {
+    breakpoint-#{$name}: #{$value};
+  }
+}
