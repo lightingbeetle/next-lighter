@@ -8,22 +8,22 @@ function TableTokens({ data }) {
     () => [
       {
         accessor: "token",
-        Header: "Token",
+        Header: "Token"
       },
       {
         accessor: "value",
-        Header: "Value",
+        Header: "Value"
       },
       {
         accessor: "usageJS",
         Header: "JS usage",
-        Cell: ({ value }) => <Code language="javascript">{value}</Code>,
+        Cell: ({ value }) => <Code language="javascript">{value}</Code>
       },
       {
         accessor: "usageSCSS",
         Header: "SCSS usage",
-        Cell: ({ value }) => <Code language="scss">{value}</Code>,
-      },
+        Cell: ({ value }) => <Code language="scss">{value}</Code>
+      }
     ],
     []
   );
@@ -42,6 +42,7 @@ type RenderToken = {
 type PrepareTokens = {
   name: string;
   tokensMap: object[];
+  renderValue?: (args: RenderToken) => string | void;
   renderExample: (args: RenderToken) => string | void;
   renderUsageJS: (args: RenderToken) => string | void;
   renderUsageSCSS: (args: RenderToken) => string | void;
@@ -50,15 +51,17 @@ type PrepareTokens = {
 export function prepareTokens({
   name,
   tokensMap,
+  renderValue,
   renderExample = () => {},
   renderUsageJS = () => {},
-  renderUsageSCSS = () => {},
+  renderUsageSCSS = () => {}
 }: PrepareTokens) {
-  return Object.keys(tokensMap).map((key) => ({
+  return Object.keys(tokensMap).map(key => ({
     token: `${name}.${key}`,
-    value: tokensMap[key],
+    value:
+      renderValue?.({ name, key, value: tokensMap[key] }) ?? tokensMap[key],
     example: renderExample({ name, key, value: tokensMap[key] }),
     usageJS: renderUsageJS({ name, key, value: tokensMap[key] }),
-    usageSCSS: renderUsageSCSS({ name, key, value: tokensMap[key] }),
+    usageSCSS: renderUsageSCSS({ name, key, value: tokensMap[key] })
   }));
 }

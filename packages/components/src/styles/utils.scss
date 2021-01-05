@@ -35,3 +35,12 @@
     }
   }
 }
+
+$default-font-size: 16px;
+
+@function rem(
+  $size,
+  $base: $default-font-size
+) {
+  @return $size / $base * 1rem;
+}

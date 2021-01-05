@@ -20,7 +20,8 @@
   },
   "dependencies": {
     "@lighting-beetle/lighter-hooks": "1.0.0",
-    "@lighting-beetle/lighter-styleguide": "5.0.0-alpha.1"
+    "@lighting-beetle/lighter-styleguide": "5.0.0-alpha.1",
+    "polished": "^4.0.5"
   },
   "browserslist": ">1%, not ie 11, not op_mini all",
   "devDependencies": {
