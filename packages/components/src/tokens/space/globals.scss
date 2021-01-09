@@ -1,9 +1,7 @@
 @use "./index.scss" as spaces;
 
 :root {
-  @each $name in spaces.$spaces {
-    @each $shade, $value in $color {
-      --space-#{$name}: #{$value};
-    }
+  @each $name, $value in spaces.$spaces {
+    --space-#{$name}: #{$value};
   }
 }

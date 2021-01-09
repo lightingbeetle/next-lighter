@@ -1,0 +1,16 @@
+@use './../colors';
+
+$font-family-opensans: "Open Sans", helvetica, arial, sans-serif !default;
+$font-family-default: $font-family-opensans !default;
+
+$font-size-default: 16px !default;
+$font-size-l: 18px;
+$font-size-s: 14px;
+
+$font-color-primary: colors.color("primary");
+$font-color-secondary: colors.color("secondary");
+$font-color-black: colors.color("black");
+$font-color-grey: colors.color("grey");
+$font-color-white: colors.color("white");
+$font-color-success: colors.color("success");
+$font-color-error: colors.color("error");

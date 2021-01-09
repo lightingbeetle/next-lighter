@@ -1,30 +1,7 @@
+import scssVarsToMap from "../../utils/scssVarsToMap";
 import colorsFromSCSS from "./export.scss";
 
-export type ColorsMap = {
-  /** Color name */
-  [x: string]: {
-    /** Color shade and value */
-    [x: number]: string;
-  };
-};
-
-function getColorsMap(): ColorsMap {
-  const colorsMap = Object.keys(colorsFromSCSS).reduce((acc, color) => {
-    const [, name, shade] = color.split("-");
-
-    if (!acc[name]) {
-      acc[name] = {};
-    }
-
-    acc[name][parseInt(shade)] = colorsFromSCSS[color];
-
-    return acc;
-  }, {});
-
-  return colorsMap;
-}
-
-export const colors = getColorsMap();
+export const colors = scssVarsToMap(colorsFromSCSS);
 
 export function color(name: string, shade = 500, _colors = colors): string {
   if (!_colors[name]) {

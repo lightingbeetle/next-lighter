@@ -2,7 +2,7 @@
 title: Desing Tokens
 ---
 
-import { TokensTable, prepareTokens, colors, breakpoints, spaces } from '.';
+import { TokensTable, colors, breakpoints, spaces, fonts } from '.';
 
 # Design tokens
 
@@ -11,51 +11,43 @@ Design tokens are atoms of vizual desing. Specifically, they are named entities 
 ## Colors
 
 <TokensTable
-  data={
-    Object.keys(colors).reduce(
-    (acc, color) => [
-      ...acc,
-      ...prepareTokens({
-        name: `colors.${color}`,
-        tokensMap: colors[color],
-        renderUsageJS: ({ name, key }) =>
-          `color('${color}'${key !== '500' ? `, '${key}'` : ''})`,
-        renderUsageSCSS: ({ name, key }) =>
-          `color('${color}'${key !== '500' ? `, '${key}'` : ''})`,
-      }),
-    ],
-    []
-  )}
+  tokens={colors}
+  name="color"
+  usageFormatJS={({ token }) => {
+    const [ name, shade ] = token.split('.');
+    return `color('${name}'${shade !== '500' ? `, ${shade}` : ''});`;
+  }}
+  usageFormatSCSS={({ token }) => {
+    const [ name, shade ] = token.split('.');
+    return `color('${name}'${shade !== '500' ? `, ${shade}` : ''});`;
+  }}
 />
 
 ## Breakpoints
 
 <TokensTable
-  data={prepareTokens({
-    name: 'breakpoint',
-    tokensMap: breakpoints,
-    renderUsageJS: ({ key }) => {
-      return `breakpoint('${key}')`;
-    },
-    renderUsageSCSS: ({ key }) =>{
-      return `breakpoint('${key}')`;
-    },
-  })}
+  tokens={breakpoints}
+  name='breakpoint'
+  usageFormatCSS={null}
+  usageFormatSCSS={({ token }) => {
+    return `@include breakpoint('${token}') { /* css */ }`;
+  }}
 />
 
 ## Space
 
 <TokensTable
-  data={prepareTokens({
-    name: 'space',
-    tokensMap: spaces,
-    renderUsageJS: ({ key }) => {
-      return `space('${key}')`;
-    },
-    renderUsageSCSS: ({ key }) =>{
-      return `space('${key}')`;
-    },
-  })}
+  tokens={spaces}
+  name='space'
+/>
+
+## Space
+
+<TokensTable
+  tokens={fonts}
+  name='font'
+  usageFormatJS={({ token }) => `fonts.${token}`}
+  usageFormatSCSS={({ token }) => `$font-${token.replace('.', '-')}`}
 />
 
 ## Import to JS

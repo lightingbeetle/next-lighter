@@ -1,67 +1,93 @@
 import React, { useMemo } from "react";
 
 import { Table, Code } from "@lighting-beetle/lighter-styleguide";
+import flattenObject from "../utils/flattenObject";
+import type { SCSSVarsMap } from "../utils/scssVarsToMap";
 
-function TableTokens({ data }) {
-  const memoizedData = useMemo(() => data, [data]);
+type UsageFormatFunc = ({
+  token,
+  name,
+}: {
+  token: string;
+  name: string;
+}) => string;
+
+type TableTokensProps = {
+  tokens: SCSSVarsMap;
+  name: string;
+  usageFormatJS: UsageFormatFunc | null;
+  usageFormatSCSS: UsageFormatFunc | null;
+  usageFormatCSS: UsageFormatFunc | null;
+};
+
+const usageFormatDefault = ({ token, name }) =>
+  `${name}(${token
+    .split(".")
+    .map((part) => (part !== "default" ? `'${part}'` : ""))
+    .join(",")})`;
+
+const usageFormatCSSDefault = ({ token, name }) =>
+  `var(--${name}-${token.replace(".", "-")})`;
+
+function TableTokens({
+  tokens = {},
+  name,
+  usageFormatJS = usageFormatDefault,
+  usageFormatSCSS = usageFormatDefault,
+  usageFormatCSS = usageFormatCSSDefault,
+}: TableTokensProps) {
+  const data = useMemo(() => {
+    const flattenTokens = flattenObject(tokens);
+
+    return Object.keys(flattenTokens).map((token) => ({
+      token,
+      value: flattenTokens[token],
+    }));
+  }, [tokens]);
+
   const columns = useMemo(
-    () => [
-      {
-        accessor: "token",
-        Header: "Token"
-      },
-      {
-        accessor: "value",
-        Header: "Value"
-      },
-      {
-        accessor: "usageJS",
-        Header: "JS usage",
-        Cell: ({ value }) => <Code language="javascript">{value}</Code>
-      },
-      {
-        accessor: "usageSCSS",
-        Header: "SCSS usage",
-        Cell: ({ value }) => <Code language="scss">{value}</Code>
-      }
-    ],
-    []
+    () =>
+      [
+        {
+          accessor: "token",
+          Header: "Token",
+          id: "token",
+          Cell: ({ value }) => `${name}.${value}`,
+        },
+        {
+          accessor: "value",
+          Header: "Value",
+          id: "value",
+        },
+        usageFormatCSS && {
+          accessor: "token",
+          Header: "CSS usage",
+          Cell: ({ value: token }) => (
+            <Code language="css">{usageFormatCSS({ token, name })}</Code>
+          ),
+          id: "cssUsage",
+        },
+        usageFormatJS && {
+          accessor: "token",
+          Header: "JS usage",
+          id: "jsUsage",
+          Cell: ({ value: token }) => (
+            <Code language="javascript">{usageFormatJS({ token, name })}</Code>
+          ),
+        },
+        usageFormatSCSS && {
+          accessor: "token",
+          Header: "SCSS usage",
+          Cell: ({ value: token }) => (
+            <Code language="scss">{usageFormatSCSS({ token, name })}</Code>
+          ),
+          id: "scssUsage",
+        },
+      ].filter(Boolean),
+    [name, usageFormatSCSS, usageFormatJS, usageFormatCSS]
   );
 
-  return <Table columns={columns} data={memoizedData} />;
+  return <Table columns={columns} data={data} />;
 }
 
 export default TableTokens;
-
-type RenderToken = {
-  name: string;
-  key: string;
-  value: string;
-};
-
-type PrepareTokens = {
-  name: string;
-  tokensMap: object[];
-  renderValue?: (args: RenderToken) => string | void;
-  renderExample: (args: RenderToken) => string | void;
-  renderUsageJS: (args: RenderToken) => string | void;
-  renderUsageSCSS: (args: RenderToken) => string | void;
-};
-
-export function prepareTokens({
-  name,
-  tokensMap,
-  renderValue,
-  renderExample = () => {},
-  renderUsageJS = () => {},
-  renderUsageSCSS = () => {}
-}: PrepareTokens) {
-  return Object.keys(tokensMap).map(key => ({
-    token: `${name}.${key}`,
-    value:
-      renderValue?.({ name, key, value: tokensMap[key] }) ?? tokensMap[key],
-    example: renderExample({ name, key, value: tokensMap[key] }),
-    usageJS: renderUsageJS({ name, key, value: tokensMap[key] }),
-    usageSCSS: renderUsageSCSS({ name, key, value: tokensMap[key] })
-  }));
-}

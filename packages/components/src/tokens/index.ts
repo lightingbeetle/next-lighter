@@ -1,4 +1,5 @@
-export { default as TokensTable, prepareTokens } from "./TokensTable";
+export { default as TokensTable } from "./TokensTable";
 export * from "./colors";
 export * from "./breakpoints";
 export * from "./space";
+export * from "./font";

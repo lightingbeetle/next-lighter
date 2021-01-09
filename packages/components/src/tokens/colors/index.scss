@@ -20,6 +20,12 @@ $colors: (
   "grey": (
     500: #adb5bd,
   ),
+  "white": (
+    500: #fff,
+  ),
+  "black": (
+    500: #000,
+  )
 );
 
 @function color($color, $shade: 500) {
