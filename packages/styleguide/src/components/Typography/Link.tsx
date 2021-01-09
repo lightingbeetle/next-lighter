@@ -7,9 +7,9 @@ import { theme } from "../../styles/";
 // - do not pass element to href
 
 const StyledLink = styled.a`
-  font-family: ${props => props.theme.font.family};
-  color: ${props => props.theme.color.accent};
-  line-height: ${props => props.theme.lineHeight.default};
+  font-family: ${(props) => props.theme.font.family};
+  color: ${(props) => props.theme.color.accent};
+  line-height: ${(props) => props.theme.lineHeight.default};
   &:focus,
   &:hover {
     text-decoration: none;
@@ -17,7 +17,7 @@ const StyledLink = styled.a`
 `;
 
 StyledLink.defaultProps = {
-  theme
+  theme,
 };
 
 export type LinkProps = {

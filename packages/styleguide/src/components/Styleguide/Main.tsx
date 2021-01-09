@@ -9,7 +9,7 @@ const StyledMain = styled.main`
 `;
 
 StyledMain.defaultProps = {
-  theme
+  theme,
 };
 
 const Main = () => {

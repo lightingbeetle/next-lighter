@@ -16,7 +16,7 @@ const Button = styled.button`
 `;
 
 Button.defaultProps = {
-  theme
+  theme,
 };
 
 export default Button;

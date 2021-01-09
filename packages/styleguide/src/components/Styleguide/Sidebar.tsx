@@ -32,7 +32,7 @@ const StyledSidebarContent = styled.div`
 `;
 
 StyledSidebarContent.defaultProps = {
-  theme
+  theme,
 };
 
 const Sidebar = () => {

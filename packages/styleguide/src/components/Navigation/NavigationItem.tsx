@@ -15,23 +15,24 @@ export type NavigationItemProps = {
 const StyledNavigationItem = styled.div`
   display: block;
   position: relative;
-  padding: ${props => `${props.theme.space.xsmall} ${props.theme.space.small}`};
+  padding: ${(props) =>
+    `${props.theme.space.xsmall} ${props.theme.space.small}`};
 
   &:after {
     content: "";
     position: absolute;
     left: 0;
-    top: ${props => props.theme.space.xsmall};
+    top: ${(props) => props.theme.space.xsmall};
 
     width: 1px;
-    height: calc(100% - 2 * ${props => props.theme.space.xsmall});
+    height: calc(100% - 2 * ${(props) => props.theme.space.xsmall});
 
     background-color: ${({ theme }) => theme.color.grey};
   }
 `;
 
 StyledNavigationItem.defaultProps = {
-  theme
+  theme,
 };
 
 const NavigationItem = ({ title, href, routes }: NavigationItemProps) => {

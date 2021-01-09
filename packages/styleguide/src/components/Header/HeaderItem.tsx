@@ -10,7 +10,7 @@ type HeaderTitleProps = {
 const StyledItem = styled.div<Pick<HeaderTitleProps, "fill">>`
   display: flex;
   align-items: middle;
-  flex: ${props => (props.fill ? 1 : 0)}0 0 auto;
+  flex: ${(props) => (props.fill ? 1 : 0)}0 0 auto;
 `;
 
 const StyledItemContent = styled.div`
@@ -40,7 +40,7 @@ const StyledItemContent = styled.div`
 `;
 
 StyledItemContent.defaultProps = {
-  theme
+  theme,
 };
 
 const HeaderItem = ({ children, fill, ...other }: HeaderTitleProps) => {

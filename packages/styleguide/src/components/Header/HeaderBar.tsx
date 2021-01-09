@@ -26,7 +26,7 @@ const StyledHeader = styled.header`
 `;
 
 StyledHeader.defaultProps = {
-  theme
+  theme,
 };
 
 const HeaderBar = ({ children }) => {

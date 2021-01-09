@@ -9,7 +9,7 @@ const Index = ({ posts }) => {
     <>
       <h1>Component docs</h1>
       <ul>
-        {posts.map(post => (
+        {posts.map((post) => (
           <li key={post.slug}>
             <Link href={post.slug}>
               <a>{post.title}</a>
@@ -25,7 +25,7 @@ export async function getStaticProps() {
   const docsFiles = glob.sync("**/*.docs.mdx");
   console.log(docsFiles);
 
-  const posts = docsFiles.map(filename => {
+  const posts = docsFiles.map((filename) => {
     const markdownWithMetadata = fs
       .readFileSync(path.join(process.cwd(), filename))
       .toString();
@@ -34,14 +34,14 @@ export async function getStaticProps() {
 
     return {
       slug: path.basename(filename, ".docs.mdx"),
-      title: data.title
+      title: data.title,
     };
   });
 
   return {
     props: {
-      posts
-    }
+      posts,
+    },
   };
 }
 

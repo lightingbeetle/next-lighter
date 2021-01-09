@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import NavigationTree from "./NavigationTree";
 import NavigationContext, {
-  NavigationContextType
+  NavigationContextType,
 } from "./useNavigationContext";
 
 type NavigationProps = {
@@ -12,7 +12,7 @@ const Navigation = ({ activePage, customUI, routes }: NavigationProps) => {
   const value = useMemo(
     () => ({
       activePage,
-      routes
+      routes,
     }),
     [activePage, routes]
   );

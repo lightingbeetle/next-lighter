@@ -7,5 +7,5 @@ export {
   default as Navigation,
   NavigationItem,
   NavigationTree,
-  useNavigationContext
+  useNavigationContext,
 } from "./Navigation";

@@ -5,33 +5,33 @@ import "modern-normalize/modern-normalize.css";
 const routes = [
   {
     title: "Home",
-    href: <NextLink href="/" passHref />
+    href: <NextLink href="/" passHref />,
   },
   {
     title: "Components",
     routes: [
       {
         title: "Navigation",
-        href: <NextLink href="/Navigation" passHref />
+        href: <NextLink href="/Navigation" passHref />,
       },
       {
         title: "Preview",
-        href: <NextLink href="/Preview" passHref />
+        href: <NextLink href="/Preview" passHref />,
       },
       {
         title: "Props",
-        href: <NextLink href="/Props" passHref />
+        href: <NextLink href="/Props" passHref />,
       },
       {
         title: "Table",
-        href: <NextLink href="/Table" passHref />
+        href: <NextLink href="/Table" passHref />,
       },
       {
         title: "Typography",
-        href: <NextLink href="/Typography" passHref />
-      }
-    ]
-  }
+        href: <NextLink href="/Typography" passHref />,
+      },
+    ],
+  },
 ];
 
 function MyApp({ Component, pageProps }) {

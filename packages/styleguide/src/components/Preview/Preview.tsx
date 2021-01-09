@@ -18,7 +18,7 @@ const Preview = ({ children, customUI, JSXOptions }: PreviewProps) => {
   const { codeAsString } = usePreviewCode({
     code: children,
     codeType,
-    JSXOptions
+    JSXOptions,
   });
 
   const value = useMemo(
@@ -28,7 +28,7 @@ const Preview = ({ children, customUI, JSXOptions }: PreviewProps) => {
       setShowCode,
       codeType,
       setCodeType,
-      codeAsString
+      codeAsString,
     }),
     [showCode, children, codeType, codeAsString]
   );

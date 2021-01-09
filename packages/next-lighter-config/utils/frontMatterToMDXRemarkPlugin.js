@@ -1,7 +1,7 @@
 // helps us in parsing the frontmatter from text content
-const matter = require('gray-matter');
+const matter = require("gray-matter");
 // helps us safely stringigy the frontmatter as a json object
-const stringifyObject = require('stringify-object');
+const stringifyObject = require("stringify-object");
 
 // please make sure you have installed these dependencies
 // before proceeding further, or remove the require statements
@@ -23,7 +23,7 @@ module.exports = () => (tree, file) => {
 
   // finally we will add a `export` node to the tree
   tree.children.push({
-    type: 'export',
+    type: "export",
     value: `export const frontMatter = ${stringifyObject(frontMatter)}`,
   });
   // now `frontMatter` will be available to use in our codebase
@@ -39,9 +39,9 @@ module.exports = () => (tree, file) => {
   // title: this
   // date: 2020-12-12 => becomes heading
   // ---
-  if (tree.children[0].type === 'thematicBreak') {
+  if (tree.children[0].type === "thematicBreak") {
     const firstHeadingIndex = tree.children.findIndex(
-      (t) => t.type === 'heading'
+      (t) => t.type === "heading"
     );
     if (firstHeadingIndex !== -1) {
       // we will mutate the tree.children by removing these nodes

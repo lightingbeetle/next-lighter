@@ -53,7 +53,7 @@ const StyledH = styled(H)<HProps>`
 `;
 
 StyledH.defaultProps = {
-  theme
+  theme,
 };
 
 export default StyledH;

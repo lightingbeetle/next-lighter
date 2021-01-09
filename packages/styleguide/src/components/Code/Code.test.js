@@ -21,9 +21,9 @@ describe("rendering", () => {
   it("Code renders with passed theme", () => {
     const theme = {
       plain: {
-        backgroundColor: "rgb(0, 0, 0)"
+        backgroundColor: "rgb(0, 0, 0)",
       },
-      styles: []
+      styles: [],
     };
 
     const { getByTestId } = render(

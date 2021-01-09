@@ -16,9 +16,9 @@ const exampleInit = hookIt((el: HTMLElement) => {
   useEffect(() => {
     const classes = [
       ...Array.from(el.classList).filter(
-        cl => !cl.startsWith("example--color-")
+        (cl) => !cl.startsWith("example--color-")
       ),
-      `example--color-${color}`
+      `example--color-${color}`,
     ];
 
     el.className = classes.join(" ");

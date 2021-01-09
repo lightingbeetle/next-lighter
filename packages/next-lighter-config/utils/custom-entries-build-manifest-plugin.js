@@ -1,8 +1,8 @@
-const { RawSource } = require('webpack-sources');
+const { RawSource } = require("webpack-sources");
 
 function isJsFile(file) {
   // We don't want to include `.hot-update.js` files into the initial page
-  return !file.endsWith('.hot-update.js') && file.endsWith('.js');
+  return !file.endsWith(".hot-update.js") && file.endsWith(".js");
 }
 
 function getFilesArray(files) {
@@ -35,7 +35,7 @@ class CustomEntriesBuildManifestPlugin {
       assetMap.customEntries.push(...entryJsFiles);
     }
 
-    assets['custom-entries-build-manifest.json'] = new RawSource(
+    assets["custom-entries-build-manifest.json"] = new RawSource(
       JSON.stringify(assetMap, null, 2)
     );
 
@@ -44,7 +44,7 @@ class CustomEntriesBuildManifestPlugin {
 
   apply(compiler) {
     compiler.hooks.emit.tap(
-      'CustomEntriesBuildManifestPlugin',
+      "CustomEntriesBuildManifestPlugin",
       (compilation) => {
         this.createAssets(compilation, compilation.assets);
       }

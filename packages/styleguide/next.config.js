@@ -7,6 +7,6 @@ const path = require("path");
 module.exports = extend(
   nextLighterConfig({
     tsConfigPath: path.resolve(__dirname, "tsconfig.json"),
-    componentsPath: path.resolve(__dirname, "src", "components")
+    componentsPath: path.resolve(__dirname, "src", "components"),
   })
 ).withPlugins([]);
