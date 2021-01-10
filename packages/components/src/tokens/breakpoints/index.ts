@@ -1,7 +1,8 @@
 // TODO: useBreakpoint hook can be probaly useful here
 
 import scssVarsToMap from "../../utils/scssVarsToMap";
-import breakpointsFromSCSS from "./export.scss";
+// @ts-ignore Microbundle fails on this, but otherwise it seems working
+import breakpointsFromSCSS from "./export.module.scss";
 
 export const breakpoints = scssVarsToMap(breakpointsFromSCSS);
 

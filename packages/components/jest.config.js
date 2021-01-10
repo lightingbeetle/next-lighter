@@ -1,5 +1,5 @@
 module.exports = {
   moduleNameMapper: {
-    "^.+\\export\\.(css|less|scss)$": "identity-obj-proxy",
-  },
+    "^.+\\export\\.module\\.(css|less|scss)$": "identity-obj-proxy"
+  }
 };

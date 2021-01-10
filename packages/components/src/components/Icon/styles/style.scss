@@ -1,0 +1,13 @@
+@use './config.scss';
+@use './../../../styles/utils.scss';
+
+.icon {
+  fill: currentColor;
+}
+
+@each $variant, $size in config.$icon-sizes {
+  .icon#{utils.variant-name($variant)} {
+    width: $size;
+    height: $size;
+  }
+}

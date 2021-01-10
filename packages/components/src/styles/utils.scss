@@ -44,3 +44,18 @@ $default-font-size: 16px;
 ) {
   @return $size / $base * 1rem;
 }
+
+/// Get prefixed variant name
+/// @param {String} $name - Variant name
+/// @return {String} - Return a prefixed variant name or empty string, for default variants
+/// @example scss
+///   variant-name('primary') // 'primary'
+///   variant-name('default') // ''
+///
+@function variant-name($name, $prefix: '--', $suffix: '') {
+  @if not $name or $name == default or $name == xs {
+    @return '';
+  }
+
+  @return #{$prefix + $name + $suffix};
+}

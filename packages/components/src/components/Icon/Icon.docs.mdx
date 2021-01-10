@@ -1,0 +1,66 @@
+---
+title: Icon
+---
+
+import { Props, Preview } from '@lighting-beetle/lighter-styleguide';
+
+import Icon from '.';
+
+# Icon
+
+<Icon name="home" />
+
+## Variants
+
+### Default
+
+<Preview>
+  <Icon name="home" />
+</Preview>
+
+### Sizes
+
+<Preview>
+  <Icon name="home" />
+  <Icon name="home" size="s" />
+  <Icon name="home" size="l" />
+</Preview>
+
+### Colors
+
+<Preview>
+  <Icon name="home" className="text-color-primary" />
+  <Icon name="home" className="text-color-secondary" />
+  <Icon name="home" className="text-color-grey" />
+  <Icon name="home" className="text-color-black" />
+  <Icon name="home" className="text-color-white" />
+  <Icon name="home" className="text-color-error" />
+  <Icon name="home" className="text-color-success" />
+</Preview>
+
+## Props
+
+<Props component={Icon} />
+
+## Customize path to sprite
+
+In React enviroment, path to sprite can be customized globally via [Context API](https://reactjs.org/docs/context.html) and `<IconsContext />`.
+
+```jsx
+// This is same as defining every icon as <Icon spritePath="/my-sprite.svg" />
+function App() {
+  return (
+    <IconsContext value={{ spritePath: '/my-sprite.svg' }}>
+      <Icon name="home" />
+    </IconsContext>
+  );
+}
+```
+
+## Accessibility
+
+The Icon component is implemented by the [W3C](https://www.w3.org/wiki/SVG_Accessibility) and [davidhund / Advocating The Most Accessible Markup](https://gist.github.com/davidhund/564331193e1085208d7e).
+
+Current implementation does not support:
+
+- Description (represented in sprite as xml `<desc />` markup).

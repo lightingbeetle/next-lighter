@@ -1,5 +1,6 @@
 import scssVarsToMap from "../../utils/scssVarsToMap";
-import colorsFromSCSS from "./export.scss";
+// @ts-ignore Microbundle fails on this, but otherwise it seems working
+import colorsFromSCSS from "./export.module.scss";
 
 export const colors = scssVarsToMap(colorsFromSCSS);
 

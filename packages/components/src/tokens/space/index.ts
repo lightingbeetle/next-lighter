@@ -1,6 +1,7 @@
 import { rem } from "../../styles";
 import scssVarsToMap from "../../utils/scssVarsToMap";
-import spacesFromSCSS from "./export.scss";
+// @ts-ignore Microbundle fails on this, but otherwise it seems working
+import spacesFromSCSS from "./export.module.scss";
 
 export const spaces = scssVarsToMap(spacesFromSCSS);
 
