@@ -1,5 +1,7 @@
 module.exports = {
+  preset: "ts-jest",
   moduleNameMapper: {
-    "^.+\\export\\.module\\.(css|less|scss)$": "identity-obj-proxy"
+    "^.+/export.module.(css|scss)$": "identity-obj-proxy",
+    "^.+/style.(css|scss)$": "identity-obj-proxy"
   }
 };

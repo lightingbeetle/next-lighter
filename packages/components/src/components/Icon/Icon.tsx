@@ -5,8 +5,8 @@ import { useIconContext } from "./IconContext";
 import "./styles/style.scss";
 
 type IconProps = {
-  /** Alternative text for `<title />` tag. Default is the icon name. */
-  alt?: string;
+  /** Alternative text for `<title />` tag. Default is the icon name. `null` can be passed when icon is wrapped by meaningul action like link which should be described by `aria-label`. */
+  alt?: string | null;
   /** Name of the icon to show. */
   name: "chevron-down" | "chevron-up" | "close" | "heart" | "home";
   /** Possible sizes of the icon. */
@@ -39,12 +39,12 @@ const Icon = ({
   return (
     <svg
       className={classes}
-      role={alt ? "img" : "presentation"}
+      role={alt && "img"}
       {...(!alt && { "aria-hidden": "true" })}
       {...other}
     >
-      <title>{alt || name}</title>
-      <use xlinkHref={`${spritePath}#${name}`} />
+      {alt !== null && <title>{alt || name}</title>}
+      <use xlinkHref={`${spritePath ?? ""}#${name}`} />
     </svg>
   );
 };

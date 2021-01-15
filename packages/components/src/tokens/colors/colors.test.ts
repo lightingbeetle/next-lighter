@@ -1,14 +1,14 @@
 import { renderSync } from "sass";
-import { color, colorHex, ColorsMap } from ".";
+import { color, colorHex } from ".";
 
 function renderSass(args) {
   return renderSync({
     outputStyle: "compressed",
     // not sure why this is needed and if it covers most uscases
-    importer: (originalUrl) => {
+    importer: originalUrl => {
       return { file: require.resolve(`./${originalUrl}`) };
     },
-    ...args,
+    ...args
   }).css.toString();
 }
 
@@ -50,7 +50,7 @@ describe("scss color function", () => {
     const spy = jest.spyOn(process.stderr, "write").mockImplementation();
 
     const output = renderSass({
-      data,
+      data
     });
 
     expect(spy.mock.calls[1][0]).toMatch(
@@ -73,7 +73,7 @@ describe("scss color function", () => {
     const spy = jest.spyOn(process.stderr, "write").mockImplementation();
 
     const output = renderSass({
-      data,
+      data
     });
 
     expect(spy.mock.calls[1][0]).toMatch(
@@ -87,13 +87,13 @@ describe("scss color function", () => {
 });
 
 // there is no way to import SCSS file with exports in jest test so we need to mock it
-const colorPalleteMock: ColorsMap = {
+const colorPalleteMock = {
   primary: {
-    500: "#ff5722",
+    500: "#ff5722"
   },
   error: {
-    100: "#ffe3e3",
-  },
+    100: "#ffe3e3"
+  }
 };
 
 describe("js color function", () => {

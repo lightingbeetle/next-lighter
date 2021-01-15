@@ -1,14 +1,14 @@
 import { renderSync } from "sass";
-import { SpacesMap, space, spaceValue } from ".";
+import { space, spaceValue } from ".";
 
 function renderSass(args) {
   return renderSync({
     outputStyle: "compressed",
     // not sure why this is needed and if it covers most uscases
-    importer: (originalUrl) => {
+    importer: originalUrl => {
       return { file: require.resolve(`./${originalUrl}`) };
     },
-    ...args,
+    ...args
   }).css.toString();
 }
 
@@ -54,7 +54,7 @@ describe("scss space function", () => {
     const spy = jest.spyOn(process.stderr, "write").mockImplementation();
 
     renderSass({
-      data,
+      data
     });
 
     expect(spy.mock.calls[1][0]).toMatch(
@@ -66,10 +66,10 @@ describe("scss space function", () => {
 });
 
 // there is no way to import SCSS file with exports in jest test so we need to mock it
-const spacesMock: SpacesMap = {
+const spacesMock = {
   default: "16px",
   s: "8px",
-  l: "24px",
+  l: "24px"
 };
 
 describe("js space function", () => {

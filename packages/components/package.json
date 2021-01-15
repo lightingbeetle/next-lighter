@@ -18,7 +18,7 @@
     "build": "npm-run-all build:*",
     "build:components": "microbundle src/index.ts src/static.ts --jsx React.createElement --jsxFragment React.Fragment --external react,react-dom",
     "build:icons": "svg-sprite --dest dist --symbol --symbol-dest . --symbol-sprite icons-sprite.svg  src/icons/*.svg",
-    "test": "jest"
+    "test": "NODE_ENV=test jest --maxWorkers=1"
   },
   "dependencies": {
     "@lighting-beetle/lighter-hooks": "1.0.0",

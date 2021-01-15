@@ -59,8 +59,28 @@ function App() {
 
 ## Accessibility
 
-The Icon component is implemented by the [W3C](https://www.w3.org/wiki/SVG_Accessibility) and [davidhund / Advocating The Most Accessible Markup](https://gist.github.com/davidhund/564331193e1085208d7e).
+The Icon component is implemented by the [W3C](https://www.w3.org/wiki/SVG_Accessibility) and [Accessible SVG Icons by Chris Coyier](https://css-tricks.com/accessible-svg-icons/).
 
 Current implementation does not support:
 
 - Description (represented in sprite as xml `<desc />` markup).
+
+### Decorative icon (default)
+
+<Preview>
+  <Icon name="home" />
+</Preview>
+
+### Stand-alone meaningful icon  
+
+<Preview>
+  <Icon name="home" alt="Go home"/>
+</Preview>
+
+### Wrapped by link 
+
+<Preview>
+  <a href="/" aria-label="Go home">
+    <Icon name="home" alt={null} />
+  </a>
+</Preview>
