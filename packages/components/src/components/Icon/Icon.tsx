@@ -1,6 +1,6 @@
 import React from "react";
 import cx from "classnames";
-import { useIconContext } from "./IconsContext";
+import { useIconContext } from "./IconContext";
 
 import "./styles/style.scss";
 

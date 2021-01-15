@@ -44,15 +44,15 @@ import Icon from '.';
 
 ## Customize path to sprite
 
-In React enviroment, path to sprite can be customized globally via [Context API](https://reactjs.org/docs/context.html) and `<IconsContext />`.
+In React enviroment, path to sprite can be customized globally via [Context API](https://reactjs.org/docs/context.html) and `<IconProvider />`.
 
 ```jsx
 // This is same as defining every icon as <Icon spritePath="/my-sprite.svg" />
 function App() {
   return (
-    <IconsContext value={{ spritePath: '/my-sprite.svg' }}>
+    <IconProvider spritePath="/my-sprite.svg">
       <Icon name="home" />
-    </IconsContext>
+    </IconProvider>
   );
 }
 ```

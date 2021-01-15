@@ -1,2 +1,2 @@
 export { default } from "./Icon";
-export { default as IconsContext } from "./IconsContext";
+export { IconProvider, useIconContext } from "./IconContext";
