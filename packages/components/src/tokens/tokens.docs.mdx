@@ -2,7 +2,7 @@
 title: Desing Tokens
 ---
 
-import { TokensTable, colors, breakpoints, spaces, fonts } from '.';
+import { TokensTable, colors, breakpoints, spaces, fonts, shadows } from '.';
 
 # Design tokens
 
@@ -48,6 +48,15 @@ Design tokens are atoms of vizual desing. Specifically, they are named entities 
   name='font'
   usageFormatJS={({ token }) => `fonts.${token}`}
   usageFormatSCSS={({ token }) => `$font-${token.replace('.', '-')}`}
+/>
+
+## Shadows
+
+<TokensTable
+  tokens={shadows}
+  name='shadow'
+  usageFormatJS={({ token }) => `shadows.${token}`}
+  usageFormatSCSS={({ token }) => `$shadows-${token.replace('.', '-')}`}
 />
 
 ## Import to JS

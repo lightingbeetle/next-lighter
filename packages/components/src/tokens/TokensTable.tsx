@@ -1,12 +1,16 @@
+// TODO
+// - Make this styleguide component
+// - introduce `usageFormat: 'variable' | 'function'` to set better defaults?
+
 import React, { useMemo } from "react";
 
 import { Table, Code } from "@lighting-beetle/lighter-styleguide";
 import flattenObject from "../utils/flattenObject";
-import type { SCSSVarsMap } from "../utils/scssVarsToMap";
+import { SCSSVarsMap } from "../utils/scssVarsToMap";
 
 type UsageFormatFunc = ({
   token,
-  name,
+  name
 }: {
   token: string;
   name: string;
@@ -23,7 +27,7 @@ type TableTokensProps = {
 const usageFormatDefault = ({ token, name }) =>
   `${name}(${token
     .split(".")
-    .map((part) => (part !== "default" ? `'${part}'` : ""))
+    .map(part => (part !== "default" ? `'${part}'` : ""))
     .join(",")})`;
 
 const usageFormatCSSDefault = ({ token, name }) =>
@@ -34,14 +38,14 @@ function TableTokens({
   name,
   usageFormatJS = usageFormatDefault,
   usageFormatSCSS = usageFormatDefault,
-  usageFormatCSS = usageFormatCSSDefault,
+  usageFormatCSS = usageFormatCSSDefault
 }: TableTokensProps) {
   const data = useMemo(() => {
     const flattenTokens = flattenObject(tokens);
 
-    return Object.keys(flattenTokens).map((token) => ({
+    return Object.keys(flattenTokens).map(token => ({
       token,
-      value: flattenTokens[token],
+      value: flattenTokens[token]
     }));
   }, [tokens]);
 
@@ -52,12 +56,12 @@ function TableTokens({
           accessor: "token",
           Header: "Token",
           id: "token",
-          Cell: ({ value }) => `${name}.${value}`,
+          Cell: ({ value }) => `${name}.${value}`
         },
         {
           accessor: "value",
           Header: "Value",
-          id: "value",
+          id: "value"
         },
         usageFormatCSS && {
           accessor: "token",
@@ -65,7 +69,7 @@ function TableTokens({
           Cell: ({ value: token }) => (
             <Code language="css">{usageFormatCSS({ token, name })}</Code>
           ),
-          id: "cssUsage",
+          id: "cssUsage"
         },
         usageFormatJS && {
           accessor: "token",
@@ -73,7 +77,7 @@ function TableTokens({
           id: "jsUsage",
           Cell: ({ value: token }) => (
             <Code language="javascript">{usageFormatJS({ token, name })}</Code>
-          ),
+          )
         },
         usageFormatSCSS && {
           accessor: "token",
@@ -81,8 +85,8 @@ function TableTokens({
           Cell: ({ value: token }) => (
             <Code language="scss">{usageFormatSCSS({ token, name })}</Code>
           ),
-          id: "scssUsage",
-        },
+          id: "scssUsage"
+        }
       ].filter(Boolean),
     [name, usageFormatSCSS, usageFormatJS, usageFormatCSS]
   );

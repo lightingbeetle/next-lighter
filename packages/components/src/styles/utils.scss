@@ -1,5 +1,6 @@
 @use "sass:map";
 @use "sass:list";
+@use "../tokens/font";
 
 /// Base on -zf-map-next https://github.com/zurb/foundation-sites/blob/develop/scss/util/_breakpoint.scss
 /// Find the next key in a map.
@@ -36,11 +37,9 @@
   }
 }
 
-$default-font-size: 16px;
-
 @function rem(
   $size,
-  $base: $default-font-size
+  $base: font.$font-size-default
 ) {
   @return $size / $base * 1rem;
 }
@@ -58,4 +57,53 @@ $default-font-size: 16px;
   }
 
   @return #{$prefix + $name + $suffix};
+}
+
+/// Get css propeties from map
+///
+/// @param {Map} $map - Map
+/// @param {Arglist} $keys - Keys to fetch
+///
+/// @example
+/// $map: (
+///   background-color: #fff,
+///   color: #000
+/// );
+///
+/// .example {
+///   @include css-map($map);
+///  }
+///
+/// Output:
+/// .example {
+///   background-color: #fff;
+///   color: #000;
+/// }
+@mixin css-map($map, $keys...) {
+  $_map: $map;
+
+  @if (list.length($keys) == 1) {
+    $_map: map.get($map, list.nth($keys, 1));
+  }
+  
+  @if (list.length($keys) > 1) {
+    $_map: map.get($map, list.nth($keys, 1), map.remove($keys, $key));
+  }
+
+  @each $prop, $value in $_map {
+    #{$prop}: #{$value};
+  }
+}
+
+/// Get variants of elemnt from map
+///
+/// @param {Map} $map - map
+/// @param {Map} $className - class name of element
+/// @param {Map} $classSuffix - suffix for class name of element
+@mixin variants($map, $className: "", $classSuffix: "") {
+  @each $variant, $props in $map {
+    #{$className + variant-name($variant) + $classSuffix} {
+      @include css-map($props);
+    }
+  }
 }

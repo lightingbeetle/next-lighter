@@ -11,8 +11,6 @@ type PropsProps = {
 const Props = ({ component, children }: PropsProps) => {
   const { displayName, props, description } = useProps({ component });
 
-  console.log(props);
-
   return (
     <PropsContext.Provider value={{ displayName, props, description }}>
       {children || <PropsTable />}

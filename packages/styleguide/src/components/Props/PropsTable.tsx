@@ -5,18 +5,18 @@ import { theme } from "../../styles";
 import Table from "../Table";
 
 const ComponentName = styled.div`
-  padding: ${(props) => props.theme.space.small} 0;
+  padding: ${props => props.theme.space.small} 0;
 `;
 
 ComponentName.defaultProps = {
-  theme,
+  theme
 };
 
 const PropsTable = () => {
   const { displayName, props } = usePropsContext();
 
-  const data = useMemo(() => Object.keys(props).map((key) => props[key]), [
-    props,
+  const data = useMemo(() => Object.keys(props).map(key => props[key]), [
+    props
   ]);
 
   const columns = useMemo(
@@ -24,24 +24,24 @@ const PropsTable = () => {
       {
         Header: "Required",
         accessor: "required",
-        Cell: ({ value }) => value && "Yes",
+        Cell: ({ value }) => value && "Yes"
       },
       {
         Header: "Name",
-        accessor: "name",
+        accessor: "name"
       },
       {
         Header: "Type",
-        accessor: "type.name",
+        accessor: "type.name"
       },
       {
         Header: "Default value",
-        accessor: "defaultValue",
+        accessor: "defaultValue.value"
       },
       {
         Header: "Description",
-        accessor: "description",
-      },
+        accessor: "description"
+      }
     ],
     []
   );
