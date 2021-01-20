@@ -124,6 +124,12 @@ Button with just icon without text should be square.
 
 <Preview>
   <Button square size="s" aria-label="Go home">
+    <Icon name="lol" alt={null} />
+  </Button>
+
+  <Button square size="s" aria-label="Go home">
+  </Button>
+  <Button square size="s" aria-label="Go home">
     <Icon name="home" alt={null} />
   </Button>
   <Button square type="primary" aria-label="Go home">
@@ -140,7 +146,7 @@ Button with just icon without text should be square.
 
 ## Accessibility
 
-The `<Button />` component can render as `<a>`, `<button>` or `<input>`. Take care to always use the appropriate element. The rule of thumb is to use `<a>` if it takes you somewhere, `<button>` if it does something and `<button type="submit">` or `<input type="submit">` if it's used for submitting a form. Check the articles below for more information.
+The `<Button />` component can render as `<a>` or `<button>`. Take care to always use the appropriate element. The rule of thumb is to use `<a>` if it takes you somewhere, `<button>` if it does something and `<button type="submit">` if it's used for submitting a form. Check the articles below for more information.
 
 ### Don't disable buttons
 

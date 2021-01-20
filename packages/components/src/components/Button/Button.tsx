@@ -12,9 +12,7 @@ type ButtonProps = JSX.IntrinsicElements["button"] & {
   /** Disabled state */
   isDisabled?: boolean;
   /** Button size */
-  size?: "xs" | "s" | "l";
-  /** HTML tag in which is button rendered. */
-  as?: "button" | "a" | "input";
+  size?: "s" | "l";
   /** Visual variant of the button. Undefined means  */
   variant?: "plain";
   /** Purpose of the button. Default means CTA button. */
@@ -29,12 +27,11 @@ export const Button = ({
   isActive,
   isDisabled,
   size,
-  as = "button",
   variant,
   purpose,
   ...other
 }: ButtonProps) => {
-  let Tag: string = as;
+  let Tag = "button";
   let buttonIsDisabled = isDisabled;
 
   if (href) {
