@@ -1,13 +1,13 @@
+import { dirname, resolve } from "path";
 import { renderSync } from "sass";
 import { breakpoint } from ".";
+import scssTestImporter from "../../utils/ScssTestImporter";
 
 function renderSass(args) {
   return renderSync({
     outputStyle: "compressed",
     // not sure why this is needed and if it covers most uscases
-    importer: originalUrl => {
-      return { file: require.resolve(`./${originalUrl}`) };
-    },
+    importer: scssTestImporter(__dirname),
     ...args
   }).css.toString();
 }

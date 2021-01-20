@@ -1,13 +1,12 @@
 import { renderSync } from "sass";
 import { color, colorHex } from ".";
+import scssTestImporter from "../../utils/ScssTestImporter";
 
 function renderSass(args) {
   return renderSync({
     outputStyle: "compressed",
     // not sure why this is needed and if it covers most uscases
-    importer: originalUrl => {
-      return { file: require.resolve(`./${originalUrl}`) };
-    },
+    importer: scssTestImporter(__dirname),
     ...args
   }).css.toString();
 }
@@ -67,7 +66,7 @@ describe("scss color function", () => {
     @use "./index.scss" as *;
 
     .foo {
-      color: color('primary', 100);
+      color: color('primary', 1);
     }`;
 
     const spy = jest.spyOn(process.stderr, "write").mockImplementation();
@@ -77,10 +76,10 @@ describe("scss color function", () => {
     });
 
     expect(spy.mock.calls[1][0]).toMatch(
-      /Color 'primary\.100' is not defined in \$colors/
+      /Color 'primary\.1' is not defined in \$colors/
     );
 
-    expect(output).toBe(".foo{color:var(--color-primary-100)}");
+    expect(output).toBe(".foo{color:var(--color-primary-1)}");
 
     spy.mockRestore();
   });
