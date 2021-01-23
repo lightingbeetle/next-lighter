@@ -26,7 +26,7 @@ describe("rendering", () => {
       expect(screen.getByText("Label")).toBeInTheDocument();
     });
 
-    it("passes other props", () => {
+    it("renders isError", () => {
       render(<Label isError>Label</Label>);
 
       expect(screen.getByText("Label").parentNode).toHaveClass("label--error");

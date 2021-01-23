@@ -1,0 +1,39 @@
+// ---------------------------------------------
+// DROPDOWN - CONFIGURATION
+// ---------------------------------------------
+
+@use "../../../tokens";
+@use "../../../styles/utils.scss";
+
+$dropdown-menu-max-height: 300px;
+$dropdown-menu-max-width: 300px;
+
+$dropdown-menu: (
+  default: (
+    max-width: utils.rem($dropdown-menu-max-width),
+    margin-top: -1px,
+    background-color: tokens.color("white"),
+    border-width: 1px,
+    border-style: solid,
+    border-color: tokens.color("grey", 300),
+    border-radius: 0 0 5px,
+    box-shadow: #{tokens.$shadow-direct-default,
+    tokens.$shadow-ambient-default},
+    z-index: 100,
+  ),
+);
+
+$dropdown-menu-item: (
+  default: (
+    padding: tokens.space("s"),
+    color: tokens.color("black"),
+  ),
+  focus: (
+    color: tokens.color("primary"),
+    background-color: tokens.color("grey", 100),
+  ),
+  highlighted: (
+    background-color: tokens.color("grey", 100),
+    color: tokens.color("primary"),
+  ),
+);

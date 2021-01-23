@@ -1,0 +1,68 @@
+// ---------------------------------------------
+// DROPDOWN - MIXINS
+// ---------------------------------------------
+
+@use "sass:map";
+@use "./config";
+@use "../../../styles/utils";
+
+@mixin dropdown-menu($dropdown-menu: config.$dropdown-menu) {
+  padding: 0;
+  position: absolute;
+  opacity: 1;
+  visibility: visible;
+  transition-delay: 0s;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  will-change: scroll-position;
+  word-break: break-all;
+
+  @include utils.css-map($dropdown-menu, "default");
+
+  &--hidden {
+    overflow: hidden;
+    visibility: hidden;
+    opacity: 0;
+    min-width: 0 !important;
+    margin: -100%;
+    pointer-events: none;
+
+    * {
+      display: none;
+    }
+  }
+}
+
+@mixin dropdown-size() {
+  max-height: config.$dropdown-menu-max-height;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  will-change: scroll-position;
+}
+
+@mixin dropdown-item($dropdown-menu-item: config.$dropdown-menu-item) {
+  display: block;
+  width: 100%;
+  border: 0;
+  text-align: inherit;
+  -webkit-appearance: none; // stylelint-disable-line property-no-vendor-prefix
+
+  &:focus,
+  &:hover,
+  &--highlighted {
+    @include utils.css-map(config.$dropdown-menu-item, "focus");
+  }
+
+  @include utils.css-map(config.$dropdown-menu-item, "default");
+}
+
+@mixin dropdown() {
+  .dropdown-menu {
+    @include dropdown-menu;
+    @include dropdown-size;
+
+    &__item {
+      @include dropdown-item;
+    }
+  }
+}
