@@ -1,0 +1,22 @@
+// ---------------------------------------------
+// FORMS - LABEL - STYLES
+// ---------------------------------------------
+
+@use './config';
+@use '../../../styles/utils';
+
+.label {
+  label {
+    @include utils.css-map(config.$label, "default");
+
+    margin-left: 0;
+    display: inline-block;
+    cursor: pointer;
+  }
+
+  &--error {
+    label {
+      @include utils.css-map(config.$label, "error");
+    }
+  }
+}

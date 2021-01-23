@@ -1,0 +1,17 @@
+// ---------------------------------------------
+// FORMS - LABEL - CONFIGURATION
+// ---------------------------------------------
+
+@use '../../../tokens';
+@use '../../../styles/utils';
+
+$label: (
+  default: (
+    margin-bottom: utils.rem(3px),
+    color: tokens.color("black"),
+    font-size: utils.rem(tokens.$font-size-default),
+  ),
+  error: (
+    color: tokens.color("error"),
+  ),
+);
