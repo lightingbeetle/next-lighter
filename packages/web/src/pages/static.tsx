@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Example } from "components";
+import { Select } from "components";
 
 export default function Home() {
   return (
@@ -9,7 +9,13 @@ export default function Home() {
         This page don't have React runtime. But we run here JS from
         "components/static.ts" file.
       </p>
-      <Example>This is example of Example component</Example>
+      <Select
+        items={[
+          { label: "Item 1", value: "Item 1" },
+          { label: "Item 2", value: "Item 2" },
+          { label: "Item 3", value: "Item 3" }
+        ]}
+      />
       <Link href="/">
         <a>Back home</a>
       </Link>

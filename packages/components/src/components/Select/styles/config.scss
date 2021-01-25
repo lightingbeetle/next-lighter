@@ -1,0 +1,31 @@
+// ---------------------------------------------
+// FORMS - SELECT - CONFIGURATION
+// ---------------------------------------------
+
+@use "../../../tokens";
+@use "../../../styles/utils";
+
+$select: (
+  default: (
+    background-color: tokens.color("white"),
+    border-width: 1px,
+    border-style: solid,
+    border-color: tokens.color("grey", 300),
+    border-radius: 5px,
+    padding: utils.rem(10px),
+  ),
+  focus: (
+    box-shadow: "#{tokens.$shadow-direct-default}, #{tokens.$shadow-ambient-default}",
+    border-color: tokens.color("primary"),
+    background-color: tokens.color("primary", 100),
+  ),
+  disabled: (
+    opacity: 0.5,
+    box-shadow: none,
+  ),
+  error: (
+    background-color: tokens.color("error", 100),
+    color: tokens.color("error"),
+    border-color: tokens.color("error"),
+  ),
+);

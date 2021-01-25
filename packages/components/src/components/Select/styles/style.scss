@@ -1,0 +1,91 @@
+@use "./config";
+@use "../../../styles/utils";
+@use "../../../tokens";
+
+// Replace letters
+@function str-replace($string, $search, $replace: '') {
+    $index: str-index($string, $search);
+
+    @if $index {
+        @return str-slice($string, 1, $index - 1) + $replace + str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+    }
+
+    @return $string;
+}
+
+// Encode symbols
+@function url-encode($string) {
+    $map: (
+        "%": "%25",
+        "<": "%3C",
+        ">": "%3E",
+        " ": "%20",
+        "!": "%21",
+        "*": "%2A",
+        "'": "%27",
+        '"': "%22",
+        "(": "%28",
+        ")": "%29",
+        ";": "%3B",
+        ":": "%3A",
+        "@": "%40",
+        "&": "%26",
+        "=": "%3D",
+        "+": "%2B",
+        "$": "%24",
+        ",": "%2C",
+        "/": "%2F",
+        "?": "%3F",
+        "#": "%23",
+        "[": "%5B",
+        "]": "%5D"
+    );
+
+    $new: $string;
+
+    @each $search, $replace in $map {
+      $new: str-replace($new, $search, $replace);
+    }
+
+    @return $new;
+}
+
+// Format the SVG as a URL
+@function inline-svg($string) {
+    @return url('data:image/svg+xml,#{url-encode($string)}');
+}
+
+:root {
+  --icon-chevron-up: #{inline-svg('<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="32" height="32" viewBox="0 0 32 32"><path fill="currentColor" d="M9.875 10.438l6.125 6.125 6.125-6.125 1.875 1.875-8 8-8-8z"></path></svg>')};
+}
+
+.select {
+  @include utils.css-map(config.$select, "default");
+
+  display: inline-grid;
+  grid-gap: tokens.space('s');
+  grid-auto-flow: column;
+  align-items: center;
+  text-align: left;
+  justify-content: space-between;
+  width: 100%;
+
+  background-image: var(--icon-chevron-up);
+  background-repeat: no-repeat;
+  background-position: right center;
+
+  &:hover,
+  &:focus,
+  &[aria-expanded="true"] {
+    @include utils.css-map(config.$select, "focus");
+  }
+
+  &[disabled] {
+    pointer-events: none;
+    @include utils.css-map(config.$select, "disabled");
+  }
+
+  &--error {
+    @include utils.css-map(config.$select, "error");
+  }
+}

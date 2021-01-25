@@ -3,15 +3,17 @@ import cx from "classnames";
 
 type DropdownMenuItemProps = {
   isHighlighted?: boolean;
+  isDisabled?: boolean;
 } & JSX.IntrinsicElements["li"];
 
 const CLASS_ROOT = "dropdown-menu__item";
 
 const DropdownMenuItem = forwardRef<HTMLLIElement, DropdownMenuItemProps>(
-  ({ className, children, isHighlighted, ...other }, ref) => {
+  ({ className, children, isHighlighted, isDisabled, ...other }, ref) => {
     const classes = cx(
       CLASS_ROOT,
       { [`${CLASS_ROOT}--highlighted`]: isHighlighted },
+      { [`${CLASS_ROOT}--disabled`]: isDisabled },
       className
     );
 
