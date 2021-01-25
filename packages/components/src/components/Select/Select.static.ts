@@ -5,7 +5,7 @@ import {
   createElement,
   useMemo
 } from "react";
-import { renderToStaticMarkup } from "react-dom/server";
+import renderToStaticMarkup from "preact-render-to-string";
 
 import hookIt from "../../utils/hookIt";
 import { useSelect } from "downshift";
