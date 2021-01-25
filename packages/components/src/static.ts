@@ -1,9 +1,9 @@
-import exampleInit from "./components/example/Example.static";
+import Select from "./components/Select/Select.static";
 import domReady from "./utils/domReady";
 import moduleFactory from "./utils/moduleFactory";
 
 domReady(() => {
-  moduleFactory(exampleInit, "[data-example]");
+  moduleFactory(Select, "[data-select]");
 });
 
 // this is here because of Typescript modules detection
