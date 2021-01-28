@@ -11,15 +11,40 @@ export type SelectProps = {
   items?: { label: string; value: string; disabled?: boolean }[];
   label?: React.ReactNode;
   disabled?: boolean;
-} & JSX.IntrinsicElements["select"];
+  placeholder?: string;
+  onChange?: () => void;
+} & JSX.IntrinsicElements["button"];
 
 const Select = ({
   items = [],
   label,
   className,
   disabled,
+  placeholder = "Choose one",
+  onChange,
+  value,
   ...other
 }: SelectProps) => {
+  let initialSelectedItem = null;
+
+  if (!placeholder && items.length) {
+    initialSelectedItem = items[0];
+  }
+
+  const labelToShow = () => {
+    if (!items.length) {
+      return "No options";
+    }
+
+    if (!selectedItem) {
+      return placeholder;
+    }
+
+    return selectedItem?.label ?? "";
+  };
+
+  const currentValue = items.find((item) => item.value === value);
+
   const {
     isOpen,
     selectedItem,
@@ -27,9 +52,13 @@ const Select = ({
     getLabelProps,
     getMenuProps,
     highlightedIndex,
-    getItemProps
+    getItemProps,
   } = useSelect({
-    items
+    items,
+    itemToString: (item) => item?.value,
+    initialSelectedItem,
+    selectedItem: currentValue,
+    onSelectedItemChange: ({ selectedItem }) => onChange?.(selectedItem.value),
   });
 
   const classes = cx("select", className);
@@ -43,15 +72,19 @@ const Select = ({
         {...getToggleButtonProps()}
         disabled={disabled}
         data-select-button
+        {...other}
       >
-        {selectedItem?.label ?? "Elements"}
+        {labelToShow()}
       </button>
       <select
         hidden
-        value={selectedItem?.value ?? ""}
-        {...other}
+        value={selectedItem?.value}
         disabled={disabled}
-      />
+        // get rid of the warning if select has value without onChange
+        onChange={() => {}}
+      >
+        {selectedItem && <option value={selectedItem.value} />}
+      </select>
       <DropdownMenu {...getMenuProps()} isOpen={isOpen} data-select-list>
         {items.map((item, index) => (
           <DropdownMenuItem

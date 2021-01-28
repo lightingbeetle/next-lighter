@@ -11,9 +11,9 @@ export default function Home() {
       </p>
       <Select
         items={[
-          { label: "Item 1", value: "Item 1" },
-          { label: "Item 2", value: "Item 2" },
-          { label: "Item 3", value: "Item 3" }
+          { label: "Item 1", value: "item 1" },
+          { label: "Item 2", value: "item 2" },
+          { label: "Item 3", value: "item 3" },
         ]}
       />
       <Link href="/">

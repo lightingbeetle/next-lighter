@@ -3,7 +3,7 @@ import {
   useEffect,
   useState,
   createElement,
-  useMemo
+  useMemo,
 } from "react";
 import renderToStaticMarkup from "preact-render-to-string";
 
@@ -21,6 +21,11 @@ const select = hookIt((el: HTMLElement) => {
     }[]
   >([]);
 
+  // get DOM refs
+  const button = el.querySelector("[data-select-button]");
+  const list = el.querySelector("[data-select-list]");
+  const select = el.querySelector("select");
+
   // here is whole logic behind Select behaviour encapsulated in hook
   // see https://medium.com/better-programming/headless-ui-components-a-journey-with-high-order-components-render-props-and-custom-hooks-811c9677b4cf for in-depth explanation
   const {
@@ -29,12 +34,13 @@ const select = hookIt((el: HTMLElement) => {
     getToggleButtonProps,
     getMenuProps,
     getItemProps,
-    highlightedIndex
-  } = useSelect({ items });
-
-  // get DOM refs
-  const button = el.querySelector("[data-select-button]");
-  const list = el.querySelector("[data-select-list]");
+    highlightedIndex,
+  } = useSelect({
+    items,
+    initialSelectedItem: select.value
+      ? { value: select.value, label: button.textContent }
+      : undefined,
+  });
 
   // we need to pass refs to useSelect functions (for some reason, it's expected)
   getToggleButtonProps().ref(button);
@@ -45,13 +51,13 @@ const select = hookIt((el: HTMLElement) => {
     const itemsEl = Array.from(el.querySelectorAll("[data-select-item]"));
 
     setItems(
-      itemsEl.map(itemEl => ({
+      itemsEl.map((itemEl) => ({
         // text is label
         label: itemEl.textContent,
         // we store value in [data-select-item]
         value: itemEl.getAttribute("data-select-item"),
         // check if item is disabled
-        disabled: itemEl.hasAttribute("disabled")
+        disabled: itemEl.hasAttribute("disabled"),
       }))
     );
   }, [el]);
@@ -84,13 +90,13 @@ const select = hookIt((el: HTMLElement) => {
             disabled: item.disabled,
             role: getItemProps({
               index,
-              item
-            }).option,
+              item,
+            }).role,
             id: getItemProps({
               index,
-              item
+              item,
             }).id,
-            "aria-selected": getItemProps({ index, item })["aria-selected"]
+            "aria-selected": getItemProps({ index, item })["aria-selected"],
           },
           item.label
         )
@@ -104,12 +110,12 @@ const select = hookIt((el: HTMLElement) => {
     const onHandlers = itemsEl.map((item, index) => ({
       // @ts-ignore index should be enough according the docs and so we don't need to reconstruct item shape https://github.com/downshift-js/downshift/tree/master/src/hooks/useSelect#getitemprops
       onClick: getItemProps({
-        index
+        index,
       }).onClick,
       // @ts-ignore
       onMouseMove: getItemProps({
-        index
-      }).onMouseMove
+        index,
+      }).onMouseMove,
     }));
 
     // attach event listeners on newely rendered items
@@ -134,11 +140,11 @@ const select = hookIt((el: HTMLElement) => {
     const onKeyDown = getToggleButtonProps().onKeyDown;
 
     button.addEventListener("click", onClick);
-    button.addEventListener("key-down", onKeyDown);
+    button.addEventListener("keydown", onKeyDown);
 
     return () => {
       button.removeEventListener("click", onClick);
-      button.removeEventListener("key-down", onKeyDown);
+      button.removeEventListener("keydown", onKeyDown);
     };
   }, [button, getToggleButtonProps]);
 
@@ -156,6 +162,14 @@ const select = hookIt((el: HTMLElement) => {
   // handle selectedItem change
   useEffect(() => {
     button.innerHTML = selectedItem?.label ?? "Choose one";
+
+    // set value of select
+    if (selectedItem) {
+      select.innerHTML = `<option value="${selectedItem.value}" selected></option>`;
+    } else {
+      select.innerHTML = null;
+    }
+
     const itemsEl = Array.from(el.querySelectorAll("[data-select-item]"));
 
     itemsEl.forEach((item, index) => {
@@ -165,7 +179,7 @@ const select = hookIt((el: HTMLElement) => {
         getItemProps({ index })["aria-selected"]
       );
     });
-  }, [selectedItem, button, el, getItemProps]);
+  }, [selectedItem, button, select, el, getItemProps]);
 
   // handle highlightedIndex change
   useEffect(() => {
@@ -184,14 +198,14 @@ const select = hookIt((el: HTMLElement) => {
 
   // memoize callback so it can be exposed outside of the hook
   const handleSetItems = useCallback(
-    items => {
+    (items) => {
       setItems(items);
     },
     [setItems]
   );
 
   return {
-    setItems: handleSetItems
+    setItems: handleSetItems,
   };
 });
 
