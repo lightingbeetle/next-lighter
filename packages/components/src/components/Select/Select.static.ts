@@ -140,11 +140,11 @@ const select = hookIt((el: HTMLElement) => {
     const onKeyDown = getToggleButtonProps().onKeyDown;
 
     button.addEventListener("click", onClick);
-    button.addEventListener("keydown", onKeyDown);
+    button.addEventListener("key-down", onKeyDown);
 
     return () => {
       button.removeEventListener("click", onClick);
-      button.removeEventListener("keydown", onKeyDown);
+      button.removeEventListener("key-down", onKeyDown);
     };
   }, [button, getToggleButtonProps]);
 
