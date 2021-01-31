@@ -10,13 +10,19 @@ import DropdownMenu, { DropdownMenuItem } from "../DropdownMenu";
 import "./styles/style.scss";
 
 export type SelectProps = {
+  /** Items to display in dropdown list. */
   items?: useSelectProps["items"];
+  /** Form element label. */
   label?: React.ReactNode;
+  /** Disabled state. */
   disabled?: boolean;
+  /** Texts which is shown when select don't have set value. */
   placeholder?: useSelectProps["placeholder"];
+  /** Callback function on value change. */
   onChange?: (value: string) => void;
+  /** Form element value. Be sure to pass `onChange` with value, because passing value makes Select controlled component. */
   value?: Item["value"];
-} & JSX.IntrinsicElements["button"];
+} & Omit<JSX.IntrinsicElements["button"], "onChange" | "value">;
 
 const Select = ({
   items = [],

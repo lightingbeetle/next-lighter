@@ -6,12 +6,56 @@ import { Preview, Props } from '@lighting-beetle/lighter-styleguide';
 
 import Select from '.';
 
+export const items = [
+  { label: 'Item 1', value: 'item 1' },
+  { label: 'Item 2', value: 'item 2' },
+  { label: 'Item 3', value: 'item 3' },
+];
+
 # Select
 
-<Select
-  items={[
-    { label: 'Item 1', value: 'item 1' },
-    { label: 'Item 2', value: 'item 2' },
-    { label: 'Item 4', value: 'item 3' },
-  ]}
-/>
+The select component allows users to choose one option from a list. It is used in forms for users to submit data.
+
+<Select items={items} />
+
+## Select versus Dropdown
+
+While the select and dropdown components look similar, they have different functions.
+
+- Use the select component inside a form where users are selecting from a list of options and submitting data.
+- Use the dropdown component for actions like filter or sort content on a page.
+
+## Variants
+
+### Basic
+
+<Preview>
+  <Select items={items} />
+</Preview>
+
+### With label
+
+<Preview>
+  <Select label="Items" items={items} />
+</Preview>
+
+### Custom placeholder
+
+<Preview>
+  <Select placeholder="What will you choose?" items={items} />
+</Preview>
+
+### Preselected value
+
+<Preview>
+  <Select value="item 3" items={items} />
+</Preview>
+
+## Props
+
+<Props component={Select} />
+
+## Accessibility
+
+Select is consistent with [ARIA design pattern for](https://www.w3.org/TR/wai-aria-practices/examples/listbox/listbox-collapsible.html) a dropdown select.
+
