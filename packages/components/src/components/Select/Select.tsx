@@ -1,6 +1,8 @@
 import * as React from "react";
 import cx from "classnames";
-import { useSelect } from "downshift";
+
+import useSelect from "./useSelect";
+import type { useSelectProps, Item } from "./useSelect";
 
 import Label from "../Label";
 import DropdownMenu, { DropdownMenuItem } from "../DropdownMenu";
@@ -8,11 +10,12 @@ import DropdownMenu, { DropdownMenuItem } from "../DropdownMenu";
 import "./styles/style.scss";
 
 export type SelectProps = {
-  items?: { label: string; value: string; disabled?: boolean }[];
+  items?: useSelectProps["items"];
   label?: React.ReactNode;
   disabled?: boolean;
-  placeholder?: string;
-  onChange?: () => void;
+  placeholder?: useSelectProps["placeholder"];
+  onChange?: (value: string) => void;
+  value?: Item["value"];
 } & JSX.IntrinsicElements["button"];
 
 const Select = ({
@@ -25,26 +28,6 @@ const Select = ({
   value,
   ...other
 }: SelectProps) => {
-  let initialSelectedItem = null;
-
-  if (!placeholder && items.length) {
-    initialSelectedItem = items[0];
-  }
-
-  const labelToShow = () => {
-    if (!items.length) {
-      return "No options";
-    }
-
-    if (!selectedItem) {
-      return placeholder;
-    }
-
-    return selectedItem?.label ?? "";
-  };
-
-  const currentValue = items.find((item) => item.value === value);
-
   const {
     isOpen,
     selectedItem,
@@ -53,12 +36,13 @@ const Select = ({
     getMenuProps,
     highlightedIndex,
     getItemProps,
+    labelText,
   } = useSelect({
     items,
     itemToString: (item) => item?.value,
-    initialSelectedItem,
-    selectedItem: currentValue,
     onSelectedItemChange: ({ selectedItem }) => onChange?.(selectedItem.value),
+    placeholder,
+    value,
   });
 
   const classes = cx("select", className);
@@ -74,7 +58,7 @@ const Select = ({
         data-select-button
         {...other}
       >
-        {labelToShow()}
+        {labelText}
       </button>
       <select
         hidden
