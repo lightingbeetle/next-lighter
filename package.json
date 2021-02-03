@@ -9,12 +9,15 @@
   },
   "scripts": {
     "dev": "yarn --cwd packages/web dev",
-    "build": "npm run build:components && npm run build:web",
+    "build": "npm-run-all build:*",
+    "build:hooks": "yarn --cwd packages/lighter-hooks build",
     "build:components": "yarn --cwd packages/components build",
     "build:styleguide": "yarn --cwd packages/styleguide build",
     "build:web": "yarn --cwd packages/web build",
     "release": "npm run build && npx changeset publish",
-    "test": "jest --runInBand --config ./jest.config.js",
+    "test": "npm-run-all test:*",
+    "test:components": "yarn --cwd packages/components test",
+    "test:hooks": "yarn --cwd packages/lighter-hooks test",
     "lint": "eslint --fix ."
   },
   "dependencies": {
@@ -51,6 +54,7 @@
     "jest-cli": "~26.6.1",
     "lint-staged": "~10.5.0",
     "node-fetch": "~2.6.1",
+    "npm-run-all": "^4.1.5",
     "prettier": "~2.2.1",
     "tree-kill": "~1.2.2",
     "ts-jest": "^26.4.4",
