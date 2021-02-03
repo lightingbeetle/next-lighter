@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Select } from "components";
+import { Select, Button } from "components";
 
 export default function Home() {
   return (
@@ -16,6 +16,7 @@ export default function Home() {
           { label: "Item 3", value: "item 3" },
         ]}
       />
+      <Button>Button</Button>
       <Link href="/">
         <a>Back home</a>
       </Link>
