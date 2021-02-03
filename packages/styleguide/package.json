@@ -1,6 +1,6 @@
 {
   "name": "@lighting-beetle/lighter-styleguide",
-  "version": "5.0.0-alpha.1",
+  "version": "5.0.0-beta.1",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
   "jsnext:main": "dist/index.modern.js",
@@ -8,7 +8,7 @@
     "dist",
     "public"
   ],
-  "types": "./dist/index.d.ts",
+  "types": "./dist/index.d.ts",  
   "scripts": {
     "dev": "next dev",
     "build": "npm-run-all build:*",

@@ -23,7 +23,7 @@
   },
   "dependencies": {
     "@lighting-beetle/lighter-hooks": "1.0.0",
-    "@lighting-beetle/lighter-styleguide": "5.0.0-alpha.1",
+    "@lighting-beetle/lighter-styleguide": "5.0.0-beta.1",
     "classnames": "^2.2.6",
     "downshift": "^6.1.0",
     "polished": "^4.0.5",
