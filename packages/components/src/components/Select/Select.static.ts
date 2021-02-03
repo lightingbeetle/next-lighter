@@ -7,7 +7,7 @@ import {
 } from "react";
 import renderToStaticMarkup from "preact-render-to-string";
 
-import hookIt from "../../utils/hookIt";
+import hookIt from "@lighting-beetle/lighter-hooks";
 import { useSelect } from "downshift";
 
 // hookIt is HOC function wich emulates React environment so hooks will run same as in React component
