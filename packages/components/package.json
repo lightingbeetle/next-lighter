@@ -16,7 +16,7 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "npm-run-all build:*",
-    "build:components": "microbundle src/index.ts --jsx React.createElement --jsxFragment React.Fragment --external react,react-dom",
+    "build:components": "microbundle src/index.ts --jsx React.createElement --jsxFragment React.Fragment --external react,react-dom,@lighting-beetle/lighter-styleguide",
     "build:static": "microbundle src/static.ts --output dist/static.js --alias react=preact/compat,react-dom=preact/compat --external none",
     "build:icons": "svg-sprite --dest dist --symbol --symbol-dest . --symbol-sprite icons-sprite.svg  src/icons/*.svg",
     "test": "NODE_ENV=test jest --maxWorkers=1"
