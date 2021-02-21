@@ -1,8 +1,11 @@
 # Next-Lighter
 
 [See live](https://next-lighter.lbx.sk)
-## Getting Started
+## Quick start
 
+`npx degit github:lightingbeetle/next-lighter my-new-project`
+
+[Degit](https://github.com/Rich-Harris/degit) will clone this repository without git history.
 ### Install
 
 Currently only `yarn` is supported for installation of this repository.

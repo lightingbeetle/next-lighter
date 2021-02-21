@@ -1,0 +1,10 @@
+[
+  {
+    "action": "remove",
+    "files": [
+      "packages/lighter-hooks",
+      "packages/styleguide",
+      "packages/next-lighter-config"
+    ]
+  }
+]
