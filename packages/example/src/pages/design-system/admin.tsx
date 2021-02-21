@@ -26,8 +26,8 @@ const Admin = dynamic(
           },
           // @ts-ignore
           local_backend: true,
-          media_folder: "packages/web/public/img",
-          public_folder: "packages/web/public",
+          media_folder: "packages/example/public/img",
+          public_folder: "packages/example/public",
           load_config_file: false,
           collections: [
             {

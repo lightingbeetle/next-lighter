@@ -4,7 +4,7 @@ Set of documented React components to kick start project.
 
 ## Local development
 
-See [web](../web)
+See [example](../example)
 
 ## Build
 
