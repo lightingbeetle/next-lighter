@@ -1,14 +1,14 @@
 import { dirname, resolve } from "path";
 import { renderSync } from "sass";
 import { breakpoint } from ".";
-import scssTestImporter from "../../utils/ScssTestImporter";
+import scssTestImporter from "../../utils/scssTestImporter";
 
 function renderSass(args) {
   return renderSync({
     outputStyle: "compressed",
     // not sure why this is needed and if it covers most uscases
     importer: scssTestImporter(__dirname),
-    ...args
+    ...args,
   }).css.toString();
 }
 
@@ -217,7 +217,7 @@ describe("scss breakpoint function", () => {
     const spy = jest.spyOn(process.stderr, "write").mockImplementation();
 
     renderSass({
-      data
+      data,
     });
 
     expect(spy.mock.calls[1][0]).toMatch(
@@ -241,7 +241,7 @@ describe("scss breakpoint function", () => {
     const spy = jest.spyOn(process.stderr, "write").mockImplementation();
 
     renderSass({
-      data
+      data,
     });
 
     expect(spy.mock.calls[1][0]).toMatch(
@@ -256,7 +256,7 @@ describe("scss breakpoint function", () => {
 const breakpointMock = {
   xs: "0",
   m: "768px",
-  l: "1280px"
+  l: "1280px",
 };
 
 describe("js breakpoint function", () => {
