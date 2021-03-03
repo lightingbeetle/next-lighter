@@ -1,2 +1,2 @@
 [build]
-  command = "ci:build:example"
+  command = "yarn run ci:build:example"
