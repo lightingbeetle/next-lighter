@@ -24,8 +24,6 @@ const Admin = dynamic(
             name: "github",
             repo: "lightingbeetle/next-lighter",
           },
-          // @ts-ignore
-          local_backend: true,
           publish_mode: "editorial_workflow",
           media_folder: "packages/example/public/img",
           public_folder: "packages/example/public",
