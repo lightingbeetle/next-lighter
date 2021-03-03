@@ -14,6 +14,8 @@
     "build:styleguide": "yarn --cwd packages/styleguide build",
     "build:components": "yarn --cwd packages/components build",
     "build:example": "yarn --cwd packages/example build",
+    "ci:build:styleguide": "npm-run-all build:styleguide",
+    "ci:build:example": "npm-run-all build:*",
     "release": "npm run build && npx changeset publish",
     "test": "npm-run-all test:*",
     "test:components": "yarn --cwd packages/components test",
