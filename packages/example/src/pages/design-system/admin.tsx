@@ -23,7 +23,9 @@ const Admin = dynamic(
           backend: {
             name: "github",
             repo: "lightingbeetle/next-lighter",
+            branch: "main",
           },
+          local_backend: true,
           publish_mode: "editorial_workflow",
           media_folder: "packages/example/public/img",
           public_folder: "packages/example/public",
@@ -33,7 +35,7 @@ const Admin = dynamic(
               name: "components",
               label: "Components docs",
               label_singular: "Component docs",
-              folder: "packages/components/components/src",
+              folder: "packages/components/src/components",
               path: "{{title}}/{{slug}}",
               create: true,
               slug: "{{title}}.docs",
@@ -90,7 +92,7 @@ const Admin = dynamic(
             ),
           },
           allowedImports: {
-            "..": {
+            "../../": {
               Import: Components,
             },
             ...componentImports,
