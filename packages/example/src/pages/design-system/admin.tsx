@@ -1,11 +1,30 @@
 import dynamic from "next/dynamic";
 import * as Components from "components";
 import * as Styleguide from "@lighting-beetle/lighter-styleguide";
+import { useEffect, useState } from "react";
 
 const componentImports = Object.keys(Components).reduce((acc, key) => {
   acc[`./${key}`] = { ImportDefault: Components[key] };
   return acc;
 }, {});
+
+function StyleComponentsInjector({ children }) {
+  const [iframeRef, setIframeRef] = useState(null);
+
+  useEffect(() => {
+    const iframe = document.getElementsByTagName("iframe")[0];
+    const iframeHeadElem = iframe.contentDocument.head;
+    setIframeRef(iframeHeadElem);
+  }, []);
+
+  return (
+    iframeRef && (
+      <Styleguide.StyleSheetManager target={iframeRef}>
+        {children}
+      </Styleguide.StyleSheetManager>
+    )
+  );
+}
 
 // Netify stuff has to be imported dynamically because their are dependend on window and document so we can't ssr them
 const Admin = dynamic(
@@ -67,41 +86,22 @@ const Admin = dynamic(
         widgetFor("body")
       );
 
-      CMS.registerWidget(
-        "mdx",
-        WidgetMdx.MdxControl,
-        WidgetMdx.setupPreview({
-          components: {
-            h1: ({ children, ...props }) => (
-              <h1 style={{ color: "tomato" }} {...props}>
-                {children}
-              </h1>
-            ),
-            h2: ({ children, ...props }) => (
-              <h2 style={{ color: "blue" }} {...props}>
-                {children}
-              </h2>
-            ),
-            inlineCode: (props) => <Styleguide.Code {...props} />,
-            code: (props) => (
-              <Styleguide.Code
-                inline={false}
-                language={props.className?.replace(/language-/, "")}
-                {...props}
-              />
-            ),
-          },
-          allowedImports: {
-            "../../": {
-              Import: Components,
+      CMS.registerWidget("mdx", WidgetMdx.MdxControl, (args) => (
+        <StyleComponentsInjector>
+          {WidgetMdx.setupPreview({
+            components: Styleguide.mdxComponents,
+            allowedImports: {
+              "../../": {
+                Import: Components,
+              },
+              ...componentImports,
+              "@lighting-beetle/lighter-styleguide": {
+                Import: Styleguide,
+              },
             },
-            ...componentImports,
-            "@lighting-beetle/lighter-styleguide": {
-              Import: Styleguide,
-            },
-          },
-        })
-      );
+          })(args)}
+        </StyleComponentsInjector>
+      ));
     }),
   { ssr: false }
 );

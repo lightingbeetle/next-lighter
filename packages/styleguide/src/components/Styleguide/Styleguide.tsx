@@ -8,7 +8,7 @@ import Sidebar from "./Sidebar";
 import Header from "../Header";
 import Main from "./Main";
 import Page from "./Page";
-import defaultComponents from "./defaultMDXComponents";
+import mdxComponents from "./../mdxComponents";
 
 export type StyleguideProps = {
   components?: Components;
@@ -26,7 +26,7 @@ const Styleguide = ({
   currentPage,
   adminHref,
 }: StyleguideProps) => {
-  const components = { ...defaultComponents, ...componentsProp };
+  const components = { ...mdxComponents, ...componentsProp };
 
   const value = useMemo(
     () => ({
