@@ -11,7 +11,7 @@
     "dev": "yarn --cwd packages/example dev",
     "build": "npm-run-all build:*",
     "build:hooks": "yarn --cwd packages/lighter-hooks build",
-    "build:styleguide": "yarn --cwd packages/styleguide build",
+    "build:styleguide": "yarn --cwd packages/lighter-styleguide build",
     "build:components": "yarn --cwd packages/components build",
     "build:example": "yarn --cwd packages/example build",
     "ci:build:styleguide": "npm-run-all build:styleguide",

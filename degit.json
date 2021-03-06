@@ -3,7 +3,7 @@
     "action": "remove",
     "files": [
       "packages/lighter-hooks",
-      "packages/styleguide",
+      "packages/lighter-styleguide",
       "packages/next-lighter-config"
     ]
   }
