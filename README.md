@@ -1,6 +1,7 @@
 # Next-Lighter
 
-[See live](https://next-lighter.lbx.sk)
+[See live example project](https://next-lighter.lbx.sk)
+[See live example design system](https://next-lighter.lbx.sk)
 ## Quick start
 
 `npx degit github:lightingbeetle/next-lighter my-new-project`
@@ -16,7 +17,8 @@ yarn
 
 ### Development
 
-Run `npm run dev` in root of this repository.
+Run `npm run dev` in root of this repository to develop example project.
+Run `npm run dev:design-system` in root of this repository to develop design system.
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
@@ -31,7 +33,7 @@ Currently we support editing compontents documentation in git powerd Netlify CMS
 ### Local development
 
 1. Run `npx netlify-cms-proxy-server` in the root of this repository to bypass Github workflow
-2. Run `npm run dev` to start local development server
+2. Run `npm run dev:design-system` to start local development server
 
 ## Static scope
 
