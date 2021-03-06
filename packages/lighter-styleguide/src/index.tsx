@@ -5,6 +5,6 @@ export { default as Preview } from "./components/Preview";
 export { default as Table } from "./components/Table";
 export { H1, H2, H3, H4, H5, H6, Link, P } from "./components/Typography";
 export { default as mdxComponents } from "./components/mdxComponents";
-export { StyleSheetManager } from "styled-components";
+export { StyleSheetManager, ServerStyleSheet } from 'styled-components';
 
 export type { StyleguideProps } from "./components/Styleguide";
