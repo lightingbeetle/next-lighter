@@ -1,6 +1,5 @@
-import React from 'react';
-import dynamic from 'next/dynamic';
-import { Styleguide } from '@lighting-beetle/lighter-styleguide';
+import React from "react";
+import { Styleguide } from "@lighting-beetle/lighter-styleguide";
 
 type DesignSystemPageProps = {
   fileName?: string;
@@ -8,24 +7,14 @@ type DesignSystemPageProps = {
   // routes: StyleguideProps['routes'];
   routes: object[];
   title?: string;
+  content?: any;
 };
 
 const DesignSystemPage = ({
-  fileName,
   children,
   routes,
-  title = 'Default title',
+  title = "Default title"
 }: DesignSystemPageProps) => {
-  const MDXContent = fileName
-    ? dynamic(
-        () =>
-          import(
-            /* webpackInclude: /\.mdx$/ */
-            `../../../../components/src/${fileName.slice(0, -4)}.mdx`
-          )
-      )
-    : null;
-
   return (
     <Styleguide
       //@ts-ignore
@@ -34,7 +23,7 @@ const DesignSystemPage = ({
       logoSrc="/logo.svg"
       adminHref="/admin"
     >
-      {children || <MDXContent />}
+      {children}
     </Styleguide>
   );
 };

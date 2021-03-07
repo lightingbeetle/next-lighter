@@ -2,11 +2,24 @@ import fs from 'fs';
 import path from 'path';
 import glob from 'glob';
 import matter from 'gray-matter';
-import DesignSystemPage from '../../components/DesignSystemPage';
-import { getDesignSystemRoutes } from '../../utils/getDesignSystemRoutes';
+import renderToString from 'next-mdx-remote/render-to-string';
+import hydrate from 'next-mdx-remote/hydrate';
 
-const ComponentPage = ({ filename, routes, title }) => {
-  return <DesignSystemPage routes={routes} fileName={filename} title={title} />;
+import DesignSystemPage from '../../components/DesignSystemPage';
+import {
+  getDesignSystemRoutes,
+  getMDXComponents,
+  getMDXScope,
+} from '../../utils';
+
+const ComponentPage = ({ routes, title, mdxSource }) => {
+  const content = hydrate(mdxSource, { components: getMDXComponents() });
+
+  return (
+    <DesignSystemPage routes={routes} title={title}>
+      {content}
+    </DesignSystemPage>
+  );
 };
 
 export async function getStaticProps({ params }) {
@@ -22,11 +35,16 @@ export async function getStaticProps({ params }) {
     .readFileSync(path.join(process.cwd(), '..', 'components', 'src', filename))
     .toString();
 
-  const { data } = matter(mdxPost);
+  const { content, data } = matter(mdxPost);
+
+  const mdxSource = await renderToString(content, {
+    components: getMDXComponents(),
+    scope: getMDXScope(),
+  });
 
   return {
     props: {
-      filename,
+      mdxSource,
       title: data.title ?? 'Default title',
       routes,
     },

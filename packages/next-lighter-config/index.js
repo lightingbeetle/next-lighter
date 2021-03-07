@@ -7,6 +7,23 @@ const sass = require("@zeit/next-sass");
 const frontMatterToMDXRemarkPlugin = require("./utils/frontMatterToMDXRemarkPlugin");
 const CustomEntriesBuildManifestPlugin = require("./utils/custom-entries-build-manifest-plugin");
 
+const noFS = () => (nextConfig = {}) => {
+  return Object.assign({}, nextConfig, {
+    webpack(config, options) {
+      if (!options.isServer) {
+        config.node = {
+          fs: "empty"
+        };
+      }
+      if (typeof nextConfig.webpack === "function") {
+        return nextConfig.webpack(config, options);
+      }
+
+      return config;
+    }
+  });
+};
+
 const staticEntries = ({ entriesMap }) => (nextConfig = {}) => {
   return Object.assign({}, nextConfig, {
     webpack(config, options) {
@@ -26,7 +43,7 @@ const staticEntries = ({ entriesMap }) => (nextConfig = {}) => {
         // custom build manifest file, because next.js build-manifest.json don't contains 'static' entry and we need to know entry hash in production
         config.plugins.unshift(
           new CustomEntriesBuildManifestPlugin({
-            entries: Object.keys(entriesMap),
+            entries: Object.keys(entriesMap)
           })
         );
       }
@@ -36,13 +53,13 @@ const staticEntries = ({ entriesMap }) => (nextConfig = {}) => {
       }
 
       return config;
-    },
+    }
   });
 };
 
 const reactDocgenTypescript = ({
   tsConfigPath = path.resolve(__dirname, "..", "..", "tsconfig.json"),
-  componentsPath = path.resolve(__dirname, "..", "components"),
+  componentsPath = path.resolve(__dirname, "..", "components")
 }) => (nextConfig = {}) => {
   return Object.assign({}, nextConfig, {
     webpack(config, options) {
@@ -58,13 +75,13 @@ const reactDocgenTypescript = ({
               // display types from outside each individual story.
               tsconfigPath: tsConfigPath,
               // Filter types from node_modules, because we don't want to display them in documentation by default
-              propFilter: (props) =>
+              propFilter: props =>
                 !(
                   props.parent && props.parent.fileName.includes("node_modules")
-                ),
-            },
-          },
-        ],
+                )
+            }
+          }
+        ]
       });
 
       if (typeof nextConfig.webpack === "function") {
@@ -72,7 +89,7 @@ const reactDocgenTypescript = ({
       }
 
       return config;
-    },
+    }
   });
 };
 
@@ -85,14 +102,15 @@ module.exports = ({ tsConfigPath, componentsPath, staticEntriesMap } = {}) =>
         mdx({
           extension: /\.mdx?$/,
           options: {
-            remarkPlugins: [frontMatterToMDXRemarkPlugin],
-          },
-        }),
+            remarkPlugins: [frontMatterToMDXRemarkPlugin]
+          }
+        })
       ],
       staticEntries({ entriesMap: staticEntriesMap }),
       reactDocgenTypescript({ tsConfigPath, componentsPath }),
+      noFS()
     ],
     {
-      pageExtensions: ["js", "jsx", "mdx", "ts", "tsx"],
+      pageExtensions: ["js", "jsx", "mdx", "ts", "tsx"]
     }
   );
