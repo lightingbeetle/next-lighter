@@ -1,12 +1,8 @@
 import dynamic from "next/dynamic";
-import * as Components from "components";
-import * as Styleguide from "@lighting-beetle/lighter-styleguide";
+import { StyleSheetManager } from "@lighting-beetle/lighter-styleguide";
 import { useEffect, useState } from "react";
-
-const componentImports = Object.keys(Components).reduce((acc, key) => {
-  acc[`./${key}`] = { ImportDefault: Components[key] };
-  return acc;
-}, {});
+import getMDXComponents from "../utils/getMDXComponents";
+import getMDXScope from "../utils/getMDXScope";
 
 function StyleComponentsInjector({ children }) {
   const [iframeRef, setIframeRef] = useState(null);
@@ -19,9 +15,7 @@ function StyleComponentsInjector({ children }) {
 
   return (
     iframeRef && (
-      <Styleguide.StyleSheetManager target={iframeRef}>
-        {children}
-      </Styleguide.StyleSheetManager>
+      <StyleSheetManager target={iframeRef}>{children}</StyleSheetManager>
     )
   );
 }
@@ -32,7 +26,7 @@ const Admin = dynamic(
   () =>
     Promise.all([
       import("netlify-cms-app"),
-      import("netlify-cms-widget-mdx"),
+      import("netlify-cms-widget-mdx")
     ]).then(([{ default: CMS }, WidgetMdx]) => {
       // @ts-ignore
       window.CMS_MANUAL_INIT = true;
@@ -42,7 +36,7 @@ const Admin = dynamic(
           backend: {
             name: "github",
             repo: "lightingbeetle/next-lighter",
-            branch: "main",
+            branch: "main"
           },
           local_backend: true,
           publish_mode: "editorial_workflow",
@@ -62,7 +56,7 @@ const Admin = dynamic(
                 {
                   label: "Title",
                   name: "title",
-                  widget: "string",
+                  widget: "string"
                 },
                 {
                   label: "Docs",
@@ -70,14 +64,14 @@ const Admin = dynamic(
                   // @ts-ignore
                   widget: "mdx",
                   // @ts-ignore
-                  mode: "raw",
-                },
+                  mode: "raw"
+                }
               ],
               extension: "mdx",
-              format: "frontmatter",
-            },
-          ],
-        },
+              format: "frontmatter"
+            }
+          ]
+        }
       });
 
       CMS.registerPreviewStyle("/_next/static/css/styles.chunk.css");
@@ -86,19 +80,11 @@ const Admin = dynamic(
         widgetFor("body")
       );
 
-      CMS.registerWidget("mdx", WidgetMdx.MdxControl, (args) => (
+      CMS.registerWidget("mdx", WidgetMdx.MdxControl, args => (
         <StyleComponentsInjector>
           {WidgetMdx.setupPreview({
-            components: Styleguide.mdxComponents,
-            allowedImports: {
-              "../../": {
-                Import: Components,
-              },
-              ...componentImports,
-              "@lighting-beetle/lighter-styleguide": {
-                Import: Styleguide,
-              },
-            },
+            components: getMDXComponents().mdxComponents,
+            scope: { ...getMDXScope(), ...getMDXComponents() }
           })(args)}
         </StyleComponentsInjector>
       ));

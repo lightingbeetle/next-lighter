@@ -1,30 +1,24 @@
-import fs from 'fs';
-import path from 'path';
-import matter from 'gray-matter';
-import DesignSystemPage from '../../components/DesignSystemPage';
-import { getDesignSystemRoutes } from '../../utils/getDesignSystemRoutes';
+import DesignSystemPage from "../../components/DesignSystemPage";
+import { getDesignSystemRoutes } from "../../utils/getDesignSystemRoutes";
+// @ts-ignore
+import TokensDocs from "components/tokens/tokens.docs.mdx";
 
-const TokensPage = ({ filename, routes, title }) => {
-  return <DesignSystemPage routes={routes} fileName={filename} title={title} />;
+const TokensPage = ({ routes, title }) => {
+  return (
+    <DesignSystemPage routes={routes} title={title}>
+      <TokensDocs />
+    </DesignSystemPage>
+  );
 };
 
-export async function getStaticProps({ params }) {
+export async function getStaticProps() {
   const routes = getDesignSystemRoutes();
-
-  const filename = path.join('tokens', 'tokens.docs.mdx');
-
-  const mdxPost = fs
-    .readFileSync(path.join(process.cwd(), '..', 'components', 'src', filename))
-    .toString();
-
-  const { data } = matter(mdxPost);
 
   return {
     props: {
-      filename,
-      title: data.title ?? 'Default title',
-      routes,
-    },
+      title: "Tokens",
+      routes
+    }
   };
 }
 

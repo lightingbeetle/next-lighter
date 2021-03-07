@@ -1,16 +1,16 @@
-import glob from 'glob';
-import path from 'path';
-import fs from 'fs';
-import matter from 'gray-matter';
+import glob from "glob";
+import path from "path";
+import fs from "fs";
+import matter from "gray-matter";
 
-export function getDesignSystemRoutes(prefix = '') {
+export function getDesignSystemRoutes(prefix = "/") {
   const docsFilesMap = {
-    components: glob.sync('../components/src/components/**/*.docs.mdx'),
-    base: ['../components/src/tokens/tokens.docs.mdx'],
+    components: glob.sync("../components/src/components/**/*.docs.mdx"),
+    base: ["../components/src/tokens/tokens.docs.mdx"]
   };
 
   const postsMap = Object.keys(docsFilesMap).reduce((acc, dir) => {
-    acc[dir] = docsFilesMap[dir].map((fileName) => {
+    acc[dir] = docsFilesMap[dir].map(fileName => {
       const markdownWithMetadata = fs
         .readFileSync(path.join(process.cwd(), fileName))
         .toString();
@@ -18,8 +18,8 @@ export function getDesignSystemRoutes(prefix = '') {
       const { data } = matter(markdownWithMetadata);
 
       return {
-        href: path.join(prefix, dir, path.basename(fileName, '.docs.mdx')),
-        title: data.title ?? 'Page Title',
+        href: path.join(prefix, dir, path.basename(fileName, ".docs.mdx")),
+        title: data.title ?? "Page Title"
       };
     });
     return acc;
@@ -27,12 +27,12 @@ export function getDesignSystemRoutes(prefix = '') {
 
   return [
     {
-      title: 'Components',
-      routes: postsMap['components'],
+      title: "Components",
+      routes: postsMap["components"]
     },
     {
-      title: 'Base',
-      routes: postsMap['base'],
-    },
+      title: "Base",
+      routes: postsMap["base"]
+    }
   ];
 }

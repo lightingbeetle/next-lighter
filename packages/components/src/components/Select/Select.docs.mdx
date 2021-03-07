@@ -2,21 +2,11 @@
 title: Select
 ---
 
-import { Preview, Props } from '@lighting-beetle/lighter-styleguide';
-
-import Select from './Select';
-
-export const items = [
-  { label: 'Item 1', value: 'item 1' },
-  { label: 'Item 2', value: 'item 2' },
-  { label: 'Item 3', value: 'item 3' },
-];
-
 # Select
 
 The select component allows users to choose one option from a list. It is used in forms for users to submit data.
 
-<Select items={items} />
+<Select items={selectItems} />
 
 ## Select versus Dropdown
 
@@ -30,30 +20,30 @@ While the select and dropdown components look similar, they have different funct
 ### Basic
 
 <Preview>
-  <Select items={items} />
+  <Select items={selectItems} />
 </Preview>
 
 ### With label
 
 <Preview>
-  <Select label="Items" items={items} />
+  <Select label="Items" items={selectItems} />
 </Preview>
 
 ### Custom placeholder
 
 <Preview>
-  <Select placeholder="What will you choose?" items={items} />
+  <Select placeholder="What will you choose?" items={selectItems} />
 </Preview>
 
 ### Preselected value
 
 <Preview>
-  <Select value="item 3" items={items} />
+  <Select value="item 3" items={selectItems} />
 </Preview>
 
 ## Props
 
-<Props component={Select} />
+<Props component={select} />
 
 ## Accessibility
 
