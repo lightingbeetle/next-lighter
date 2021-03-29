@@ -1,0 +1,308 @@
+import {
+  Code,
+  ComponentDocs,
+  md,
+  Preview,
+} from "@lighting-beetle/lighter-styleguide";
+
+import Bar, { BarItem } from "./index";
+
+# Bar
+
+Bar is component to create horizontal flexible width layouts.
+
+## Example
+
+<Preview
+  code={
+    <Bar>
+      <BarItem />
+      <BarItem isFilling />
+      <BarItem />
+    </Bar>
+  }
+>
+  <Bar>
+    <BarItem>
+      <div className="l-debug">Item</div>
+    </BarItem>
+    <BarItem isFilling>
+      <div className="l-debug">Filling Item</div>
+    </BarItem>
+    <BarItem>
+      <div className="l-debug">Item</div>
+    </BarItem>
+  </Bar>
+</Preview>
+
+## Variants
+
+### Basic
+
+<Preview
+  code={
+    <Bar>
+      <BarItem />
+      <BarItem />
+      <BarItem />
+    </Bar>
+  }
+>
+  <Bar>
+    <BarItem>
+      <div className="l-debug">Item</div>
+    </BarItem>
+    <BarItem>
+      <div className="l-debug">Second item</div>
+    </BarItem>
+    <BarItem>
+      <div className="l-debug">Third item</div>
+    </BarItem>
+  </Bar>
+</Preview>
+
+### Spaceing
+
+<Preview
+  code={[
+    <Bar space="small" key="default">
+      <BarItem />
+      <BarItem isFilling />
+      <BarItem />
+    </Bar>,
+    <Bar space="small" key="small">
+      <BarItem />
+      <BarItem isFilling />
+      <BarItem />
+    </Bar>,
+  ]}
+>
+  <Bar>
+    <BarItem>
+      <div className="l-debug">Default</div>
+    </BarItem>
+    <BarItem>
+      <div className="l-debug">Second item</div>
+    </BarItem>
+    <BarItem>
+      <div className="l-debug">Third item</div>
+    </BarItem>
+  </Bar>
+  <Bar space="small">
+    <BarItem>
+      <div className="l-debug">Small</div>
+    </BarItem>
+    <BarItem>
+      <div className="l-debug">Second item</div>
+    </BarItem>
+    <BarItem>
+      <div className="l-debug">Third item</div>
+    </BarItem>
+  </Bar>
+</Preview>
+
+### Alignment
+
+<Preview
+  title=""
+  code={[<Bar align="top" />, <Bar align="middle" />, <Bar align="bottom" />]}
+>
+  <Bar align="top">
+    <BarItem>
+      <div className="l-debug">Top</div>
+    </BarItem>
+    <BarItem isFilling>
+      <div className="l-debug">
+        <p>
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque, ipsum
+          deleniti quia iure similique mollitia quam excepturi laudantium
+          architecto, aperiam magnam exercitationem magni commodi laborum
+          molestiae dolore. Corrupti, officia perferendis?
+        </p>
+      </div>
+    </BarItem>
+    <BarItem>
+      <div className="l-debug">Item</div>
+    </BarItem>
+  </Bar>
+  <Bar align="middle">
+    <BarItem>
+      <div className="l-debug">Middle</div>
+    </BarItem>
+    <BarItem isFilling>
+      <div className="l-debug">
+        <p>
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque, ipsum
+          deleniti quia iure similique mollitia quam excepturi laudantium
+          architecto, aperiam magnam exercitationem magni commodi laborum
+          molestiae dolore. Corrupti, officia perferendis?
+        </p>
+      </div>
+    </BarItem>
+    <BarItem>
+      <div className="l-debug">Item</div>
+    </BarItem>
+  </Bar>
+  <Bar align="bottom">
+    <BarItem>
+      <div className="l-debug">Bottom</div>
+    </BarItem>
+    <BarItem isFilling>
+      <div className="l-debug">
+        <p>
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque, ipsum
+          deleniti quia iure similique mollitia quam excepturi laudantium
+          architecto, aperiam magnam exercitationem magni commodi laborum
+          molestiae dolore. Corrupti, officia perferendis?
+        </p>
+      </div>
+    </BarItem>
+    <BarItem>
+      <div className="l-debug">Item</div>
+    </BarItem>
+  </Bar>
+</Preview>
+
+### Vertical bar
+
+<Preview
+  code={
+    <Bar direction="vertical">
+      <BarItem />
+      <BarItem isFilling />
+      <BarItem />
+    </Bar>
+  }
+>
+  <Bar direction="vertical">
+    <BarItem>
+      <div className="l-debug">Item</div>
+    </BarItem>
+    <BarItem isFilling>
+      <div className="l-debug">
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi,
+          incidunt veniam minima quasi eligendi amet ullam explicabo laborum
+          aperiam accusantium hic laboriosam doloremque expedita odit ex
+          consequatur voluptas aliquid soluta.
+        </p>
+      </div>
+    </BarItem>
+    <BarItem>
+      <div className="l-debug">Item</div>
+    </BarItem>
+  </Bar>
+</Preview>
+
+### Responsive bar (vertical/horizontal)
+
+<Preview
+  code={
+    <Bar
+      direction={{
+        l: "horizontal",
+      }}
+    >
+      <BarItem />
+      <BarItem isFilling />
+      <BarItem />
+    </Bar>
+  }
+>
+  <Bar
+    direction={{
+      xs: "vertical",
+      l: "horizontal",
+    }}
+  >
+    <BarItem>
+      <div className="l-debug">Item</div>
+    </BarItem>
+    <BarItem isFilling>
+      <div className="l-debug">
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus
+          soluta voluptatum magni, consequuntur quia odio ad est dicta
+          consequatur, nobis modi omnis qui quam magnam ab quo, similique quae
+          itaque.
+        </p>
+      </div>
+    </BarItem>
+    <BarItem>
+      <div className="l-debug">Item</div>
+    </BarItem>
+  </Bar>
+</Preview>
+
+### Item filling space
+
+<Preview
+  code={
+    <Bar>
+      <BarItem />
+      <BarItem />
+      <BarItem />
+    </Bar>
+  }
+>
+  <Bar>
+    <BarItem>
+      <div className="l-debug">Item</div>
+    </BarItem>
+    <BarItem isFilling>
+      <div className="l-debug">Second filling item</div>
+    </BarItem>
+    <BarItem>
+      <div className="l-debug">Third item</div>
+    </BarItem>
+  </Bar>
+</Preview>
+
+### Item which can shrink
+
+<Preview
+  code={
+    <Bar>
+      <BarItem />
+      <BarItem />
+      <BarItem />
+    </Bar>
+  }
+>
+  <Bar>
+    <BarItem>
+      <div className="l-debug">Item</div>
+    </BarItem>
+    <BarItem canShrink>
+      <div className="l-debug">
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium
+          deleniti dignissimos recusandae nesciunt perferendis cupiditate
+          perspiciatis harum odit eaque aspernatur dolorem rerum ratione
+          repudiandae qui alias assumenda saepe, atque reiciendis?
+        </p>
+      </div>
+    </BarItem>
+    <BarItem>
+      <div className="l-debug">Third item</div>
+    </BarItem>
+  </Bar>
+</Preview>
+
+## Props
+
+<ComponentDocs title="<Bar />" component={Bar} />
+
+<ComponentDocs title="<BarItem />" component={BarItem} />
+
+## Accessibility
+
+The Bar component is primarily used for layout, and as such, should not have any impact on accessibility.
+
+Beware however when you are using it for layouts inside [inline elements](https://developer.mozilla.org/en-US/docs/Web/HTML/Inline_elements) such as form labels. `<Bar />` and `<BarItem />` benefit from the tag prop to render any html element you want it to.
+
+## Aliases
+
+<Code inline={false} language="jsx">
+  {`<BarVertical /> === <Bar direction="vertical" />`}
+</Code>

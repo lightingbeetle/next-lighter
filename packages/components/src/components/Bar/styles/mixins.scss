@@ -1,0 +1,121 @@
+// ---------------------------------------------
+// BAR - MIXINS
+// ---------------------------------------------
+
+@import "./../../../styles/helpers/main";
+@import "./../../../styles/base/config";
+@import "./config";
+
+@mixin bar {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: _get-space();
+}
+
+@mixin bar-layout($direction: "horizontal") {
+  @if $direction == "horizontal" {
+    flex-flow: row;
+    align-items: center;
+    margin-top: -(_get-space("small"));
+
+    .bar__item {
+      margin-top: _get-space("small");
+    }
+  } @else if $direction == "vertical" {
+    height: 100%;
+    flex-flow: column;
+    align-items: stretch;
+  }
+}
+
+@mixin bar-item($width: 0) {
+  flex: 0 0 if($width == 0, auto, $width);
+  min-width: 0;
+  align-items: center;
+
+  > :not([class*="mb\-"]):last-child {
+    margin-bottom: 0;
+  }
+}
+
+@mixin bar-item-horizontal {
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+@mixin bar-item-vertical {
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+@mixin bar-content() {
+  @include bar-item;
+
+  flex: 1 0 1px;
+}
+
+@mixin bar-border($spacing: $bar-spacing) {
+  border-left: 1px solid $default-border-color;
+  align-self: stretch;
+}
+
+@mixin bar-break($height: $bar-break-height) {
+  flex: 1 0 100%;
+  height: $height;
+}
+
+@mixin bar-classes {
+  $this: "bar";
+
+  .bar {
+    @include bar;
+
+    .bar__item {
+      @include bar-item;
+
+      &--fill {
+        flex: 1 0 1px !important;
+      }
+
+      &--shrink {
+        flex-shrink: 1 !important;
+      }
+    }
+
+    &__break {
+      @include bar-break;
+    }
+  }
+
+  @each $breakpoint, $w in $breakpoints {
+    @include breakpoint($breakpoint) {
+      @each $size, $props in $bar-spacing {
+        .bar-#{_get-variant-name($breakpoint, "-")}-horizontal#{_get-variant-name($size, '-')} {
+          @include bar-layout;
+
+          .bar__item {
+            @include bar-item-horizontal;
+
+            margin-right: $props;
+            margin-bottom: 0;
+          }
+        }
+      }
+
+      @each $size, $props in $bar-spacing-vertical {
+        .bar-#{_get-variant-name($breakpoint, "-")}-vertical#{_get-variant-name($size, '-')} {
+          @include bar-layout("vertical");
+
+          .bar__item {
+            @include bar-item-vertical;
+
+            margin-bottom: $props;
+            margin-right: 0;
+          }
+        }
+      }
+    }
+  }
+}

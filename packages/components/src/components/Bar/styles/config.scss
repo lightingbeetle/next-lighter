@@ -1,0 +1,14 @@
+// ---------------------------------------------
+// BAR - CONFIGURATION
+// ---------------------------------------------
+
+$bar-spacing: (
+  default: _get-space(),
+  small: _get-space("small"),
+);
+
+$bar-spacing-vertical: (
+  default: _get-space("small"),
+);
+
+$bar-break-height: 0;
