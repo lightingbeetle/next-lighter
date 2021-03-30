@@ -1,4 +1,3 @@
-import fetcher from '../../fetcher';
 import { getPostsSlug, getPost } from '../../queries';
 
 export default function Post({ post }) {
@@ -11,15 +10,15 @@ export default function Post({ post }) {
 }
 
 export async function getStaticProps({ params }) {
-  const { postBy: post } = await fetcher(getPost, { slug: params.slug });
+  const { post } = await getPost(params.slug);
 
   return { props: { post } };
 }
 
 export async function getStaticPaths() {
-  const { posts } = await fetcher(getPostsSlug, {});
+  const { posts } = await getPostsSlug();
 
-  const paths = posts.nodes.map((post) => ({
+  const paths = posts.map((post) => ({
     params: { slug: post.slug },
   }));
 

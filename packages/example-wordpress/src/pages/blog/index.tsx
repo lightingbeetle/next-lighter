@@ -1,4 +1,3 @@
-import fetcher from "../../fetcher";
 import { getPosts } from "../../queries";
 
 export default function Index({ posts }) {
@@ -17,7 +16,7 @@ export default function Index({ posts }) {
 }
 
 export async function getStaticProps() {
-  const { posts } = await fetcher(getPosts, {});
+  const { posts } = await getPosts();
 
-  return { props: { posts: posts.nodes } };
+  return { props: { posts } };
 }
