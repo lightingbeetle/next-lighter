@@ -2,7 +2,10 @@ import { components } from "components";
 
 export default function getMDXScope() {
   const allComponentDocgens = Object.entries(components).reduce(
-    (docgens, [ComponentName, Component]) => ({
+    (
+      docgens,
+      [ComponentName, Component]: [string, { __docgenInfo: object }]
+    ) => ({
       ...docgens,
       [ComponentName.toLowerCase()]: {
         __docgenInfo: Component.__docgenInfo ?? null,
