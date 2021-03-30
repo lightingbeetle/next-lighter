@@ -1,14 +1,14 @@
 import React from "react";
 import cx from "classnames";
 
-type BarItemProps = {
+type BarItemProps = JSX.IntrinsicElements["div"] & {
   /** Bar item could shrink and wrap content if there is not enough empty space */
   canShrink?: boolean;
   /** Bar item should fill empty space */
   isFilling?: boolean;
 };
 
-const CLASS_ROOT = "bar__item";
+export const CLASS_ROOT = "bar__item";
 
 export const BarItem = ({
   className,
