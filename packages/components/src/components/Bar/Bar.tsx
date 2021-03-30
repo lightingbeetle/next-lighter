@@ -1,14 +1,13 @@
 import React from "react";
-import { oneOf } from "prop-types";
 import cx from "classnames";
+import "./styles/style.scss";
+// import { genResponsiveClasses, getResponsivePropType } from "../../utils";
 
-import { genResponsiveClasses, getResponsivePropType } from "../../utils";
-
-const propTypes = {
+type BarProps = {
   /** Flex vertical alignment */
-  align: oneOf(["top", "middle", "bottom"]),
+  align?: "top" | "middle" | "bottom";
   /** Default direction of bar (hidden prop) */
-  defaultDirection: oneOf(["horizontal", "vertical"]),
+  defaultDirection?: "horizontal" | "vertical";
   /**
   Bar layout direction. Direction can take enum value or media object.
   ```js
@@ -21,7 +20,7 @@ const propTypes = {
   }
   ```
   */
-  direction: getResponsivePropType(oneOf(["horizontal", "vertical"])),
+  // direction: getResponsivePropType(oneOf(["horizontal", "vertical"])),
   /**
   Space between items (vertical and horizontal - depends on direction). Space can take enum value or media object.
   ```js
@@ -34,8 +33,8 @@ const propTypes = {
   }
   ```
   */
-  space: getResponsivePropType(oneOf(["small"])),
-};
+  // space: getResponsivePropType(oneOf(["small"])),
+} & JSX.IntrinsicElements["div" | "span"];
 
 const defaultProps = {
   defaultDirection: "horizontal",
@@ -47,60 +46,56 @@ const Bar = ({
   className,
   align,
   defaultDirection,
-  direction,
-  space,
+  // direction,
+  // space,
   ...other
-}) => {
+}: BarProps) => {
   // assign default direction if needed
-  let BarDirection = direction || defaultDirection;
+  // let BarDirection = direction || defaultDirection;
 
   // cast BarDirection to object with default(xs) property
   // so it can be merged afterwards with space object
-  if (typeof BarDirection === "string") {
-    BarDirection = { xs: BarDirection };
-  }
+  // if (typeof BarDirection === "string") {
+  //   BarDirection = { xs: BarDirection };
+  // }
 
   // merge defaultDirection with passed direction
-  BarDirection = { ...{ xs: defaultDirection }, ...BarDirection };
+  // BarDirection = { ...{ xs: defaultDirection }, ...BarDirection };
 
   // cast space to object if needed
-  const BarSpace =
-    typeof space === "string"
-      ? Object.keys(BarDirection).reduce((acc, breakpoint) => {
-          acc[breakpoint] = space;
-          return acc;
-        }, {})
-      : space || {};
+  // const BarSpace =
+  //   typeof space === "string"
+  //     ? Object.keys(BarDirection).reduce((acc, breakpoint) => {
+  //         acc[breakpoint] = space;
+  //         return acc;
+  //       }, {})
+  //     : space || {};
 
   // merge space with direction or
   // defaultDirection if direction is not specified for that space
-  const BarSpaceWithDirection = Object.keys(BarSpace).reduce(
-    (acc, breakpoint) => {
-      const breakpointDirection = BarDirection[breakpoint] || defaultDirection;
+  // const BarSpaceWithDirection = Object.keys(BarSpace).reduce(
+  //   (acc, breakpoint) => {
+  //     const breakpointDirection = BarDirection[breakpoint] || defaultDirection;
 
-      acc[breakpoint] = `${breakpointDirection}-${BarSpace[breakpoint]}`;
-      return acc;
-    },
-    {}
-  );
+  //     acc[breakpoint] = `${breakpointDirection}-${BarSpace[breakpoint]}`;
+  //     return acc;
+  //   },
+  //   {}
+  // );
 
   // finally merge direction and space togather
-  const BarDirectionAndSpace = { ...BarDirection, ...BarSpaceWithDirection };
+  // const BarDirectionAndSpace = { ...BarDirection, ...BarSpaceWithDirection };
 
   const classes = cx(
     CLASS_ROOT,
     {
       [`align-items-${align}`]: align,
     },
-    ...genResponsiveClasses(CLASS_ROOT, BarDirectionAndSpace),
+    // ...genResponsiveClasses(CLASS_ROOT, BarDirectionAndSpace),
     className
   );
 
   return <div className={classes} {...other} />;
 };
-
-Bar.displayName = "Bar";
-Bar.propTypes = propTypes;
-Bar.defaultProps = defaultProps;
 
 export default Bar;

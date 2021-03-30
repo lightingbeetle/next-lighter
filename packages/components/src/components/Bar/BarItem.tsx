@@ -1,17 +1,21 @@
 import React from "react";
-import { bool } from "prop-types";
 import cx from "classnames";
 
-const propTypes = {
+type BarItemProps = {
   /** Bar item could shrink and wrap content if there is not enough empty space */
-  canShrink: bool,
+  canShrink?: boolean;
   /** Bar item should fill empty space */
-  isFilling: bool,
+  isFilling?: boolean;
 };
 
 const CLASS_ROOT = "bar__item";
 
-const BarItem = ({ className, isFilling, canShrink, ...other }) => {
+export const BarItem = ({
+  className,
+  isFilling,
+  canShrink,
+  ...other
+}: BarItemProps) => {
   const classes = cx(
     CLASS_ROOT,
     {
@@ -23,8 +27,5 @@ const BarItem = ({ className, isFilling, canShrink, ...other }) => {
 
   return <div className={classes} {...other} />;
 };
-
-BarItem.displayName = "BarItem";
-BarItem.propTypes = propTypes;
 
 export default BarItem;

@@ -2,9 +2,10 @@
 // BAR - MIXINS
 // ---------------------------------------------
 
-@import "./../../../styles/helpers/main";
-@import "./../../../styles/base/config";
-@import "./config";
+@use "./config";
+@use "../../../tokens";
+@use "../../../styles/utils";
+
 
 @mixin bar {
   display: flex;
@@ -56,12 +57,12 @@
   flex: 1 0 1px;
 }
 
-@mixin bar-border($spacing: $bar-spacing) {
+@mixin bar-border($spacing: config.$bar-spacing) {
   border-left: 1px solid $default-border-color;
   align-self: stretch;
 }
 
-@mixin bar-break($height: $bar-break-height) {
+@mixin bar-break($height: config.$bar-break-height) {
   flex: 1 0 100%;
   height: $height;
 }
@@ -89,10 +90,10 @@
     }
   }
 
-  @each $breakpoint, $w in $breakpoints {
-    @include breakpoint($breakpoint) {
-      @each $size, $props in $bar-spacing {
-        .bar-#{_get-variant-name($breakpoint, "-")}-horizontal#{_get-variant-name($size, '-')} {
+  @each $breakpoint, $w in tokens.$breakpoints {
+    @include tokens.breakpoint($breakpoint) {
+      @each $size, $props in config.$bar-spacing {
+        .bar-#{utils.variant-name($breakpoint, "-")}-horizontal#{utils.variant-name($size, '-')} {
           @include bar-layout;
 
           .bar__item {
@@ -104,8 +105,8 @@
         }
       }
 
-      @each $size, $props in $bar-spacing-vertical {
-        .bar-#{_get-variant-name($breakpoint, "-")}-vertical#{_get-variant-name($size, '-')} {
+      @each $size, $props in config.$bar-spacing-vertical {
+        .bar-#{utils.variant-name($breakpoint, "-")}-vertical#{utils.variant-name($size, '-')} {
           @include bar-layout("vertical");
 
           .bar__item {

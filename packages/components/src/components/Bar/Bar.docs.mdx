@@ -1,11 +1,6 @@
-import {
-  Code,
-  ComponentDocs,
-  md,
-  Preview,
-} from "@lighting-beetle/lighter-styleguide";
-
-import Bar, { BarItem } from "./index";
+---
+  title: Bar
+---
 
 # Bar
 
@@ -13,27 +8,17 @@ Bar is component to create horizontal flexible width layouts.
 
 ## Example
 
-<Preview
-  code={
-    <Bar>
-      <BarItem />
-      <BarItem isFilling />
-      <BarItem />
-    </Bar>
-  }
->
-  <Bar>
-    <BarItem>
-      <div className="l-debug">Item</div>
-    </BarItem>
-    <BarItem isFilling>
-      <div className="l-debug">Filling Item</div>
-    </BarItem>
-    <BarItem>
-      <div className="l-debug">Item</div>
-    </BarItem>
-  </Bar>
-</Preview>
+<Bar>
+  <BarItem>
+    <div className="l-debug">Item</div>
+  </BarItem>
+  <BarItem isFilling>
+    <div className="l-debug">Filling Item</div>
+  </BarItem>
+  <BarItem>
+    <div className="l-debug">Item</div>
+  </BarItem>
+</Bar>
 
 ## Variants
 
@@ -291,18 +276,7 @@ Bar is component to create horizontal flexible width layouts.
 
 ## Props
 
-<ComponentDocs title="<Bar />" component={Bar} />
+<Props component={bar} />
+<Props component={baritem} />
+<Props component={barbreak} />
 
-<ComponentDocs title="<BarItem />" component={BarItem} />
-
-## Accessibility
-
-The Bar component is primarily used for layout, and as such, should not have any impact on accessibility.
-
-Beware however when you are using it for layouts inside [inline elements](https://developer.mozilla.org/en-US/docs/Web/HTML/Inline_elements) such as form labels. `<Bar />` and `<BarItem />` benefit from the tag prop to render any html element you want it to.
-
-## Aliases
-
-<Code inline={false} language="jsx">
-  {`<BarVertical /> === <Bar direction="vertical" />`}
-</Code>
