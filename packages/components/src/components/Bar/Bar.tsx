@@ -45,7 +45,7 @@ export const CLASS_ROOT = "bar";
 const Bar = ({
   className,
   align,
-  defaultDirection,
+  defaultDirection = "horizontal",
   direction,
   space,
   ...other
