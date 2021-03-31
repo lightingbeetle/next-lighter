@@ -10,17 +10,17 @@
 @mixin bar {
   display: flex;
   flex-wrap: wrap;
-  margin-bottom: _get-space();
+  margin-bottom: tokens.space();
 }
 
 @mixin bar-layout($direction: "horizontal") {
   @if $direction == "horizontal" {
     flex-flow: row;
     align-items: center;
-    margin-top: -(_get-space("small"));
+    margin-top: -(tokens.space("s"));
 
     .bar__item {
-      margin-top: _get-space("small");
+      margin-top: tokens.space("s");
     }
   } @else if $direction == "vertical" {
     height: 100%;
@@ -93,6 +93,7 @@
   @each $breakpoint, $w in tokens.$breakpoints {
     @include tokens.breakpoint($breakpoint) {
       @each $size, $props in config.$bar-spacing {
+        @debug $size;
         .bar-#{utils.variant-name($breakpoint, "-")}-horizontal#{utils.variant-name($size, '-')} {
           @include bar-layout;
 

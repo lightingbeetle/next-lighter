@@ -1,15 +1,16 @@
 // ---------------------------------------------
 // BAR - CONFIGURATION
 // ---------------------------------------------
+@use '../../../tokens';
 
 
 $bar-spacing: (
-  default: _get-space(),
-  small: _get-space("small"),
+  default: tokens.space(),
+  small: tokens.space("s"),
 );
 
 $bar-spacing-vertical: (
-  default: _get-space("small"),
+  default: tokens.space("s"),
 );
 
 $bar-break-height: 0;
