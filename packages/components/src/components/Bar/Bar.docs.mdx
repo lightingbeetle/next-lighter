@@ -4,73 +4,152 @@
 
 # Bar
 
-Bar is component to create horizontal flexible width layouts.
-
-## Example
+Bar is used for creation of horizontal flexible width layouts with automatic 
+spacing between items.
 
 <Bar>
   <BarItem>
     <Rectangle>Item</Rectangle>
   </BarItem>
-  <BarItem isFilling>
-    <Rectangle>Filling Item</Rectangle>
+  <BarItem>
+    <Rectangle>Item</Rectangle>
   </BarItem>
   <BarItem>
     <Rectangle>Item</Rectangle>
   </BarItem>
 </Bar>
 
-## Variants
+## Children
 
-### Basic
+The `<Bar />` component accepts `<BarItem />` or `<BarBreak />` components as 
+a possible children.
 
-<Preview
-  code={
-    <Bar>
-      <BarItem />
-      <BarItem />
-      <BarItem />
-    </Bar>
-  }
->
+### Without a break
+
+This example uses only `<BarItem />` components as children to create a layout.
+
+<Preview>
   <Bar>
     <BarItem>
       <Rectangle>Item</Rectangle>
     </BarItem>
     <BarItem>
-      <Rectangle>Second item</Rectangle>
+      <Rectangle>Item</Rectangle>
     </BarItem>
     <BarItem>
-      <Rectangle>Third item</Rectangle>
+      <Rectangle>Item</Rectangle>
     </BarItem>
   </Bar>
 </Preview>
 
-### Spaceing
+### With a break
 
-<Preview
-  code={[
-    <Bar space="small" key="default">
-      <BarItem />
-      <BarItem isFilling />
-      <BarItem />
-    </Bar>,
-    <Bar space="small" key="small">
-      <BarItem />
-      <BarItem isFilling />
-      <BarItem />
-    </Bar>,
-  ]}
->
+This example uses `<BarItem />` as well as `<BarBreak />` components as children 
+to create a layout which is broken to separate line.
+
+<Preview>
+  <Bar>
+    <BarItem>
+      <Rectangle>Item</Rectangle>
+    </BarItem>
+    <BarItem>
+      <Rectangle>Item</Rectangle>
+    </BarItem>
+    <BarBreak />
+    <BarItem>
+      <Rectangle>Item after break</Rectangle>
+    </BarItem>
+  </Bar>
+</Preview>
+
+## Variants
+
+There is a possibility to adjust properties of this component.
+
+### Flexible width
+
+If you use element that has width which can overflow a parent container, you 
+can use flexible properties for children items. 
+
+#### Fill
+
+`<BarItem />` can fill a possible space in container with `isFilling` property set to `true`.
+
+<Preview>
+  <Bar>
+    <BarItem>
+      <Rectangle>Item</Rectangle>
+    </BarItem>
+    <BarItem isFilling>
+      <Rectangle>Filling item</Rectangle>
+    </BarItem>
+    <BarItem>
+      <Rectangle>Item</Rectangle>
+    </BarItem>
+  </Bar>
+</Preview>
+
+#### Shrink
+
+`<BarItem />` can shrink to smallest possible width with `canShrink` property set to `true`.
+
+<Preview>
+  <Bar>
+    <BarItem>
+      <Rectangle>Item</Rectangle>
+    </BarItem>
+    <BarItem>
+      <Rectangle>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium
+        deleniti dignissimos recusandae nesciunt perferendis cupiditate
+        perspiciatis harum odit eaque aspernatur dolorem rerum ratione
+        repudiandae qui alias assumenda saepe, atque reiciendis?
+      </Rectangle>
+    </BarItem>
+    <BarItem>
+      <Rectangle>Item</Rectangle>
+    </BarItem>
+  </Bar>
+</Preview>
+
+<strong>TODO Zistiť ako vyriešiť stackovanie nestackovanie baru. Pri hornom prvom exampli nefunguje bar break ak nie je zapnutý wrap, a tuto sa to wrapuje. čo presne chceme?</strong>
+
+<Preview>
+  <Bar>
+    <BarItem>
+      <Rectangle>Item</Rectangle>
+    </BarItem>
+    <BarItem canShrink>
+      <Rectangle>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium
+        deleniti dignissimos recusandae nesciunt perferendis cupiditate
+        perspiciatis harum odit eaque aspernatur dolorem rerum ratione
+        repudiandae qui alias assumenda saepe, atque reiciendis?
+      </Rectangle>
+    </BarItem>
+    <BarItem>
+      <Rectangle>Item</Rectangle>
+    </BarItem>
+  </Bar>
+</Preview>
+
+### Custom spacing
+
+There is an additional `small` size for space between an items.
+
+<Preview>
   <Bar>
     <BarItem>
       <Rectangle>Default</Rectangle>
     </BarItem>
     <BarItem>
-      <Rectangle>Second item</Rectangle>
+      <Rectangle>Spacing</Rectangle>
     </BarItem>
     <BarItem>
-      <Rectangle>Third item</Rectangle>
+      <Rectangle>Between</Rectangle>
+    </BarItem>
+    <BarItem>
+      <Rectangle>Items</Rectangle>
     </BarItem>
   </Bar>
   <Bar space="small">
@@ -78,32 +157,32 @@ Bar is component to create horizontal flexible width layouts.
       <Rectangle>Small</Rectangle>
     </BarItem>
     <BarItem>
-      <Rectangle>Second item</Rectangle>
+      <Rectangle>Spacing</Rectangle>
     </BarItem>
     <BarItem>
-      <Rectangle>Third item</Rectangle>
+      <Rectangle>Between</Rectangle>
+    </BarItem>
+    <BarItem>
+      <Rectangle>Items</Rectangle>
     </BarItem>
   </Bar>
 </Preview>
 
-### Alignment
+### Vertical alignment
 
-<Preview
-  title=""
-  code={[<Bar align="top" />, <Bar align="middle" />, <Bar align="bottom" />]}
->
+There are three types (`top` | `middle` | `bottom`) of vertical aligment for items. 
+
+<Preview>
   <Bar align="top">
     <BarItem>
       <Rectangle>Top</Rectangle>
     </BarItem>
     <BarItem isFilling>
       <Rectangle>
-        <p>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque, ipsum
-          deleniti quia iure similique mollitia quam excepturi laudantium
-          architecto, aperiam magnam exercitationem magni commodi laborum
-          molestiae dolore. Corrupti, officia perferendis?
-        </p>
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque, ipsum
+        deleniti quia iure similique mollitia quam excepturi laudantium
+        architecto, aperiam magnam exercitationem magni commodi laborum
+        molestiae dolore. Corrupti, officia perferendis?
       </Rectangle>
     </BarItem>
     <BarItem>
@@ -116,12 +195,10 @@ Bar is component to create horizontal flexible width layouts.
     </BarItem>
     <BarItem isFilling>
       <Rectangle>
-        <p>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque, ipsum
-          deleniti quia iure similique mollitia quam excepturi laudantium
-          architecto, aperiam magnam exercitationem magni commodi laborum
-          molestiae dolore. Corrupti, officia perferendis?
-        </p>
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque, ipsum
+        deleniti quia iure similique mollitia quam excepturi laudantium
+        architecto, aperiam magnam exercitationem magni commodi laborum
+        molestiae dolore. Corrupti, officia perferendis?
       </Rectangle>
     </BarItem>
     <BarItem>
@@ -134,12 +211,10 @@ Bar is component to create horizontal flexible width layouts.
     </BarItem>
     <BarItem isFilling>
       <Rectangle>
-        <p>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque, ipsum
-          deleniti quia iure similique mollitia quam excepturi laudantium
-          architecto, aperiam magnam exercitationem magni commodi laborum
-          molestiae dolore. Corrupti, officia perferendis?
-        </p>
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque, ipsum
+        deleniti quia iure similique mollitia quam excepturi laudantium
+        architecto, aperiam magnam exercitationem magni commodi laborum
+        molestiae dolore. Corrupti, officia perferendis?
       </Rectangle>
     </BarItem>
     <BarItem>
@@ -148,29 +223,24 @@ Bar is component to create horizontal flexible width layouts.
   </Bar>
 </Preview>
 
-### Vertical bar
+### Direction
 
-<Preview
-  code={
-    <Bar direction="vertical">
-      <BarItem />
-      <BarItem isFilling />
-      <BarItem />
-    </Bar>
-  }
->
+Default Bar flows in a `horizontal` direction by default. This can be changed.
+
+There is a possibility to change direction to `vertical`. This will change 
+direction for all viewports. 
+
+<Preview>
   <Bar direction="vertical">
     <BarItem>
       <Rectangle>Item</Rectangle>
     </BarItem>
     <BarItem isFilling>
-      <Rectangle>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi,
-          incidunt veniam minima quasi eligendi amet ullam explicabo laborum
-          aperiam accusantium hic laboriosam doloremque expedita odit ex
-          consequatur voluptas aliquid soluta.
-        </p>
+      <Rectangle tag="p">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi,
+        incidunt veniam minima quasi eligendi amet ullam explicabo laborum
+        aperiam accusantium hic laboriosam doloremque expedita odit ex
+        consequatur voluptas aliquid soluta.
       </Rectangle>
     </BarItem>
     <BarItem>
@@ -179,104 +249,42 @@ Bar is component to create horizontal flexible width layouts.
   </Bar>
 </Preview>
 
-### Responsive bar (vertical/horizontal)
+#### Responsive
 
-<Preview
-  code={
-    <Bar
-      direction={{
-        l: "horizontal",
-      }}
-    >
-      <BarItem />
-      <BarItem isFilling />
-      <BarItem />
-    </Bar>
-  }
->
-  <Bar
-    direction={{
-      xs: "vertical",
-      l: "horizontal",
-    }}
-  >
+There is a possibility to change direction for each viewport (breakpoint). 
+This can be done with simple object which specifies smallest viewport name with 
+a direction as a value.
+
+This examples specifies `vertical` direction for viewports from `XS` (smallest) 
+size and switches to `horizontal` as soon as `L` size of viewport is reached. If 
+you change width of your window you can see it change.
+
+We have a separate documentation for [breakpoints](/utilities/breakpoints)
+
+<Preview>
+  <Bar direction={{ xs: "vertical", l: "horizontal" }}>
     <BarItem>
       <Rectangle>Item</Rectangle>
     </BarItem>
     <BarItem isFilling>
       <Rectangle>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus
-          soluta voluptatum magni, consequuntur quia odio ad est dicta
-          consequatur, nobis modi omnis qui quam magnam ab quo, similique quae
-          itaque.
-        </p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus
+        soluta voluptatum magni, consequuntur quia odio ad est dicta
+        consequatur, nobis modi omnis qui quam magnam ab quo, similique quae
+        itaque.
       </Rectangle>
     </BarItem>
     <BarItem>
       <Rectangle>Item</Rectangle>
-    </BarItem>
-  </Bar>
-</Preview>
-
-### Item filling space
-
-<Preview
-  code={
-    <Bar>
-      <BarItem />
-      <BarItem />
-      <BarItem />
-    </Bar>
-  }
->
-  <Bar>
-    <BarItem>
-      <Rectangle>Item</Rectangle>
-    </BarItem>
-    <BarItem isFilling>
-      <Rectangle>Second filling item</Rectangle>
-    </BarItem>
-    <BarItem>
-      <Rectangle>Third item</Rectangle>
-    </BarItem>
-  </Bar>
-</Preview>
-
-### Item which can shrink
-
-<Preview
-  code={
-    <Bar>
-      <BarItem />
-      <BarItem />
-      <BarItem />
-    </Bar>
-  }
->
-  <Bar>
-    <BarItem>
-      <Rectangle>Item</Rectangle>
-    </BarItem>
-    <BarItem canShrink>
-      <Rectangle>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium
-          deleniti dignissimos recusandae nesciunt perferendis cupiditate
-          perspiciatis harum odit eaque aspernatur dolorem rerum ratione
-          repudiandae qui alias assumenda saepe, atque reiciendis?
-        </p>
-      </Rectangle>
-    </BarItem>
-    <BarItem>
-      <Rectangle>Third item</Rectangle>
     </BarItem>
   </Bar>
 </Preview>
 
 ## Props
 
+If you are a developer, this would give you more information at once, about what 
+is possible with these components and what is not.
+
 <Props component={bar} />
 <Props component={baritem} />
 <Props component={barbreak} />
-
