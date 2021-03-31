@@ -15,7 +15,7 @@
 
 @mixin bar-layout($direction: "horizontal") {
   @if $direction == "horizontal" {
-    flex-flow: row;
+    flex-direction: row;
     align-items: center;
     margin-top: -(tokens.space("s"));
 
@@ -24,7 +24,7 @@
     }
   } @else if $direction == "vertical" {
     height: 100%;
-    flex-flow: column;
+    flex-direction: column;
     align-items: stretch;
   }
 }
