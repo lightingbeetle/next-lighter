@@ -18,6 +18,7 @@ import {
 } from "./tokens";
 
 import "./styles/utilities.scss";
+import "./styles/layout.scss";
 
 export const components = {
   Select,
