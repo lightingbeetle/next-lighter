@@ -93,7 +93,6 @@
   @each $breakpoint, $w in tokens.$breakpoints {
     @include tokens.breakpoint($breakpoint) {
       @each $size, $props in config.$bar-spacing {
-        @debug $size;
         .bar-#{utils.variant-name($breakpoint, "-")}-horizontal#{utils.variant-name($size, '-')} {
           @include bar-layout;
 
