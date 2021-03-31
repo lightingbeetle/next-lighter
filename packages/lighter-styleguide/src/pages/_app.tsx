@@ -23,6 +23,10 @@ const routes = [
         href: <NextLink href="/Props" passHref />,
       },
       {
+        title: "Rectangle",
+        href: <NextLink href="/Rectangle" passHref />,
+      },
+      {
         title: "Table",
         href: <NextLink href="/Table" passHref />,
       },
