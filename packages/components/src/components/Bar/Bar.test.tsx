@@ -20,7 +20,7 @@ describe("rendering", () => {
       expect(bar).toBeInTheDocument();
     });
 
-    it("has default className bar", () => {
+    it("has default className", () => {
       expect(bar).toHaveClass(CLASS_ROOT);
     });
   });
