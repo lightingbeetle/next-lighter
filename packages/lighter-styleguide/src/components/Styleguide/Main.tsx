@@ -6,6 +6,7 @@ import { theme } from "../../styles";
 const StyledMain = styled.main`
   flex: 1 1 auto;
   padding: ${({ theme }) => `${theme.space.large} ${theme.space.large}`}};
+  overflow-x: hidden;
 `;
 
 StyledMain.defaultProps = {
