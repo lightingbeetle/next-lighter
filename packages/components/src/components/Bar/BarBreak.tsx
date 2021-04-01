@@ -1,7 +1,7 @@
 import React from "react";
 import cx from "classnames";
 
-const CLASS_ROOT = "bar__break";
+export const CLASS_ROOT = "bar__break";
 
 type BarBreakProps = JSX.IntrinsicElements["div"];
 
