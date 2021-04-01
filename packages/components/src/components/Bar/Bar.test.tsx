@@ -41,10 +41,40 @@ describe("rendering", () => {
       expect(screen.getByTestId("child")).toBeInTheDocument();
     });
 
-    it("passes other props", () => {
-      render(<Bar data-testid="test">Bar</Bar>);
+    it("should have default direction", () => {
+      render(<Bar data-testid="bar" />);
 
-      expect(screen.getByTestId("test")).toBeInTheDocument();
+      expect(screen.getByTestId("bar")).toHaveClass("bar--horizontal");
+    });
+
+    it("should have custom class", () => {
+      render(<Bar data-testid="bar" className="custom-class" />);
+
+      expect(screen.getByTestId("bar")).toHaveClass("custom-class");
+    });
+
+    it("should have align class", () => {
+      render(<Bar data-testid="bar" align="bottom" />);
+
+      expect(screen.getByTestId("bar")).toHaveClass("align-items-bottom");
+    });
+
+    it("should have vertical class", () => {
+      render(<Bar data-testid="bar" direction="vertical" />);
+
+      expect(screen.getByTestId("bar")).toHaveClass("bar--vertical");
+    });
+
+    it("should have space class", () => {
+      render(<Bar data-testid="bar" space="small" />);
+
+      expect(screen.getByTestId("bar")).toHaveClass("bar--horizontal-small");
+    });
+
+    it("passes other props", () => {
+      render(<Bar data-testid="bar" />);
+
+      expect(screen.getByTestId("bar")).toBeInTheDocument();
     });
   });
 });
