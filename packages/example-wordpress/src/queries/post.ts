@@ -39,11 +39,24 @@ export async function getPostsSlug() {
   return { posts: data.posts.nodes };
 }
 
-export async function getPost(slug: string) {
+export async function getPost(
+  slug: string,
+  preview: boolean,
+  previewData: any
+) {
+  const postPreview = preview && previewData?.post;
+  // The slug may be the id of an unpublished post
+  const isId = Number.isInteger(Number(slug));
+  const isSamePost = isId
+    ? Number(slug) === postPreview.id
+    : slug === postPreview.slug;
+  const isDraft = isSamePost && postPreview?.status === "draft";
+  const isRevision = isSamePost && postPreview?.status === "publish";
+
   const data = await fetcher(
     gql`
-      query getPost($slug: String!) {
-        postBy(slug: $slug) {
+      query getPost($id: ID!, $idType: PostIdType!) {
+        post(id: $id, idType: $idType) {
           content
           title
           date
@@ -62,21 +75,32 @@ export async function getPost(slug: string) {
         }
       }
     `,
-    { slug }
+    {
+      id: isDraft ? postPreview.id : slug,
+      idType: isDraft ? "DATABASE_ID" : "SLUG",
+    }
   );
 
+  // Draft posts may not have an slug
+  if (isDraft) data.post.slug = postPreview.id;
+  // Apply a revision (changes in a published post)
+  if (isRevision && data.post.revisions) {
+    const revision = data.post.revisions.edges[0]?.node;
+
+    if (revision) Object.assign(data.post, revision);
+    delete data.post.revisions;
+  }
+
   return {
-    post: data.postBy,
-    author: data.postBy.author.node,
-    featuredImage: data.postBy.featuredImage?.node ?? null,
+    post: data.post,
+    author: data.post.author?.node ?? null,
+    featuredImage: data.post.featuredImage?.node ?? null,
   };
 }
 
 export async function getPostPreview({ id: postId, slug: postSlug }) {
   const id = postId || postSlug;
   const idType = postId ? "DATABASE_ID" : "SLUG";
-
-  console.log(id, idType);
 
   const data = await fetcher(
     gql`
@@ -89,12 +113,10 @@ export async function getPostPreview({ id: postId, slug: postSlug }) {
       }
     `,
     {
-      id: "22",
-      idType: "DATABASE_ID",
+      id,
+      idType,
     }
   );
-
-  console.log(data);
 
   return data.post;
 }

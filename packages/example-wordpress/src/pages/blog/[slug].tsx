@@ -1,9 +1,10 @@
 import Link from "next/link";
 import { getPostsSlug, getPost } from "../../queries";
 
-export default function Post({ post, author, featuredImage }) {
+export default function Post({ post, author, featuredImage, preview }) {
   return (
     <article>
+      {preview && <Link href="/api/exit-preview">Exit preview</Link>}
       <header>
         {featuredImage && (
           <img src={featuredImage.sourceUrl} alt={featuredImage.altText} />
@@ -19,10 +20,14 @@ export default function Post({ post, author, featuredImage }) {
   );
 }
 
-export async function getStaticProps({ params }) {
-  const { post, author, featuredImage } = await getPost(params.slug);
+export async function getStaticProps({ params, preview = false, previewData }) {
+  const { post, author, featuredImage } = await getPost(
+    params.slug,
+    preview,
+    previewData
+  );
 
-  return { props: { post, author, featuredImage } };
+  return { props: { post, author, featuredImage, preview } };
 }
 
 export async function getStaticPaths() {
