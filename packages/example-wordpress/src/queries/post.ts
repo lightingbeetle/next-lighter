@@ -68,6 +68,33 @@ export async function getPost(slug: string) {
   return {
     post: data.postBy,
     author: data.postBy.author.node,
-    featuredImage: data.postBy.featuredImage.node,
+    featuredImage: data.postBy.featuredImage?.node ?? null,
   };
+}
+
+export async function getPostPreview({ id: postId, slug: postSlug }) {
+  const id = postId || postSlug;
+  const idType = postId ? "DATABASE_ID" : "SLUG";
+
+  console.log(id, idType);
+
+  const data = await fetcher(
+    gql`
+      query PreviewPost($id: ID!, $idType: PostIdType!) {
+        post(id: $id, idType: $idType) {
+          databaseId
+          slug
+          status
+        }
+      }
+    `,
+    {
+      id: "22",
+      idType: "DATABASE_ID",
+    }
+  );
+
+  console.log(data);
+
+  return data.post;
 }
