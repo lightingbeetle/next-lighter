@@ -52,11 +52,22 @@ export async function getPost(slug: string) {
               name
             }
           }
+          featuredImage {
+            node {
+              srcSet
+              altText
+              sourceUrl
+            }
+          }
         }
       }
     `,
     { slug }
   );
 
-  return { post: data.postBy };
+  return {
+    post: data.postBy,
+    author: data.postBy.author.node,
+    featuredImage: data.postBy.featuredImage.node,
+  };
 }

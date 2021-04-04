@@ -1,18 +1,28 @@
-import { getPostsSlug, getPost } from '../../queries';
+import Link from "next/link";
+import { getPostsSlug, getPost } from "../../queries";
 
-export default function Post({ post }) {
+export default function Post({ post, author, featuredImage }) {
   return (
-    <>
-      <h1>{post.title}</h1>
-      <div dangerouslySetInnerHTML={{ __html: post?.content ?? '' }} />
-    </>
+    <article>
+      <header>
+        {featuredImage && (
+          <img src={featuredImage.sourceUrl} alt={featuredImage.altText} />
+        )}
+        <h1>{post.title}</h1>
+        Author: {author.name}
+        <br />
+        Published: <time dateTime={post.date}>{post.date}</time>
+      </header>
+      <div dangerouslySetInnerHTML={{ __html: post?.content ?? "" }} />
+      <Link href="/blog">Back to blog</Link>
+    </article>
   );
 }
 
 export async function getStaticProps({ params }) {
-  const { post } = await getPost(params.slug);
+  const { post, author, featuredImage } = await getPost(params.slug);
 
-  return { props: { post } };
+  return { props: { post, author, featuredImage } };
 }
 
 export async function getStaticPaths() {
