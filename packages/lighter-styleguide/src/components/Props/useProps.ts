@@ -28,7 +28,7 @@ const useProps = ({ component }: UseProps): DocgenInfo => {
   return {
     displayName: info?.displayName,
     description: info?.description,
-    props: info?.props,
+    props: info?.props ?? {},
   };
 };
 
