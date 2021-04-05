@@ -17,6 +17,13 @@ yarn
 
 ### Development
 
+#### Prebuild before first dev start
+
+Run `npm run build` before first `dev` start. Some packages need to be built 
+before starting `dev` for the first time. It's a known issue, that needs to be resolved.
+
+#### Dev
+
 Run `npm run dev` in root of this repository to develop example project.
 Run `npm run dev:design-system` in root of this repository to develop design system.
 

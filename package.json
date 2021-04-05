@@ -10,6 +10,7 @@
   "scripts": {
     "dev": "yarn --cwd packages/example dev",
     "dev:design-system": "yarn --cwd packages/design-system dev",
+    "dev:styleguide": "yarn --cwd packages/lighter-styleguide dev",
     "dev:example-wordpress": "yarn --cwd packages/example-wordpress dev",
     "build": "npm-run-all build:*",
     "build:hooks": "yarn --cwd packages/lighter-hooks build",

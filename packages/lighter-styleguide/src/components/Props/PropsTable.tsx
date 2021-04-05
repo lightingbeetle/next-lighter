@@ -13,7 +13,7 @@ ComponentName.defaultProps = {
 };
 
 const PropsTable = () => {
-  const { displayName, props } = usePropsContext();
+  const { displayName, props = {} } = usePropsContext();
 
   const data = useMemo(() => Object.keys(props).map((key) => props[key]), [
     props,
