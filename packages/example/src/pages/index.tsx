@@ -26,6 +26,11 @@ export default function Home() {
             <a>Lighter Design System</a>
           </Link>
         </li>
+        <li>
+          <Link href="https://next-lighter-wordpress.lbx.sk/">
+            <a>Wordpress integration example</a>
+          </Link>
+        </li>
       </ul>
     </>
   );
