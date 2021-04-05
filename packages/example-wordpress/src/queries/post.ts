@@ -2,6 +2,29 @@ import { gql } from "graphql-request";
 
 import fetcher from "../fetcher";
 
+async function formatBlocks(blocks) {
+  if (!blocks?.length) {
+    return [];
+  }
+
+  return await Promise.all(
+    blocks.map(async (block) => {
+      return await formatBlock(block);
+    })
+  );
+}
+
+async function formatBlock({ name, attributes, innerBlocks, originalContent }) {
+  const innerBlocksFormatted = await formatBlocks(innerBlocks);
+
+  return {
+    name,
+    attributes,
+    originalContent,
+    innerBlocks: innerBlocksFormatted,
+  };
+}
+
 export async function getPosts() {
   const data = await fetcher(gql`
     {
@@ -60,6 +83,7 @@ export async function getPost(
           content
           title
           date
+          blocksJSON
           author {
             node {
               name
@@ -91,8 +115,11 @@ export async function getPost(
     delete data.post.revisions;
   }
 
+  const content = await formatBlocks(JSON.parse(data.post.blocksJSON) ?? []);
+
   return {
     post: data.post,
+    content,
     author: data.post.author?.node ?? null,
     featuredImage: data.post.featuredImage?.node ?? null,
   };

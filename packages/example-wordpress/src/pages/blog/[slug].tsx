@@ -1,7 +1,14 @@
 import Link from "next/link";
+import Content from "../../components/Content";
 import { getPostsSlug, getPost } from "../../queries";
 
-export default function Post({ post, author, featuredImage, preview }) {
+export default function Post({
+  post,
+  author,
+  featuredImage,
+  preview,
+  content,
+}) {
   return (
     <article>
       {preview && <Link href="/api/exit-preview">Exit preview</Link>}
@@ -14,20 +21,20 @@ export default function Post({ post, author, featuredImage, preview }) {
         <br />
         Published: <time dateTime={post.date}>{post.date}</time>
       </header>
-      <div dangerouslySetInnerHTML={{ __html: post?.content ?? "" }} />
+      <Content items={content} />
       <Link href="/blog">Back to blog</Link>
     </article>
   );
 }
 
 export async function getStaticProps({ params, preview = false, previewData }) {
-  const { post, author, featuredImage } = await getPost(
+  const { post, author, featuredImage, content } = await getPost(
     params.slug,
     preview,
     previewData
   );
 
-  return { props: { post, author, featuredImage, preview } };
+  return { props: { post, author, featuredImage, preview, content } };
 }
 
 export async function getStaticPaths() {
