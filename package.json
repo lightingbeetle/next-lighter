@@ -36,6 +36,7 @@
   "devDependencies": {
     "@babel/core": "^7.12.10",
     "@changesets/cli": "^2.11.2",
+    "@netlify/plugin-nextjs": "^3.0.3",
     "@testing-library/dom": "~7.26.3",
     "@testing-library/jest-dom": "~5.11.5",
     "@testing-library/react": "~11.1.2",

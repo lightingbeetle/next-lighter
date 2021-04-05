@@ -1,5 +1,6 @@
 [build]
   command = "yarn run ci:build:example-wordpress"
+  publish = "out"
   ignore = "git diff HEAD^ HEAD packages/example-wordpress"
 
 [[plugins]]
