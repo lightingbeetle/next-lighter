@@ -9,7 +9,12 @@ export default function Index({ posts }) {
         <li>
           <Link href="/blog">
             <a>Blog</a>
-          </Link>{" "}
+          </Link>
+        </li>
+        <li>
+          <Link href={`${process.env.NEXT_PUBLIC_WORDPRESS_SITE_URL}/wp-admin`}>
+            <a>Wordpress admin</a>
+          </Link>
         </li>
       </ul>
     </>
