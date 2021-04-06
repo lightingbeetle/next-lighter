@@ -1,14 +1,16 @@
 import * as components from "components";
 
+const { tokens, ...appComponents } = components;
+
 export default function getMDXScope() {
-  const allComponentDocgens = Object.entries(components).reduce(
+  const allComponentDocgens = Object.entries(appComponents).reduce(
     (
       docgens,
       [ComponentName, Component]: [string, { __docgenInfo: object }]
     ) => ({
       ...docgens,
       [ComponentName.toLowerCase()]: {
-        __docgenInfo: Component.__docgenInfo ?? null,
+        __docgenInfo: Component?.__docgenInfo ?? null,
       },
     }),
     {}
