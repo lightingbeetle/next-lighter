@@ -1,0 +1,3 @@
+[build]
+  command = "yarn run ci:build:example-wordpress"
+  ignore = "git diff HEAD^ HEAD packages/example-wordpress"
