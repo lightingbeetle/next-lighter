@@ -60,12 +60,12 @@
   flex: 1 0 1px;
 }
 
-@mixin bar-border($spacing: config.$bar-spacing) {
+@mixin bar-border($spacing: config.$spacing) {
   border-left: 1px solid $default-border-color;
   align-self: stretch;
 }
 
-@mixin bar-break($height: config.$bar-break-height) {
+@mixin bar-break($height: config.$break-height) {
   flex: 1 0 100%;
   height: $height;
 }
@@ -95,7 +95,7 @@
 
   @each $breakpoint, $w in tokens.$breakpoints {
     @include tokens.breakpoint($breakpoint) {
-      @each $size, $props in config.$bar-spacing {
+      @each $size, $props in config.$spacing {
         .bar-#{utils.variant-name($breakpoint, "-")}-horizontal#{utils.variant-name($size, '-')} {
           @include bar-layout;
 
@@ -108,7 +108,7 @@
         }
       }
 
-      @each $size, $props in config.$bar-spacing-vertical {
+      @each $size, $props in config.$spacing-vertical {
         .bar-#{utils.variant-name($breakpoint, "-")}-vertical#{utils.variant-name($size, '-')} {
           @include bar-layout("vertical");
 

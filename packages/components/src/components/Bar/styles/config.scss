@@ -4,13 +4,13 @@
 @use '../../../tokens';
 
 
-$bar-spacing: (
+$spacing: (
   default: tokens.space(),
   small: tokens.space("s"),
 );
 
-$bar-spacing-vertical: (
+$spacing-vertical: (
   default: tokens.space("s"),
 );
 
-$bar-break-height: 0;
+$break-height: 0;
