@@ -1,14 +1,13 @@
 import React from "react";
-import { bool } from "prop-types";
 import cx from "classnames";
 
-const propTypes = {
-  fill: bool,
+type CardContentProps = JSX.IntrinsicElements["div"] & {
+  fill?: boolean;
 };
 
 const CLASS_ROOT = "card__content";
 
-const CardContent = ({ className, fill, ...other }) => {
+const CardContent = ({ className, fill, ...other }: CardContentProps) => {
   const classes = cx(
     CLASS_ROOT,
     {
@@ -19,8 +18,5 @@ const CardContent = ({ className, fill, ...other }) => {
 
   return <div className={classes} {...other} />;
 };
-
-CardContent.displayName = "CardContent";
-CardContent.propTypes = propTypes;
 
 export default CardContent;

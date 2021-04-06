@@ -2,26 +2,28 @@
 // CARD - CONFIGURATION
 // ---------------------------------------------
 
-@import "./../../../styles/base/config";
+@use '../../../tokens';
+
+$spacing: tokens.space();
 
 $card: (
-  background-color: $color-white,
-  border: 1px solid _color("grey", 300),
-  border-radius: $default-border-radius,
-  box-shadow: #{$shadow-ambient-1,
-  $shadow-direct-1},
+  background-color: tokens.color("white"),
+  border: 1px solid tokens.color("grey", 300),
+  border-radius: 3px,
+  box-shadow: #{tokens.$shadow-ambient-default,
+    tokens.$shadow-direct-default},
 );
 
-$card-section: (
+$section: (
   default: (
-    padding: _get-space("small"),
+    padding: tokens.space("s"),
   ),
-  "m": (
-    padding: _get-space(),
+  m: (
+    padding: tokens.space(),
   ),
 );
 
-$card-header: (
-  background-color: _color("grey", 50),
+$header: (
+  background-color: tokens.color("grey", 100),
   align-items: stretch,
 );

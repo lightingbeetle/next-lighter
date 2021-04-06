@@ -1,17 +1,22 @@
 import React from "react";
-import { element, node, oneOfType, string } from "prop-types";
 import cx from "classnames";
 
 import Bar, { BarItem } from "../Bar";
 
-const propTypes = {
-  actions: node,
-  title: oneOfType([node, string, element]),
+type CardHeaderProps = Omit<JSX.IntrinsicElements["div"], "title"> & {
+  actions?: object;
+  title: object | string;
 };
 
 const CLASS_ROOT = "card__header";
 
-const CardHeader = ({ className, children, title, actions, ...other }) => {
+const CardHeader = ({
+  className,
+  children,
+  title,
+  actions,
+  ...other
+}: CardHeaderProps) => {
   const classes = cx(CLASS_ROOT, className);
   const cardTitle = typeof title === "string" ? <h2>{title}</h2> : title;
   let headerBar = null;
@@ -34,8 +39,5 @@ const CardHeader = ({ className, children, title, actions, ...other }) => {
     </div>
   );
 };
-
-CardHeader.displayName = "CardHeader";
-CardHeader.propTypes = propTypes;
 
 export default CardHeader;
