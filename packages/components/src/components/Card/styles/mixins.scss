@@ -1,0 +1,65 @@
+// ---------------------------------------------
+// CARDS - MIXINS
+// ---------------------------------------------
+
+@import "./../../../styles/helpers/main";
+@import "./config";
+
+@mixin card($card: $card) {
+  $border-radius: map-get($card, "border-radius");
+
+  @include css-map($card);
+
+  display: flex;
+  flex-flow: column;
+  margin-bottom: $content-spacing;
+
+  > * + * {
+    border-top: map-get($card, "border");
+  }
+
+  > * {
+    &:first-child {
+      border-top-left-radius: $border-radius;
+      border-top-right-radius: $border-radius;
+    }
+
+    &:last-child {
+      border-bottom-left-radius: $border-radius;
+      border-bottom-right-radius: $border-radius;
+    }
+  }
+}
+
+@mixin card-section($card-section: $card-section, $grow: 0, $shrink: 0) {
+  @include get-variants-responsive($card-section);
+
+  flex: $grow $shrink auto;
+
+  > *:last-child {
+    margin-bottom: 0;
+  }
+}
+
+@mixin card-classes {
+  .card {
+    @include card;
+
+    &__header {
+      @include card-section;
+      @include css-map($card-header);
+    }
+
+    &__content {
+      @include card-section();
+
+      &--fill {
+        flex-grow: 1;
+      }
+    }
+
+    &__footer {
+      @include card-section;
+    }
+  }
+}

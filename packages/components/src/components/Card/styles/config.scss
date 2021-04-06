@@ -1,0 +1,27 @@
+// ---------------------------------------------
+// CARD - CONFIGURATION
+// ---------------------------------------------
+
+@import "./../../../styles/base/config";
+
+$card: (
+  background-color: $color-white,
+  border: 1px solid _color("grey", 300),
+  border-radius: $default-border-radius,
+  box-shadow: #{$shadow-ambient-1,
+  $shadow-direct-1},
+);
+
+$card-section: (
+  default: (
+    padding: _get-space("small"),
+  ),
+  "m": (
+    padding: _get-space(),
+  ),
+);
+
+$card-header: (
+  background-color: _color("grey", 50),
+  align-items: stretch,
+);

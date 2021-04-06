@@ -1,0 +1,87 @@
+import { ComponentDocs, Preview } from "@lighting-beetle/lighter-styleguide";
+
+import { Button, ButtonLayout } from "..";
+
+import Card, { CardContent, CardFooter, CardHeader } from "./index";
+
+# Card
+
+A card serves as an entry point to more detailed information. Cards may contain rich content, such as photos, text, link, list, tables, you name it.
+
+## Example
+
+<Card>
+  <CardContent>
+    <h2>Card</h2>
+    <p>Content</p>
+  </CardContent>
+</Card>
+
+## Variants
+
+### Basic
+
+<Preview>
+  <Card>
+    <CardContent>
+      <h2>Card</h2>
+      <p>Content</p>
+    </CardContent>
+  </Card>
+</Preview>
+
+### Card header and footer
+
+Card header holds a title and possibly an action button. Card footer is usually used for additional information or confirm/cancellation buttons.
+
+<Preview>
+  <Card>
+    <CardHeader title="Title" />
+    <CardContent>Content</CardContent>
+    <CardFooter>
+      <ButtonLayout direction="horizontal">
+        <Button>Action</Button>
+        <Button type="primary">CTA</Button>
+      </ButtonLayout>
+    </CardFooter>
+  </Card>
+</Preview>
+
+### Card header actions
+
+To add an action button in card header, a Bar is added to wrap things nicely.
+
+<Preview>
+  <Card>
+    <CardHeader title="Title" actions={<Button>Action</Button>} />
+    <CardContent>Content</CardContent>
+  </Card>
+</Preview>
+
+### Multiple content sections
+
+<Preview>
+  <Card>
+    <CardContent>
+      <h2>Card</h2>
+      <p>Content</p>
+    </CardContent>
+    <CardContent>
+      <p>Second content</p>
+    </CardContent>
+  </Card>
+</Preview>
+
+## Props
+
+<ComponentDocs title="<Card />" component={Card} />
+
+<ComponentDocs title="<CardContent />" component={CardContent} />
+
+<ComponentDocs title="<CardHeader />" component={CardHeader} />
+
+<ComponentDocs title="<CardFooter />" component={CardFooter} />
+
+## Accessibility
+
+The `<Card />` component is purely presentational and does not carry any semantic meaning. The only thing you should care about is the usage of correct heading level in `<CardHeader title="" />`
