@@ -1,4 +1,4 @@
-import { components } from "components";
+import * as components from "components";
 
 export default function getMDXScope() {
   const allComponentDocgens = Object.entries(components).reduce(

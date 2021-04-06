@@ -20,15 +20,6 @@ import {
 import "./styles/utilities.scss";
 import "./styles/layout.scss";
 
-export const components = {
-  Select,
-  Icon,
-  Button,
-  Bar,
-  BarItem,
-  BarBreak,
-};
-
 export const tokens = {
   color,
   colorHex,
@@ -40,7 +31,4 @@ export const tokens = {
   TokensTable,
 };
 
-export default {
-  ...components,
-  ...tokens,
-};
+export { Select, Icon, Button, Bar, BarItem, BarBreak };

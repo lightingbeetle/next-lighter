@@ -1,5 +1,5 @@
 import { Preview, Props, Rectangle } from "@lighting-beetle/lighter-styleguide";
-import { components } from "components";
+import * as components from "components";
 
 const styleguideComponents = { Preview, Props, Rectangle };
 
