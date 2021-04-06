@@ -1,11 +1,22 @@
-import { Button, Icon, Select } from "components";
+import * as components from "components";
+
+const { tokens, ...appComponents } = components;
 
 export default function getMDXScope() {
+  const allComponentDocgens = Object.entries(appComponents).reduce(
+    (
+      docgens,
+      [ComponentName, Component]: [string, { __docgenInfo: object }]
+    ) => ({
+      ...docgens,
+      [ComponentName.toLowerCase()]: {
+        __docgenInfo: Component?.__docgenInfo ?? null,
+      },
+    }),
+    {}
+  );
   return {
-    // TODO: We should not name all possible components here
-    button: { __docgenInfo: Button.__docgenInfo ?? null },
-    select: { __docgenInfo: Select.__docgenInfo ?? null },
-    icon: { __docgenInfo: Icon.__docgenInfo ?? null },
+    ...allComponentDocgens,
     selectItems: [
       { label: "Item 1", value: "item 1" },
       { label: "Item 2", value: "item 2" },
