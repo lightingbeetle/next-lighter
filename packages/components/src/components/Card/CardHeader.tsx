@@ -4,8 +4,8 @@ import cx from "classnames";
 import Bar, { BarItem } from "../Bar";
 
 type CardHeaderProps = Omit<JSX.IntrinsicElements["div"], "title"> & {
-  actions?: object;
-  title: object | string;
+  actions?: React.ReactNode;
+  title: string | React.ReactNode;
 };
 
 const CLASS_ROOT = "card__header";
