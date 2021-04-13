@@ -9,10 +9,7 @@
 
 @mixin bar {
   display: flex;
-  // TODO FIX wrapping problems 
-  // - FLEX OFF not shrinking but stacking with wider elements
-  // - FLEX ON not wrapping with bar break 
-  // flex-wrap: wrap; 
+  flex-wrap: wrap; 
   margin-bottom: tokens.space();
 }
 
