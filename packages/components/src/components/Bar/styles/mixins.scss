@@ -73,6 +73,10 @@
   .bar {
     @include bar;
 
+    &--nowrap {
+      flex-wrap: nowrap;
+    }
+
     .bar__item {
       @include bar-item;
 
