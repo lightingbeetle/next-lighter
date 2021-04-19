@@ -10,6 +10,8 @@ type SpaceDescriptor = "small";
 type BarProps = JSX.IntrinsicElements["div"] & {
   /** Flex vertical alignment */
   align?: "top" | "bottom";
+  /** Allow horizontally stacked items to wrap into new lines */
+  canWrap: boolean;
   /** Default direction of bar (hidden prop) */
   defaultDirection?: DirectionDescriptor;
   /**
@@ -45,6 +47,7 @@ export const CLASS_ROOT = "bar";
 const Bar = ({
   className,
   align,
+  canWrap = true,
   defaultDirection = "horizontal",
   direction,
   space,
@@ -90,6 +93,7 @@ const Bar = ({
     CLASS_ROOT,
     {
       [`align-items-${align}`]: align,
+      [`${CLASS_ROOT}--nowrap`]: !canWrap,
     },
     ...genResponsiveClasses(CLASS_ROOT, BarDirectionAndSpace),
     className

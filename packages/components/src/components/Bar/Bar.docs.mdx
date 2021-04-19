@@ -66,6 +66,32 @@ to create a layout which is broken to two separate lines.
 
 There is a possibility to adjust properties of this component.
 
+### No wrapping
+
+By default `<Bar />` is wrapping on horizontal overflow. 
+
+<Bar>
+  {[...Array(5)].map((item, index) => (
+    <BarItem key={index.toString()}>
+      <Rectangle>Wide item to create horizontal width</Rectangle>
+    </BarItem>
+  ))}
+</Bar>
+
+We can stop this by setting `canWrap` property to `false`.
+
+<Preview>
+  <Bar canWrap={false}>
+    {[...Array(5)].map((item, index) => (
+      <BarItem key={index.toString()}>
+        <Rectangle>Wide item to create horizontal width</Rectangle>
+      </BarItem>
+    ))}
+  </Bar>
+</Preview>
+
+Best way to use no wrap is with flexible width items
+
 ### Flexible width
 
 If you use element that has width which can overflow a parent container, you 
@@ -94,7 +120,7 @@ can use flexible properties for children items.
 `<BarItem />` can shrink to smallest possible width with `canShrink` property set to `true`.
 
 <Preview>
-  <Bar>
+  <Bar canWrap={false}>
     <BarItem>
       <Rectangle>Item</Rectangle>
     </BarItem>
@@ -112,10 +138,8 @@ can use flexible properties for children items.
   </Bar>
 </Preview>
 
-<strong>TODO Zistiť ako vyriešiť stackovanie nestackovanie baru. Pri hornom prvom exampli nefunguje bar break ak nie je zapnutý wrap, a tuto sa to wrapuje. čo presne chceme?</strong>
-
 <Preview>
-  <Bar>
+  <Bar canWrap={false}>
     <BarItem>
       <Rectangle>Item</Rectangle>
     </BarItem>
