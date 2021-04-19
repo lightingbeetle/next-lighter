@@ -2,6 +2,7 @@ import "./styles/globals.scss";
 
 import Bar, { BarItem, BarBreak } from "./components/Bar";
 import Button from "./components/Button";
+import Card, { CardContent, CardFooter, CardHeader } from "./components/Card";
 import Icon from "./components/Icon";
 import Select from "./components/Select";
 
@@ -31,4 +32,15 @@ export const tokens = {
   TokensTable,
 };
 
-export { Select, Icon, Button, Bar, BarItem, BarBreak };
+export {
+  Bar,
+  BarItem,
+  BarBreak,
+  Button,
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  Icon,
+  Select,
+};

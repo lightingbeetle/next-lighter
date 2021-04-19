@@ -1,0 +1,70 @@
+// ---------------------------------------------
+// CARDS - MIXINS
+// ---------------------------------------------
+
+@use "sass:map";
+@use "../../../styles/utils";
+@use "../../../tokens";
+@use "./config";
+
+@mixin card($card: config.$card) {
+  $border-radius: map.get($card, 'border-radius');
+  @include utils.css-map($card);
+
+  display: flex;
+  flex-flow: column;
+  margin-bottom: config.$spacing;
+
+  > * + * {
+    border-top: map.get($card, "border");
+  }
+
+  > * {
+    &:first-child {
+      border-top-left-radius: $border-radius;
+      border-top-right-radius: $border-radius;
+    }
+
+    &:last-child {
+      border-bottom-left-radius: $border-radius;
+      border-bottom-right-radius: $border-radius;
+    }
+  }
+}
+
+@mixin card-section($section: config.$section, $grow: 0, $shrink: 0) {
+  @each $breakpoint, $css in $section {
+    @include tokens.breakpoint($breakpoint) {
+      @include utils.css-map($css);
+    }
+  }
+
+  flex: $grow $shrink auto;
+
+  > *:last-child {
+    margin-bottom: 0;
+  }
+}
+
+@mixin card-classes {
+  .card {
+    @include card;
+
+    &__header {
+      @include card-section;
+      @include utils.css-map(config.$header);
+    }
+
+    &__content {
+      @include card-section();
+
+      &--fill {
+        flex-grow: 1;
+      }
+    }
+
+    &__footer {
+      @include card-section;
+    }
+  }
+}
