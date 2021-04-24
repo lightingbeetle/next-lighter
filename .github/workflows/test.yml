@@ -31,6 +31,8 @@ jobs:
 
       - name: Build
         run: yarn run build
+        env:
+          NEXT_PUBLIC_WORDPRESS_SITE_URL: ${{ secrets.NEXT_PUBLIC_WORDPRESS_SITE_URL }}
 
       - name: Test
         run: yarn test
