@@ -1,0 +1,62 @@
+// ---------------------------------------------
+// LAYOUT UTILITIES
+// ---------------------------------------------
+
+// Flexbox alignment classes
+@mixin alignment-classes() {
+  // Children horizontal alignment
+  .align-items-right {
+    justify-content: flex-end;
+  }
+  .align-items-center {
+    justify-content: center;
+  }
+  .align-items-spaced {
+    justify-content: space-around;
+  }
+  .align-items-justify {
+    justify-content: space-between;
+  }
+  // Children vertcial alignment
+  .align-items-top {
+    align-items: flex-start;
+  }
+  .align-items-bottom {
+    align-items: flex-end;
+  }
+  .align-items-middle {
+    align-items: center;
+  }
+
+  // Selft horizontal alignmnet
+  .align-self-left {
+    margin-left: 0;
+    margin-right: auto;
+  }
+
+  .align-self-right {
+    margin-left: auto;
+    margin-right: 0;
+  }
+
+  .align-self-center {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  // Self vertical alignmnet
+  .align-self-top {
+    align-self: flex-start;
+  }
+  .align-self-bottom {
+    align-self: flex-end;
+  }
+  .align-self-middle {
+    align-self: center;
+  }
+  .align-self-stretch {
+    align-self: stretch;
+  }
+}
+
+@include alignment-classes;

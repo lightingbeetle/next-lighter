@@ -1,6 +1,8 @@
 import "./styles/globals.scss";
 
+import Bar, { BarItem, BarBreak } from "./components/Bar";
 import Button from "./components/Button";
+import Card, { CardContent, CardFooter, CardHeader } from "./components/Card";
 import Icon from "./components/Icon";
 import Select from "./components/Select";
 
@@ -13,15 +15,13 @@ import {
   spaces,
   fonts,
   shadows,
-  TokensTable
+  TokensTable,
 } from "./tokens";
 
 import "./styles/utilities.scss";
+import "./styles/layout.scss";
 
-export {
-  Select,
-  Icon,
-  Button,
+export const tokens = {
   color,
   colorHex,
   colors,
@@ -29,5 +29,18 @@ export {
   spaces,
   fonts,
   shadows,
-  TokensTable
+  TokensTable,
+};
+
+export {
+  Bar,
+  BarItem,
+  BarBreak,
+  Button,
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  Icon,
+  Select,
 };

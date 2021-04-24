@@ -1,0 +1,29 @@
+// ---------------------------------------------
+// CARD - CONFIGURATION
+// ---------------------------------------------
+
+@use '../../../tokens';
+
+$spacing: tokens.space();
+
+$card: (
+  background-color: tokens.color("white"),
+  border: 1px solid tokens.color("grey", 300),
+  border-radius: 3px,
+  box-shadow: #{tokens.$shadow-ambient-default,
+    tokens.$shadow-direct-default},
+);
+
+$section: (
+  default: (
+    padding: tokens.space("s"),
+  ),
+  m: (
+    padding: tokens.space(),
+  ),
+);
+
+$header: (
+  background-color: tokens.color("grey", 100),
+  align-items: stretch,
+);
