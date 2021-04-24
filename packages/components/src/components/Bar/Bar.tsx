@@ -11,7 +11,7 @@ type BarProps = JSX.IntrinsicElements["div"] & {
   /** Flex vertical alignment */
   align?: "top" | "bottom";
   /** Allow horizontally stacked items to wrap into new lines */
-  canWrap: boolean;
+  canWrap?: boolean;
   /** Default direction of bar (hidden prop) */
   defaultDirection?: DirectionDescriptor;
   /**
