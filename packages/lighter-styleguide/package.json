@@ -1,6 +1,6 @@
 {
   "name": "@lighting-beetle/lighter-styleguide",
-  "version": "5.0.0-beta.1",
+  "version": "5.0.0",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
   "jsnext:main": "dist/index.modern.js",
@@ -8,7 +8,7 @@
     "dist",
     "public"
   ],
-  "types": "./dist/index.d.ts",  
+  "types": "./dist/index.d.ts",
   "scripts": {
     "dev": "next dev",
     "build": "npm-run-all build:*",
@@ -32,7 +32,7 @@
     "unescape-html": "~1.1.0"
   },
   "devDependencies": {
-    "@lighting-beetle/next-lighter-config": "0.1.0",
+    "@lighting-beetle/next-lighter-config": "0.2.0",
     "@types/styled-components": "^5.1.4",
     "microbundle": "~0.13.0",
     "next-compose-plugins": "~2.2.1",

@@ -1,5 +1,0 @@
----
-"components": patch
----
-
-fix typo
