@@ -1,21 +1,17 @@
 // const path = require("path");
 const withPlugins = require("next-compose-plugins");
-const mdx = require("@next/mdx");
-const css = require("@zeit/next-css");
-const sass = require("@zeit/next-sass");
+const mdx = require('@next/mdx');
 
-const frontMatterToMDXRemarkPlugin = require("./utils/frontMatterToMDXRemarkPlugin");
-const CustomEntriesBuildManifestPlugin = require("./utils/custom-entries-build-manifest-plugin");
+const frontMatterToMDXRemarkPlugin = require('./utils/frontMatterToMDXRemarkPlugin');
+const CustomEntriesBuildManifestPlugin = require('./utils/custom-entries-build-manifest-plugin');
 
 const noFS = () => (nextConfig = {}) => {
   return Object.assign({}, nextConfig, {
     webpack(config, options) {
       if (!options.isServer) {
-        config.node = {
-          fs: "empty",
-        };
+        config.resolve.fallback = { fs: false, path: false };
       }
-      if (typeof nextConfig.webpack === "function") {
+      if (typeof nextConfig.webpack === 'function') {
         return nextConfig.webpack(config, options);
       }
 
@@ -48,7 +44,7 @@ const staticEntries = ({ entriesMap }) => (nextConfig = {}) => {
         );
       }
 
-      if (typeof nextConfig.webpack === "function") {
+      if (typeof nextConfig.webpack === 'function') {
         return nextConfig.webpack(config, options);
       }
 
@@ -99,8 +95,6 @@ module.exports = ({
 } = {}) =>
   withPlugins(
     [
-      sass,
-      css,
       [
         mdx({
           extension: /\.mdx?$/,
@@ -114,6 +108,6 @@ module.exports = ({
       noFS(),
     ],
     {
-      pageExtensions: ["js", "jsx", "mdx", "ts", "tsx"],
+      pageExtensions: ['js', 'jsx', 'mdx', 'ts', 'tsx'],
     }
   );

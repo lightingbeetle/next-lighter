@@ -1,4 +1,6 @@
-import Link from "next/link";
+import React from 'react';
+import Link from 'next/link';
+import { Button } from 'components';
 
 export default function Home() {
   return (
@@ -32,6 +34,8 @@ export default function Home() {
           </Link>
         </li>
       </ul>
+      <p>This is example of Button component imported from `components`</p>
+      <Button>This do nothing</Button>
     </>
   );
 }

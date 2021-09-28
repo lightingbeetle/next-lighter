@@ -1,6 +1,7 @@
-import Link from "next/link";
-import Content from "../../components/Content";
-import { getPostsSlug, getPost } from "../../queries";
+import React from 'react';
+import Link from 'next/link';
+import Content from '../../components/Content';
+import { getPostsSlug, getPost } from '../../queries';
 
 export default function Post({
   post,

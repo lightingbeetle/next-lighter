@@ -1,3 +1,4 @@
+import React from 'react';
 import 'modern-normalize/modern-normalize.css';
 
 function MyApp({ Component, pageProps }) {

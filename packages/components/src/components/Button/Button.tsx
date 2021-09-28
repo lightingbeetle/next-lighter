@@ -2,7 +2,7 @@ import React from "react";
 import cx from "classnames";
 import "./styles/style.scss";
 
-type ButtonProps = JSX.IntrinsicElements["button"] & {
+type ButtonProps = {
   /** Button with same width as height */
   square?: boolean;
   /** Link with href attribute rendered visually as button. */
@@ -12,12 +12,12 @@ type ButtonProps = JSX.IntrinsicElements["button"] & {
   /** Disabled state */
   isDisabled?: boolean;
   /** Button size */
-  size?: "s" | "l";
+  size?: 's' | 'l';
   /** Visual variant of the button. Undefined means  */
-  variant?: "plain";
+  variant?: 'plain';
   /** Purpose of the button. Default means CTA button. */
-  purpose?: "secondary" | "link";
-};
+  purpose?: 'secondary' | 'link';
+} & (React.ComponentProps<'button'> | React.ComponentProps<'a'>);
 
 export const Button = ({
   className,
