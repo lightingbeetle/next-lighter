@@ -1,9 +1,10 @@
+import React from 'react';
 import fs from 'fs';
 import path from 'path';
 import glob from 'glob';
 import matter from 'gray-matter';
-import renderToString from 'next-mdx-remote/render-to-string';
-import hydrate from 'next-mdx-remote/hydrate';
+import { serialize } from 'next-mdx-remote/serialize';
+import { MDXRemote } from 'next-mdx-remote';
 
 import DesignSystemPage from '../../components/DesignSystemPage';
 import {
@@ -13,11 +14,9 @@ import {
 } from '../../utils';
 
 const ComponentPage = ({ routes, title, mdxSource }) => {
-  const content = hydrate(mdxSource, { components: getMDXComponents() });
-
   return (
     <DesignSystemPage routes={routes} title={title}>
-      {content}
+      <MDXRemote {...mdxSource} components={getMDXComponents()} />
     </DesignSystemPage>
   );
 };
@@ -37,8 +36,7 @@ export async function getStaticProps({ params }) {
 
   const { content, data } = matter(mdxPost);
 
-  const mdxSource = await renderToString(content, {
-    components: getMDXComponents(),
+  const mdxSource = await serialize(content, {
     scope: getMDXScope(),
   });
 

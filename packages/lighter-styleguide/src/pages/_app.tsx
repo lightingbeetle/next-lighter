@@ -1,37 +1,38 @@
-import NextLink from "next/link";
-import Styleguide from "../components/Styleguide";
-import "modern-normalize/modern-normalize.css";
+import React from 'react';
+import NextLink from 'next/link';
+import Styleguide from '../components/Styleguide';
+import 'modern-normalize/modern-normalize.css';
 
 const routes = [
   {
-    title: "Home",
+    title: 'Home',
     href: <NextLink href="/" passHref />,
   },
   {
-    title: "Components",
+    title: 'Components',
     routes: [
       {
-        title: "Navigation",
+        title: 'Navigation',
         href: <NextLink href="/Navigation" passHref />,
       },
       {
-        title: "Preview",
+        title: 'Preview',
         href: <NextLink href="/Preview" passHref />,
       },
       {
-        title: "Props",
+        title: 'Props',
         href: <NextLink href="/Props" passHref />,
       },
       {
-        title: "Rectangle",
+        title: 'Rectangle',
         href: <NextLink href="/Rectangle" passHref />,
       },
       {
-        title: "Table",
+        title: 'Table',
         href: <NextLink href="/Table" passHref />,
       },
       {
-        title: "Typography",
+        title: 'Typography',
         href: <NextLink href="/Typography" passHref />,
       },
     ],

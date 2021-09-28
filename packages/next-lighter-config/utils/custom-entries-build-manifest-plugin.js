@@ -28,9 +28,9 @@ class CustomEntriesBuildManifestPlugin {
 
     for (const entry of this.options.entries) {
       const entryChunk = namedChunks.get(entry);
-      const entryJsFiles = getFilesArray(entryChunk && entryChunk.files).filter(
-        isJsFile
-      );
+      const entryJsFiles = [
+        ...getFilesArray(entryChunk && entryChunk.files),
+      ].filter(isJsFile);
 
       assetMap.customEntries.push(...entryJsFiles);
     }
