@@ -1,5 +1,5 @@
 const esbuild = require("esbuild");
-const { externalGlobalPlugin } = require("esbuild-plugin-external-global");
+const EsmExternals = require("@esbuild-plugins/esm-externals").default;
 
 async function bundle() {
   const config = {
@@ -8,7 +8,7 @@ async function bundle() {
     minify: true,
     sourcemap: true,
     outfile: "dist/index.js",
-    external: ["react", "react-dom"]
+    plugins: [EsmExternals({ externals: ["react", "react-dom"] })],
   };
 
   try {
@@ -16,7 +16,7 @@ async function bundle() {
     await esbuild.build({
       ...config,
       format: "esm",
-      outfile: "dist/index.module.js"
+      outfile: "dist/index.module.js",
     });
   } catch {
     process.exit(1);

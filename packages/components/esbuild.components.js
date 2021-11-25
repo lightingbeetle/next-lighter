@@ -1,6 +1,7 @@
 const esbuild = require("esbuild");
 const { sassPlugin } = require("esbuild-sass-plugin");
 const alias = require("esbuild-plugin-alias");
+const EsmExternals = require("@esbuild-plugins/esm-externals").default;
 
 async function bundleIndex() {
   const config = {
@@ -9,8 +10,11 @@ async function bundleIndex() {
     minify: true,
     sourcemap: true,
     outfile: "dist/index.js",
-    plugins: [sassPlugin()],
-    external: ["react", "react-dom", "@lighting-beetle/lighter-styleguide"]
+    plugins: [
+      sassPlugin(),
+      EsmExternals({ externals: ["react", "react-dom"] }),
+    ],
+    external: ["@lighting-beetle/lighter-styleguide"],
   };
 
   try {
@@ -18,7 +22,7 @@ async function bundleIndex() {
     await esbuild.build({
       ...config,
       format: "esm",
-      outfile: "dist/index.module.js"
+      outfile: "dist/index.module.js",
     });
   } catch {
     process.exit(1);
@@ -35,9 +39,9 @@ async function bundleStatic() {
     plugins: [
       alias({
         react: require.resolve("preact/compat"),
-        "react-dom": require.resolve("preact/compat")
-      })
-    ]
+        "react-dom": require.resolve("preact/compat"),
+      }),
+    ],
   };
 
   try {
@@ -45,7 +49,7 @@ async function bundleStatic() {
     await esbuild.build({
       ...config,
       format: "esm",
-      outfile: "dist/static.module.js"
+      outfile: "dist/static.module.js",
     });
   } catch {
     process.exit(1);
