@@ -3,11 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "main": "dist/index.js",
-  "module": "dist/index.es.js",
-  "jsnext:main": "dist/index.modern.js",
+  "module": "dist/index.module.js",
+  "jsnext:main": "dist/index.module.js",
   "exports": {
-    ".": "./dist/index.modern.js",
-    "./static": "./dist/static.modern.js"
+    ".": "./dist/index.module.js",
+    "./static": "./dist/static.module.js"
   },
   "files": [
     "dist",

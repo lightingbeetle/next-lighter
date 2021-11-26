@@ -1,9 +1,9 @@
 const esbuild = require("esbuild");
 const EsmExternals = require("@esbuild-plugins/esm-externals").default;
 
-async function bundle() {
+async function bundleIndex() {
   const config = {
-    entryPoints: ["./src/index.tsx"],
+    entryPoints: ["./src/index.js"],
     bundle: true,
     format: "cjs",
     minify: true,
@@ -24,4 +24,4 @@ async function bundle() {
   }
 }
 
-bundle();
+bundleIndex();

@@ -7,6 +7,7 @@ async function bundleIndex() {
   const config = {
     entryPoints: ["./src/index.ts"],
     bundle: true,
+    format: "cjs",
     minify: true,
     sourcemap: true,
     outfile: "dist/index.js",

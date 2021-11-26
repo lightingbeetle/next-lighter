@@ -2,14 +2,14 @@ import { createElement } from "react";
 import { render } from "react-dom";
 
 import limit from "./limit";
-let doc = typeof document !== "undefined" ? document : null;
+var doc = typeof document !== "undefined" ? document : null;
 
 export default function hookIt(fn) {
   // limit infinite recursion
   fn = limit(fn);
 
   // minimal dom-node compatible stub required by react-like libs
-  let holder = !doc
+  var holder = !doc
     ? {
         nodeType: 1,
         firstChild: null,
@@ -18,12 +18,12 @@ export default function hookIt(fn) {
         childNodes: [],
         ownerSVGElement: null,
         namespaceURI: "http://www.w3.org/1999/xhtml",
-        appendChild() {},
-        replaceChild() {},
+        appendChild: function appendChild() {},
+        replaceChild: function replaceChild() {},
       }
     : doc.createDocumentFragment();
 
-  let currentResult,
+  var currentResult,
     currentCtx,
     currentArgs = [],
     root,
@@ -34,15 +34,15 @@ export default function hookIt(fn) {
     return null;
   }
 
-  function hookedFn(...args) {
+  function hookedFn() {
     if (end) throw Error("Function is unhooked");
     currentCtx = this;
-    currentArgs = args;
-    let prevResult = currentResult;
+    currentArgs = [].concat.apply([], arguments);
+    var prevResult = currentResult;
 
     fn.count = 0;
     root = render(createElement(Component), holder);
-    let result = currentResult;
+    var result = currentResult;
     currentResult = prevResult;
 
     return result;
