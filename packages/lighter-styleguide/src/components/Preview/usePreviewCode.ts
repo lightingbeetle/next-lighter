@@ -1,13 +1,13 @@
 import { isValidElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
-import reactElementToJSXString, { Options } from "react-element-to-jsx-string";
+import reactElementToJSXString from "react-element-to-jsx-string";
 import unescape from "unescape-html";
 import pretty from "pretty";
 
 export type UsePreviewCode = {
   code: String | React.ReactNode;
   codeType: "html" | "jsx";
-  JSXOptions?: Options;
+  JSXOptions?: Parameters<typeof reactElementToJSXString>[1];
 };
 
 const getJSXAsStringFromCode = ({
