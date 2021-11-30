@@ -10,7 +10,7 @@ const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
       formState: { errors },
     } = useFormContext();
     return (
-      <Field {...{ id, label, isRequired, messages }}>
+      <Field {...{ id, name, label, isRequired, messages }}>
         <div className="select">
           <select
             ref={ref}

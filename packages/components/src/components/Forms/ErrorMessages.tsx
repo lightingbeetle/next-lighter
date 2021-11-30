@@ -19,20 +19,20 @@ const ErrorMessages = ({
   maxLength = "Presiahli ste maxímálnu dĺžku poľa",
   ...types
 }: ErrorMessagesProps) => {
-  const { id } = React.useContext(FieldContext);
+  const { name } = React.useContext(FieldContext);
   const {
     formState: { errors },
   } = useFormContext();
 
   return (
     <>
-      {errors?.[id]?.type === "pattern" && <Error>{pattern}</Error>}
-      {errors?.[id]?.type === "required" && <Error>{required}</Error>}
-      {errors?.[id]?.type === "maxLength" && <Error>{maxLength}</Error>}
-      {types[errors?.[id]?.type] ? (
-        <Error>{types[errors?.[id]?.type]}</Error>
+      {errors?.[name]?.type === "pattern" && <Error>{pattern}</Error>}
+      {errors?.[name]?.type === "required" && <Error>{required}</Error>}
+      {errors?.[name]?.type === "maxLength" && <Error>{maxLength}</Error>}
+      {types[errors?.[name]?.type] ? (
+        <Error>{types[errors?.[name]?.type]}</Error>
       ) : (
-        <Error>{errors?.[id]?.message}</Error>
+        <Error>{errors?.[name]?.message}</Error>
       )}
     </>
   );

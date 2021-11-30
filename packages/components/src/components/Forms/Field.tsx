@@ -11,6 +11,7 @@ export type FieldProps = {
   isRequired?: boolean;
   hasSeparateLabel?: boolean;
   messages?: ErrorMessagesProps;
+  name: string;
 } & React.ComponentProps<"div">;
 
 const Field = ({
@@ -19,13 +20,14 @@ const Field = ({
   id,
   isRequired,
   messages,
+  name,
   hasSeparateLabel = true,
   children,
   className,
 }: FieldProps) => {
   return (
     <div className={cx("form-field", className)}>
-      <FieldContext.Provider value={{ id, isRequired }}>
+      <FieldContext.Provider value={{ id, name, isRequired }}>
         {hasSeparateLabel && label && <Label>{label}</Label>}
         {hint && <div className="small mb-xxsmall color-gray">{hint}</div>}
         {children}
