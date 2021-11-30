@@ -1,7 +1,7 @@
 const esbuild = require("esbuild");
 const { sassPlugin } = require("esbuild-sass-plugin");
 const alias = require("esbuild-plugin-alias");
-const EsmExternals = require("@esbuild-plugins/esm-externals").default;
+const esmExternals = require("@esbuild-plugins/esm-externals").default;
 
 async function bundleIndex() {
   const config = {
@@ -13,7 +13,7 @@ async function bundleIndex() {
     outfile: "dist/index.js",
     plugins: [
       sassPlugin(),
-      EsmExternals({ externals: ["react", "react-dom"] }),
+      esmExternals({ externals: ["react", "react-dom"] }),
     ],
     external: ["@lighting-beetle/lighter-styleguide"],
   };

@@ -1,5 +1,5 @@
 const esbuild = require("esbuild");
-const EsmExternals = require("@esbuild-plugins/esm-externals").default;
+const esmExternals = require("@esbuild-plugins/esm-externals").default;
 
 async function bundleIndex() {
   const config = {
@@ -9,7 +9,7 @@ async function bundleIndex() {
     minify: true,
     sourcemap: true,
     outfile: "dist/index.js",
-    plugins: [EsmExternals({ externals: ["react", "react-dom"] })],
+    plugins: [esmExternals({ externals: ["react", "react-dom"] })],
   };
 
   try {
