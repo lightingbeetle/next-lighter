@@ -3,22 +3,23 @@
   "version": "0.1.0",
   "private": true,
   "main": "dist/index.js",
-  "module": "dist/index.es.js",
-  "jsnext:main": "dist/index.modern.js",
+  "module": "dist/index.module.js",
+  "jsnext:main": "dist/index.module.js",
   "exports": {
-    ".": "./dist/index.modern.js",
-    "./static": "./dist/static.modern.js"
+    ".": "./dist/index.module.js",
+    "./static": "./dist/static.module.js"
   },
   "files": [
     "dist",
     "public"
   ],
-  "types": "dist/index.d.ts",
+  "types": "dist/src/index.d.ts",
   "scripts": {
-    "build": "npm-run-all build:*",
-    "build:components": "microbundle src/index.ts --jsx React.createElement --jsxFragment React.Fragment --external react,react-dom,@lighting-beetle/lighter-styleguide",
-    "build:static": "microbundle src/static.ts --output dist/static.js --alias react=preact/compat,react-dom=preact/compat --external none",
+    "build": "run-s clean build:*",
+    "clean": "rimraf dist",
+    "build:components": "node ./esbuild.components.js",
     "build:icons": "svg-sprite --dest dist --symbol --symbol-dest . --symbol-sprite icons-sprite.svg  src/icons/*.svg",
+    "build:types": "tsc --declaration  --emitDeclarationOnly --noEmit false --outDir dist -p ./tsconfig.json",
     "test": "NODE_ENV=test jest --maxWorkers=1"
   },
   "dependencies": {
@@ -32,10 +33,14 @@
   },
   "browserslist": ">1%, not ie 11, not op_mini all",
   "devDependencies": {
+    "@esbuild-plugins/esm-externals": "0.0.6",
+    "esbuild": "^0.13.3",
+    "esbuild-plugin-alias": "^0.1.2",
+    "esbuild-sass-plugin": "^1.5.5",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^27.2.3",
-    "microbundle": "^0.13.3",
     "npm-run-all": "^4.1.5",
+    "rimraf": "^3.0.2",
     "sass": "~1.42.1",
     "svg-sprite": "~1.5.2"
   }

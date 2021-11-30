@@ -11,6 +11,7 @@ import hookIt from "@lighting-beetle/lighter-hooks";
 import { useSelect } from "downshift";
 
 // hookIt is HOC function wich emulates React environment so hooks will run same as in React component
+// @ts-ignore the expression is callable but TS is not detecting it?
 const select = hookIt((el: HTMLElement) => {
   // initially this is empty, becasue we need to look into DOM for items
   const [items, setItems] = useState<

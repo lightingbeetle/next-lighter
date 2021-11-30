@@ -1,9 +1,9 @@
 // limit function call by max number of times per tick
-let MAX = 50;
+var MAX = 50;
 
 export default function limit(fn) {
-  let dirty;
-  let wrapped = function () {
+  var dirty;
+  var wrapped = function () {
     if (++wrapped.count >= MAX)
       throw new Error(
         "More than " + MAX + " calls, likely there's infinite recursion"

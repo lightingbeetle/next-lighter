@@ -3,23 +3,30 @@
   "version": "1.0.0",
   "description": "",
   "main": "dist/index.js",
-  "module": "dist/index.es.js",
-  "jsnext:main": "dist/index.modern.js",
+  "module": "dist/index.module.js",
+  "jsnext:main": "dist/index.module.js",
+  "exports": {
+    ".": "./dist/index.module.js"
+  },
   "files": [
     "dist"
   ],
   "types": "./dist/index.d.ts",
   "scripts": {
-    "build": "microbundle src/index.js --external react,react-dom",
+    "build": "run-s clean build:lib",
+    "build:lib": "node ./esbuild.js",
+    "clean": "rimraf dist",
     "test": "jest"
   },
   "devDependencies": {
+    "@esbuild-plugins/esm-externals": "0.0.6",
+    "esbuild": "^0.13.3",
     "@babel/core": "^7.15.5",
     "@babel/preset-typescript": "^7.15.0",
-    "babel-jest": "^27.2.3",
+    "esbuild-jest": "^0.5.0",
     "jest": "~27.2.3",
-    "microbundle": "~0.13.3",
-    "react-test-renderer": "~17.0.2"
+    "react-test-renderer": "~17.0.2",
+    "rimraf": "^3.0.2"
   },
   "peerDependencies": {
     "react": ">=17.0.2",
