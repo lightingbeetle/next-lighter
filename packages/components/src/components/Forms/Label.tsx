@@ -1,10 +1,10 @@
 import React from "react";
-import FieldContext from "./FieldContext";
+import { useField } from "./useField";
 
 type LabelProps = React.ComponentProps<"label">;
 
 const Label = ({ children }: LabelProps) => {
-  const { id, isRequired } = React.useContext(FieldContext);
+  const { id, isRequired } = useField();
 
   return (
     <label htmlFor={id} className="form-label">

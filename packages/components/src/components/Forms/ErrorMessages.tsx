@@ -1,6 +1,6 @@
 import React from "react";
 import { useFormContext } from "react-hook-form";
-import FieldContext from "./FieldContext";
+import { useField } from "./useField";
 
 export type ErrorMessagesProps = {
   pattern?: string;
@@ -19,7 +19,7 @@ const ErrorMessages = ({
   maxLength = "Presiahli ste maxímálnu dĺžku poľa",
   ...types
 }: ErrorMessagesProps) => {
-  const { name } = React.useContext(FieldContext);
+  const { name } = useField();
   const {
     formState: { errors },
   } = useFormContext();
