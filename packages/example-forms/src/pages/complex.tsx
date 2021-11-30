@@ -1,11 +1,8 @@
-import { useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import ReCAPTCHA from "react-google-recaptcha";
-import Input from "../components/Forms/Input";
-import Select from "../components/Forms/Select";
-import TextArea from "../components/Forms/TextArea";
-import MarketingDetailsCheckbox from "../components/Forms/MarketingDetailsCheckbox";
-import { Error } from "../components/Forms/ErrorMessages";
+// @ts-ignore
+import { Input, TextArea, ApprovalCheckbox, Error } from "components";
 
 function ComplexForm() {
   const recaptchaRef = useRef<ReCAPTCHA>(null);
@@ -17,6 +14,9 @@ function ComplexForm() {
       reason: "option1",
       name: "",
       email: "@",
+      phoneNumber: "",
+      message: "",
+      marketing: false,
     },
   });
 
@@ -74,22 +74,6 @@ function ComplexForm() {
       <form onSubmit={handleSubmit(onSubmit)}>
         <fieldset>
           <legend>Complex form</legend>
-          <Select
-            label="Predmet"
-            id="reason"
-            isRequired
-            messages={{
-              required: "Predmet je povinný údaj",
-            }}
-            {...methods.register("reason", { required: true })}
-          >
-            <option value="">Vyberte jednu z možností</option>
-            {Object.entries(reasons).map(([value, text]) => (
-              <option key={text} value={value}>
-                {text}
-              </option>
-            ))}
-          </Select>
           <Input
             type="text"
             id="name"
@@ -141,7 +125,7 @@ function ComplexForm() {
               Ochrana osobných údajov
             </a>
           </p>
-          <MarketingDetailsCheckbox {...methods.register("marketing")} />
+          <ApprovalCheckbox {...methods.register("marketing")} />
           {formError && <Error className="color-error">{formError}</Error>}
           <ReCAPTCHA
             ref={recaptchaRef}

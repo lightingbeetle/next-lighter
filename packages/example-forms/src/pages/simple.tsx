@@ -1,11 +1,9 @@
-import { useRef } from "react";
+import React from "react";
 import { FormProvider, useForm } from "react-hook-form";
-import ReCAPTCHA from "react-google-recaptcha";
-import Input from "../components/Forms/Input";
+// @ts-ignore
+import { Input } from "components";
 
-function RecaptchaForm() {
-  const recaptchaRef = useRef<ReCAPTCHA>(null);
-
+function SimpleForm() {
   const methods = useForm({
     defaultValues: {
       name: "",
@@ -15,17 +13,14 @@ function RecaptchaForm() {
   const { handleSubmit } = methods;
 
   const onSubmit = async (data) => {
-    const token = await recaptchaRef.current.executeAsync();
-    recaptchaRef.current.reset();
-
-    alert(`submitted ${JSON.stringify(data)} with token ${token}`);
+    alert(`submitted ${JSON.stringify(data)}`);
   };
 
   return (
     <FormProvider {...methods}>
       <form onSubmit={handleSubmit(onSubmit)}>
         <fieldset>
-          <legend>Recaptcha form</legend>
+          <legend>Simple form</legend>
           <Input
             type="text"
             id="name"
@@ -36,14 +31,6 @@ function RecaptchaForm() {
             }}
             {...methods.register("name", { required: true })}
           />
-          <ReCAPTCHA
-            ref={recaptchaRef}
-            size="invisible"
-            badge="inline"
-            sitekey={
-              process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY ?? "NOT_AVAILABLE"
-            }
-          />
           <div>
             <button type="submit">Odoslať</button>
           </div>
@@ -53,4 +40,4 @@ function RecaptchaForm() {
   );
 }
 
-export default RecaptchaForm;
+export default SimpleForm;

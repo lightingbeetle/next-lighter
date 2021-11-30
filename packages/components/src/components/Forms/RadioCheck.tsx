@@ -9,7 +9,10 @@ type RadioCheckProps = FieldProps & {
 } & React.ComponentProps<"input">;
 
 const RadioCheck = React.forwardRef<HTMLInputElement, RadioCheckProps>(
-  ({ type, id, name, isRequired, label, className, messages, ...props }, ref) => {
+  (
+    { type, id, name, isRequired, label, className, messages, ...props },
+    ref
+  ) => {
     const {
       formState: { errors },
     } = useFormContext();
