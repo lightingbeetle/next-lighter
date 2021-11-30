@@ -1,7 +1,8 @@
-import React, { useMemo } from "react";
-import Table from "../components/Table";
+import React from "react";
+// @ts-ignore
+import { Table } from "components";
 
-const Index = () => {
+const StaticExample = () => {
   const columns = [
     {
       Header: "ID",
@@ -33,4 +34,4 @@ const Index = () => {
   return <Table columns={columns} data={data} />;
 };
 
-export default Index;
+export default StaticExample;

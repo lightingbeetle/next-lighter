@@ -5,6 +5,7 @@ import Button from "./components/Button";
 import Card, { CardContent, CardFooter, CardHeader } from "./components/Card";
 import Icon from "./components/Icon";
 import Select from "./components/Select";
+import Table from "./components/Table";
 
 // TODO: Tokens should have own entry
 import {
@@ -43,4 +44,5 @@ export {
   CardHeader,
   Icon,
   Select,
+  Table,
 };

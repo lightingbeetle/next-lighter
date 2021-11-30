@@ -1,5 +1,6 @@
 import React, { useMemo } from "react";
-import Table from "../components/Table";
+// @ts-ignore
+import { Table } from "components";
 import useSWR from "swr";
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
