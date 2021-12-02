@@ -1,13 +1,13 @@
 import { isValidElement } from "react";
-import { renderToStaticMarkup } from "react-dom/server";
-import reactElementToJSXString from "react-element-to-jsx-string";
+import { renderToStaticMarkup } from "react-dom/server.browser";
+import reactElementToJSXString, { Options } from "react-element-to-jsx-string";
 import unescape from "unescape-html";
 import pretty from "pretty";
 
 export type UsePreviewCode = {
   code: String | React.ReactNode;
   codeType: "html" | "jsx";
-  JSXOptions?: Parameters<typeof reactElementToJSXString>[1];
+  JSXOptions?: Options;
 };
 
 const getJSXAsStringFromCode = ({
@@ -62,7 +62,8 @@ const usePreviewCode = ({
       codeAsString =
         typeof code === "string"
           ? unescape(code)
-          : pretty(renderToStaticMarkup(code as React.ReactElement));
+          : // : null;
+            pretty(renderToStaticMarkup(code as React.ReactElement));
       break;
     case "jsx":
       codeAsString = getJSXAsStringFromCode({

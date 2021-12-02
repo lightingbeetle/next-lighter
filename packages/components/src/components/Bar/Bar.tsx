@@ -1,6 +1,5 @@
 import React from "react";
 import cx from "classnames";
-import "./styles/style.scss";
 import { Responsive } from "../../utils/responsive";
 import { genResponsiveClasses } from "../../utils/classes";
 

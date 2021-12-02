@@ -7,8 +7,6 @@ import type { useSelectProps, Item } from "./useSelect";
 import Label from "../Label";
 import DropdownMenu, { DropdownMenuItem } from "../DropdownMenu";
 
-import "./styles/style.scss";
-
 export type SelectProps = {
   /** Items to display in dropdown list. */
   items?: useSelectProps["items"];

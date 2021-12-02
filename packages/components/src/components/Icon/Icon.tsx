@@ -2,7 +2,7 @@ import React from "react";
 import cx from "classnames";
 import { useIconContext } from "./IconContext";
 
-import "./styles/style.scss";
+// import "./styles/style.scss";
 
 type IconProps = {
   /** Alternative text for `<title />` tag. Default is the icon name. `null` can be passed when icon is wrapped by meaningul action like link which should be described by `aria-label`. */
@@ -31,7 +31,7 @@ const Icon = ({
     {
       [`icon`]: true,
       [`icon--${size}`]: size,
-      [`icon--${name}`]: name
+      [`icon--${name}`]: name,
     },
     className
   );

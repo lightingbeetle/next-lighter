@@ -3,6 +3,7 @@ import { Components } from "@mdx-js/react";
 
 import { Children } from "react";
 import { Code, H1, H2, H3, H4, H5, H6, Link, P } from "..";
+import { Language } from "prism-react-renderer";
 
 /**
  * Create custom header id which can be used as hash in link
@@ -33,14 +34,14 @@ const defaultComponents: Components = {
   h6: (props) => <H6 id={`${createHeaderId(props)}`} {...props} />,
   p: P,
   a: Link,
-  inlineCode: Code,
-  code: (props) => (
-    <Code
-      inline={false}
-      language={props.className?.replace(/language-/, "")}
-      {...props}
-    />
-  ),
+  code: ({ className, children, ...other }) => {
+    const match = /language-(\w+)/.exec(className ?? "");
+    return (
+      <Code inline={!match?.length} language={match?.[1] as Language}>
+        {children}
+      </Code>
+    );
+  },
 };
 
 export default defaultComponents;

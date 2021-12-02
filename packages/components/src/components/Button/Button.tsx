@@ -1,6 +1,6 @@
 import React from "react";
 import cx from "classnames";
-import "./styles/style.scss";
+// import "./styles/style.scss";
 
 type ButtonProps = {
   /** Button with same width as height */
@@ -12,12 +12,12 @@ type ButtonProps = {
   /** Disabled state */
   isDisabled?: boolean;
   /** Button size */
-  size?: 's' | 'l';
+  size?: "s" | "l";
   /** Visual variant of the button. Undefined means  */
-  variant?: 'plain';
+  variant?: "plain";
   /** Purpose of the button. Default means CTA button. */
-  purpose?: 'secondary' | 'link';
-} & (React.ComponentProps<'button'> | React.ComponentProps<'a'>);
+  purpose?: "secondary" | "link";
+} & (React.ComponentProps<"button"> | React.ComponentProps<"a">);
 
 export const Button = ({
   className,
@@ -50,7 +50,7 @@ export const Button = ({
       [`btn--${variant}`]: variant,
       [`btn--${purpose}`]: purpose,
       [`is-active`]: isActive,
-      [`is-disabled`]: Tag === "a" && isDisabled
+      [`is-disabled`]: Tag === "a" && isDisabled,
     },
     className
   );
@@ -59,7 +59,7 @@ export const Button = ({
     disabled: buttonIsDisabled,
     href,
     className: classes,
-    ...other
+    ...other,
   };
 
   return <Tag {...props}>{children}</Tag>;
