@@ -1,0 +1,24 @@
+{
+  "name": "example-forms",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build && next export",
+    "start": "next start",
+    "test": "jest --runInBand --config ./jest.config.js",
+    "lint": "eslint --fix ."
+  },
+  "dependencies": {
+    "@lighting-beetle/next-lighter-config": "0.1.0",
+    "components": "0.1.0",
+    "micromatch": "~4.0.4",
+    "modern-normalize": "^1.1.0",
+    "next": "~11.1.2",
+    "next-compose-plugins": "~2.2.1",
+    "next-transpile-modules": "~8.0.0",
+    "react-google-recaptcha": "^2.1.0",
+    "react-hook-form": "^7.20.5"
+  },
+  "browserslist": ">1%, not ie 11, not op_mini all"
+}
