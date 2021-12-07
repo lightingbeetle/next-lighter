@@ -25,4 +25,6 @@ const DropdownMenuItem = forwardRef<HTMLLIElement, DropdownMenuItemProps>(
   }
 );
 
+DropdownMenuItem.displayName = 'DropdownMenuItem';
+
 export default DropdownMenuItem;

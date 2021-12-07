@@ -65,4 +65,6 @@ export const Button = ({
   return <Tag {...props}>{children}</Tag>;
 };
 
+Button.displayName = 'Button';
+
 export default Button;

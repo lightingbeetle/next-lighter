@@ -24,4 +24,6 @@ const Label = ({ className, children, isError, ...other }: LabelProps) => {
   );
 };
 
+Label.displayName = 'Label';
+
 export default Label;

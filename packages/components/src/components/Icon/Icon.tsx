@@ -49,4 +49,6 @@ const Icon = ({
   );
 };
 
+Icon.displayName = 'Icon';
+
 export default Icon;

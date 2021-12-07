@@ -2,6 +2,7 @@ import * as React from "react";
 import cx from "classnames";
 
 import useSelect from "./useSelect";
+// prettier-ignore
 import type { useSelectProps, Item } from "./useSelect";
 
 import Label from "../Label";
@@ -89,5 +90,7 @@ const Select = ({
     </div>
   );
 };
+
+Select.displayName = 'Select';
 
 export default Select;
