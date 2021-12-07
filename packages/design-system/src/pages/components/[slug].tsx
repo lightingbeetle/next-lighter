@@ -41,7 +41,16 @@ export async function getStaticProps({ params }) {
   const { code, frontmatter } = await bundleMDX({
     source,
     cwd: path.dirname(pathToSource),
-    esbuildOptions(options, frontmatter) {
+    esbuildOptions: (options) => {
+      options.plugins = [
+        ...options.plugins,
+        {
+          name: 'empty-(s)css-imports',
+          setup(build) {
+            build.onLoad({ filter: /\.(s)css$/ }, () => ({ contents: '' }));
+          },
+        },
+      ];
       return options;
     },
   });

@@ -15,7 +15,7 @@ import {
   spaces,
   fonts,
   shadows,
-  TokensTable,
+  TokensTable
 } from "./tokens";
 
 import "./styles/utilities.scss";
@@ -29,7 +29,7 @@ export const tokens = {
   spaces,
   fonts,
   shadows,
-  TokensTable,
+  TokensTable
 };
 
 export {
@@ -42,5 +42,5 @@ export {
   CardFooter,
   CardHeader,
   Icon,
-  Select,
+  Select
 };
