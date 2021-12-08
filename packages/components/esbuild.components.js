@@ -12,10 +12,34 @@ async function bundleIndex() {
     sourcemap: true,
     outfile: "dist/index.js",
     plugins: [
-      sassPlugin(),
-      esmExternals({ externals: ["react", "react-dom"] }),
+      sassPlugin({
+        type: "css",
+        async transform(css, resolveDir) {
+          const {
+            outputFiles: [out]
+          } = await esbuild.build({
+            stdin: {
+              contents: css,
+              resolveDir,
+              loader: "css"
+            },
+            bundle: true,
+            write: false,
+            format: "esm",
+            loader: {
+              ".eot": "dataurl",
+              ".woff": "dataurl",
+              ".ttf": "dataurl",
+              ".svg": "dataurl",
+              ".otf": "dataurl"
+            }
+          });
+          return out.text;
+        }
+      }),
+      esmExternals({ externals: ["react", "react-dom"] })
     ],
-    external: ["@lighting-beetle/lighter-styleguide"],
+    external: ["@lighting-beetle/lighter-styleguide"]
   };
 
   try {
@@ -23,7 +47,7 @@ async function bundleIndex() {
     await esbuild.build({
       ...config,
       format: "esm",
-      outfile: "dist/index.module.js",
+      outfile: "dist/index.module.js"
     });
   } catch {
     process.exit(1);
@@ -40,9 +64,9 @@ async function bundleStatic() {
     plugins: [
       alias({
         react: require.resolve("preact/compat"),
-        "react-dom": require.resolve("preact/compat"),
-      }),
-    ],
+        "react-dom": require.resolve("preact/compat")
+      })
+    ]
   };
 
   try {
@@ -50,7 +74,7 @@ async function bundleStatic() {
     await esbuild.build({
       ...config,
       format: "esm",
-      outfile: "dist/static.module.js",
+      outfile: "dist/static.module.js"
     });
   } catch {
     process.exit(1);
