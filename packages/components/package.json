@@ -7,8 +7,10 @@
   "jsnext:main": "dist/index.module.js",
   "exports": {
     ".": "./dist/index.module.js",
-    "./static": "./dist/static.module.js"
+    "./static": "./dist/static.module.js",
+    "./index.css": "./dist/index.css"
   },
+  "style": "./dist/index.css",
   "files": [
     "dist",
     "public"

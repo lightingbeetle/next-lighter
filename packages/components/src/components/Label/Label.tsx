@@ -1,6 +1,5 @@
 import * as React from "react";
 import cx from "classnames";
-import "./styles/style.scss";
 
 type LabelProps = {
   /** Error state. */
@@ -13,7 +12,7 @@ const Label = ({ className, children, isError, ...other }: LabelProps) => {
   const classes = cx(
     CLASS_ROOT,
     {
-      [`label--error`]: isError
+      [`label--error`]: isError,
     },
     className
   );
@@ -24,5 +23,7 @@ const Label = ({ className, children, isError, ...other }: LabelProps) => {
     </div>
   );
 };
+
+Label.displayName = 'Label';
 
 export default Label;

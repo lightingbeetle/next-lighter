@@ -7,12 +7,7 @@ type CodeProps = {
   inline?: boolean;
 };
 
-const Code = ({
-  children,
-  language = "markup",
-  inline = true,
-  ...other
-}: CodeProps) => {
+const Code = ({ children, language = "markup", inline = true }: CodeProps) => {
   const { highlight } = useCodeHighlight({
     code: children,
     language,
