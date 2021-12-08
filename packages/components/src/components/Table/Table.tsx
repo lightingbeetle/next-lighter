@@ -3,6 +3,7 @@ import cx from "classnames";
 import React, { useEffect } from "react";
 import { useTable, useSortBy, Column, SortingRule } from "react-table";
 import useStickyTable from "./useSticky";
+import "./styles/style.scss";
 
 // TODO: types coudl better with generic insted of any
 // TODO: add tests
