@@ -1,0 +1,23 @@
+@use '../../../../styles/tokens/space';
+
+.filter-range {
+  .form-label {
+    margin-bottom: space.get('small');
+  }
+
+  &__inputs {
+    display: flex;
+    justify-content: space-between;
+
+    & > * {
+      margin-bottom: 0;
+    }
+
+    .form-field {
+      max-width: 120px;
+    }
+    .form-field input {
+      text-align: center;
+    }
+  }
+}

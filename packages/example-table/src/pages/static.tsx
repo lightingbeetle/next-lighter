@@ -31,7 +31,7 @@ const StaticExample = () => {
     finished: !!(index % 2),
   }));
 
-  return <Table columns={columns} data={data} />;
+  return <Table columns={columns} data={data} sortBy={[]} disableSortBy />;
 };
 
 export default StaticExample;

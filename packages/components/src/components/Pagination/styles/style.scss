@@ -1,0 +1,49 @@
+@use '../../../styles/tokens/space';
+@use '../../../styles/tokens/color';
+@use '../../../styles/tools/convert';
+@use '../../Typography/styles/mixins' as typoMixins;
+
+.pagination {
+  margin-bottom: space.get();
+
+  &__list {
+    @include typoMixins.list-unstyled();
+
+    display: flex;
+    align-items: center;
+  }
+
+  &__list-item {
+    &:not(last-child) {
+      margin-right: space.get("xxsmall");
+    }
+
+    & > *:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &__item {
+    min-height: convert.to-rem(30px);
+    width: convert.to-rem(30px);
+    height: convert.to-rem(30px);
+    padding: space.get("xxsmall") space.get("xxsmall");
+
+    background-color: transparent;
+    border-color: transparent;
+
+    &:hover {
+      background-color: color.get('white');
+      border-color: color.get('white');
+      box-shadow: none;
+    }
+
+    &--active {
+      background-color: color.get('primary');
+    }
+
+    &--arrow {
+      color: color.get('primary');
+    }
+  }
+}

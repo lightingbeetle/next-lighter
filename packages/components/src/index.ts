@@ -9,10 +9,13 @@ import {
   RadioCheck,
   Error,
   ApprovalCheckbox,
+  Toggle,
 } from "./components/Forms";
 import Icon from "./components/Icon";
 import Select from "./components/Select";
 import Table from "./components/Table";
+import RangeInput from "./components/RangeInput";
+import Pagination from "./components/Pagination";
 
 // TODO: Tokens should have own entry
 import {
@@ -57,4 +60,7 @@ export {
   RadioCheck,
   Error,
   ApprovalCheckbox,
+  Toggle,
+  RangeInput,
+  Pagination,
 };

@@ -18,6 +18,11 @@ export default function Home() {
             <a>With fetched data</a>
           </Link>
         </li>
+        <li>
+          <Link href="/filter">
+            <a>With filter</a>
+          </Link>
+        </li>
       </ul>
 
       <h2>Useful links</h2>
