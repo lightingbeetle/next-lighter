@@ -1,8 +1,6 @@
 import React, { forwardRef } from "react";
 import cx from "classnames";
 
-import "./styles/style.scss";
-
 type DropdownMenuProps = { isOpen?: boolean } & JSX.IntrinsicElements["ul"];
 
 const CLASS_ROOT = "dropdown-menu";
@@ -22,5 +20,7 @@ const DropdownMenu = forwardRef<HTMLUListElement, DropdownMenuProps>(
     );
   }
 );
+
+DropdownMenu.displayName = "DropdownMenu";
 
 export default DropdownMenu;

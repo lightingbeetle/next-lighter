@@ -2,6 +2,10 @@
 title: Button
 ---
 
+import { Preview, Props } from "@lighting-beetle/lighter-styleguide";
+import Button from './Button';
+import Icon from '../Icon';
+
 # Button
 
 Buttons are control elements used for navigating and operating a page and form submission.
@@ -58,24 +62,16 @@ There are 3 main buttons purpose variatons: default (CTA), secondary and link. P
 
 <Preview>
   <Button purpose="secondary">Secondary</Button>
-  <Button purpose="secondary" isActive>
-    Secondary
-  </Button>
-  <Button purpose="secondary" isDisabled>
-    Secondary
-  </Button>
+  <Button purpose="secondary" isActive>Secondary</Button>
+  <Button purpose="secondary" isDisabled>Secondary</Button>
 </Preview>
 
 #### Link
 
 <Preview>
   <Button purpose="link">Link</Button>
-  <Button purpose="link" isActive>
-    Link
-  </Button>
-  <Button purpose="link" isDisabled>
-    Link
-  </Button>
+  <Button purpose="link" isActive>Link</Button>
+  <Button purpose="link" isDisabled>Link</Button>
 </Preview>
 
 ### Variant
@@ -95,22 +91,10 @@ Inline icons sit in line with text.
 #### Icon and text
 
 <Preview>
-  <Button>
-    <Icon name="heart" size="s" />
-    Button
-  </Button>
-  <Button type="primary">
-    Button
-    <Icon name="heart" size="s" />
-  </Button>
-  <Button type="primary" size="s">
-    <Icon name="heart" size="s" />
-    Button
-  </Button>
-  <Button size="l">
-    Button
-    <Icon name="heart" size="medium"/>
-  </Button>
+  <Button><Icon name="heart" size="s" />Button</Button>
+  <Button type="primary">Button<Icon name="heart" size="s" /></Button>
+  <Button type="primary" size="s"><Icon name="heart" size="s" />Button</Button>
+  <Button size="l">Button<Icon name="heart" size="medium"/></Button>
 </Preview>
 
 #### Only icons
@@ -119,10 +103,7 @@ Button with just icon without text should be square.
 
 <Preview>
   <Button square size="s" aria-label="Go home">
-    <Icon name="lol" alt={null} />
-  </Button>
-
-  <Button square size="s" aria-label="Go home">
+    <Icon name="home" alt={null} />
   </Button>
   <Button square size="s" aria-label="Go home">
     <Icon name="home" alt={null} />
@@ -137,7 +118,7 @@ Button with just icon without text should be square.
 
 ## Props
 
-<Props component={button} />
+<Props component={Button} />
 
 ## Accessibility
 

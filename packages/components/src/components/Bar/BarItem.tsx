@@ -28,4 +28,6 @@ export const BarItem = ({
   return <div className={classes} {...other} />;
 };
 
+BarItem.displayName = "BarItem";
+
 export default BarItem;

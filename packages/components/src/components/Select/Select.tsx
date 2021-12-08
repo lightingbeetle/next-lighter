@@ -2,12 +2,11 @@ import * as React from "react";
 import cx from "classnames";
 
 import useSelect from "./useSelect";
+// prettier-ignore
 import type { useSelectProps, Item } from "./useSelect";
 
 import Label from "../Label";
 import DropdownMenu, { DropdownMenuItem } from "../DropdownMenu";
-
-import "./styles/style.scss";
 
 export type SelectProps = {
   /** Items to display in dropdown list. */
@@ -91,5 +90,7 @@ const Select = ({
     </div>
   );
 };
+
+Select.displayName = "Select";
 
 export default Select;

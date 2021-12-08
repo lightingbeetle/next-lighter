@@ -6,25 +6,25 @@ const transpileModules = require("next-transpile-modules");
 const resolveComponents = (nextConfig = {}) => {
   return Object.assign({}, nextConfig, {
     webpack(config, options) {
-      config.resolve.alias["components"] = resolve(
-        __dirname,
-        "..",
-        "components",
-        "src"
-      );
+      config.resolve.extensions = [...config.resolve.extensions, "css"];
+
+      config.resolve.alias["components"] = [
+        resolve(__dirname, "..", "components", "src"),
+        resolve(__dirname, "..", "components", "dist"),
+      ];
 
       if (typeof nextConfig.webpack === "function") {
         return nextConfig.webpack(config, options);
       }
 
       return config;
-    }
+    },
   });
 };
 
 // FIX
 // - this should work without .withPlugins([]), but that's probably bug in 'next-compose-plugins'
 module.exports = extend(nextLighterConfig()).withPlugins([
-  transpileModules(['components']),
+  transpileModules(["components"]),
   resolveComponents,
 ]);

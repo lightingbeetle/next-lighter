@@ -2,6 +2,9 @@
   title: Bar
 ---
 
+import { Preview, Props, Rectangle } from "@lighting-beetle/lighter-styleguide";
+import Bar, { BarItem, BarBreak } from '.';
+
 # Bar
 
 Bar is used for creation of horizontal flexible width layouts with automatic 
@@ -125,12 +128,7 @@ can use flexible properties for children items.
       <Rectangle>Item</Rectangle>
     </BarItem>
     <BarItem>
-      <Rectangle>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium
-        deleniti dignissimos recusandae nesciunt perferendis cupiditate
-        perspiciatis harum odit eaque aspernatur dolorem rerum ratione
-        repudiandae qui alias assumenda saepe, atque reiciendis?
-      </Rectangle>
+      <Rectangle>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium deleniti dignissimos recusandae nesciunt perferendis cupiditate perspiciatis harum odit eaque aspernatur dolorem rerum ratione repudiandae qui alias assumenda saepe, atque reiciendis?</Rectangle>
     </BarItem>
     <BarItem>
       <Rectangle>Item</Rectangle>
@@ -144,12 +142,7 @@ can use flexible properties for children items.
       <Rectangle>Item</Rectangle>
     </BarItem>
     <BarItem canShrink>
-      <Rectangle>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium
-        deleniti dignissimos recusandae nesciunt perferendis cupiditate
-        perspiciatis harum odit eaque aspernatur dolorem rerum ratione
-        repudiandae qui alias assumenda saepe, atque reiciendis?
-      </Rectangle>
+      <Rectangle>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium deleniti dignissimos recusandae nesciunt perferendis cupiditate perspiciatis harum odit eaque aspernatur dolorem rerum ratione repudiandae qui alias assumenda saepe, atque reiciendis?</Rectangle>
     </BarItem>
     <BarItem>
       <Rectangle>Item</Rectangle>
@@ -202,12 +195,7 @@ There are three types (`top` | `middle` | `bottom`) of vertical aligment for ite
       <Rectangle>Top</Rectangle>
     </BarItem>
     <BarItem isFilling>
-      <Rectangle>
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque, ipsum
-        deleniti quia iure similique mollitia quam excepturi laudantium
-        architecto, aperiam magnam exercitationem magni commodi laborum
-        molestiae dolore. Corrupti, officia perferendis?
-      </Rectangle>
+      <Rectangle> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque, ipsum deleniti quia iure similique mollitia quam excepturi laudantium architecto, aperiam magnam exercitationem magni commodi laborum molestiae dolore. Corrupti, officia perferendis?</Rectangle>
     </BarItem>
     <BarItem>
       <Rectangle>Item</Rectangle>
@@ -218,12 +206,7 @@ There are three types (`top` | `middle` | `bottom`) of vertical aligment for ite
       <Rectangle>Middle</Rectangle>
     </BarItem>
     <BarItem isFilling>
-      <Rectangle>
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque, ipsum
-        deleniti quia iure similique mollitia quam excepturi laudantium
-        architecto, aperiam magnam exercitationem magni commodi laborum
-        molestiae dolore. Corrupti, officia perferendis?
-      </Rectangle>
+      <Rectangle>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque, ipsum deleniti quia iure similique mollitia quam excepturi laudantium architecto, aperiam magnam exercitationem magni commodi laborum molestiae dolore. Corrupti, officia perferendis?</Rectangle>
     </BarItem>
     <BarItem>
       <Rectangle>Item</Rectangle>
@@ -234,12 +217,7 @@ There are three types (`top` | `middle` | `bottom`) of vertical aligment for ite
       <Rectangle>Bottom</Rectangle>
     </BarItem>
     <BarItem isFilling>
-      <Rectangle>
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque, ipsum
-        deleniti quia iure similique mollitia quam excepturi laudantium
-        architecto, aperiam magnam exercitationem magni commodi laborum
-        molestiae dolore. Corrupti, officia perferendis?
-      </Rectangle>
+      <Rectangle>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque, ipsum deleniti quia iure similique mollitia quam excepturi laudantium architecto, aperiam magnam exercitationem magni commodi laborum molestiae dolore. Corrupti, officia perferendis?</Rectangle>
     </BarItem>
     <BarItem>
       <Rectangle>Item</Rectangle>
@@ -260,12 +238,7 @@ direction for all viewports.
       <Rectangle>Item</Rectangle>
     </BarItem>
     <BarItem isFilling>
-      <Rectangle tag="p">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi,
-        incidunt veniam minima quasi eligendi amet ullam explicabo laborum
-        aperiam accusantium hic laboriosam doloremque expedita odit ex
-        consequatur voluptas aliquid soluta.
-      </Rectangle>
+      <Rectangle tag="p">Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi, incidunt veniam minima quasi eligendi amet ullam explicabo laborum aperiam accusantium hic laboriosam doloremque expedita odit ex consequatur voluptas aliquid soluta.</Rectangle>
     </BarItem>
     <BarItem>
       <Rectangle>Item</Rectangle>
@@ -291,12 +264,7 @@ We have a separate documentation for [breakpoints](/utilities/breakpoints)
       <Rectangle>Item</Rectangle>
     </BarItem>
     <BarItem isFilling>
-      <Rectangle>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus
-        soluta voluptatum magni, consequuntur quia odio ad est dicta
-        consequatur, nobis modi omnis qui quam magnam ab quo, similique quae
-        itaque.
-      </Rectangle>
+      <Rectangle>Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus soluta voluptatum magni, consequuntur quia odio ad est dicta consequatur, nobis modi omnis qui quam magnam ab quo, similique quae itaque.</Rectangle>
     </BarItem>
     <BarItem>
       <Rectangle>Item</Rectangle>
@@ -309,6 +277,6 @@ We have a separate documentation for [breakpoints](/utilities/breakpoints)
 If you are a developer, this would give you more information at once, about what 
 is possible with these components and what is not.
 
-<Props component={bar} />
-<Props component={baritem} />
-<Props component={barbreak} />
+<Props component={Bar} />
+<Props component={BarItem} />
+<Props component={BarBreak} />

@@ -1,9 +1,9 @@
-import React from 'react';
-import fs from 'fs';
-import glob from 'glob';
-import path from 'path';
-import matter from 'gray-matter';
-import Link from 'next/link';
+import React from "react";
+import fs from "fs";
+import glob from "glob";
+import path from "path";
+import matter from "gray-matter";
+import Link from "next/link";
 
 const Index = ({ posts }) => {
   return (
@@ -23,8 +23,7 @@ const Index = ({ posts }) => {
 };
 
 export async function getStaticProps() {
-  const docsFiles = glob.sync('**/*.docs.mdx');
-  console.log(docsFiles);
+  const docsFiles = glob.sync("**/*.docs.mdx");
 
   const posts = docsFiles.map((filename) => {
     const markdownWithMetadata = fs
@@ -34,7 +33,7 @@ export async function getStaticProps() {
     const { data } = matter(markdownWithMetadata);
 
     return {
-      slug: path.basename(filename, '.docs.mdx'),
+      slug: path.basename(filename, ".docs.mdx"),
       title: data.title,
     };
   });
