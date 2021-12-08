@@ -5,6 +5,7 @@ import { parseUrl as parseURLToQuery } from "query-string";
 import Icon from "../Icon";
 import PaginationNumber from "./PaginationNumber";
 import cx from "classnames";
+import "./styles/style.scss";
 
 // FIXME:
 // - Focus is not handled properly on click on sibling page after next page appears

@@ -1,21 +1,31 @@
-@use '../../../styles/tokens/space';
-@use '../../../styles/tokens/color';
-@use '../../../styles/tools/convert';
-@use '../../Typography/styles/mixins' as typoMixins;
+@use "../../../tokens";
 
 .pagination {
-  margin-bottom: space.get();
+  margin-bottom: tokens.space();
 
   &__list {
-    @include typoMixins.list-unstyled();
-
     display: flex;
     align-items: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    > li {
+      margin-bottom: 0;
+
+      /* Fixes VoiceOver no announcing unordered lists */
+      &::before {
+        content: "\200B";
+        position: absolute;
+        width: 0;
+        height: 0;
+      }
+    }
   }
 
   &__list-item {
     &:not(last-child) {
-      margin-right: space.get("xxsmall");
+      margin-right: tokens.space("s");
     }
 
     & > *:last-child {
@@ -24,26 +34,14 @@
   }
 
   &__item {
-    min-height: convert.to-rem(30px);
-    width: convert.to-rem(30px);
-    height: convert.to-rem(30px);
-    padding: space.get("xxsmall") space.get("xxsmall");
-
-    background-color: transparent;
-    border-color: transparent;
-
-    &:hover {
-      background-color: color.get('white');
-      border-color: color.get('white');
-      box-shadow: none;
-    }
+    padding: tokens.space("s") tokens.space("s");
 
     &--active {
-      background-color: color.get('primary');
+      background-color: tokens.color("primary");
     }
 
     &--arrow {
-      color: color.get('primary');
+      color: tokens.color("primary");
     }
   }
 }
