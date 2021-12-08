@@ -1,5 +1,6 @@
 @use "sass:map";
 @use "sass:list";
+@use "sass:math";
 @use "../tokens/font";
 
 /// Base on -zf-map-next https://github.com/zurb/foundation-sites/blob/develop/scss/util/_breakpoint.scss
@@ -37,7 +38,7 @@
 }
 
 @function rem($size, $base: font.$font-size-default) {
-  @return $size / $base * 1rem;
+  @return math.div($size, $base) * 1rem;
 }
 
 /// Get prefixed variant name
