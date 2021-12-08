@@ -13,7 +13,5 @@ export default function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
-  console.log(req);
-  // const filteredData = data.filter(item => )
   res.status(200).json(flatsData);
 }

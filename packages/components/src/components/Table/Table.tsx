@@ -93,7 +93,8 @@ const Table = ({
       <table
         tabIndex={-1}
         ref={tableStickyRef}
-        className={cx("table--sticky", { hide: !isSticky })}
+        className={cx("table--sticky")}
+        hidden={!isSticky}
         style={{
           transform: `translate3d(0, ${top}px, 0)`,
         }}

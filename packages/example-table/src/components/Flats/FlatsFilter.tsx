@@ -1,12 +1,8 @@
 import React from "react";
 import { useForm, FormProvider, useFormContext } from "react-hook-form";
 import FilterAmenities from "./filters/FilterAmenities";
-import FilterArea from "./filters/FilterArea";
-import FilterFloors from "./filters/FilterFloors";
 import FilterPrice from "./filters/FilterPrice";
-import FilterProjects from "./filters/FilterProjects";
 import FilterRooms from "./filters/FilterRooms";
-import FilterStatus from "./filters/FilterStatus";
 import useFlats from "../../hooks/useFlats";
 
 // We can't pass filter data to defaultValues until we don't have that data
@@ -14,7 +10,7 @@ const FlatsFilter = () => {
   const { isLoading, error } = useFlats();
 
   if (isLoading || error) {
-    return <>Načítavam...</>;
+    return <>Načítavam filter...</>;
   }
 
   return <FlatsFilterForms />;
@@ -37,7 +33,7 @@ const FlatsFilterForms = () => {
 
 const FlatsFilterForm = ({ hideHeader }: { hideHeader?: boolean }) => {
   const { handleSubmit } = useFormContext();
-  const { setFilter, hideProjects } = useFlats();
+  const { setFilter } = useFlats();
 
   return (
     <div className="flats-filter">
@@ -49,12 +45,8 @@ const FlatsFilterForm = ({ hideHeader }: { hideHeader?: boolean }) => {
         )}
         <div className="flats-filter__content">
           <FilterPrice />
-          <FilterArea />
           <FilterRooms />
-          <FilterFloors />
-          {!hideProjects && <FilterProjects />}
           <FilterAmenities />
-          <FilterStatus />
         </div>
       </form>
     </div>

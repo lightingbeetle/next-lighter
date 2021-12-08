@@ -47,7 +47,7 @@ const useStickyHeader = (defaultSticky = false) => {
     if (!tableRef?.current || !tableStickyRef?.current) return;
 
     const headerHeight = Number(
-      document?.querySelector("header")?.clientHeight ?? 70
+      document?.querySelector("header")?.clientHeight ?? 0
     );
     const tableHeaderHeight = Number(
       tableRef.current.querySelector("thead")?.clientHeight ?? 42

@@ -76,7 +76,6 @@ type UseFlatsData = {
   countOfActiveFilters: number;
   resetFilter: () => void;
   isLoading: boolean;
-  hideProjects: boolean;
 };
 
 type UseFlatsCallbacks = {
@@ -274,7 +273,6 @@ export const UseFlatsProvider = ({
       countOfActiveFilters,
       resetFilter,
       isLoading: !filterShape,
-      hideProjects: !!projects,
     }),
     [
       data,

@@ -1,0 +1,97 @@
+.table {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin-bottom: 30px;
+  color: black;
+  position: relative;
+
+  table {
+    border-collapse: collapse;
+    border-spacing: 0;
+
+    max-width: 100%;
+    width: 100%;
+
+    &.table--sticky {
+      will-change: transform;
+      top: 0;
+      position: absolute;
+      z-index: 2;
+    }
+  }
+
+  tbody tr:hover {
+    cursor: pointer;
+  }
+
+  tbody tr:nth-of-type(odd) {
+    background-color: white;
+  }
+
+  tbody tr:nth-of-type(even) {
+    background-color: whitesmoke;
+  }
+
+  thead tr {
+    background-color: whitesmoke;
+  }
+
+  th,
+  td {
+    text-align: center;
+  }
+
+  td {
+    padding: 20px;
+  }
+
+  th {
+    padding: 10px;
+    white-space: nowrap;
+    text-transform: uppercase;
+  }
+
+  &__head-sorter {
+    // this sizes are magic for ponuka bytov table
+    position: relative;
+    width: 7px;
+    display: inline-block;
+    height: 14px;
+    vertical-align: sub;
+
+    // triangels are aligned with magic numbers
+    &:before,
+    &:after {
+      content: "";
+      height: 0px;
+      width: 0px;
+      position: absolute;
+    }
+
+    &:before {
+      left: 5px;
+      top: 0px;
+      border-left: 5px solid transparent;
+      border-right: 5px solid transparent;
+      border-bottom: 5px solid black;
+    }
+
+    &:after {
+      left: 5px;
+      top: 7px;
+      border-left: 5px solid transparent;
+      border-right: 5px solid transparent;
+      border-top: 5px solid black;
+    }
+
+    &--asc:after {
+      display: none;
+    }
+
+    &--desc:before {
+      display: none;
+    }
+  }
+}
