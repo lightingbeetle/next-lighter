@@ -2,35 +2,36 @@ import React from 'react';
 import fs from 'fs';
 import path from 'path';
 import glob from 'glob';
-import dynamic from 'next/dynamic';
-import matter from 'gray-matter';
 
-const DesignSystemPage = ({ filename }) => {
-  const MDXContent = dynamic(
-    () => import(`../components/${filename}/${filename}.docs.mdx`)
-  );
+import { bundleMDX } from 'mdx-bundler';
+import { getMDXComponent } from 'mdx-bundler/client';
 
-  return (
-    <div>
-      <MDXContent />
-    </div>
-  );
+const DesignSystemPage = ({ code }) => {
+  const MDX = React.useMemo(() => getMDXComponent(code), [code]);
+
+  return <MDX />;
 };
 
 export async function getStaticProps({ params }) {
   const filename = path.join(params.slug, params.slug + '.docs.mdx');
 
-  const mdxPost = fs
-    .readFileSync(path.join(process.cwd(), 'src', 'components', filename))
-    .toString();
+  const pathToSource = path.join(process.cwd(), 'src', 'components', filename);
 
-  // @ts-ignore
-  const { data } = matter(mdxPost);
+  const source = fs.readFileSync(pathToSource).toString();
+
+  const { code, frontmatter } = await bundleMDX({
+    source,
+    cwd: path.dirname(pathToSource),
+    esbuildOptions: (options) => {
+      options.platform = 'node';
+      return options;
+    },
+  });
 
   return {
     props: {
-      filename: path.basename(filename, '.docs.mdx'),
-      title: data.title,
+      code,
+      title: frontmatter.title ?? 'Default title',
     },
   };
 }
