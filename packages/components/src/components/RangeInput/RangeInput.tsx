@@ -1,5 +1,6 @@
 import React from "react";
 import { useRanger, RangerOptions } from "react-ranger";
+import "./styles/style.scss";
 
 type RangeInputProps = RangerOptions;
 

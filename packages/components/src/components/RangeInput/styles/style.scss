@@ -1,24 +1,23 @@
-@use '../../../styles/tokens/color';
-@use '../../../styles/tokens/space';
+@use "../../../tokens";
 
 .range-input {
-  margin-bottom: space.get("small");
-  margin-left: space.get("xsmall");
-  margin-right: space.get("xsmall");
+  margin-bottom: tokens.space();
+  margin-left: tokens.space("s");
+  margin-right: tokens.space("s");
 
   &__handle {
     width: 20px;
     height: 20px;
     border-radius: 100%;
-    background-color: color.get("primary");
+    background-color: tokens.color("primary");
   }
 
   &__segment {
     height: 2px;
-    background-color: color.get("gray");
+    background-color: tokens.color("grey");
 
     &--1 {
-      background-color: color.get("primary");
+      background-color: tokens.color("primary");
     }
   }
 }
