@@ -1,10 +1,10 @@
 import React from "react";
 // @ts-ignore
 import { Table } from "components";
-import useFetchData from "../hooks/usePositionsData";
+import usePositionsData from "../hooks/usePositionsData";
 
 const Index = () => {
-  const { data, error, memoizedColumns } = useFetchData();
+  const { data, error, memoizedColumns } = usePositionsData();
 
   if (error) return "Nepodarilo sa načítať dáta";
   if (!data) return "Načítavam...";

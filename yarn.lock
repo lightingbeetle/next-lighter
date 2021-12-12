@@ -2568,13 +2568,6 @@
   resolved "https://registry.yarnpkg.com/@xmldom/xmldom/-/xmldom-0.7.5.tgz#09fa51e356d07d0be200642b0e4f91d8e6dd408d"
   integrity sha512-V3BIhmY36fXZ1OtVcI9W+FxQqxVLsPKcNjWigIaa81dLC9IolJl5Mt4Cvhmr0flUnjSpTdrbMTSbXqYqV5dT6A==
 
-a11y-dialog@^7.3.0:
-  version "7.3.0"
-  resolved "https://registry.yarnpkg.com/a11y-dialog/-/a11y-dialog-7.3.0.tgz#8f5de726ebc8d1e29977ee57cc49a4f2e54bc59f"
-  integrity sha512-xrpSBbOOtGHT+gXcTk9uXfvfFx1xd3LebBhjpjd5xedzeM2FPqNeT6BvLjB+ej8oEH2fCpDHKn5JIlmiNyV5bA==
-  dependencies:
-    focusable-selectors "^0.3.1"
-
 abab@^2.0.3, abab@^2.0.5:
   version "2.0.5"
   resolved "https://registry.yarnpkg.com/abab/-/abab-2.0.5.tgz#c0b678fb32d60fc1219c784d6a826fe385aeb79a"
@@ -6041,11 +6034,6 @@ focus-group@^0.3.1:
   version "0.3.1"
   resolved "https://registry.yarnpkg.com/focus-group/-/focus-group-0.3.1.tgz#e0f32ed86b0dabdd6ffcebdf898ecb32e47fedce"
   integrity sha1-4PMu2GsNq91v/OvfiY7LMuR/7c4=
-
-focusable-selectors@^0.3.1:
-  version "0.3.1"
-  resolved "https://registry.yarnpkg.com/focusable-selectors/-/focusable-selectors-0.3.1.tgz#7eacbca8dc6cc8d7f7563e5f5cc3699b91e20aaa"
-  integrity sha512-5JLtr0e1YJIfmnVlpLiG+av07dd0Xkf/KfswsXcei5KmLfdwOysTQsjF058ynXniujb1fvev7nql1x+CkC5ikw==
 
 for-in@^1.0.2:
   version "1.0.2"

@@ -3,7 +3,7 @@ import useSWR from "swr";
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
-const useFetchData = () => {
+const usePositionsData = () => {
   const { data, error } = useSWR("/api/positions", fetcher);
   const memoizedColumns = useMemo(
     () => [
@@ -32,4 +32,4 @@ const useFetchData = () => {
   return { data, error, memoizedColumns };
 };
 
-export default useFetchData;
+export default usePositionsData;
