@@ -1,0 +1,14 @@
+# Forms examples
+
+How to use forms in our projects
+
+- [Simple form](/simple)
+- [Recaptcha form](/recaptcha)
+- [Contact form](/contact)
+
+## Insights
+
+- [Using the fieldset and legend elements](https://accessibility.blog.gov.uk/2016/07/22/using-the-fieldset-and-legend-elements/) only in single multiple choice question or you have several questions relating to the same topic.
+- Try to provide customized validation messages ([Simple form](/simple))
+- Form elemtents id's are there just for the connection with `<label />`. Make sure all form components have uniqe id and use `useId` from React if possible. Attribute `name` is important, because that [will be send to server](ec.whatwg.org/multipage/forms.html#configuring-a-form-to-communicate-with-a-server) for collection `value`.
+- TODO: Why we use [react-hook-form](https://react-hook-form.com/) (Benefits, challenges...)?
