@@ -1,7 +1,6 @@
 import React, { useRef } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import ReCAPTCHA from "react-google-recaptcha";
-// @ts-ignore
 import { Input } from "components";
 
 function RecaptchaForm() {

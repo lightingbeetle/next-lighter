@@ -1,6 +1,6 @@
 import React from "react";
+// prettier-disable-next-line
 import { FormProvider, useForm } from "react-hook-form";
-// @ts-ignore
 import { Input } from "components";
 
 function SimpleForm() {
@@ -17,10 +17,10 @@ function SimpleForm() {
   };
 
   return (
-    <FormProvider {...methods}>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <fieldset>
-          <legend>Simple form</legend>
+    <>
+      <h1>Simple form example</h1>
+      <FormProvider {...methods}>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <Input
             type="text"
             id="name"
@@ -31,12 +31,10 @@ function SimpleForm() {
             }}
             {...methods.register("name", { required: true })}
           />
-          <div>
-            <button type="submit">Odoslať</button>
-          </div>
-        </fieldset>
-      </form>
-    </FormProvider>
+          <button type="submit">Odoslať</button>
+        </form>
+      </FormProvider>
+    </>
   );
 }
 

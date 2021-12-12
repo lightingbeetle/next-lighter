@@ -12,5 +12,5 @@ This is example of real project builded with Next.js and Wordpress as headless C
 
 ## Build
 
-* `npm run build` in this package
-* `npm run build:example-wordpress` in the root of this project
+- `npm run build` in this package
+- `npm run build:example-wordpress` in the root of this project

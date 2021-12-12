@@ -13,7 +13,7 @@ type DesignSystemPageProps = {
 const DesignSystemPage = ({
   children,
   routes,
-  title = "Default title"
+  title = "Default title",
 }: DesignSystemPageProps) => {
   return (
     <Styleguide

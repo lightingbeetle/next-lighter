@@ -3,7 +3,7 @@ import React, { createContext, ReactNode, useContext } from "react";
 type IconContextProps = { spritePath?: string };
 
 const IconContext = createContext<IconContextProps>({
-  spritePath: "/icons-sprite.svg"
+  spritePath: "/icons-sprite.svg",
 });
 
 export function useIconContext() {

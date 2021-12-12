@@ -1,6 +1,6 @@
 name: Test
 
-on: 
+on:
   pull_request:
   push:
     branches:
@@ -13,7 +13,7 @@ jobs:
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v2
-      
+
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
         run: echo "::set-output name=dir::$(yarn cache dir)"
@@ -28,7 +28,7 @@ jobs:
 
       - name: Install Dependencies
         run: yarn
-      
+
       - name: Build
         run: |
           yarn run build:hooks

@@ -15,7 +15,7 @@ $spaces: (
 ///   space();
 ///   space('small');
 ///   space('default');
-@function space($size: 'default') {
+@function space($size: "default") {
   @if map-has-key($spaces, $size) {
     $space: map.get($spaces, $size);
 

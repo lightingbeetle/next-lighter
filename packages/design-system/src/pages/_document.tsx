@@ -1,6 +1,6 @@
-import React from 'react';
-import Document from 'next/document';
-import { ServerStyleSheet } from '@lighting-beetle/lighter-styleguide';
+import React from "react";
+import Document from "next/document";
+import { ServerStyleSheet } from "@lighting-beetle/lighter-styleguide";
 
 export default class MyDocument extends Document {
   static async getInitialProps(ctx) {

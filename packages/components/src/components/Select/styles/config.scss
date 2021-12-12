@@ -15,7 +15,8 @@ $select: (
     padding: utils.rem(10px),
   ),
   focus: (
-    box-shadow: "#{tokens.$shadow-direct-default}, #{tokens.$shadow-ambient-default}",
+    box-shadow:
+      "#{tokens.$shadow-direct-default}, #{tokens.$shadow-ambient-default}",
     border-color: tokens.color("primary"),
     background-color: tokens.color("primary", 100),
   ),

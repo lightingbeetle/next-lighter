@@ -84,7 +84,7 @@ describe("rendering", () => {
 
       const buttons = screen.getAllByRole("button");
 
-      buttons.forEach(button => {
+      buttons.forEach((button) => {
         const { width, height } = button.getBoundingClientRect();
         expect(width).toBe(height);
       });

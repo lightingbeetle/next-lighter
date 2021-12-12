@@ -3,8 +3,8 @@ title: Button
 ---
 
 import { Preview, Props } from "@lighting-beetle/lighter-styleguide";
-import Button from './Button';
-import Icon from '../Icon';
+import Button from "./Button";
+import Icon from "../Icon";
 
 # Button
 
@@ -62,16 +62,24 @@ There are 3 main buttons purpose variatons: default (CTA), secondary and link. P
 
 <Preview>
   <Button purpose="secondary">Secondary</Button>
-  <Button purpose="secondary" isActive>Secondary</Button>
-  <Button purpose="secondary" isDisabled>Secondary</Button>
+  <Button purpose="secondary" isActive>
+    Secondary
+  </Button>
+  <Button purpose="secondary" isDisabled>
+    Secondary
+  </Button>
 </Preview>
 
 #### Link
 
 <Preview>
   <Button purpose="link">Link</Button>
-  <Button purpose="link" isActive>Link</Button>
-  <Button purpose="link" isDisabled>Link</Button>
+  <Button purpose="link" isActive>
+    Link
+  </Button>
+  <Button purpose="link" isDisabled>
+    Link
+  </Button>
 </Preview>
 
 ### Variant
@@ -80,8 +88,12 @@ There are 3 main buttons purpose variatons: default (CTA), secondary and link. P
 
 <Preview>
   <Button variant="plain">Default / CTA</Button>
-  <Button variant="plain" purpose="secondary">Default / CTA</Button>
-  <Button variant="plain" purpose="link">Default / CTA</Button>
+  <Button variant="plain" purpose="secondary">
+    Default / CTA
+  </Button>
+  <Button variant="plain" purpose="link">
+    Default / CTA
+  </Button>
 </Preview>
 
 ### Inline icons
@@ -91,15 +103,27 @@ Inline icons sit in line with text.
 #### Icon and text
 
 <Preview>
-  <Button><Icon name="heart" size="s" />Button</Button>
-  <Button type="primary">Button<Icon name="heart" size="s" /></Button>
-  <Button type="primary" size="s"><Icon name="heart" size="s" />Button</Button>
-  <Button size="l">Button<Icon name="heart" size="medium"/></Button>
+  <Button>
+    <Icon name="heart" size="s" />
+    Button
+  </Button>
+  <Button type="primary">
+    Button
+    <Icon name="heart" size="s" />
+  </Button>
+  <Button type="primary" size="s">
+    <Icon name="heart" size="s" />
+    Button
+  </Button>
+  <Button size="l">
+    Button
+    <Icon name="heart" size="medium" />
+  </Button>
 </Preview>
 
 #### Only icons
 
-Button with just icon without text should be square. 
+Button with just icon without text should be square.
 
 <Preview>
   <Button square size="s" aria-label="Go home">
