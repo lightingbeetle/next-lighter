@@ -1,8 +1,8 @@
 import React, { useRef, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import ReCAPTCHA from "react-google-recaptcha";
-// @ts-ignore
-import { Input, TextArea, ApprovalCheckbox, Error } from "components";
+import { Input, TextArea, Error } from "components";
+import ApprovalCheckbox from "../components/ApprovalCheckbox";
 
 function ComplexForm() {
   const recaptchaRef = useRef<ReCAPTCHA>(null);
@@ -52,11 +52,6 @@ function ComplexForm() {
 
   const SuccessMessage = () => (
     <div className="align-center">
-      <img
-        width="189"
-        src="/images/runner.svg"
-        className="mb-small align-self-center"
-      />
       <h3>Ďakujeme!</h3>
       <p className="align-self-center">
         Vaša správa bola úspešne odoslaná. Čoskoro vás budeme kontaktovať.

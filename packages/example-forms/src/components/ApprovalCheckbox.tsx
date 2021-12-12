@@ -1,5 +1,6 @@
 import React from "react";
-import RadioCheck from "./RadioCheck";
+// prettier-disable-next-line
+import { RadioCheck } from "components";
 
 const ApprovalCheckbox = React.forwardRef<HTMLInputElement>(
   function ApprovalCheckbox(

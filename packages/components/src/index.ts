@@ -3,13 +3,7 @@ import "./styles/globals.scss";
 import Bar, { BarItem, BarBreak } from "./components/Bar";
 import Button from "./components/Button";
 import Card, { CardContent, CardFooter, CardHeader } from "./components/Card";
-import {
-  Input,
-  TextArea,
-  RadioCheck,
-  Error,
-  ApprovalCheckbox,
-} from "./components/Forms";
+import { Input, TextArea, RadioCheck, Error } from "./components/Forms";
 import Icon from "./components/Icon";
 import Select from "./components/Select";
 
@@ -54,5 +48,4 @@ export {
   TextArea,
   RadioCheck,
   Error,
-  ApprovalCheckbox,
 };
