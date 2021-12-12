@@ -26,7 +26,7 @@
 
   position: relative;
   display: inline-grid;
-  grid-gap: tokens.space('s');
+  grid-gap: tokens.space("s");
   grid-auto-flow: column;
   align-items: center;
   text-align: left;
@@ -121,7 +121,7 @@
 
   @include utils.variants(config.$button-sizes, ".btn");
 
-    // button variants
+  // button variants
   @each $name, $props in config.$button-variants {
     .btn#{utils.variant-name($name)} {
       @include button-style($props);

@@ -1,10 +1,13 @@
 ---
-  title: Bar
+title: Bar
 ---
+
+import { Preview, Props, Rectangle } from "@lighting-beetle/lighter-styleguide";
+import Bar, { BarItem, BarBreak } from ".";
 
 # Bar
 
-Bar is used for creation of horizontal flexible width layouts with automatic 
+Bar is used for creation of horizontal flexible width layouts with automatic
 spacing between items.
 
 <Bar>
@@ -21,7 +24,7 @@ spacing between items.
 
 ## Children
 
-The `<Bar />` component accepts `<BarItem />` or `<BarBreak />` components as 
+The `<Bar />` component accepts `<BarItem />` or `<BarBreak />` components as
 a possible children.
 
 ### Without a break
@@ -44,7 +47,7 @@ This example uses only `<BarItem />` components as children to create a layout.
 
 ### With a break
 
-This example uses `<BarItem />` as well as `<BarBreak />` components as children 
+This example uses `<BarItem />` as well as `<BarBreak />` components as children
 to create a layout which is broken to two separate lines.
 
 <Preview>
@@ -68,7 +71,7 @@ There is a possibility to adjust properties of this component.
 
 ### No wrapping
 
-By default `<Bar />` is wrapping on horizontal overflow. 
+By default `<Bar />` is wrapping on horizontal overflow.
 
 <Bar>
   {[...Array(5)].map((item, index) => (
@@ -94,8 +97,8 @@ Best way to use no wrap is with flexible width items
 
 ### Flexible width
 
-If you use element that has width which can overflow a parent container, you 
-can use flexible properties for children items. 
+If you use element that has width which can overflow a parent container, you
+can use flexible properties for children items.
 
 #### Fill
 
@@ -194,7 +197,7 @@ There is an additional `small` size for space between an items.
 
 ### Vertical alignment
 
-There are three types (`top` | `middle` | `bottom`) of vertical aligment for items. 
+There are three types (`top` | `middle` | `bottom`) of vertical aligment for items.
 
 <Preview>
   <Bar align="top">
@@ -203,10 +206,11 @@ There are three types (`top` | `middle` | `bottom`) of vertical aligment for ite
     </BarItem>
     <BarItem isFilling>
       <Rectangle>
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque, ipsum
-        deleniti quia iure similique mollitia quam excepturi laudantium
-        architecto, aperiam magnam exercitationem magni commodi laborum
-        molestiae dolore. Corrupti, officia perferendis?
+        {" "}
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque, ipsum deleniti
+        quia iure similique mollitia quam excepturi laudantium architecto, aperiam
+        magnam exercitationem magni commodi laborum molestiae dolore. Corrupti, officia
+        perferendis?
       </Rectangle>
     </BarItem>
     <BarItem>
@@ -251,8 +255,8 @@ There are three types (`top` | `middle` | `bottom`) of vertical aligment for ite
 
 Default Bar flows in a `horizontal` direction by default. This can be changed.
 
-There is a possibility to change direction to `vertical`. This will change 
-direction for all viewports. 
+There is a possibility to change direction to `vertical`. This will change
+direction for all viewports.
 
 <Preview>
   <Bar direction="vertical">
@@ -261,10 +265,10 @@ direction for all viewports.
     </BarItem>
     <BarItem isFilling>
       <Rectangle tag="p">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi,
-        incidunt veniam minima quasi eligendi amet ullam explicabo laborum
-        aperiam accusantium hic laboriosam doloremque expedita odit ex
-        consequatur voluptas aliquid soluta.
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi, incidunt
+        veniam minima quasi eligendi amet ullam explicabo laborum aperiam
+        accusantium hic laboriosam doloremque expedita odit ex consequatur
+        voluptas aliquid soluta.
       </Rectangle>
     </BarItem>
     <BarItem>
@@ -275,12 +279,12 @@ direction for all viewports.
 
 #### Responsive
 
-There is a possibility to change direction for each viewport (breakpoint). 
-This can be done with simple object which specifies smallest viewport name with 
+There is a possibility to change direction for each viewport (breakpoint).
+This can be done with simple object which specifies smallest viewport name with
 a direction as a value.
 
-This examples specifies `vertical` direction for viewports from `XS` (smallest) 
-size and switches to `horizontal` as soon as `L` size of viewport is reached. If 
+This examples specifies `vertical` direction for viewports from `XS` (smallest)
+size and switches to `horizontal` as soon as `L` size of viewport is reached. If
 you change width of your window you can see it change.
 
 We have a separate documentation for [breakpoints](/utilities/breakpoints)
@@ -306,9 +310,9 @@ We have a separate documentation for [breakpoints](/utilities/breakpoints)
 
 ## Props
 
-If you are a developer, this would give you more information at once, about what 
+If you are a developer, this would give you more information at once, about what
 is possible with these components and what is not.
 
-<Props component={bar} />
-<Props component={baritem} />
-<Props component={barbreak} />
+<Props component={Bar} />
+<Props component={BarItem} />
+<Props component={BarBreak} />

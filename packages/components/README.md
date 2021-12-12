@@ -8,8 +8,8 @@ See [example](../example)
 
 ## Build
 
-* `npm run build` in this package
-* `npm run build:components` in the root of this project
+- `npm run build` in this package
+- `npm run build:components` in the root of this project
 
 ## Principles
 
@@ -22,13 +22,13 @@ Components are build in headless way where all logic is encapsulated in one or m
 ```js
 function useToggle() {
   const [on, setOnState] = React.useState(false);
-  const toggle = () => setOnState(o => !o);
+  const toggle = () => setOnState((o) => !o);
   const setOn = () => setOnState(true);
   const setOff = () => setOnState(false);
-  return {on, toggle, setOn, setOff};
+  return { on, toggle, setOn, setOff };
 }
 function Toggle() {
-  const {on, toggle, setOn, setOff} = useToggle();
+  const { on, toggle, setOn, setOff } = useToggle();
   return (
     <div>
       <button onClick={setOff}>Switch Off</button>
@@ -68,30 +68,30 @@ import useToggle from "./useToggle";
 const toggle = hoohIt((el) => {
   const { on, toggle, setOn, setOff } = useToggle();
 
-  const offEl = el.querySelector('[data-toggle-off]');
-  const onEl = el.querySelector('[data-toggle-on]');
-  const checkboxEl = el.querySelector('[data-toggle-value]');
+  const offEl = el.querySelector("[data-toggle-off]");
+  const onEl = el.querySelector("[data-toggle-on]");
+  const checkboxEl = el.querySelector("[data-toggle-value]");
 
   useEffect(() => {
     checkboxEl.checked = on;
   }, [on, checkboxEl]);
 
   useEffect(() => {
-    offEl.addEventListener('click', setOff);
-    onEl.addEventListener('click', setOn);
-    checkboxEl.addEventListener('change', toggle);
+    offEl.addEventListener("click", setOff);
+    onEl.addEventListener("click", setOn);
+    checkboxEl.addEventListener("change", toggle);
 
     return () => {
-      offEl.removeEventListener('click', setOff);
-      onEl.removeEventListener('click', setOn);
-      checkboxEl.removeEventListener('change', toggle);
-    }
+      offEl.removeEventListener("click", setOff);
+      onEl.removeEventListener("click", setOn);
+      checkboxEl.removeEventListener("change", toggle);
+    };
   }, [offEl, onEl, checkboxEl]);
 
   return {};
 });
 
-select(document.querySelector('[data-toggle]'));
+select(document.querySelector("[data-toggle]"));
 ```
 
 ### CSS variables
@@ -102,12 +102,12 @@ Components should be build with CSS variables to be more future capable and dyna
 
 Components are documented in MDX files. Documentation of every component should contain:
 
-* Basic visual example
-* Description of the component, why exists and when to or not to use it
-* Visual example of all variants with description why this wariant exists and code examples
-* Documentation of components React props
-* Documentation of static methods
-* Accessibility notes
+- Basic visual example
+- Description of the component, why exists and when to or not to use it
+- Visual example of all variants with description why this wariant exists and code examples
+- Documentation of components React props
+- Documentation of static methods
+- Accessibility notes
 
 ### Testing
 

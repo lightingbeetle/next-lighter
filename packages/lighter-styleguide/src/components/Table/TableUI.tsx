@@ -48,13 +48,8 @@ StyledTable.defaultProps = {
 };
 
 const TableUI = () => {
-  const {
-    getTableProps,
-    getTableBodyProps,
-    headerGroups,
-    rows,
-    prepareRow,
-  } = useTableContext();
+  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
+    useTableContext();
 
   return (
     <StyledResponsiveTable>

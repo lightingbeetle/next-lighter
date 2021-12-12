@@ -1,4 +1,4 @@
-const NodeEnvironment = require('jest-environment-node');
+const NodeEnvironment = require("jest-environment-node");
 const {
   findPort,
   launchApp,
@@ -6,11 +6,11 @@ const {
   nextStart,
   killApp,
   nextExportDefault,
-} = require('../utils');
-const { join } = require('path');
+} = require("../utils");
+const { join } = require("path");
 
-const appDir = join(__dirname, '../../');
-const outDir = join(appDir, 'out');
+const appDir = join(__dirname, "../../");
+const outDir = join(appDir, "out");
 
 class IntegrationEnvironment extends NodeEnvironment {
   async setup() {

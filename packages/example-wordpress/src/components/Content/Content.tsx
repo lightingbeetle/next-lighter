@@ -1,5 +1,5 @@
-import React from 'react';
-import ContentItem from './ContentItem';
+import React from "react";
+import ContentItem from "./ContentItem";
 
 const Content = ({ items }) => {
   return items.map((item, i) => <ContentItem key={i} {...item} />);

@@ -1,8 +1,8 @@
-import React from 'react';
-import DesignSystemPage from '../../components/DesignSystemPage';
-import { getDesignSystemRoutes } from '../../utils/getDesignSystemRoutes';
+import React from "react";
+import DesignSystemPage from "../../components/DesignSystemPage";
+import { getDesignSystemRoutes } from "../../utils/getDesignSystemRoutes";
 // @ts-ignore
-import TokensDocs from 'components/tokens/tokens.docs.mdx';
+import TokensDocs from "components/tokens/tokens.docs.mdx";
 
 const TokensPage = ({ routes, title }) => {
   return (
@@ -17,7 +17,7 @@ export async function getStaticProps() {
 
   return {
     props: {
-      title: 'Tokens',
+      title: "Tokens",
       routes,
     },
   };

@@ -2,6 +2,9 @@
 title: Icon
 ---
 
+import { Preview, Props } from "@lighting-beetle/lighter-styleguide";
+import Icon from ".";
+
 # Icon
 
 <Icon name="home" />
@@ -36,7 +39,7 @@ title: Icon
 
 ## Props
 
-<Props component={icon} />
+<Props component={Icon} />
 
 ## Customize path to sprite
 
@@ -67,13 +70,13 @@ Current implementation does not support:
   <Icon name="home" />
 </Preview>
 
-### Stand-alone meaningful icon  
+### Stand-alone meaningful icon
 
 <Preview>
-  <Icon name="home" alt="Go home"/>
+  <Icon name="home" alt="Go home" />
 </Preview>
 
-### Wrapped by link 
+### Wrapped by link
 
 <Preview>
   <a href="/" aria-label="Go home">

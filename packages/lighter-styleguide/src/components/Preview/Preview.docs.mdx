@@ -2,8 +2,8 @@
 title: Preview
 ---
 
-import Preview from '.';
-import { Link, Props } from '../';
+import Preview from ".";
+import { Link, Props } from "../";
 
 # Preview
 
@@ -13,7 +13,9 @@ Preview component is dedicated to displaing other components with code preview a
 
 ### Default
 
-<Preview><Link href="#">Link</Link></Preview>
+<Preview>
+  <Link href="#">Link</Link>
+</Preview>
 
 ## Props
 
@@ -44,7 +46,7 @@ type PreviewContextType = {
 };
 
 const MyPreviewUI = () => {
-  const { 
+  const {
     code,
     showCode,
     setShowCodem

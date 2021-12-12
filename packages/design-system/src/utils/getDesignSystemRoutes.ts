@@ -6,11 +6,11 @@ import matter from "gray-matter";
 export function getDesignSystemRoutes(prefix = "/") {
   const docsFilesMap = {
     components: glob.sync("../components/src/components/**/*.docs.mdx"),
-    base: ["../components/src/tokens/tokens.docs.mdx"]
+    base: ["../components/src/tokens/tokens.docs.mdx"],
   };
 
   const postsMap = Object.keys(docsFilesMap).reduce((acc, dir) => {
-    acc[dir] = docsFilesMap[dir].map(fileName => {
+    acc[dir] = docsFilesMap[dir].map((fileName) => {
       const markdownWithMetadata = fs
         .readFileSync(path.join(process.cwd(), fileName))
         .toString();
@@ -19,7 +19,7 @@ export function getDesignSystemRoutes(prefix = "/") {
 
       return {
         href: path.join(prefix, dir, path.basename(fileName, ".docs.mdx")),
-        title: data.title ?? "Page Title"
+        title: data.title ?? "Page Title",
       };
     });
     return acc;
@@ -28,11 +28,11 @@ export function getDesignSystemRoutes(prefix = "/") {
   return [
     {
       title: "Components",
-      routes: postsMap["components"]
+      routes: postsMap["components"],
     },
     {
       title: "Base",
-      routes: postsMap["base"]
-    }
+      routes: postsMap["base"],
+    },
   ];
 }

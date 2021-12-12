@@ -1,13 +1,13 @@
-import React from 'react';
-import Document, { Html, Head, Main, NextScript } from 'next/document';
-import micromatch from 'micromatch';
-import { promises as fs } from 'fs';
-import path from 'path';
-import customPages from '../custom-pages';
+import React from "react";
+import Document, { Html, Head, Main, NextScript } from "next/document";
+import micromatch from "micromatch";
+import { promises as fs } from "fs";
+import path from "path";
+import customPages from "../custom-pages";
 import {
   getDocumentFiles,
   getStaticDocumentFiles,
-} from '../utils/get-document-files';
+} from "../utils/get-document-files";
 
 // TODO:
 // - this component is emitting "Warning: Each child in a list should have a unique "key" prop." error. Not sure why.
@@ -73,8 +73,8 @@ class MyDocument extends Document<MyDocumentProps> {
       nextRuntime = customPage.nextRuntime;
 
       const manifestFile = await fs.readFile(
-        path.resolve('.next', 'custom-entries-build-manifest.json'),
-        'utf8'
+        path.resolve(".next", "custom-entries-build-manifest.json"),
+        "utf8"
       );
 
       if (manifestFile) {

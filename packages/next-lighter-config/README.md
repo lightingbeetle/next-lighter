@@ -9,9 +9,7 @@ Custom Next.js config designed for building pages without Next.js runtime.
 const nextLighterConfig = require("@lighting-beetle/next-lighter-config");
 const { extend } = require("next-compose-plugins");
 
-module.exports = extend(
-  nextLighterConfig()
-).withPlugins([]);
+module.exports = extend(nextLighterConfig()).withPlugins([]);
 ```
 
 ## Features
@@ -28,9 +26,9 @@ module.exports = extend(
 const nextLighterConfig = require("@lighting-beetle/next-lighter-config");
 const { extend } = require("next-compose-plugins");
 
-module.exports = extend(
-  nextLighterConfig(/* { ...options } */)
-).withPlugins([/* ...other nextjs plugins (see next-compose-plugins) */]);
+module.exports = extend(nextLighterConfig(/* { ...options } */)).withPlugins([
+  /* ...other nextjs plugins (see next-compose-plugins) */
+]);
 ```
 
 ### `tsConfigPath`
@@ -43,7 +41,7 @@ Path to `tsconfig` file, which is used to process Typescript files.
 
 > `string`/`array[string]` | (defaults to `../components`)
 
-Path to Typescript React components for generating documentation with react-docgen-typescript. 
+Path to Typescript React components for generating documentation with react-docgen-typescript.
 
 ### `staticEntriesMap`
 
@@ -67,7 +65,6 @@ module.exports = extend(
     staticEntriesMap: { static: "../components/src/static.ts" },
   })
 ).withPlugins([]);
-
 ```
 
 Static pages needs to be defined in `custom-pages.ts` file like on example in the root of `src` folder.
@@ -75,7 +72,7 @@ Static pages needs to be defined in `custom-pages.ts` file like on example in th
 ```typescript
 // custom-pages.ts
 const customPages: customPages = {
-  '/static': { nextRuntime: false, scripts: ['static.js'] },
+  "/static": { nextRuntime: false, scripts: ["static.js"] },
 };
 
 export default customPages;

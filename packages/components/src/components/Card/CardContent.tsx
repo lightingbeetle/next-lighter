@@ -19,4 +19,6 @@ const CardContent = ({ className, fill, ...other }: CardContentProps) => {
   return <div className={classes} {...other} />;
 };
 
+CardContent.displayName = "CardContent";
+
 export default CardContent;

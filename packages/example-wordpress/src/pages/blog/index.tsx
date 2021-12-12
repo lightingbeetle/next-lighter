@@ -1,5 +1,5 @@
-import React from 'react';
-import { getPosts } from '../../queries';
+import React from "react";
+import { getPosts } from "../../queries";
 
 export default function Index({ posts }) {
   return (
@@ -8,7 +8,7 @@ export default function Index({ posts }) {
       {posts.map((post) => (
         <article key={post.slug}>
           <h2>{post.title}</h2>
-          <div dangerouslySetInnerHTML={{ __html: post?.excerpt ?? '' }} />
+          <div dangerouslySetInnerHTML={{ __html: post?.excerpt ?? "" }} />
           <a href={`/blog/${post.slug}`}>Read more</a>
         </article>
       ))}

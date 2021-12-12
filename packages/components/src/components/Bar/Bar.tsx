@@ -1,6 +1,5 @@
 import React from "react";
 import cx from "classnames";
-import "./styles/style.scss";
 import { Responsive } from "../../utils/responsive";
 import { genResponsiveClasses } from "../../utils/classes";
 
@@ -101,5 +100,7 @@ const Bar = ({
 
   return <div className={classes} {...other} />;
 };
+
+Bar.displayName = "Bar";
 
 export default Bar;

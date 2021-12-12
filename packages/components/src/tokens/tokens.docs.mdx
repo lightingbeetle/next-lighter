@@ -2,7 +2,7 @@
 title: Design Tokens
 ---
 
-import { TokensTable, colors, breakpoints, spaces, fonts, shadows } from '.';
+import { TokensTable, colors, breakpoints, spaces, fonts, shadows } from ".";
 
 # Design tokens
 
@@ -14,12 +14,12 @@ Design tokens are atoms of vizual design. Specifically, they are named entities 
   tokens={colors}
   name="color"
   usageFormatJS={({ token }) => {
-    const [ name, shade ] = token.split('.');
-    return `color('${name}'${shade !== '500' ? `, ${shade}` : ''});`;
+    const [name, shade] = token.split(".");
+    return `color('${name}'${shade !== "500" ? `, ${shade}` : ""});`;
   }}
   usageFormatSCSS={({ token }) => {
-    const [ name, shade ] = token.split('.');
-    return `color('${name}'${shade !== '500' ? `, ${shade}` : ''});`;
+    const [name, shade] = token.split(".");
+    return `color('${name}'${shade !== "500" ? `, ${shade}` : ""});`;
   }}
 />
 
@@ -27,7 +27,7 @@ Design tokens are atoms of vizual design. Specifically, they are named entities 
 
 <TokensTable
   tokens={breakpoints}
-  name='breakpoint'
+  name="breakpoint"
   usageFormatCSS={null}
   usageFormatSCSS={({ token }) => {
     return `@include breakpoint('${token}') { /* css */ }`;
@@ -36,27 +36,24 @@ Design tokens are atoms of vizual design. Specifically, they are named entities 
 
 ## Space
 
-<TokensTable
-  tokens={spaces}
-  name='space'
-/>
+<TokensTable tokens={spaces} name="space" />
 
 ## Space
 
 <TokensTable
   tokens={fonts}
-  name='font'
+  name="font"
   usageFormatJS={({ token }) => `fonts.${token}`}
-  usageFormatSCSS={({ token }) => `$font-${token.replace('.', '-')}`}
+  usageFormatSCSS={({ token }) => `$font-${token.replace(".", "-")}`}
 />
 
 ## Shadows
 
 <TokensTable
   tokens={shadows}
-  name='shadow'
+  name="shadow"
   usageFormatJS={({ token }) => `shadows.${token}`}
-  usageFormatSCSS={({ token }) => `$shadows-${token.replace('.', '-')}`}
+  usageFormatSCSS={({ token }) => `$shadows-${token.replace(".", "-")}`}
 />
 
 ## Import to JS
@@ -64,16 +61,12 @@ Design tokens are atoms of vizual design. Specifically, they are named entities 
 It's possible to import tokens and helper functions from example to app.
 
 ```js
-import {
-  colorCSSVar,
-  color,
-  colors,
-} from 'components';
+import { colorCSSVar, color, colors } from "components";
 
 const style = {
-  backgroundColor: color('primary'), // css variable (preferred)
-  backgroundColor: colorHex('primary'), // hex value
-  color: colors['primary'][500], // hex value
+  backgroundColor: color("primary"), // css variable (preferred)
+  backgroundColor: colorHex("primary"), // hex value
+  color: colors["primary"][500], // hex value
 };
 ```
 
@@ -82,11 +75,10 @@ const style = {
 Tokens can be used similarly in SCSS environment.
 
 ```scss
-@use 'components/src/tokens';
+@use "components/src/tokens";
 
 .component {
-  background-color: tokens.color('primary'); // preferred
-  background-color: map.get(tokens.$colors, 'primary', 500);
+  background-color: tokens.color("primary"); // preferred
+  background-color: map.get(tokens.$colors, "primary", 500);
 }
 ```
-
