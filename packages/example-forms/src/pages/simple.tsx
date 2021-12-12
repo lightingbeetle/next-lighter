@@ -17,10 +17,10 @@ function SimpleForm() {
   };
 
   return (
-    <FormProvider {...methods}>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <fieldset>
-          <legend>Simple form</legend>
+    <>
+      <h1>Simple form example</h1>
+      <FormProvider {...methods}>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <Input
             type="text"
             id="name"
@@ -32,9 +32,9 @@ function SimpleForm() {
             {...methods.register("name", { required: true })}
           />
           <button type="submit">Odoslať</button>
-        </fieldset>
-      </form>
-    </FormProvider>
+        </form>
+      </FormProvider>
+    </>
   );
 }
 
