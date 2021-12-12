@@ -7,27 +7,25 @@ Set of components to build styleguides and design systems.
 ## Quick start
 
 ```js
-import React from 'react';
-import { Styleguide } from '@lighting-beetle/lighter-styleguide';
+import React from "react";
+import { Styleguide } from "@lighting-beetle/lighter-styleguide";
 
-const DesignSystemPage = ({
-  children,
-}) => {
+const DesignSystemPage = ({ children }) => {
   return (
     <Styleguide
       routes={[
         {
-          title: 'Design system',
-          href: '/',
+          title: "Design system",
+          href: "/",
         },
         {
-          title: 'Components',
+          title: "Components",
           routes: [
             {
-              title: 'Button',
-              href: '/buttons',
-            }
-          ]
+              title: "Button",
+              href: "/buttons",
+            },
+          ],
         },
       ]}
       currentPage="Title"
@@ -60,13 +58,12 @@ Components are build in headless way where all logic is encapsulated in one or m
 
 ### Compound components
 
-Addtion to the headless components pattern with compound components are able to share components logic to children and with that build entairly custom UI without need to replicate the components logic. This is important when there is need to customize styelguide UI, but not redo base components like `Props` or `Preview` because they are fairly complex.  See more at [React Hooks: Compound Components](https://kentcdodds.com/blog/compound-components-with-react-hooks).
+Addtion to the headless components pattern with compound components are able to share components logic to children and with that build entairly custom UI without need to replicate the components logic. This is important when there is need to customize styelguide UI, but not redo base components like `Props` or `Preview` because they are fairly complex. See more at [React Hooks: Compound Components](https://kentcdodds.com/blog/compound-components-with-react-hooks).
 
 #### Example of compound component
 
 ```js
-
-import { Props, usePropsContext } from '@lighting-beetle/lighter-styleguide';
+import { Props, usePropsContext } from "@lighting-beetle/lighter-styleguide";
 
 const MyPropsTable = () => {
   const { props, displayName, description } = usePropsContext();

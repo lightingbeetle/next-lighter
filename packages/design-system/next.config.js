@@ -10,7 +10,7 @@ const resolveComponents = (nextConfig = {}) => {
 
       config.resolve.alias["components"] = [
         resolve(__dirname, "..", "components", "src"),
-        resolve(__dirname, "..", "components", "dist")
+        resolve(__dirname, "..", "components", "dist"),
       ];
 
       if (typeof nextConfig.webpack === "function") {
@@ -18,7 +18,7 @@ const resolveComponents = (nextConfig = {}) => {
       }
 
       return config;
-    }
+    },
   });
 };
 
@@ -26,5 +26,5 @@ const resolveComponents = (nextConfig = {}) => {
 // - this should work without .withPlugins([]), but that's probably bug in 'next-compose-plugins'
 module.exports = extend(nextLighterConfig()).withPlugins([
   transpileModules(["components"]),
-  resolveComponents
+  resolveComponents,
 ]);

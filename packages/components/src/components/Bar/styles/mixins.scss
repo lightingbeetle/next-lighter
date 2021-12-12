@@ -6,10 +6,9 @@
 @use "../../../tokens";
 @use "../../../styles/utils";
 
-
 @mixin bar {
   display: flex;
-  flex-wrap: wrap; 
+  flex-wrap: wrap;
   margin-bottom: tokens.space();
 }
 
@@ -97,7 +96,7 @@
   @each $breakpoint, $w in tokens.$breakpoints {
     @include tokens.breakpoint($breakpoint) {
       @each $size, $props in config.$spacing {
-        .bar-#{utils.variant-name($breakpoint, "-")}-horizontal#{utils.variant-name($size, '-')} {
+        .bar-#{utils.variant-name($breakpoint, "-")}-horizontal#{utils.variant-name($size, "-")} {
           @include bar-layout;
 
           .bar__item {
@@ -110,7 +109,7 @@
       }
 
       @each $size, $props in config.$spacing-vertical {
-        .bar-#{utils.variant-name($breakpoint, "-")}-vertical#{utils.variant-name($size, '-')} {
+        .bar-#{utils.variant-name($breakpoint, "-")}-vertical#{utils.variant-name($size, "-")} {
           @include bar-layout("vertical");
 
           .bar__item {

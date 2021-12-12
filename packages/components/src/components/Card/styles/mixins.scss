@@ -8,7 +8,7 @@
 @use "./config";
 
 @mixin card($card: config.$card) {
-  $border-radius: map.get($card, 'border-radius');
+  $border-radius: map.get($card, "border-radius");
   @include utils.css-map($card);
 
   display: flex;

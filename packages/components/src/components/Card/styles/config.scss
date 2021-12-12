@@ -2,7 +2,7 @@
 // CARD - CONFIGURATION
 // ---------------------------------------------
 
-@use '../../../tokens';
+@use "../../../tokens";
 
 $spacing: tokens.space();
 
@@ -11,7 +11,7 @@ $card: (
   border: 1px solid tokens.color("grey", 300),
   border-radius: 3px,
   box-shadow: #{tokens.$shadow-ambient-default,
-    tokens.$shadow-direct-default},
+  tokens.$shadow-direct-default},
 );
 
 $section: (

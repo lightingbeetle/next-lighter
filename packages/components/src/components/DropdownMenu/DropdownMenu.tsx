@@ -21,6 +21,6 @@ const DropdownMenu = forwardRef<HTMLUListElement, DropdownMenuProps>(
   }
 );
 
-DropdownMenu.displayName = 'DropdownMenu';
+DropdownMenu.displayName = "DropdownMenu";
 
 export default DropdownMenu;

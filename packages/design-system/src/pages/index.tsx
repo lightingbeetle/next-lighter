@@ -1,6 +1,6 @@
-import React from 'react';
-import DesignSystemPage from '../components/DesignSystemPage';
-import { getDesignSystemRoutes } from '../utils/getDesignSystemRoutes';
+import React from "react";
+import DesignSystemPage from "../components/DesignSystemPage";
+import { getDesignSystemRoutes } from "../utils/getDesignSystemRoutes";
 
 function Index({ routes }) {
   return (

@@ -40,6 +40,6 @@ const CardHeader = ({
   );
 };
 
-CardHeader.displayName = 'CardHeader';
+CardHeader.displayName = "CardHeader";
 
 export default CardHeader;

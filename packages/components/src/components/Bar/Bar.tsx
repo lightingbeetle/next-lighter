@@ -101,6 +101,6 @@ const Bar = ({
   return <div className={classes} {...other} />;
 };
 
-Bar.displayName = 'Bar';
+Bar.displayName = "Bar";
 
 export default Bar;

@@ -2,11 +2,13 @@
 
 [See live example project](https://next-lighter.lbx.sk)
 [See live example design system](https://next-lighter.lbx.sk)
+
 ## Quick start
 
 `npx degit github:lightingbeetle/next-lighter my-new-project`
 
 [Degit](https://github.com/Rich-Harris/degit) will clone this repository without git history.
+
 ### Install
 
 Currently only `yarn` is supported for installation of this repository.
@@ -19,7 +21,7 @@ yarn
 
 #### Prebuild before first dev start
 
-Run `npm run build` before first `dev` start. Some packages need to be built 
+Run `npm run build` before first `dev` start. Some packages need to be built
 before starting `dev` for the first time. It's a known issue, that needs to be resolved.
 
 #### Dev
