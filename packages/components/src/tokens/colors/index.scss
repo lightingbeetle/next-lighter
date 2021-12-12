@@ -29,13 +29,13 @@ $colors: (
   ),
   "black": (
     500: #000,
-  )
+  ),
 );
 
 @function color($color, $shade: 500) {
   @if not map.has-key($colors, $color) {
     @warn "Color '#{$color}' is not defined in $colors";
-  } @else if not map.has-key($colors, $color, $shade){
+  } @else if not map.has-key($colors, $color, $shade) {
     @warn "Color '#{$color}.#{$shade}' is not defined in $colors";
   }
 

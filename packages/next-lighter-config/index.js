@@ -1,57 +1,61 @@
 // const path = require("path");
 const withPlugins = require("next-compose-plugins");
-const mdx = require('@next/mdx');
+const mdx = require("@next/mdx");
 
-const frontMatterToMDXRemarkPlugin = require('./utils/frontMatterToMDXRemarkPlugin');
-const CustomEntriesBuildManifestPlugin = require('./utils/custom-entries-build-manifest-plugin');
+const frontMatterToMDXRemarkPlugin = require("./utils/frontMatterToMDXRemarkPlugin");
+const CustomEntriesBuildManifestPlugin = require("./utils/custom-entries-build-manifest-plugin");
 
-const noFS = () => (nextConfig = {}) => {
-  return Object.assign({}, nextConfig, {
-    webpack(config, options) {
-      if (!options.isServer) {
-        config.resolve.fallback = { fs: false, path: false };
-      }
-      if (typeof nextConfig.webpack === 'function') {
-        return nextConfig.webpack(config, options);
-      }
+const noFS =
+  () =>
+  (nextConfig = {}) => {
+    return Object.assign({}, nextConfig, {
+      webpack(config, options) {
+        if (!options.isServer) {
+          config.resolve.fallback = { fs: false, path: false };
+        }
+        if (typeof nextConfig.webpack === "function") {
+          return nextConfig.webpack(config, options);
+        }
 
-      return config;
-    },
-  });
-};
+        return config;
+      },
+    });
+  };
 
-const staticEntries = ({ entriesMap }) => (nextConfig = {}) => {
-  return Object.assign({}, nextConfig, {
-    webpack(config, options) {
-      // Static entry file without React runtime.
-      if (!options.isServer && entriesMap) {
-        // add entriesMaps as entries to next webpack config
-        const originalEntry = config.entry;
-        config.entry = async () => {
-          const entries = await originalEntry();
+const staticEntries =
+  ({ entriesMap }) =>
+  (nextConfig = {}) => {
+    return Object.assign({}, nextConfig, {
+      webpack(config, options) {
+        // Static entry file without React runtime.
+        if (!options.isServer && entriesMap) {
+          // add entriesMaps as entries to next webpack config
+          const originalEntry = config.entry;
+          config.entry = async () => {
+            const entries = await originalEntry();
 
-          // mutation is ok here
-          Object.assign(entries, entriesMap);
+            // mutation is ok here
+            Object.assign(entries, entriesMap);
 
-          return entries;
-        };
+            return entries;
+          };
 
-        // custom build manifest file, because next.js build-manifest.json don't contains 'static' entry and we need to know entry hash in production
-        config.plugins.unshift(
-          new CustomEntriesBuildManifestPlugin({
-            entries: Object.keys(entriesMap),
-          })
-        );
-      }
+          // custom build manifest file, because next.js build-manifest.json don't contains 'static' entry and we need to know entry hash in production
+          config.plugins.unshift(
+            new CustomEntriesBuildManifestPlugin({
+              entries: Object.keys(entriesMap),
+            })
+          );
+        }
 
-      if (typeof nextConfig.webpack === 'function') {
-        return nextConfig.webpack(config, options);
-      }
+        if (typeof nextConfig.webpack === "function") {
+          return nextConfig.webpack(config, options);
+        }
 
-      return config;
-    },
-  });
-};
+        return config;
+      },
+    });
+  };
 
 // FIXME: This loader is not supported anymore and it was causeing memory leaks and crashing node. https://github.com/storybookjs/babel-plugin-react-docgen could be option for replacing this, but I couldn't make it work.
 // const reactDocgenTypescript = ({
@@ -108,6 +112,6 @@ module.exports = ({
       noFS(),
     ],
     {
-      pageExtensions: ['js', 'jsx', 'mdx', 'ts', 'tsx'],
+      pageExtensions: ["js", "jsx", "mdx", "ts", "tsx"],
     }
   );

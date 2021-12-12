@@ -1,6 +1,6 @@
-import React from 'react';
-import Link from 'next/link';
-import { Select, Button } from 'components';
+import React from "react";
+import Link from "next/link";
+import { Select, Button } from "components";
 
 export default function Home() {
   return (
@@ -12,9 +12,9 @@ export default function Home() {
       </p>
       <Select
         items={[
-          { label: 'Item 1', value: 'item 1' },
-          { label: 'Item 2', value: 'item 2' },
-          { label: 'Item 3', value: 'item 3' },
+          { label: "Item 1", value: "item 1" },
+          { label: "Item 2", value: "item 2" },
+          { label: "Item 3", value: "item 3" },
         ]}
       />
       <Button>Button</Button>

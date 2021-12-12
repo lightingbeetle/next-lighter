@@ -45,9 +45,9 @@ export async function getStaticProps({ params }) {
       options.plugins = [
         ...options.plugins,
         {
-          name: 'empty-(s)css-imports',
+          name: "empty-(s)css-imports",
           setup(build) {
-            build.onLoad({ filter: /\.(s)css$/ }, () => ({ contents: '' }));
+            build.onLoad({ filter: /\.(s)css$/ }, () => ({ contents: "" }));
           },
         },
       ];

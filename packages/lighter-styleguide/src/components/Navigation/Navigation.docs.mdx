@@ -2,27 +2,29 @@
 title: Navigation
 ---
 
-import { Preview, Props, Link } from '..';
-import Navigation, { NavigationItem } from '.';
+import { Preview, Props, Link } from "..";
+import Navigation, { NavigationItem } from ".";
 
 # Navigation
 
 <Preview>
-  <Navigation routes={[
-  {
-    title: "Home",
-    href: <Link href="/" />
-  },
-  {
-    title: "Components",
-    routes: [
+  <Navigation
+    routes={[
       {
-        title: "Navigation",
-        href: <Link href="/Navigation" />
+        title: "Home",
+        href: <Link href="/" />,
       },
-    ]
-  }
-]} />
+      {
+        title: "Components",
+        routes: [
+          {
+            title: "Navigation",
+            href: <Link href="/Navigation" />,
+          },
+        ],
+      },
+    ]}
+  />
 </Preview>
 
 ## Props
@@ -49,11 +51,8 @@ type NavigationProps = {
 };
 
 const MyNavigationTree = () => {
-  const {
-    children,
-    activePage,
-    customUI,
-  }: NavigationProps = useNavigationContext();
+  const { children, activePage, customUI }: NavigationProps =
+    useNavigationContext();
 
   return <div />; // UI
 };

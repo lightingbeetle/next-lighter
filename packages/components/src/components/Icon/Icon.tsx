@@ -49,6 +49,6 @@ const Icon = ({
   );
 };
 
-Icon.displayName = 'Icon';
+Icon.displayName = "Icon";
 
 export default Icon;

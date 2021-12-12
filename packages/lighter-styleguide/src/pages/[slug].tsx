@@ -1,10 +1,10 @@
-import React from 'react';
-import fs from 'fs';
-import path from 'path';
-import glob from 'glob';
+import React from "react";
+import fs from "fs";
+import path from "path";
+import glob from "glob";
 
-import { bundleMDX } from 'mdx-bundler';
-import { getMDXComponent } from 'mdx-bundler/client';
+import { bundleMDX } from "mdx-bundler";
+import { getMDXComponent } from "mdx-bundler/client";
 
 const DesignSystemPage = ({ code }) => {
   const MDX = React.useMemo(() => getMDXComponent(code), [code]);
@@ -13,9 +13,9 @@ const DesignSystemPage = ({ code }) => {
 };
 
 export async function getStaticProps({ params }) {
-  const filename = path.join(params.slug, params.slug + '.docs.mdx');
+  const filename = path.join(params.slug, params.slug + ".docs.mdx");
 
-  const pathToSource = path.join(process.cwd(), 'src', 'components', filename);
+  const pathToSource = path.join(process.cwd(), "src", "components", filename);
 
   const source = fs.readFileSync(pathToSource).toString();
 
@@ -23,7 +23,7 @@ export async function getStaticProps({ params }) {
     source,
     cwd: path.dirname(pathToSource),
     esbuildOptions: (options) => {
-      options.platform = 'node';
+      options.platform = "node";
       return options;
     },
   });
@@ -31,18 +31,18 @@ export async function getStaticProps({ params }) {
   return {
     props: {
       code,
-      title: frontmatter.title ?? 'Default title',
+      title: frontmatter.title ?? "Default title",
     },
   };
 }
 
 export async function getStaticPaths() {
-  const docsFiles = glob.sync('src/components/**/*.docs.mdx');
+  const docsFiles = glob.sync("src/components/**/*.docs.mdx");
 
   // Loop through all post files and create array of slugs (to create links)
   const paths = docsFiles.map((filename) => ({
     params: {
-      slug: path.basename(filename, '.docs.mdx'),
+      slug: path.basename(filename, ".docs.mdx"),
     },
   }));
 

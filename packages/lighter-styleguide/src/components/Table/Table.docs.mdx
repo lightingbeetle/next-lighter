@@ -2,27 +2,33 @@
 title: Table
 ---
 
-import Table from '.';
-import { useMemo } from 'react';
-import { Preview, Props } from '..';
+import Table from ".";
+import { useMemo } from "react";
+import { Preview, Props } from "..";
 
 export const TableExample = () => {
-  const columns = useMemo(() => [
-      { accessor: 'first', Header: 'First' },
-      { accessor: 'second', Header: 'Second' },
-    ], []);
-  const data = useMemo(() => [
+  const columns = useMemo(
+    () => [
+      { accessor: "first", Header: "First" },
+      { accessor: "second", Header: "Second" },
+    ],
+    []
+  );
+  const data = useMemo(
+    () => [
       {
-        first: 'First item in first column',
-        second: 'Second item in first column',
+        first: "First item in first column",
+        second: "Second item in first column",
       },
       {
-        first: 'First item in second column',
-        second: 'Second item in second column',
+        first: "First item in second column",
+        second: "Second item in second column",
       },
-    ], []);
-  return <Table columns={columns} data={data} />
-}
+    ],
+    []
+  );
+  return <Table columns={columns} data={data} />;
+};
 
 # Table
 

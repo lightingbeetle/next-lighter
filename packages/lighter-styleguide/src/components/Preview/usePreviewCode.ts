@@ -12,21 +12,21 @@ export type UsePreviewCode = {
 
 const getJSXAsStringFromCode = ({
   code,
-  JSXOptions = {}
+  JSXOptions = {},
 }: Pick<UsePreviewCode, "code" | "JSXOptions">) => {
   const { filterProps = [], ...otherOptions } = JSXOptions;
 
   const reactElementToJSXStringOptions = {
     showDefaultProps: false,
     showFunctions: true,
-    functionValue: fn => fn.name,
-    displayName: ReactElement => ReactElement.type.displayName,
+    functionValue: (fn) => fn.name,
+    displayName: (ReactElement) => ReactElement.type.displayName,
 
     filterProps:
       typeof filterProps === "function"
         ? filterProps
         : ["mdxType", "originalType", ...filterProps],
-    ...otherOptions
+    ...otherOptions,
   };
 
   // if it's text, return it
@@ -39,7 +39,7 @@ const getJSXAsStringFromCode = ({
     // if it's array, we need to pass elemenets one by one
     if (Array.isArray(code)) {
       return code
-        .map(markupItem =>
+        .map((markupItem) =>
           reactElementToJSXString(markupItem, reactElementToJSXStringOptions)
         )
         .join("\n");
@@ -59,7 +59,7 @@ const getJSXAsStringFromCode = ({
 const usePreviewCode = ({
   code,
   codeType,
-  JSXOptions
+  JSXOptions,
 }: UsePreviewCode): { codeAsString: string } => {
   let codeAsString;
 
@@ -73,7 +73,7 @@ const usePreviewCode = ({
     case "jsx":
       codeAsString = getJSXAsStringFromCode({
         code,
-        JSXOptions
+        JSXOptions,
       });
       break;
   }

@@ -3,8 +3,8 @@
 // ---------------------------------------------
 
 @use "sass:map";
-@use '../../../tokens';
-@use '../../../styles/utils';
+@use "../../../tokens";
+@use "../../../styles/utils";
 @use "./../../Icon/styles/config" as icons;
 
 $button: (
@@ -53,9 +53,9 @@ $button-sizes: (
 );
 
 $button-icon-sizes: (
-  default: map.get(icons.$icon-sizes, 's'),
-  s: map.get(icons.$icon-sizes, 's'),
-  l: map.get(icons.$icon-sizes, 'default'),
+  default: map.get(icons.$icon-sizes, "s"),
+  s: map.get(icons.$icon-sizes, "s"),
+  l: map.get(icons.$icon-sizes, "default"),
 );
 
 /// Generates button visual variants.
@@ -126,4 +126,3 @@ $button-purposes: (
     ),
   ),
 );
-

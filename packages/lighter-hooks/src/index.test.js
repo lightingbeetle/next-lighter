@@ -2,10 +2,10 @@
  * @jest-environment jsdom
  */
 
-import { useCallback, useEffect, useState } from 'react';
-import { renderHook } from '@testing-library/react-hooks';
-import { act } from 'react-dom/test-utils';
-import hookIt from '.';
+import { useCallback, useEffect, useState } from "react";
+import { renderHook } from "@testing-library/react-hooks";
+import { act } from "react-dom/test-utils";
+import hookIt from ".";
 
 const mountMock = jest.fn();
 const umountMock = jest.fn();
@@ -13,7 +13,7 @@ const umountMock = jest.fn();
 const expectToThrow = (func, message) => {
   // Even though the error is caught, it still gets printed to the console
   // so we mock that out to avoid the wall of red text.
-  jest.spyOn(console, 'error');
+  jest.spyOn(console, "error");
   console.error.mockImplementation(() => {});
 
   expect(func).toThrow(message);
@@ -50,7 +50,7 @@ beforeEach(() => {
   umountMock.mockReset();
 });
 
-test('hook is executed', () => {
+test("hook is executed", () => {
   const { result } = renderHook(() => hookIt(() => useHook()));
 
   act(() => {
@@ -60,7 +60,7 @@ test('hook is executed', () => {
   expect(mountMock).toBeCalledTimes(1);
 });
 
-test('hook is interactive', () => {
+test("hook is interactive", () => {
   const { result } = renderHook(() => hookIt(() => useCounter()));
 
   act(() => {
@@ -70,7 +70,7 @@ test('hook is interactive', () => {
   expect(result.current().count).toBe(1);
 });
 
-test('hook can be unhooked', () => {
+test("hook can be unhooked", () => {
   const { result } = renderHook(() => hookIt(() => useCounter()));
 
   act(() => {
@@ -84,7 +84,7 @@ test('hook can be unhooked', () => {
   expect(() => result.current().increment()).toThrowError();
 });
 
-test('unhooked hook will run unmount effects', () => {
+test("unhooked hook will run unmount effects", () => {
   const { result } = renderHook(() => hookIt(() => useHook()));
 
   act(() => {
@@ -99,7 +99,7 @@ test('unhooked hook will run unmount effects', () => {
   expect(umountMock).toBeCalledTimes(1);
 });
 
-test('infinite hook is throwing error', () => {
+test("infinite hook is throwing error", () => {
   const { result } = renderHook(() => hookIt(() => useInfinityHook()));
 
   expectToThrow(

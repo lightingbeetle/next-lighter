@@ -11,6 +11,6 @@ const Card = ({ className, ...other }: CardProps) => {
   return <div className={classes} {...other} />;
 };
 
-Card.displayName = 'Card';
+Card.displayName = "Card";
 
 export default Card;
