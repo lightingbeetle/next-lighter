@@ -38,11 +38,7 @@ const FlatsFilterForm = ({ hideHeader }: { hideHeader?: boolean }) => {
   return (
     <div className="flats-filter">
       <form onSubmit={handleSubmit(setFilter)}>
-        {!hideHeader && (
-          <div className="flats-filter__header">
-            <p className="small bold uppercase">Parametre</p>
-          </div>
-        )}
+        {!hideHeader && <h2 className="flats-filter__header">Parametre</h2>}
         <div className="flats-filter__content">
           <FilterPrice />
           <FilterRooms />

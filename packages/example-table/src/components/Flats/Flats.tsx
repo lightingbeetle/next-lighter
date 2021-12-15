@@ -3,13 +3,9 @@ import FlatsFilter from "./FlatsFilter";
 import FlatsTable from "./FlatsTable";
 import { UseFlatsProvider } from "../../hooks/useFlats";
 
-const Flats = ({
-  projects,
-}: {
-  projects?: React.ComponentProps<typeof UseFlatsProvider>["projects"];
-}) => {
+const Flats = () => {
   return (
-    <UseFlatsProvider projects={projects}>
+    <UseFlatsProvider>
       <div className="flats">
         <FlatsFilter />
         <FlatsTable />

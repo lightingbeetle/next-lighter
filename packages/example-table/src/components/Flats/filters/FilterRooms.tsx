@@ -1,6 +1,6 @@
 import React from "react";
 import { useFormContext } from "react-hook-form";
-import { Toggle } from "components";
+import { RadioCheck } from "components";
 import useFlats from "../../../hooks/useFlats";
 
 const FilterRooms = () => {
@@ -11,7 +11,7 @@ const FilterRooms = () => {
       <legend className="form-label">Počet izieb</legend>
       <div className="bar">
         {Object.entries(filterShape?.rooms).map(([label, value]) => (
-          <Toggle
+          <RadioCheck
             key={label}
             label={label}
             type="checkbox"

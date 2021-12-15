@@ -38,7 +38,6 @@ type FlatsFilterShape = {
   floor_to: string;
   has_balcony: number;
   has_terrace: number;
-  has_garden: number;
   finished_indicator: number;
   new_in_sale_indicator: number;
   top_floor_indicator: number;
@@ -46,23 +45,10 @@ type FlatsFilterShape = {
 };
 
 type FlatsFilter = {
-  areaFrom: string;
-  areaTo: string;
-  floorFrom: string;
-  floorTo: string;
-  hidePreReserved: boolean;
   priceFrom: string;
   priceTo: string;
-  projects: string | string[];
-  rooms: string | string[];
-  showApartments: boolean;
   has_balcony: boolean;
-  has_garden: boolean;
-  has_terrace: boolean;
-  finished_indicator: boolean;
-  lowest_floor_indicator: boolean;
-  top_floor_indicator: boolean;
-  new_in_sale_indicator: boolean;
+  rooms: string | string[];
 };
 
 type UseFlatsData = {
@@ -90,10 +76,8 @@ const FlatsContext = createContext<UseFlats>(undefined);
 
 export const UseFlatsProvider = ({
   children,
-  projects,
 }: {
   children: React.ReactNode;
-  projects?: FlatsFilter["projects"];
 }) => {
   /*
   / Parse URL initial to states
@@ -106,22 +90,9 @@ export const UseFlatsProvider = ({
   // then state is used to current query params
   const [filter, setFilter] = useState<UseFlats["filter"]>({
     has_balcony: !!query.has_balcony || null,
-    has_garden: !!query.has_garden || null,
-    has_terrace: !!query.has_terrace || null,
-    finished_indicator: !!query.finished_indicator || null,
-    lowest_floor_indicator: !!query.lowest_floor_indicator || null,
-    top_floor_indicator: !!query.top_floor_indicator || null,
-    new_in_sale_indicator: !!query.new_in_sale_indicator || null,
-    areaFrom: (query.area_from as string) || null,
-    areaTo: (query.area_to as string) || null,
-    floorFrom: (query.floor_from as string) || null,
-    floorTo: (query.floor_to as string) || null,
-    hidePreReserved: query.hidePreReserved ? true : false,
     priceFrom: (query.price_from as string) || null,
     priceTo: (query.price_to as string) || null,
-    projects: projects || query.project,
     rooms: query.rooms,
-    showApartments: query.showApartments ? true : false,
   });
 
   const [filterShape, setFilterShape] = useState<FlatsFilterShape>();
@@ -213,12 +184,6 @@ export const UseFlatsProvider = ({
           priceFrom: data?.filter.price_from,
         }),
         ...(filter.priceTo === null && { priceTo: data?.filter.price_to }),
-        ...(filter.areaFrom === null && { areaFrom: data?.filter.area_from }),
-        ...(filter.areaTo === null && { areaTo: data?.filter.area_to }),
-        ...(filter.floorFrom === null && {
-          floorFrom: data?.filter.floor_from,
-        }),
-        ...(filter.floorTo === null && { floorTo: data?.filter.floor_to }),
       });
     }
   }, [data]);
@@ -229,23 +194,10 @@ export const UseFlatsProvider = ({
 
   const resetFilter = useCallback(() => {
     setFilter({
-      has_balcony: null,
-      has_garden: null,
-      has_terrace: null,
-      finished_indicator: null,
-      lowest_floor_indicator: null,
-      top_floor_indicator: null,
-      new_in_sale_indicator: null,
       priceFrom: filterShape.price_from,
       priceTo: filterShape.price_to,
-      areaFrom: filterShape.area_from,
-      areaTo: filterShape.area_to,
-      floorFrom: filterShape.floor_from,
-      floorTo: filterShape.floor_to,
+      has_balcony: null,
       rooms: null,
-      projects: null,
-      hidePreReserved: false,
-      showApartments: false,
     });
 
     setPage(1);
@@ -287,7 +239,6 @@ export const UseFlatsProvider = ({
       totalPages,
       countOfActiveFilters,
       resetFilter,
-      projects,
     ]
   );
 
@@ -326,41 +277,19 @@ function getUrlParamsAsString({
     {
       ...other,
       ...(filter && {
-        status: [
-          !hideDefaults ? "Y" : null,
-          !filter.hidePreReserved ? "P" : null,
-        ],
         has_balcony: filter.has_balcony || null,
-        has_garden: filter.has_garden || null,
-        has_terrace: filter.has_terrace || null,
-        finished_indicator: filter.finished_indicator || null,
-        lowest_floor_indicator: filter.lowest_floor_indicator || null,
-        top_floor_indicator: filter.top_floor_indicator || null,
-        new_in_sale_indicator: filter.new_in_sale_indicator || null,
-        area_from:
-          filter.areaFrom === filterShape?.area_from ? null : filter.areaFrom,
-        area_to: filter.areaTo === filterShape?.area_to ? null : filter.areaTo,
-        floor_from:
-          filter.floorFrom === filterShape?.floor_from
-            ? null
-            : filter.floorFrom,
-        floor_to:
-          filter.floorTo === filterShape?.floor_to ? null : filter.floorTo,
-        hidePreReserved: filter.hidePreReserved ? true : null,
         price_from:
           filter.priceFrom === filterShape?.price_from
             ? null
             : filter.priceFrom,
         price_to:
           filter.priceTo === filterShape?.price_to ? null : filter.priceTo,
-        project: filter.projects || null,
         rooms:
           makeEmptyAndAllParamsSame(
             Object.entries(filterShape?.rooms ?? {}).map((room) => room[0]) ??
               [],
             filter.rooms ?? []
           ) || null,
-        showApartments: filter.showApartments ? true : null,
       }),
       ...(page && { page: page !== 1 ? page.toString() : null }),
       ...(sortBy.length && {
@@ -408,30 +337,11 @@ function getCountOfActiveFilters(urlParamsAsString) {
     count++;
   }
 
-  if (urlParamsAsString.includes("area")) {
-    count++;
-  }
-
   if (urlParamsAsString.includes("room")) {
     count++;
   }
 
-  if (urlParamsAsString.includes("floor")) {
-    count++;
-  }
-
-  if (urlParamsAsString.includes("project")) {
-    count++;
-  }
-
   if (urlParamsAsString.includes("has_")) {
-    count++;
-  }
-
-  if (
-    urlParamsAsString.includes("showApartments") ||
-    urlParamsAsString.includes("hidePreReserved")
-  ) {
     count++;
   }
 
