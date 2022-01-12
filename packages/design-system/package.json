@@ -1,6 +1,6 @@
 {
   "name": "design-system",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -10,9 +10,9 @@
     "lint": "eslint --fix ."
   },
   "dependencies": {
-    "@lighting-beetle/lighter-styleguide": "5.0.0-beta.1",
-    "@lighting-beetle/next-lighter-config": "0.1.0",
-    "components": "0.1.0",
+    "@lighting-beetle/lighter-styleguide": "5.0.0",
+    "@lighting-beetle/next-lighter-config": "0.2.0",
+    "components": "0.2.0",
     "glob": "~7.2.0",
     "mdx-bundler": "^8.0.0",
     "micromatch": "~4.0.4",
