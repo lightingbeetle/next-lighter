@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ComponentProps } from "react";
 import cx from "classnames";
 // import "./styles/style.scss";
 
@@ -17,7 +17,7 @@ type ButtonProps = {
   variant?: "plain";
   /** Purpose of the button. Default means CTA button. */
   purpose?: "secondary" | "link";
-} & (React.ComponentProps<"button"> | React.ComponentProps<"a">);
+} & (ComponentProps<"button"> | ComponentProps<"a">);
 
 export const Button = ({
   className,

@@ -1,7 +1,7 @@
-import React from "react";
+import React, { ComponentProps } from "react";
 import cx from "classnames";
 
-type CardProps = JSX.IntrinsicElements["div"];
+type CardProps = ComponentProps<"div">;
 
 const CLASS_ROOT = "card";
 

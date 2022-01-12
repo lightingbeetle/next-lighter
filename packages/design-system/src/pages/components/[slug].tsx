@@ -8,6 +8,7 @@ import { getMDXComponent } from "mdx-bundler/client";
 import DesignSystemPage from "../../components/DesignSystemPage";
 import { getDesignSystemRoutes } from "../../utils";
 import { mdxComponents } from "@lighting-beetle/lighter-styleguide";
+import esbuildReactDocgenTypescriptPlugin from "../../utils/esbuild-react-docgen-typescript";
 
 const ComponentPage = ({ routes, title, code }) => {
   const MDX = React.useMemo(() => getMDXComponent(code), [code]);
@@ -43,6 +44,7 @@ export async function getStaticProps({ params }) {
     cwd: path.dirname(pathToSource),
     esbuildOptions: (options) => {
       options.plugins = [
+        esbuildReactDocgenTypescriptPlugin(),
         ...options.plugins,
         {
           name: "empty-(s)css-imports",
@@ -51,6 +53,7 @@ export async function getStaticProps({ params }) {
           },
         },
       ];
+
       return options;
     },
   });
