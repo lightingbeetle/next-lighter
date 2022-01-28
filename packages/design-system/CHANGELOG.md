@@ -26,5 +26,5 @@
 - Updated dependencies [4fc65f7]
 - Updated dependencies [f276e28]
   - components@0.2.0
-  - @lighting-beetle/lighter-styleguide@5.0.0
+  - @lighting-beetle/lighter-styleguide@6.0.0-next.1
   - @lighting-beetle/next-lighter-config@0.2.0

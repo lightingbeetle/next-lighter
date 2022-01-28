@@ -22,4 +22,4 @@
 - Updated dependencies [4fc65f7]
 - Updated dependencies [f276e28]
   - @lighting-beetle/lighter-hooks@1.1.0
-  - @lighting-beetle/lighter-styleguide@5.0.0
+  - @lighting-beetle/lighter-styleguide@6.0.0-next.1
