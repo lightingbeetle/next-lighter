@@ -1,6 +1,6 @@
 {
   "name": "components",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "main": "dist/index.js",
   "module": "dist/index.module.js",
@@ -25,8 +25,8 @@
     "test": "NODE_ENV=test jest --maxWorkers=1"
   },
   "dependencies": {
-    "@lighting-beetle/lighter-hooks": "1.0.0",
-    "@lighting-beetle/lighter-styleguide": "5.0.0-beta.1",
+    "@lighting-beetle/lighter-hooks": "1.1.0",
+    "@lighting-beetle/lighter-styleguide": "6.0.0-next.1",
     "classnames": "^2.3.1",
     "downshift": "^6.1.7",
     "polished": "^4.1.3",
