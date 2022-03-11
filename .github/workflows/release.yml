@@ -29,3 +29,4 @@ jobs:
           HUSKY: 0
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NEXT_PUBLIC_WORDPRESS_SITE_URL: ${{ secrets.NEXT_PUBLIC_WORDPRESS_SITE_URL }}
