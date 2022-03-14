@@ -16,7 +16,6 @@ import {
   spaces,
   fonts,
   shadows,
-  TokensTable,
 } from "./tokens";
 
 import "./styles/utilities.scss";
@@ -30,7 +29,6 @@ export const tokens = {
   spaces,
   fonts,
   shadows,
-  TokensTable,
 };
 
 export {
