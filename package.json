@@ -20,7 +20,7 @@
     "build:design-system": "yarn --cwd packages/design-system build",
     "build:example-wordpress": "yarn --cwd packages/example-wordpress build",
     "ci:build:styleguide": "npm-run-all build:styleguide",
-    "ci:build:example": "npm-run-all build:*",
+    "ci:build:example": "npm-run-all build:components build:example",
     "ci:build:design-system": "npm-run-all build:hooks build:styleguide build:components build:design-system",
     "ci:build:example-wordpress": "npm-run-all build:example-wordpress",
     "release": "npm run build && npx changeset publish",
