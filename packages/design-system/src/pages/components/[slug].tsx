@@ -2,15 +2,21 @@ import React from "react";
 import fs from "fs";
 import path from "path";
 import glob from "glob";
-import { bundleMDX } from "mdx-bundler";
 import { getMDXComponent } from "mdx-bundler/client";
+import { mdxComponents } from "@lighting-beetle/lighter-styleguide";
 
 import DesignSystemPage from "../../components/DesignSystemPage";
 import { getDesignSystemRoutes } from "../../utils";
-import { mdxComponents } from "@lighting-beetle/lighter-styleguide";
-import esbuildReactDocgenTypescriptPlugin from "../../utils/esbuild-react-docgen-typescript";
+import getMDXCode from "../../utils/getMDXCode";
+import { GetStaticProps, NextPage } from "next";
 
-const ComponentPage = ({ routes, title, code }) => {
+type Props = {
+  code: string;
+  routes: ReturnType<typeof getDesignSystemRoutes>;
+  title: string;
+};
+
+const ComponentPage: NextPage<Props> = ({ routes, title, code }) => {
   const MDX = React.useMemo(() => getMDXComponent(code), [code]);
 
   return (
@@ -20,54 +26,48 @@ const ComponentPage = ({ routes, title, code }) => {
   );
 };
 
-export async function getStaticProps({ params }) {
-  const routes = getDesignSystemRoutes();
+export const getStaticProps: GetStaticProps<Props, { slug: string }> =
+  async function getStaticProps({ params }) {
+    if (!params) {
+      return {
+        notFound: true,
+      };
+    }
 
-  const filename = path.join(
-    "components",
-    params.slug,
-    params.slug + ".docs.mdx"
-  );
+    const routes = getDesignSystemRoutes();
 
-  const pathToSource = path.join(
-    process.cwd(),
-    "..",
-    "components",
-    "src",
-    filename
-  );
+    const filename = path.join(
+      "components",
+      params.slug,
+      params.slug + ".docs.mdx"
+    );
 
-  const source = fs.readFileSync(pathToSource).toString();
+    const pathToSource = path.join(
+      process.cwd(),
+      "..",
+      "components",
+      "src",
+      filename
+    );
 
-  const { code, frontmatter } = await bundleMDX({
-    source,
-    cwd: path.dirname(pathToSource),
-    esbuildOptions: (options) => {
-      options.plugins = [
-        esbuildReactDocgenTypescriptPlugin(),
-        ...options.plugins,
-        {
-          name: "empty-(s)css-imports",
-          setup(build) {
-            build.onLoad({ filter: /\.(s)css$/ }, () => ({ contents: "" }));
-          },
-        },
-      ];
+    const source = fs.readFileSync(pathToSource).toString();
 
-      return options;
-    },
-  });
+    const { code, frontmatter } = await getMDXCode(
+      source,
+      pathToSource,
+      params.slug
+    );
 
-  return {
-    props: {
-      code,
-      title: frontmatter.title ?? "Default title",
-      routes,
-    },
+    return {
+      props: {
+        code,
+        title: frontmatter.title ?? "Default title",
+        routes,
+      },
+    };
   };
-}
 
-export async function getStaticPaths() {
+export const getStaticPaths = async function getStaticPaths() {
   const docsFiles = glob.sync("../components/src/components/**/*.docs.mdx");
 
   // Loop through all post files and create array of slugs (to create links)
@@ -81,6 +81,6 @@ export async function getStaticPaths() {
     paths,
     fallback: false,
   };
-}
+};
 
 export default ComponentPage;

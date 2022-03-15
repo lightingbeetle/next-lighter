@@ -13,6 +13,7 @@
     "@lighting-beetle/lighter-styleguide": "6.0.0-next.1",
     "@lighting-beetle/next-lighter-config": "0.2.0",
     "components": "0.2.0",
+    "esbuild-plugin-import-glob": "^0.1.1",
     "glob": "~7.2.0",
     "mdx-bundler": "^8.0.0",
     "micromatch": "~4.0.4",
@@ -24,5 +25,8 @@
     "next-transpile-modules": "~8.0.0",
     "react-docgen-typescript": "^2.2.2"
   },
-  "browserslist": ">1%, not ie 11, not op_mini all"
+  "browserslist": ">1%, not ie 11, not op_mini all",
+  "devDependencies": {
+    "@types/glob": "^7.2.0"
+  }
 }
