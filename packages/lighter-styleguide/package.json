@@ -14,7 +14,7 @@
   "types": "./dist/index.d.ts",
   "scripts": {
     "dev": "next dev",
-    "build": "run-s clean build:*",
+    "build": "run-s clean 'build:*'",
     "clean": "rimraf dist out",
     "build:components": "node ./esbuild.components.js",
     "build:types": "tsc --declaration  --emitDeclarationOnly --noEmit false --outDir dist -p ./tsconfig.json",
