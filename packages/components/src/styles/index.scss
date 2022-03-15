@@ -1,7 +1,9 @@
 @import "./globals";
+@import "./../components/Bar/styles/style.scss";
+@import "./../components/Button/styles/style.scss";
+@import "./../components/Card/styles/style.scss";
+@import "./../components/DropdownMenu/styles/style.scss";
+@import "./../components/Icon/styles/style.scss";
+@import "./../components/Select/styles/style.scss";
 @import "./utilities.scss";
 @import "./layout.scss";
-
-* {
-  outline: 1px solid red;
-}
