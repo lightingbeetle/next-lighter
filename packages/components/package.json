@@ -8,7 +8,8 @@
   "exports": {
     ".": "./dist/index.module.js",
     "./static": "./dist/static.module.js",
-    "./index.css": "./dist/index.css"
+    "./styles.css": "./dist/index.css",
+    "./styles.scss": "./src/styles/index.scss"
   },
   "style": "./dist/index.css",
   "files": [

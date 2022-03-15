@@ -2404,7 +2404,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@lighting-beetle/lighter-styleguide@6.0.0-next.1, @lighting-beetle/lighter-styleguide@workspace:packages/lighter-styleguide":
+"@lighting-beetle/lighter-styleguide@workspace:^, @lighting-beetle/lighter-styleguide@workspace:packages/lighter-styleguide":
   version: 0.0.0-use.local
   resolution: "@lighting-beetle/lighter-styleguide@workspace:packages/lighter-styleguide"
   dependencies:
@@ -2435,7 +2435,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@lighting-beetle/next-lighter-config@0.2.0, @lighting-beetle/next-lighter-config@workspace:packages/next-lighter-config":
+"@lighting-beetle/next-lighter-config@0.2.0, @lighting-beetle/next-lighter-config@workspace:^, @lighting-beetle/next-lighter-config@workspace:packages/next-lighter-config":
   version: 0.0.0-use.local
   resolution: "@lighting-beetle/next-lighter-config@workspace:packages/next-lighter-config"
   dependencies:
@@ -5820,7 +5820,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"components@0.2.0, components@workspace:packages/components":
+"components@0.2.0, components@workspace:^, components@workspace:packages/components":
   version: 0.0.0-use.local
   resolution: "components@workspace:packages/components"
   dependencies:
@@ -6661,10 +6661,10 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "design-system@workspace:packages/design-system"
   dependencies:
-    "@lighting-beetle/lighter-styleguide": 6.0.0-next.1
-    "@lighting-beetle/next-lighter-config": 0.2.0
+    "@lighting-beetle/lighter-styleguide": "workspace:^"
+    "@lighting-beetle/next-lighter-config": "workspace:^"
     "@types/glob": ^7.2.0
-    components: 0.2.0
+    components: "workspace:^"
     esbuild-plugin-import-glob: ^0.1.1
     glob: ~7.2.0
     mdx-bundler: ^8.0.0
@@ -8100,8 +8100,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "example@workspace:packages/example"
   dependencies:
-    "@lighting-beetle/next-lighter-config": 0.2.0
-    components: 0.2.0
+    "@lighting-beetle/next-lighter-config": "workspace:^"
+    components: "workspace:^"
     micromatch: ~4.0.4
     modern-normalize: ^1.1.0
     next: ~11.1.2

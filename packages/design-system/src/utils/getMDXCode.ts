@@ -12,6 +12,13 @@ export default async function getMDXCode(
   return await bundleMDX({
     source,
     cwd: path.dirname(pathToSource),
+    globals: {
+      "@lighting-beetle/lighter-styleguide": {
+        varName: "lighterStyleguide",
+        namedExports: ["Preview", "Code", "Props", "Rectangle", "Table"],
+        defaultExport: false,
+      },
+    },
     esbuildOptions: (options) => {
       options.loader = {
         ...options.loader,

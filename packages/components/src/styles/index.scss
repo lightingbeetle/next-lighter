@@ -1,3 +1,7 @@
 @import "./globals";
 @import "./utilities.scss";
 @import "./layout.scss";
+
+* {
+  outline: 1px solid red;
+}
