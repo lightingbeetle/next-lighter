@@ -11,7 +11,9 @@
 
 ### Install
 
-Currently only `yarn` is supported for installation of this repository.
+You need `"node": ">=16.10.0"` and [corepack enabled](https://github.com/nodejs/corepack#default-installs) (`corepack enable`).
+
+Then run install command:
 
 ```bash
 yarn

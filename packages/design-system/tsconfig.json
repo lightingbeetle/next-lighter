@@ -2,7 +2,15 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "strict": false,
-    "jsx": "preserve"
+    "jsx": "preserve",
+    "baseUrl": ".",
+    "paths": {
+      "components": ["../components/src/index.ts"],
+      "components/*": ["../components/src/*"],
+      "@lighting-beetle/lighter-styleguide": [
+        "../lighter-styleguide/src/index.tsx"
+      ]
+    }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"]
