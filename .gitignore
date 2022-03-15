@@ -21,7 +21,8 @@ dist
 
 # misc
 .DS_Store
-.yarn
+.yarn/*
+!.yarn/releases
 
 # debug
 npm-debug.log*
