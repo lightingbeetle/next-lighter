@@ -2,11 +2,7 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "strict": false,
-    "jsx": "preserve",
-    "baseUrl": ".",
-    "paths": {
-      "components": ["../components/src/index.ts"]
-    }
+    "jsx": "preserve"
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"]

@@ -12,7 +12,18 @@
     "isolatedModules": true,
     "resolveJsonModule": true,
     "noEmit": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "baseUrl": ".",
+    "paths": {
+      "@lighting-beetle/lighter-hooks": [
+        "./packages/lighter-hooks/src/index.js"
+      ],
+      "@lighting-beetle/lighter-styleguide": [
+        "./packages/lighter-styleguide/src/index.tsx"
+      ],
+      "components": ["./packages/components/src/index.js"],
+      "components/*": ["./packages/components/src/*"]
+    }
   },
   "exclude": ["node_modules", "dist", "out"]
 }
