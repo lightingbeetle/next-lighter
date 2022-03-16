@@ -27,7 +27,7 @@ jobs:
             ${{ runner.os }}-yarn-
 
       - name: Install Dependencies
-        run: yarn
+        run: yarn --no-immutable
 
       - name: Build
         run: |
