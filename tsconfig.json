@@ -21,7 +21,7 @@
       "@lighting-beetle/lighter-styleguide": [
         "./packages/lighter-styleguide/src/index.tsx"
       ],
-      "components": ["./packages/components/src/index.js"],
+      "components": ["./packages/components/src/index.ts"],
       "components/*": ["./packages/components/src/*"]
     }
   },
