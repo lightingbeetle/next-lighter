@@ -1,6 +1,6 @@
-const esbuild = require("esbuild");
-const esmExternals = require("@esbuild-plugins/esm-externals").default;
-const svgPlugin = require("esbuild-plugin-svg");
+import esbuild from "esbuild";
+import { EsmExternalsPlugin } from "@esbuild-plugins/esm-externals";
+import svgPlugin from "esbuild-plugin-svg";
 
 async function bundle() {
   const config = {
@@ -17,7 +17,10 @@ async function bundle() {
       ".woff2": "file",
       ".ttf": "file",
     },
-    plugins: [esmExternals({ externals: ["react", "react-dom"] }), svgPlugin()],
+    plugins: [
+      EsmExternalsPlugin({ externals: ["react", "react-dom"] }),
+      svgPlugin(),
+    ],
   };
 
   try {

@@ -2417,6 +2417,7 @@ __metadata:
     "@types/styled-components": ^5.1.14
     classnames: ~2.3.1
     esbuild: ^0.13.3
+    esbuild-plugin-import-glob: ^0.1.1
     esbuild-plugin-svg: ~0.1.0
     gray-matter: ~4.0.3
     modern-normalize: ^1.1.0
