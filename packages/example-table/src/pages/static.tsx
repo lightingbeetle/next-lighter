@@ -1,9 +1,10 @@
 import React from "react";
 // @ts-ignore
 import { Table } from "components";
+import { Column } from "react-table";
 
 const StaticExample = () => {
-  const columns = [
+  const columns: Column<any>[] = [
     {
       Header: "ID",
       accessor: "id",
@@ -11,7 +12,7 @@ const StaticExample = () => {
     {
       Header: "Poradie",
       accessor: "position",
-      Cell: ({ value }) => `${parseInt(value)}. miesto`,
+      Cell: ({ value }) => <>{parseInt(value)}. miesto</>,
     },
     {
       Header: "Stav",

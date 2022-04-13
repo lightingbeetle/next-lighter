@@ -1,7 +1,7 @@
 {
   "extends": "../../tsconfig.json",
   "include": ["./jest-setup.ts", "**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules", "dist", "out"],
+  "exclude": ["node_modules", "dist", "out", "src/tokens/TokensTable.tsx"],
   "compilerOptions": {
     "target": "ES2018"
   },

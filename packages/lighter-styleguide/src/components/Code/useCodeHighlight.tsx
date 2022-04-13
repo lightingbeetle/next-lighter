@@ -24,6 +24,7 @@ const useCodeHighlight = ({
     const Tag = inline ? "span" : "div";
 
     const highlight = (
+      // @ts-ignore 'Prism' cannot be used as a JSX component. Its instance type 'Highlight' is not a valid JSX element.
       <Prism {...defaultProps} code={code} language={language} theme={theme}>
         {({ className, style, tokens, getLineProps, getTokenProps }) => {
           const toHighlight = tokens.map((line, i) => (

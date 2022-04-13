@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { usePropsContext } from "./usePropsContext";
 import { theme } from "../../styles";
 import Table from "../Table";
+import { Column } from "react-table";
 
 const ComponentName = styled.div`
   padding: ${(props) => props.theme.space.small} 0;
@@ -20,12 +21,12 @@ const PropsTable = () => {
     [props]
   );
 
-  const columns = useMemo(
+  const columns = useMemo<Column<any>[]>(
     () => [
       {
         Header: "Required",
         accessor: "required",
-        Cell: ({ value }) => value && "Yes",
+        Cell: ({ value }) => value && <>Yes</>,
       },
       {
         Header: "Name",
@@ -33,7 +34,22 @@ const PropsTable = () => {
       },
       {
         Header: "Type",
-        accessor: "type.name",
+        accessor: (row) => {
+          if (row.type.raw === "boolean") {
+            return row.type.raw;
+          }
+
+          const valueString =
+            row.type.value &&
+            row.type.value.map(({ value }) => value).join(" | ");
+
+          if (valueString) {
+            return valueString;
+          }
+
+          return row.type.raw || row.type.name;
+        },
+        id: "type",
       },
       {
         Header: "Default value",

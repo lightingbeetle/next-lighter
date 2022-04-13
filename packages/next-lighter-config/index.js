@@ -96,6 +96,7 @@ const staticEntries =
 
 module.exports = ({
   /* tsConfigPath, componentsPath, */ staticEntriesMap,
+  nextConfig,
 } = {}) =>
   withPlugins(
     [
@@ -113,5 +114,6 @@ module.exports = ({
     ],
     {
       pageExtensions: ["js", "jsx", "mdx", "ts", "tsx"],
+      ...nextConfig,
     }
   );

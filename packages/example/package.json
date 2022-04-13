@@ -1,6 +1,6 @@
 {
   "name": "example",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -10,8 +10,8 @@
     "lint": "eslint --fix ."
   },
   "dependencies": {
-    "@lighting-beetle/next-lighter-config": "0.1.0",
-    "components": "0.1.0",
+    "@lighting-beetle/next-lighter-config": "workspace:^",
+    "components": "workspace:^",
     "micromatch": "~4.0.4",
     "modern-normalize": "^1.1.0",
     "next": "~11.1.2",

@@ -1,3 +1,0 @@
-[build]
-  command = "yarn run ci:build:styleguide"
-  ignore = "git diff HEAD^ HEAD ':(exclude)packages/example' ':(exclude)packages/lighter-hooks' ':(exclude)packages/components'"

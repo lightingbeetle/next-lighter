@@ -5,7 +5,7 @@ export default function fetcher(query: string, variables?: object) {
     `${process.env.NEXT_PUBLIC_WORDPRESS_SITE_URL}/graphql`,
     {
       headers: {
-        authorization: `Bearer ${process.env.WORDPRESS_AUTH_REFRESH_TOKEN}`,
+        authorization: `Bearer ${process.env.NEXT_WORDPRESS_AUTH_REFRESH_TOKEN}`,
       },
     }
   );

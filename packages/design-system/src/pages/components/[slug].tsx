@@ -2,15 +2,39 @@ import React from "react";
 import fs from "fs";
 import path from "path";
 import glob from "glob";
-import { bundleMDX } from "mdx-bundler";
 import { getMDXComponent } from "mdx-bundler/client";
+import {
+  mdxComponents,
+  Preview,
+  Code,
+  Props,
+  Rectangle,
+  Table,
+} from "@lighting-beetle/lighter-styleguide";
 
 import DesignSystemPage from "../../components/DesignSystemPage";
 import { getDesignSystemRoutes } from "../../utils";
-import { mdxComponents } from "@lighting-beetle/lighter-styleguide";
+import getMDXCode from "../../utils/getMDXCode";
+import { GetStaticProps, NextPage } from "next";
 
-const ComponentPage = ({ routes, title, code }) => {
-  const MDX = React.useMemo(() => getMDXComponent(code), [code]);
+type ComponentPageProps = {
+  code: string;
+  routes: ReturnType<typeof getDesignSystemRoutes>;
+  title: string;
+};
+
+const ComponentPage: NextPage<ComponentPageProps> = ({
+  routes,
+  title,
+  code,
+}) => {
+  const MDX = React.useMemo(
+    () =>
+      getMDXComponent(code, {
+        lighterStyleguide: { Preview, Code, Props, Rectangle, Table },
+      }),
+    [code]
+  );
 
   return (
     <DesignSystemPage routes={routes} title={title}>
@@ -19,7 +43,16 @@ const ComponentPage = ({ routes, title, code }) => {
   );
 };
 
-export async function getStaticProps({ params }) {
+export const getStaticProps: GetStaticProps<
+  ComponentPageProps,
+  { slug: string }
+> = async function getStaticProps({ params }) {
+  if (!params) {
+    return {
+      notFound: true,
+    };
+  }
+
   const routes = getDesignSystemRoutes();
 
   const filename = path.join(
@@ -38,22 +71,11 @@ export async function getStaticProps({ params }) {
 
   const source = fs.readFileSync(pathToSource).toString();
 
-  const { code, frontmatter } = await bundleMDX({
+  const { code, frontmatter } = await getMDXCode(
     source,
-    cwd: path.dirname(pathToSource),
-    esbuildOptions: (options) => {
-      options.plugins = [
-        ...options.plugins,
-        {
-          name: "empty-(s)css-imports",
-          setup(build) {
-            build.onLoad({ filter: /\.(s)css$/ }, () => ({ contents: "" }));
-          },
-        },
-      ];
-      return options;
-    },
-  });
+    pathToSource,
+    params.slug
+  );
 
   return {
     props: {
@@ -62,9 +84,9 @@ export async function getStaticProps({ params }) {
       routes,
     },
   };
-}
+};
 
-export async function getStaticPaths() {
+export const getStaticPaths = async function getStaticPaths() {
   const docsFiles = glob.sync("../components/src/components/**/*.docs.mdx");
 
   // Loop through all post files and create array of slugs (to create links)
@@ -78,6 +100,6 @@ export async function getStaticPaths() {
     paths,
     fallback: false,
   };
-}
+};
 
 export default ComponentPage;

@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useRouter } from "next/router";
 import micromatch from "micromatch";
 import "modern-normalize/modern-normalize.css";
+import "components/styles.scss";
 import customPages from "../custom-pages";
 
 export default function MyApp({ Component, pageProps }) {

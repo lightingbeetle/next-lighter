@@ -7,6 +7,7 @@ import React, { useMemo } from "react";
 import { Table, Code } from "@lighting-beetle/lighter-styleguide";
 import flattenObject from "../utils/flattenObject";
 import { SCSSVarsMap } from "../utils/scssVarsToMap";
+import { Column } from "react-table";
 
 type UsageFormatFunc = ({
   token,
@@ -49,14 +50,18 @@ function TableTokens({
     }));
   }, [tokens]);
 
-  const columns = useMemo(
+  const columns = useMemo<Column<any>[]>(
     () =>
       [
         {
           accessor: "token",
           Header: "Token",
           id: "token",
-          Cell: ({ value }) => `${name}.${value}`,
+          Cell: ({ value }) => (
+            <>
+              {name}.{value}
+            </>
+          ),
         },
         {
           accessor: "value",

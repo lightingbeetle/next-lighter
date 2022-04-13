@@ -1,6 +1,6 @@
 {
   "name": "example-wordpress",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -16,6 +16,6 @@
     "swr": "~1.0.1"
   },
   "devDependencies": {
-    "@netlify/plugin-nextjs": "^3.9.0"
+    "@netlify/plugin-nextjs": "~4.2.7"
   }
 }

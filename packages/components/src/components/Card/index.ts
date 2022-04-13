@@ -1,5 +1,4 @@
 import Card from "./Card";
-import "./styles/style.scss";
 
 export default Card;
 
