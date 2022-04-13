@@ -5,7 +5,7 @@ import useFlats from "../../../hooks/useFlats";
 
 const FilterAmenities = () => {
   const { register, handleSubmit } = useFormContext();
-  const { filterShape, setFilter } = useFlats();
+  const { filterBase, setFilter } = useFlats();
 
   return (
     <fieldset>
@@ -17,7 +17,7 @@ const FilterAmenities = () => {
           type="checkbox"
           id={`balcony`}
           {...register(`has_balcony`)}
-          disabled={!filterShape.has_balcony}
+          disabled={!filterBase.has_balcony}
           onChange={(e) => {
             register("has_balcony").onChange(e);
             handleSubmit(setFilter)();

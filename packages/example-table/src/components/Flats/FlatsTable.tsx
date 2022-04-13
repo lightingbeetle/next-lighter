@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo, useRef } from "react";
 import { Table } from "components";
 import useFlats from "../../hooks/useFlats";
 import Link from "next/link";
@@ -40,6 +40,11 @@ const FlatsTable = () => {
         Header: "Cena",
         accessor: "price",
         Cell: ({ value }) => formatPrice(value),
+      },
+      {
+        Header: "Balkón / Loggia",
+        accessor: "has_balcony",
+        Cell: ({ value }) => (value ? "Áno" : "Nie"),
       },
     ],
     []

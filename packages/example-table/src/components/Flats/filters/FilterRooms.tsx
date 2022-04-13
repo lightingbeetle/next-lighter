@@ -5,12 +5,12 @@ import useFlats from "../../../hooks/useFlats";
 
 const FilterRooms = () => {
   const { register, handleSubmit } = useFormContext();
-  const { setFilter, filterShape } = useFlats();
+  const { setFilter, filterBase } = useFlats();
   return (
     <fieldset>
       <legend className="form-label">Počet izieb</legend>
       <div className="bar">
-        {Object.entries(filterShape?.rooms).map(([label, value]) => (
+        {Object.entries(filterBase?.rooms).map(([label, value]) => (
           <RadioCheck
             key={label}
             label={label}

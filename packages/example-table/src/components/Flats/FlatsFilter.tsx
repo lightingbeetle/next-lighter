@@ -4,6 +4,7 @@ import FilterAmenities from "./filters/FilterAmenities";
 import FilterPrice from "./filters/FilterPrice";
 import FilterRooms from "./filters/FilterRooms";
 import useFlats from "../../hooks/useFlats";
+import { Button } from "components";
 
 // We can't pass filter data to defaultValues until we don't have that data
 const FlatsFilter = () => {
@@ -32,8 +33,8 @@ const FlatsFilterForms = () => {
 };
 
 const FlatsFilterForm = ({ hideHeader }: { hideHeader?: boolean }) => {
-  const { handleSubmit } = useFormContext();
-  const { setFilter } = useFlats();
+  const { reset, handleSubmit } = useFormContext();
+  const { resetFilter, countOfActiveFilters, setFilter, filter } = useFlats();
 
   return (
     <div className="flats-filter">
@@ -44,6 +45,15 @@ const FlatsFilterForm = ({ hideHeader }: { hideHeader?: boolean }) => {
           <FilterRooms />
           <FilterAmenities />
         </div>
+        <p>Aktívne filtre: {countOfActiveFilters}</p>
+        <Button
+          onClick={() => {
+            resetFilter();
+            reset();
+          }}
+        >
+          Reset filtrov
+        </Button>
       </form>
     </div>
   );
