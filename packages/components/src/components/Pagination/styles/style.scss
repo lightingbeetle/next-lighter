@@ -37,11 +37,15 @@
     padding: tokens.space("s") tokens.space("s");
 
     &--active {
-      background-color: tokens.color("primary");
+      background-color: tokens.color("primary", 600);
     }
 
     &--arrow {
       color: tokens.color("primary");
+
+      .icon {
+        transform: rotate(-90deg);
+      }
     }
   }
 }
