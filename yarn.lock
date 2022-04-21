@@ -5881,7 +5881,7 @@ __metadata:
     preact: ~10.5.14
     preact-render-to-string: ~5.1.19
     react-ranger: ^2.1.0
-    react-table: ^7.7.0
+    react-table: ~7.7.0
     rimraf: ^3.0.2
     sass: ~1.42.1
     svg-sprite: ~1.5.2
@@ -16635,7 +16635,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-table@npm:^7.7.0":
+"react-table@npm:^7.7.0, react-table@npm:~7.7.0":
   version: 7.7.0
   resolution: "react-table@npm:7.7.0"
   peerDependencies:
