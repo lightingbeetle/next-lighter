@@ -3474,6 +3474,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/react-ranger@npm:^2.0.1":
+  version: 2.0.1
+  resolution: "@types/react-ranger@npm:2.0.1"
+  dependencies:
+    "@types/react": "*"
+  checksum: 392fea54b03f37b897291f9eaa7a2a9c453f3a9d6459c92a822e978da75f3e3a5995da47e78add4cdbad59908411263d9bd86bed2b2028c2a63d3ff72b0a315d
+  languageName: node
+  linkType: hard
+
 "@types/react-redux@npm:^7.1.20":
   version: 7.1.23
   resolution: "@types/react-redux@npm:7.1.23"
@@ -3486,7 +3495,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-table@npm:^7.7.5":
+"@types/react-table@npm:^7.7.2, @types/react-table@npm:^7.7.5":
   version: 7.7.10
   resolution: "@types/react-table@npm:7.7.10"
   dependencies:
@@ -5869,6 +5878,8 @@ __metadata:
   dependencies:
     "@esbuild-plugins/esm-externals": 0.0.6
     "@lighting-beetle/lighter-hooks": 1.1.0
+    "@types/react-ranger": ^2.0.1
+    "@types/react-table": ^7.7.2
     classnames: ^2.3.1
     downshift: ^6.1.7
     esbuild: ^0.13.3
@@ -5881,7 +5892,7 @@ __metadata:
     preact: ~10.5.14
     preact-render-to-string: ~5.1.19
     react-ranger: ^2.1.0
-    react-table: ~7.7.0
+    react-table: ^7.7.0
     rimraf: ^3.0.2
     sass: ~1.42.1
     svg-sprite: ~1.5.2
@@ -16635,7 +16646,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-table@npm:^7.7.0, react-table@npm:~7.7.0":
+"react-table@npm:^7.7.0":
   version: 7.7.0
   resolution: "react-table@npm:7.7.0"
   peerDependencies:

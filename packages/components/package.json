@@ -33,12 +33,14 @@
     "preact": "~10.5.14",
     "preact-render-to-string": "~5.1.19",
     "react-ranger": "^2.1.0",
-    "react-table": "~7.7.0",
+    "react-table": "^7.7.0",
     "usehooks-ts": "^2.1.1"
   },
   "browserslist": ">1%, not ie 11, not op_mini all",
   "devDependencies": {
     "@esbuild-plugins/esm-externals": "0.0.6",
+    "@types/react-ranger": "^2.0.1",
+    "@types/react-table": "^7.7.2",
     "esbuild": "^0.13.3",
     "esbuild-plugin-alias": "^0.1.2",
     "esbuild-sass-plugin": "^1.5.5",
