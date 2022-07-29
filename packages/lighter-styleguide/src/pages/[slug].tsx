@@ -6,7 +6,7 @@ import { getMDXComponent } from "mdx-bundler/client";
 import bundleMDXLib from "../scripts/bundleMDXLib";
 
 const DesignSystemPage = ({ code }) => {
-  const MDX = React.useMemo(() => getMDXComponent(code), [code]);
+  const MDX = getMDXComponent(code);
 
   return <MDX />;
 };
