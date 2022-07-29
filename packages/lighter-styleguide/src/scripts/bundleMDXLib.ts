@@ -36,6 +36,7 @@ export default async function bundleMDXLib(
           env: {
             PUBLIC_URL: process.env.PUBLIC_URL,
             REACT_APP_VERSION: process.env.REACT_APP_VERSION,
+            NODE_ENV: process.env.NODE_ENV,
           },
         }),
       };
