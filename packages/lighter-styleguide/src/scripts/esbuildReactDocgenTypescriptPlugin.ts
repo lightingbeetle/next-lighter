@@ -1,6 +1,7 @@
 import fs from "fs";
 import * as docgen from "react-docgen-typescript";
 
+// THIS CACHE DOES NOT WORK. WE NEED TO FIX IT.
 // generationg docgenInfo is expansive. But there is no detection for file changes there for no invalidation is possible - docgenInfo will stay same during runtime
 const docgenInfoCache = new Map();
 
