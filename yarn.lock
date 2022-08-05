@@ -2509,6 +2509,7 @@ __metadata:
     "@lighting-beetle/next-lighter-config": "workspace:^"
     "@mdx-js/loader": ^1.6.22
     "@mdx-js/react": ^1.6.22
+    "@types/react": 17.0.24
     "@types/react-table": ^7.7.5
     "@types/styled-components": ^5.1.14
     classnames: ~2.3.1
@@ -3631,6 +3632,17 @@ __metadata:
     "@types/scheduler": "*"
     csstype: ^3.0.2
   checksum: e22cc388d1c145aa184787e44dc28db4789976c704cd5db475c170bb76a560eb81def5f346cfe750949bb3d43ad88822b8cbb9f19b1286e3795892a8263e7715
+  languageName: node
+  linkType: hard
+
+"@types/react@npm:17.0.24":
+  version: 17.0.24
+  resolution: "@types/react@npm:17.0.24"
+  dependencies:
+    "@types/prop-types": "*"
+    "@types/scheduler": "*"
+    csstype: ^3.0.2
+  checksum: 99383e2cbaa85831984cc17ec4a5fe7fd091aa21ef023855570440d8d0b5038efb8159701e8e2a0f6ddff3efae655922ded690190e7d172653608cbde016cb66
   languageName: node
   linkType: hard
 
