@@ -30,6 +30,9 @@ $colors: (
   "black": (
     500: #000,
   ),
+  "transparentBlack": (
+    500: rgba(0, 0, 0, 0.5),
+  ),
 );
 
 @function color($color, $shade: 500) {
