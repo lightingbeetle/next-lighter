@@ -1,4 +1,8 @@
-import { dirname, resolve } from "path";
+/**
+ * // We need this to make renderSync method work with relative imports like "@use "./index.scss" as *;"
+ * @jest-environment node
+ */
+
 import { renderSync } from "sass";
 import { breakpoint } from ".";
 import scssTestImporter from "../../utils/scssTestImporter";
