@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React from "react";
 import ReactDOMServer from "react-dom/server";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
@@ -14,7 +14,7 @@ const { getComputedStyle } = window;
 window.getComputedStyle = (el) => getComputedStyle(el);
 
 // Helper funciton to render element without React in runtime
-function renderWithoutRuntime(element: React.ReactElement) {
+function renderWithoutRuntime(element: any) {
   const div = document.createElement("div");
 
   div.innerHTML = ReactDOMServer.renderToStaticMarkup(element);
@@ -37,6 +37,10 @@ const Example = React.forwardRef(function Example(
       </Modal>
     </>
   );
+});
+
+beforeEach(() => {
+  document.body.innerHTML = '<div id="root"></div><div id="root-modals"></div>';
 });
 
 describe("Modal", () => {

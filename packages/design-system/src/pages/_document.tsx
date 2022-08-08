@@ -41,7 +41,9 @@ export default class MyDocument extends Document {
       <Html>
         <Head />
         <body>
-          <Main />
+          <div id="root">
+            <Main />
+          </div>
 
           <div id="root-modals" />
 

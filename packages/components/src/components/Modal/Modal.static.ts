@@ -7,7 +7,7 @@ function defaultConfig() {
     /** Class on body which indicates that modal is open */
     classModalIsOpenBody: "has-modal",
     /** Root of page content which should be hidden when modal is open */
-    root: document.getElementById("__next"),
+    root: document.getElementById("root"),
     /** Element on page where modal is be placed. This elements should placed outside main content (`root` option) and usually at the and of `<body />` tag. */
     modalsRoot: document.getElementById("root-modals"),
     /** On show callback function. */
