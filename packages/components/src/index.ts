@@ -6,6 +6,7 @@ import Card, { CardContent, CardFooter, CardHeader } from "./components/Card";
 import { Input, TextArea, RadioCheck, Error } from "./components/Forms";
 import Icon from "./components/Icon";
 import Select from "./components/Select";
+import Modal from "./components/Modal";
 
 // TODO: Tokens should have own entry
 import {
@@ -40,6 +41,7 @@ export {
   CardContent,
   CardFooter,
   CardHeader,
+  Modal,
   Icon,
   Select,
   Input,

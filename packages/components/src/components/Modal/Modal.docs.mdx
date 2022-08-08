@@ -1,0 +1,201 @@
+---
+title: Modal
+---
+
+import { Preview, Props } from "@lighting-beetle/lighter-styleguide";
+
+import Button from "../Button";
+
+import Modal from "./Modal";
+
+export const modalPlaceholderText =
+  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum hendrerit auctor egestas. Mauris scelerisque velit eu ex consectetur, id lacinia est eleifend. Nunc volutpat leo nulla, nec tempor justo vulputate in. Pellentesque laoreet nunc velit, et pretium mi posuere nec. Curabitur porta justo et diam elementum ornare. Nulla accumsan nibh non facilisis ornare. Aliquam dictum a tellus et rutrum. Mauris dolor lectus, gravida non ex at, elementum feugiat ligula. Maecenas ultricies, nisl sit amet accumsan cursus, ante est semper leo, in interdum metus tellus in mauris. Quisque luctus nisl nec laoreet laoreet.";
+
+Okno v popredí. Obsah stráky sa zobrazuje akoby za ním.
+
+Poskytuje dôležité informácie, vyžaduje potvrdenie akcie, vybratie možnosti zo zoznamu, a podobne. Keď je dialógové okno prítomné, zabraňuje použitiu aplikácie až kým ho používateľ potvrdí, zruší alebo vykoná požadovanú akciu.
+
+**Upozornenie:** Keďže dialógové okná úmyselne prerušujú prácu, mali by byť používané len vo výnimočných prípadoch.
+
+### Ukážka
+
+<Preview>
+  <Button data-a11y-dialog-show="example-modal">Zobraziť ukážku</Button>
+  <Modal id="example-modal" header="Lorem Ipsum">
+    <p className="no-mrg-bottom">{modalPlaceholderText}</p>
+  </Modal>
+</Preview>
+
+### Použitie
+
+Zobrazenie dialógového okna môže byť ovládané dvoma spôsobmi – explicitne cez `isVisible` prop alebo pomocou metód `show` a `hide` dostupných cez referenciu. Ovladanie cez referenciu nie je odporúčané a može byť odstránené v budúcnosti.
+
+```typescript
+const ControlledModal = () => {
+  const [isVisible, setIsVisible] = useState(false);
+
+  return (
+    <Modal
+      header="Dobrý deň"
+      isVisible={isVisible}
+      onHide={() => setIsVisible(false)}
+    >
+      ...
+    </Modal>
+  );
+};
+```
+
+```typescript
+const UncontrolledModal = () => {
+  const modalRef = useRef<Modal["ref"]>(null);
+
+  const show = () => modalRef.current?.show();
+  const hide = () => modalRef.current?.hide();
+
+  return (
+    <Modal ref={modalRef} header="Dobrý deň">
+      ...
+    </Modal>
+  );
+};
+```
+
+### Lazy inicializácia modalu
+
+V prípade, že je obsah modalu možné inicializaovať až v momente zobrazovania, je možné kombinovať kontrolovaný modal s podmienkov na zobrazenie.
+
+```typescript
+const ControlledLazyModal = () => {
+  const [isVisible, setIsVisible] = useState(false);
+
+  return (
+    isVisible && (
+      <Modal
+        header="Dobrý deň"
+        isVisible={isVisible}
+        onHide={() => setIsVisible(false)}
+      >
+        ...
+      </Modal>
+    )
+  );
+};
+```
+
+### Varianty
+
+#### Základná
+
+<Preview>
+  <Button data-a11y-dialog-show="default-modal">Zobraziť modál</Button>
+  <Modal id="default-modal" header="Základný modál">
+    <p className="no-mrg-bottom">{modalPlaceholderText}</p>
+  </Modal>
+</Preview>
+
+_Poznámka:_ Ak je na stránke viacero aktívnych modálov, posledný aktivovaný modál bude navrchu.
+
+#### Dlhý obsah
+
+Ak modál obsahuje dlhý text, napr. modál pre súhlas s podmienkami používania, zvážte font Amalia pre obsah použitím triedy `.text-font-secondary`.
+
+<Preview>
+  <Button data-a11y-dialog-show="long-modal-id">Zobraziť modál</Button>
+  <Modal id="long-modal-id" header="Modál s dlhým textom">
+    <div className="text-font-secondary">
+      <p>{modalPlaceholderText}</p>
+      <p>{modalPlaceholderText}</p>
+      <p>{modalPlaceholderText}</p>
+    </div>
+  </Modal>
+</Preview>
+
+#### Modál s akciami
+
+Ak dialógové okno obsahuje posledný krok v procese, ktorý sa nedá jednoducho vrátiť do pôvodného stavu, napr. vymazanie dát alebo dokončenie finančnej transakcie, odporúčame nastaviť fokus na akciu, ktorá je najmenej deštruktívna.
+
+Ak dialógové okno iba poskytuje dodatočné informácie alebo poskytuje akciu na pokračovanie v procese, odporúčame nastaviť fokus na akciu, ktorá je najčastejšie používaná – napr. tlačidlá „OK“ alebo „Pokračovať“.
+
+Akcie nachádzajúce sa v pätičke dialógového okna budú viditeľné aj keď bude obsah presahovať povolenú výšku.
+
+<Preview>
+  <Button data-a11y-dialog-show={"action-modal-id"}>Zobraziť modál</Button>
+  <Modal
+    id="action-modal-id"
+    header="Modál s akciou"
+    footer={<Button className="no-mrg-bottom">Akcia</Button>}
+  >
+    <p className="no-mrg-bottom">{modalPlaceholderText}</p>
+  </Modal>
+</Preview>
+
+#### Farebná pätička
+
+Keď potrebujete jednoznačne odlíšiť akcie od zvyšku dialógového okna, môžete použiť alternatívne pozadie pre akcie.
+
+<Preview>
+  <Button data-a11y-dialog-show="action-modal-secondary-background-id">
+    Zobraziť modál
+  </Button>
+  <Modal
+    id="action-modal-secondary-background-id"
+    header="Modál so zafarbenou pätičkou"
+    footer={<Button className="no-mrg-bottom">Akcia</Button>}
+    footerBackground="secondary"
+  >
+    <p>{modalPlaceholderText}</p>
+  </Modal>
+</Preview>
+
+#### Neúmyselné zatvorenie
+
+Ak dialógové okno obsahuje formulár, alebo používateľ má vykonať nejakú akciu, môžeme mu zabrániť pred neúmyselným klikom na tmavé pozadie, ktoré normálne zatvorí modál.
+
+<Preview>
+  <Button data-a11y-dialog-show="modal-with-disabled-closing-on-overlay-click">
+    Zobraziť modál
+  </Button>
+  <Modal
+    id="modal-with-disabled-closing-on-overlay-click"
+    header="Modál ktorý sa nedá vypnúť klikom na pozadie"
+    footer={<Button className="no-mrg-bottom">Akcia</Button>}
+    closeOnOverlayClick={false}
+  >
+    <p className="no-mrg-bottom">{modalPlaceholderText}</p>
+  </Modal>
+</Preview>
+
+### JS module reference
+
+Modal is backed with [a11y-Modal | see docs](https://github.com/edenspiekermann/a11y-Modal)
+
+If you omit `data-modal` attribute on `<div class="modal" />` element, select won't be initialized and you need to initialize it manually. Then you will have access to instance and you can handle modals programatically.
+
+```js
+const instance = new window.myApp.Modal(
+  document.getElementById("my-modal"),
+  config
+);
+```
+
+#### Config
+
+#### Methods
+
+```js
+const instance = window.myApp.Modal.getInstance(el);
+/*
+  instance.method();
+*/
+```
+
+**A11y-dialog** collects all modal openers/triggers with querySelector and add them event listeners after page is loaded. Because of that, is important to keep in mind, that every new opener/trigger added to DOM programatically after page load <strong>will not work</strong>. Workaround is to use instance of Modal component and call <strong>show()</strong> method to open Modal window.
+
+### Props
+
+<Props title="<Modal />" component={Modal} />
+
+### Accessibility
+
+Modal are built according to [WAI-ARIA Authoring Practices 1.1](https://www.w3.org/TR/wai-aria-practices-1.1/#dialog_modal).
