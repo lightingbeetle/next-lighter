@@ -19,4 +19,6 @@ Button.defaultProps = {
   theme,
 };
 
+Button.displayName = "Button";
+
 export default Button;
