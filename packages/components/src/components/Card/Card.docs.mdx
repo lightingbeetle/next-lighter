@@ -2,85 +2,287 @@
 title: Card
 ---
 
+import Link from "next/link";
 import { Preview, Props } from "@lighting-beetle/lighter-styleguide";
-import Card, { CardContent, CardHeader, CardFooter } from ".";
-import Button from "./../Button";
 
-# Card
+import Icon from "../Icon";
+import Button from "../Button";
 
-A card serves as an entry point to more detailed information. Cards may contain rich content, such as photos, text, link, list, tables, you name it.
 
-<Card>
-  <CardContent>
-    <h2>Card</h2>
-    <p>Content</p>
-  </CardContent>
-</Card>
+import Card, { CardSection, CardImage, CardTitle, CardAction } from ".";
 
-## Variants
 
-### Basic
+Navigačný komponent. Môže obsahovať obrázok, nadpis, text aj button/link.
+
+Karta slúži ako vstupný bod k podrobnejším informáciám. Karty môžu obsahovať bohatý obsah, ako sú fotografie, text, odkaz, zoznam, tabuľky,..
+
+### Ukážka
 
 <Preview>
   <Card>
-    <CardContent>
-      <h2>Card</h2>
-      <p>Content</p>
-    </CardContent>
+    <CardSection>
+      <CardTitle>Simple card</CardTitle>
+      <p>Card Content</p>
+    </CardSection>
   </Card>
 </Preview>
 
-### Card header and footer
+### Použitie
 
-Card header holds a title and possibly an action button. Card footer is usually used for additional information or confirm/cancellation buttons.
+<p>
+  Pri klikateľnej kartičke je potrebné manuálne poslať do <code>Card</code>
+  komponentu <code>isClickable</code> prop, vďaka ktorému kartička nadobudne štýly,
+  ktoré signalizujú, že je klikateľná.
+</p>
+<p>
+  Pre nadpis kartičky používajte <code>CardTitle</code> komponent. Prebieha tu
+  kontrola, či je použitý v kombinácii s <code>CardAction</code> komponentom, na
+  základe ktorej sa priradzuje <code>className</code>, ktorá je potrebná pre
+  správne fungovanie klikateľnej kartičky.
+</p>
+<p>
+  Pri klikateľnej kartičke je nutné použiť <code>CardAction</code>
+  komponent. Slúži ako wrapper nad <code>Linkom</code> alebo <code>
+    Buttonom
+  </code>, ktorý je do tohto komponentu poslaný. Následne je pomocou štýlov upravený
+  tak, aby bola celá kartička klikateľná.
+</p>
+
+### Varianty
+
+#### Základná
 
 <Preview>
   <Card>
-    <CardHeader title="Title" />
-    <CardContent>Content</CardContent>
-    <CardFooter>
-      <Button type="primary">CTA</Button>
-    </CardFooter>
+    <CardSection>
+      <CardTitle>Simple card</CardTitle>
+      <p>Card Content</p>
+    </CardSection>
   </Card>
 </Preview>
 
-### Card header actions
+#### S ohraničením
 
-To add an action button in card header, a Bar is added to wrap things nicely.
+<Preview>
+  <Card isBordered>
+    <CardSection>
+      <CardTitle>Simple card with border</CardTitle>
+      <p>Card Content</p>
+    </CardSection>
+  </Card>
+</Preview>
+
+#### Zhustená (condensed)
 
 <Preview>
   <Card>
-    <CardHeader title="Title" actions={<Button>Action</Button>} />
-    <CardContent>Content</CardContent>
+    <CardSection isCondensed>
+      <CardTitle>Simple condensed card</CardTitle>
+      <p>Condensed Card Content</p>
+    </CardSection>
   </Card>
 </Preview>
 
-### Multiple content sections
+#### Klikateľná
 
-Multiple contents helps with visual separation of content.
+<Preview>
+  <Card isClickable>
+    <CardSection>
+      <CardTitle>
+        <div className="text-normal">Som</div>poistenec
+      </CardTitle>
+      <p>Informácie a výhody pre našich poistencov</p>
+      <CardAction>
+        <Button type="link" className="no-pad-left" href="#">
+          Zistiť viac{" "}
+          <Icon name="arrow-right" size="medium" className="icon--right" />
+        </Button>
+      </CardAction>
+    </CardSection>
+  </Card>
+</Preview>
+
+<Preview>
+  <Card isClickable isBordered>
+    <CardSection className="d-flex align-items-middle">
+      <Icon
+        name="heart"
+        size="large"
+        className="text-color-primary icon--left"
+      />
+      <CardTitle tag="h6">
+        <CardAction>
+          <Link href="#" className="text-color-secondary">
+            Benefity pre poistencov
+          </Link>
+        </CardAction>
+      </CardTitle>
+    </CardSection>
+  </Card>
+</Preview>
+{/*
+<Preview>
+  <Card isClickable>
+    <CardSection className="text-center">
+      <Image src="/illustrations/100x100/ako-sa-poistit_povinnosti-a-ziadosti.svg" />
+      <CardTitle className="h5">Noví poistenci - časté otázky</CardTitle>
+      ...
+      <CardAction>
+        <Button type="link" href="#">
+          Zistiť viac{" "}
+          <Icon name="arrow-right" size="medium" className="icon--right" />
+        </Button>
+      </CardAction>
+    </CardSection>
+  </Card>
+</Preview>*/}
+
+
+#### S obrázkom na pozadí
+
+{/*
+<Preview>
+  <Grid>
+    <GridCol size={{ m: 6 }}>
+      <Card>
+        <CardSection bgUrl={DoctorImage} style={{ minHeight: "300px" }} />
+      </Card>
+    </GridCol>
+  </Grid>
+</Preview>
+*/}
+
+#### S obrázkom ako sekciou karty
+{/*
+<Preview>
+  <Card>
+    <CardImage>
+      <Image src={DoctorImage} alt="doctor" />
+    </CardImage>
+  </Card>
+</Preview>
+*/}
+
+#### S viacerými obsahovými sekciami
 
 <Preview>
   <Card>
-    <CardContent>
-      <h2>Card</h2>
-      <p>Content</p>
-    </CardContent>
-    <CardContent>
-      <p>Second content</p>
-    </CardContent>
+    <CardSection>
+      <CardTitle>Card with 2 content sections</CardTitle>
+      <p>
+        Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget
+        lacinia odio sem nec elit.
+      </p>
+    </CardSection>
+    <CardSection>
+      <h4>Card with 2 content sections</h4>
+      <p>Donec id elit non mi porta gravida at eget metus.</p>
+    </CardSection>
   </Card>
 </Preview>
 
-## Props
+#### S responzívnym pozadím
+{/*
+<Preview>
+  <Card>
+    <Grid hasGutters={false}>
+      <GridCol size={{ m: 6 }} equalizeHeight>
+        <CardSection
+          bgUrl={FamilyImageOverlay}
+          bg="secondary"
+          isFilling
+          hasBgOnMobile
+        >
+          <CardTitle tag="h1" className="text-inverted h2">
+            <p>Viac ako 30 dôvodov pre poistenie v Dôvere</p>
+          </CardTitle>
+          <p className="text-inverted mb-xxlarge">
+            Dôvera ponúka svojim poistencom aj výhody nad rámec zákona
+          </p>
+          
+        </CardSection>
+      </GridCol>
+      <GridCol size={{ m: 6 }} className="show-m" equalizeHeight>
+        <CardImage bgUrl={FamilyImage} />
+      </GridCol>
+    </Grid>
+  </Card>
+</Preview>
+*/}
+### JS module reference
 
-<Props component={Card} />
+All card sections elements with `[data-card-section]` attribute will be initialised automatically.
 
-<Props component={CardContent} />
+#### Custom initialisation
 
-<Props component={CardHeader} />
+```js
+const instance = new window.myApp.CardSection(
+  document.getElementById("my-card-section"),
+  config
+);
+```
 
-<Props component={CardFooter} />
+#### Config
 
-## Accessibility
+{/* <TableAPI
+  data={[
+    {
+      prop: "mobileResolution",
+      type: "number",
+      default: "768",
+      description: "Specifies mobile resolution.",
+    },
+  ]}
+/>*/}
 
-The `<Card />` component is purely presentational and does not carry any semantic meaning. The only thing you should care about is the usage of correct heading level in `<CardHeader title="" />`
+#### Methods
+
+```js
+const instance = window.myApp.CardSection.getInstance(el);
+/*
+  instance.method();
+*/
+```
+
+{/*<TableAPI
+  data={[
+    {
+      prop: "init",
+      type: "func",
+      default: "() => {}",
+      description:
+        "Initialize instance. This is called automatically on `new Plugin(el, config)`",
+    },
+    {
+      prop: "destroy",
+      type: "func",
+      default: "() => {}",
+      description: "Destroy the instance.",
+    },
+    {
+      prop: "update",
+      type: "func",
+      default: "() => {}",
+      description: "Updates the instance (reinitalize).",
+    },
+    {
+      prop: "static getInstance",
+      type: "func",
+      default: "element => {}",
+      description:
+        "Get instance of `CardSection` attached to specific DOM element (usually `[data-card-section]`).",
+    },
+  ]}
+/>*/}
+
+### Props
+
+<Props title="<Card />" component={Card} />
+
+<Props title="<CardTitle />" component={CardTitle} />
+
+<Props title="<CardAction />" component={CardAction} />
+
+<Props title="<CardSection />" component={CardSection} />
+
+<Props title="<CardImage />" component={CardImage} />

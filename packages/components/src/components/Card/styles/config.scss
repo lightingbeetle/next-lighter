@@ -1,29 +1,56 @@
-// ---------------------------------------------
-// CARD - CONFIGURATION
-// ---------------------------------------------
-
 @use "../../../tokens";
 
-$spacing: tokens.space();
-
 $card: (
-  background-color: tokens.color("white"),
-  border: 1px solid tokens.color("grey", 300),
-  border-radius: 3px,
-  box-shadow: #{tokens.$shadow-ambient-default,
-  tokens.$shadow-direct-default},
-);
-
-$section: (
   default: (
-    padding: tokens.space("s"),
+    background-color: tokens.color("white"),
+    transition: all 120ms linear,
   ),
-  m: (
-    padding: tokens.space(),
+  bordered: (
+    border: 1px solid tokens.color("grey", 100),
+  ),
+  clickable: (
+    box-shadow: 0 10px 15px 0 rgba(0, 0, 0, 0.05),
   ),
 );
 
-$header: (
-  background-color: tokens.color("grey", 100),
-  align-items: stretch,
+$card-section: (
+  default: (
+    default: (
+      padding: tokens.space("s"),
+    ),
+    s: (
+      padding: tokens.space(),
+    ),
+    m: (
+      padding: tokens.space("xl"),
+    ),
+    l: (
+      padding: tokens.space("xxl") tokens.space("xxxl"),
+    ),
+  ),
+  image: (
+    default: (
+      padding: 0,
+    ),
+  ),
+  condensed: (
+    default: (
+      padding: tokens.space("s"),
+    ),
+    m: (
+      padding: tokens.space("l"),
+    ),
+  ),
+);
+
+$card-section-bg-colors: (
+  white: (
+    background-color: tokens.color("white"),
+  ),
+  secondary: (
+    background-color: tokens.color("secondary"),
+  ),
+  primary: (
+    background-color: tokens.color("primary"),
+  ),
 );

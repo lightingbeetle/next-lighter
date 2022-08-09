@@ -1,7 +1,10 @@
-// ---------------------------------------------
-// CARD - STYLES
-// ---------------------------------------------
+@use "./mixins";
 
-@import "./mixins";
+@include mixins.card-classes;
 
-@include card-classes;
+.card {
+  .link {
+    text-decoration: none;
+    position: unset;
+  }
+}
