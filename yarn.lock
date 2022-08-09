@@ -3646,7 +3646,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:^17, @types/react@npm:~17.0.24":
+"@types/react@npm:^17, @types/react@npm:~17.0.39":
   version: 17.0.48
   resolution: "@types/react@npm:17.0.48"
   dependencies:
@@ -6871,7 +6871,7 @@ __metadata:
     modern-normalize: ^1.1.0
     netlify-cms-app: ~2.15.44
     netlify-cms-widget-mdx: ~0.4.4
-    next: ~11.1.2
+    next: ~12.2.4
     next-compose-plugins: ~2.2.1
     next-transpile-modules: ~8.0.0
     react-docgen-typescript: ^2.2.2
@@ -11988,7 +11988,7 @@ __metadata:
     "@testing-library/user-event": ^13.2.1
     "@types/jest": ^27.0.2
     "@types/node": ~16.10.1
-    "@types/react": ~17.0.24
+    "@types/react": ~17.0.39
     "@types/react-dom": ~17.0.9
     "@typescript-eslint/eslint-plugin": ~4.32.0
     "@typescript-eslint/parser": ~4.32.0
@@ -14548,7 +14548,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"next@npm:^12.0.10":
+"next@npm:^12.0.10, next@npm:~12.2.4":
   version: 12.2.4
   resolution: "next@npm:12.2.4"
   dependencies:
