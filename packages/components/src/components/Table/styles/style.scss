@@ -35,10 +35,6 @@
     border-style: solid;
   }
 
-  tr:nth-child(odd) td {
-    background-color: rgba(tokens.color("secondary", 100), 0.3);
-  }
-
   //Prevent checkboxes label wrap under checkbox
   .radiocheck {
     flex-wrap: nowrap;
