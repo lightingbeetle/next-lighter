@@ -79,15 +79,19 @@ function TableTokens({
             <Code language="javascript">{usageFormatJS({ token, name })}</Code>
           ),
         },
-        usageFormatSCSS && {
-          accessor: "token",
-          Header: "SCSS usage",
-          Cell: ({ value: token }) => (
-            <Code language="scss">{usageFormatSCSS({ token, name })}</Code>
-          ),
-          id: "scssUsage",
-        },
-      ].filter(Boolean),
+        usageFormatSCSS
+          ? {
+              accessor: "token",
+              Header: "SCSS usage",
+              Cell: ({ value: token }) => (
+                <Code language="scss">{usageFormatSCSS({ token, name })}</Code>
+              ),
+              id: "scssUsage",
+            }
+          : false,
+        // ts don't do well filter(Boolean) infer type
+        // https://github.com/microsoft/TypeScript/issues/16069
+      ].filter(Boolean) as React.ComponentProps<typeof Table>["columns"],
     [name, usageFormatSCSS, usageFormatJS, usageFormatCSS]
   );
 

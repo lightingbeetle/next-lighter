@@ -4,6 +4,7 @@ export { default as Code } from "./Code";
 export { default as Props } from "./Props";
 export { default as Rectangle } from "./Rectangle";
 export { default as Table } from "./Table";
+export { default as Button } from "./Button";
 export {
   default as Navigation,
   NavigationItem,
