@@ -2,7 +2,7 @@
 # Manual changes might be lost - proceed with caution!
 
 __metadata:
-  version: 6
+  version: 5
   cacheKey: 8
 
 "@ampproject/remapping@npm:^2.1.0":
@@ -2953,14 +2953,14 @@ __metadata:
 "@next/swc-linux-arm64-gnu@npm:12.2.4":
   version: 12.2.4
   resolution: "@next/swc-linux-arm64-gnu@npm:12.2.4"
-  conditions: os=linux & cpu=arm64 & libc=glibc
+  conditions: os=linux & cpu=arm64
   languageName: node
   linkType: hard
 
 "@next/swc-linux-arm64-musl@npm:12.2.4":
   version: 12.2.4
   resolution: "@next/swc-linux-arm64-musl@npm:12.2.4"
-  conditions: os=linux & cpu=arm64 & libc=musl
+  conditions: os=linux & cpu=arm64
   languageName: node
   linkType: hard
 
@@ -2981,14 +2981,14 @@ __metadata:
 "@next/swc-linux-x64-gnu@npm:12.2.4":
   version: 12.2.4
   resolution: "@next/swc-linux-x64-gnu@npm:12.2.4"
-  conditions: os=linux & cpu=x64 & libc=glibc
+  conditions: os=linux & cpu=x64
   languageName: node
   linkType: hard
 
 "@next/swc-linux-x64-musl@npm:12.2.4":
   version: 12.2.4
   resolution: "@next/swc-linux-x64-musl@npm:12.2.4"
-  conditions: os=linux & cpu=x64 & libc=musl
+  conditions: os=linux & cpu=x64
   languageName: node
   linkType: hard
 
@@ -3432,6 +3432,16 @@ __metadata:
   dependencies:
     "@types/istanbul-lib-report": "*"
   checksum: f1ad54bc68f37f60b30c7915886b92f86b847033e597f9b34f2415acdbe5ed742fa559a0a40050d74cdba3b6a63c342cac1f3a64dba5b68b66a6941f4abd7903
+  languageName: node
+  linkType: hard
+
+"@types/jest-axe@npm:^3.5.4":
+  version: 3.5.4
+  resolution: "@types/jest-axe@npm:3.5.4"
+  dependencies:
+    "@types/jest": "*"
+    axe-core: ^3.5.5
+  checksum: 64331bbb1e5b4396d4f0ea00af0325b7739f5edc49796c4ac5080844c4754ed9fd12920620621b25829f703c2819a3783dcf05b79b2f953855df334ff0c9d894
   languageName: node
   linkType: hard
 
@@ -3911,6 +3921,15 @@ __metadata:
   version: 0.7.5
   resolution: "@xmldom/xmldom@npm:0.7.5"
   checksum: 8d7ec35c1ef6183b4f621df08e01d7e61f244fb964a4719025e65fe6ac06fac418919be64fb40fe5908e69158ef728f2d936daa082db326fe04603012b5f2a84
+  languageName: node
+  linkType: hard
+
+"a11y-dialog@npm:^7.5.0":
+  version: 7.5.1
+  resolution: "a11y-dialog@npm:7.5.1"
+  dependencies:
+    focusable-selectors: ^0.3.1
+  checksum: 9b2ae60a431804f4c82efe397a1ad8a07579e7ff0f5a27ca0d9caae5ac5c68687e8d465d8825682cc8bd7b4396ba457a59e31d3698849c681e53853bffe60c7e
   languageName: node
   linkType: hard
 
@@ -4574,6 +4593,20 @@ __metadata:
   version: 1.11.0
   resolution: "aws4@npm:1.11.0"
   checksum: 5a00d045fd0385926d20ebebcfba5ec79d4482fe706f63c27b324d489a04c68edb0db99ed991e19eda09cb8c97dc2452059a34d97545cebf591d7a2b5a10999f
+  languageName: node
+  linkType: hard
+
+"axe-core@npm:4.4.1":
+  version: 4.4.1
+  resolution: "axe-core@npm:4.4.1"
+  checksum: ad14c5b71059dc3d24ef2519b8cd96e98b4a572379396201ce449d1c4262181821d6ca9550df65b22371faf06d28bbe94d391fe5675f2a08e6550f7b5da8416d
+  languageName: node
+  linkType: hard
+
+"axe-core@npm:^3.5.5":
+  version: 3.5.6
+  resolution: "axe-core@npm:3.5.6"
+  checksum: 000777d2b6bf1f390beb1fb4b8714ed9127797c021c345b032db0c144e07320dbbe8cb0bcb7688b90b79cfbd3cdc1f27a4dc857804e3c61d7e0defb34deeb830
   languageName: node
   linkType: hard
 
@@ -5371,9 +5404,9 @@ __metadata:
   linkType: hard
 
 "caniuse-lite@npm:^1.0.30001202, caniuse-lite@npm:^1.0.30001219, caniuse-lite@npm:^1.0.30001228, caniuse-lite@npm:^1.0.30001332, caniuse-lite@npm:^1.0.30001370":
-  version: 1.0.30001374
-  resolution: "caniuse-lite@npm:1.0.30001374"
-  checksum: a75656e971d7ef2af4d2f3529a4620ae1a45d09460601fbc34b26f6867f31bbca006f71d8840291c471a2f01fc1994044f319a5660241ffaf35a2d84535af442
+  version: 1.0.30001375
+  resolution: "caniuse-lite@npm:1.0.30001375"
+  checksum: 6ed9cf7a3f80f5880cb021105864b869dddfdda8490559aa623e77feeca5ce8958a3b7c1cf37322e519176dcb488c99e6358b8c2de2aa4a0e08846ac122c4e75
   languageName: node
   linkType: hard
 
@@ -5432,6 +5465,16 @@ __metadata:
     ansi-styles: ^4.1.0
     supports-color: ^7.1.0
   checksum: a9580afd4af8ffa8add8edb565d1b3f77efb880c5d887d3bb72a948d1bfb2bc764db2ceb6d62a60103aa384f3da71eb1969c7f68e886055e0a3438550e809cde
+  languageName: node
+  linkType: hard
+
+"chalk@npm:4.1.0":
+  version: 4.1.0
+  resolution: "chalk@npm:4.1.0"
+  dependencies:
+    ansi-styles: ^4.1.0
+    supports-color: ^7.1.0
+  checksum: 5561c7b4c063badee3e16d04bce50bd033e1be1bf4c6948639275683ffa7a1993c44639b43c22b1c505f0f813a24b1889037eb182546b48946f9fe7cdd0e7d13
   languageName: node
   linkType: hard
 
@@ -6011,6 +6054,8 @@ __metadata:
   dependencies:
     "@esbuild-plugins/esm-externals": 0.0.6
     "@lighting-beetle/lighter-hooks": 1.1.0
+    "@types/jest-axe": ^3.5.4
+    a11y-dialog: ^7.5.0
     classnames: ^2.3.1
     downshift: ^6.1.7
     esbuild: ^0.13.3
@@ -6018,6 +6063,7 @@ __metadata:
     esbuild-sass-plugin: ^1.5.5
     identity-obj-proxy: ^3.0.0
     jest: ^27.2.3
+    jest-axe: ^6.0.0
     npm-run-all: ^4.1.5
     polished: ^4.1.3
     preact: ~10.5.14
@@ -7209,9 +7255,9 @@ __metadata:
   linkType: hard
 
 "electron-to-chromium@npm:^1.3.723, electron-to-chromium@npm:^1.4.202":
-  version: 1.4.212
-  resolution: "electron-to-chromium@npm:1.4.212"
-  checksum: 972eb1b46bce2fa7fa19eb70779d27b84b7113daad01718a67cfbd92e2972c09eaf15bbe5e901467399e5e66c74a17a74891c7aeda8118b1ef655d8c1913ee2a
+  version: 1.4.213
+  resolution: "electron-to-chromium@npm:1.4.213"
+  checksum: 63953b2db5f87ef11caad8c57bba69300cc5ab1bf363d5758c48187fe9e414e971e470bfc961540c954a2f966fadccce29bdbfa60f5bd6c4b5499f16404d0846
   languageName: node
   linkType: hard
 
@@ -8792,6 +8838,13 @@ __metadata:
   version: 0.3.1
   resolution: "focus-group@npm:0.3.1"
   checksum: 24999d074f05065f8ae96f61ff4f2cc13240a0f7e7813ff8de3cd42deca6182d42e434fa55228dc31568357de63c2334e00fa609235aabb48c63ca0fef658b71
+  languageName: node
+  linkType: hard
+
+"focusable-selectors@npm:^0.3.1":
+  version: 0.3.1
+  resolution: "focusable-selectors@npm:0.3.1"
+  checksum: 79a978f9f9fe059fbbc1602b17c1852d9404658c3fb4618545ad9e9bf398a8d0bf13d4ccb602e423a4cd68b08f165bb260d4806da1a6aedb95fbae4ee3acd4fd
   languageName: node
   linkType: hard
 
@@ -10931,6 +10984,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"jest-axe@npm:^6.0.0":
+  version: 6.0.0
+  resolution: "jest-axe@npm:6.0.0"
+  dependencies:
+    axe-core: 4.4.1
+    chalk: 4.1.0
+    jest-matcher-utils: 27.0.2
+    lodash.merge: 4.6.2
+  checksum: 9efe60394aa90ec86bf7fbd08aa2ceb8b813cd5b8d5b24fe03192c9bd2745770a5f3c56faa53c1909b28d0f23735648290dd494d6431460e1310ff2394080879
+  languageName: node
+  linkType: hard
+
 "jest-changed-files@npm:^27.5.1":
   version: 27.5.1
   resolution: "jest-changed-files@npm:27.5.1"
@@ -11060,7 +11125,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jest-diff@npm:^27.5.1":
+"jest-diff@npm:^27.0.2, jest-diff@npm:^27.5.1":
   version: 27.5.1
   resolution: "jest-diff@npm:27.5.1"
   dependencies:
@@ -11135,7 +11200,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jest-get-type@npm:^27.5.1":
+"jest-get-type@npm:^27.0.1, jest-get-type@npm:^27.5.1":
   version: 27.5.1
   resolution: "jest-get-type@npm:27.5.1"
   checksum: 63064ab70195c21007d897c1157bf88ff94a790824a10f8c890392e7d17eda9c3900513cb291ca1c8d5722cad79169764e9a1279f7c8a9c4cd6e9109ff04bbc0
@@ -11230,6 +11295,18 @@ __metadata:
     jest-get-type: ^27.5.1
     pretty-format: ^27.5.1
   checksum: 5c9689060960567ddaf16c570d87afa760a461885765d2c71ef4f4857bbc3af1482c34e3cce88e50beefde1bf35e33530b020480752057a7e3dbb1ca0bae359f
+  languageName: node
+  linkType: hard
+
+"jest-matcher-utils@npm:27.0.2":
+  version: 27.0.2
+  resolution: "jest-matcher-utils@npm:27.0.2"
+  dependencies:
+    chalk: ^4.0.0
+    jest-diff: ^27.0.2
+    jest-get-type: ^27.0.1
+    pretty-format: ^27.0.2
+  checksum: 7c12409e42300199bc0a901e68f13846d86f171792798e6a93dde643cf1b752aff015a97b8db313aee59d02795f3ec540f6e54c075d0f6b41effc732fd0d5055
   languageName: node
   linkType: hard
 
@@ -12221,7 +12298,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lodash.merge@npm:^4.6.2":
+"lodash.merge@npm:4.6.2, lodash.merge@npm:^4.6.2":
   version: 4.6.2
   resolution: "lodash.merge@npm:4.6.2"
   checksum: ad580b4bdbb7ca1f7abf7e1bce63a9a0b98e370cf40194b03380a46b4ed799c9573029599caebc1b14e3f24b111aef72b96674a56cfa105e0f5ac70546cdc005
@@ -17890,15 +17967,15 @@ __metadata:
   linkType: hard
 
 "sass@npm:^1.45.0":
-  version: 1.54.3
-  resolution: "sass@npm:1.54.3"
+  version: 1.54.4
+  resolution: "sass@npm:1.54.4"
   dependencies:
     chokidar: ">=3.0.0 <4.0.0"
     immutable: ^4.0.0
     source-map-js: ">=0.6.2 <2.0.0"
   bin:
     sass: sass.js
-  checksum: 9b405f602c0dcdad85e7f216cfa5ca9dfe3f7ded7b3928817cfe8dbfde0cd27b70f4cff724e229b233b3f51a06e71d3fcbbd7d3a0ff92b3e40ac57bc05b90b48
+  checksum: bb6aead09764de450a02b9a66e4ee538f0ba6bc8f2fc3905c71b2c302b5f47e089b510b86cfa7ef2d4139c210c8abf99fe157e7a5bd356c057f10d29e6c4b44c
   languageName: node
   linkType: hard
 
@@ -19948,11 +20025,11 @@ __metadata:
 
 "typescript@patch:typescript@~4.6.2#~builtin<compat/typescript>":
   version: 4.6.4
-  resolution: "typescript@patch:typescript@npm%3A4.6.4#~builtin<compat/typescript>::version=4.6.4&hash=bda367"
+  resolution: "typescript@patch:typescript@npm%3A4.6.4#~builtin<compat/typescript>::version=4.6.4&hash=493e53"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 1cb434fbc637d347be90e3a0c6cd05e33c38f941713c8786d3031faf1842c2c148ba91d2fac01e7276b0ae3249b8633f1660e32686cc7a8c6a8fd5361dc52c66
+  checksum: 8cff08bf66d9ecfbf9fcc5edde04a5a7923e6cac3b21d99b4e9a06973bf5bd7f9a83ec7eed24129c1b9e13fd861de8c1070110d4b9ce9f18ab57c6999e9c9a6f
   languageName: node
   linkType: hard
 
