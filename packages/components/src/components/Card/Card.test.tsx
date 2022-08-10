@@ -3,23 +3,6 @@ import { render, screen } from "@testing-library/react";
 import { axe } from "jest-axe";
 
 import Card, { CardSection, CardTitle, CardAction } from ".";
-import Link from "../Link";
-
-/*
-Jest does not recognize HTMLMediaElement's methods (load, play, pause) so it's necessary to mock it like this in favor of Card variant with video.
-*/
-//@ts-ignore
-window.HTMLMediaElement.prototype.load = () => {
-  /* do nothing */
-};
-//@ts-ignore
-window.HTMLMediaElement.prototype.play = () => {
-  /* do nothing */
-};
-//@ts-ignore
-window.HTMLMediaElement.prototype.pause = () => {
-  /* do nothing */
-};
 
 describe("Card", () => {
   describe("Rendering", () => {
@@ -59,7 +42,7 @@ describe("Card", () => {
           <CardSection>
             <CardTitle>
               <CardAction>
-                <Link href="string-href">Test title</Link>
+                <a href="string-href">Test title</a>
               </CardAction>
             </CardTitle>
           </CardSection>
@@ -91,7 +74,7 @@ describe("Card", () => {
           <CardSection>
             <CardTitle>
               <CardAction>
-                <Link href="#">Test title</Link>
+                <a href="/">Test title</a>
               </CardAction>
             </CardTitle>
           </CardSection>
@@ -152,7 +135,7 @@ describe("CardSection", () => {
     it('gets correct className when bg="grey" is passed', () => {
       render(
         <Card>
-          <CardSection bg="grey" data-testid="card-section">
+          <CardSection bg="secondary" data-testid="card-section">
             <CardTitle>Test title</CardTitle>
           </CardSection>
         </Card>
@@ -160,7 +143,7 @@ describe("CardSection", () => {
 
       const cardSection = screen.getByTestId("card-section");
 
-      expect(cardSection).toHaveClass("card__section--grey");
+      expect(cardSection).toHaveClass("card__section--secondary");
     });
 
     it("gets correct className when hasBgOnMobile prop is passed", () => {
@@ -217,20 +200,6 @@ describe("CardSection", () => {
       const cardSection = screen.getByTestId("card-section");
 
       expect(cardSection).toHaveClass("card__section--image");
-    });
-
-    it("gets correct className when type='video' prop is passed", () => {
-      render(
-        <Card>
-          <CardSection type="video" data-testid="card-section">
-            <CardTitle title="Test title" />
-          </CardSection>
-        </Card>
-      );
-
-      const cardSection = screen.getByTestId("card-section");
-
-      expect(cardSection).toHaveClass("card__section--video");
     });
   });
 });
