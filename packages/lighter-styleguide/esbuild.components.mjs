@@ -1,15 +1,26 @@
-const esbuild = require("esbuild");
-const esmExternals = require("@esbuild-plugins/esm-externals").default;
+import esbuild from "esbuild";
+import { EsmExternalsPlugin } from "@esbuild-plugins/esm-externals";
+import svgPlugin from "esbuild-plugin-svg";
 
 async function bundle() {
   const config = {
     entryPoints: ["./src/index.tsx"],
     bundle: true,
+    target: "es2018",
     format: "cjs",
     minify: true,
     sourcemap: true,
     outfile: "dist/index.js",
-    plugins: [esmExternals({ externals: ["react", "react-dom"] })],
+    loader: {
+      ".js": "jsx",
+      ".woff": "file",
+      ".woff2": "file",
+      ".ttf": "file",
+    },
+    plugins: [
+      EsmExternalsPlugin({ externals: ["react", "react-dom"] }),
+      svgPlugin(),
+    ],
   };
 
   try {

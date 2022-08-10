@@ -24,6 +24,7 @@ const useCodeHighlight = ({
     const Tag = inline ? "span" : "div";
 
     const highlight = (
+      // @ts-ignore
       <Prism {...defaultProps} code={code} language={language} theme={theme}>
         {({ className, style, tokens, getLineProps, getTokenProps }) => {
           const toHighlight = tokens.map((line, i) => (
