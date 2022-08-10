@@ -24,12 +24,18 @@ const ErrorMessages = ({
     formState: { errors },
   } = useFormContext();
 
+  // TODO: not sure about this pattern (TS dont' work here well) - seems hard to read and understand the code and it's werbose with magic strings like "pattern" or "required"
   return (
     <>
+      {/* @ts-ignore */}
       {errors?.[name]?.type === "pattern" && <Error>{pattern}</Error>}
+      {/* @ts-ignore */}
       {errors?.[name]?.type === "required" && <Error>{required}</Error>}
+      {/* @ts-ignore */}
       {errors?.[name]?.type === "maxLength" && <Error>{maxLength}</Error>}
+      {/* @ts-ignore */}
       {types[errors?.[name]?.type] ? (
+        /* @ts-ignore */
         <Error>{types[errors?.[name]?.type]}</Error>
       ) : (
         <Error>{errors?.[name]?.message}</Error>
