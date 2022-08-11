@@ -34,8 +34,7 @@ const columns = [
     Cell: ({ value }: any) => (
       <div className="d-flex align-item-center">
         <Icon
-          name={value === "vypracované" ? "check" : "error"}
-          size="medium"
+          name={value === "vypracované" ? "heart" : "close"}
           className={`text-color-${
             value === "vypracované" ? "primary" : "error"
           }`}
@@ -49,8 +48,8 @@ const columns = [
     Header: "",
     accessor: "confirm",
     Cell: () => (
-      <Button size="xs" className="no-mrg text-nowrap">
-        <Icon className="icon--left" name="check" size="small" />
+      <Button size="s" className="no-mrg text-nowrap">
+        <Icon className="icon--left" name="heart" size="s" />
         Potvrdiť
       </Button>
     ),
@@ -61,10 +60,10 @@ const columns = [
     Cell: () => (
       <Button
         type="link"
-        size="xs"
+        size="s"
         className="text-color-error no-mrg text-nowrap"
       >
-        <Icon className="icon--left" name="trash" size="small" />
+        <Icon className="icon--left" name="close" size="s" />
         Odstrániť
       </Button>
     ),
