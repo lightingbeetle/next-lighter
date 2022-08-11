@@ -2,7 +2,7 @@
 # Manual changes might be lost - proceed with caution!
 
 __metadata:
-  version: 6
+  version: 5
   cacheKey: 8
 
 "@ampproject/remapping@npm:^2.1.0":
@@ -2953,14 +2953,14 @@ __metadata:
 "@next/swc-linux-arm64-gnu@npm:12.2.4":
   version: 12.2.4
   resolution: "@next/swc-linux-arm64-gnu@npm:12.2.4"
-  conditions: os=linux & cpu=arm64 & libc=glibc
+  conditions: os=linux & cpu=arm64
   languageName: node
   linkType: hard
 
 "@next/swc-linux-arm64-musl@npm:12.2.4":
   version: 12.2.4
   resolution: "@next/swc-linux-arm64-musl@npm:12.2.4"
-  conditions: os=linux & cpu=arm64 & libc=musl
+  conditions: os=linux & cpu=arm64
   languageName: node
   linkType: hard
 
@@ -2981,14 +2981,14 @@ __metadata:
 "@next/swc-linux-x64-gnu@npm:12.2.4":
   version: 12.2.4
   resolution: "@next/swc-linux-x64-gnu@npm:12.2.4"
-  conditions: os=linux & cpu=x64 & libc=glibc
+  conditions: os=linux & cpu=x64
   languageName: node
   linkType: hard
 
 "@next/swc-linux-x64-musl@npm:12.2.4":
   version: 12.2.4
   resolution: "@next/swc-linux-x64-musl@npm:12.2.4"
-  conditions: os=linux & cpu=x64 & libc=musl
+  conditions: os=linux & cpu=x64
   languageName: node
   linkType: hard
 
@@ -3514,9 +3514,9 @@ __metadata:
   linkType: hard
 
 "@types/node@npm:*, @types/node@npm:>=6":
-  version: 18.6.5
-  resolution: "@types/node@npm:18.6.5"
-  checksum: e3e66c9a84b94010a57c1b9dac882c08484278d74f9d120dbe6a3e45d00740d178bd1d34a5deee28197c94b9f4359153b637bab9b305328e865027e9987a0f3d
+  version: 18.7.1
+  resolution: "@types/node@npm:18.7.1"
+  checksum: f1e2b701b107f97be01da4c46845cd23bcdcb2865f9abbb2847546d09587e726ea207daca6f0d1e72196875ef8c62feeeff5f1c1f2070445acd6d1a61d815c7c
   languageName: node
   linkType: hard
 
@@ -3686,13 +3686,13 @@ __metadata:
   linkType: hard
 
 "@types/styled-components@npm:^5.1.14":
-  version: 5.1.25
-  resolution: "@types/styled-components@npm:5.1.25"
+  version: 5.1.26
+  resolution: "@types/styled-components@npm:5.1.26"
   dependencies:
     "@types/hoist-non-react-statics": "*"
     "@types/react": "*"
     csstype: ^3.0.2
-  checksum: 60ce64f13283b01da54fd3a4c5703769d8575c979d5ec6b67ad124c2d4df980c9b96bb91af87e03f6447a816a5d2b0270c63eefad60cfa885091b594984525f5
+  checksum: 84f53b3101739b20d1731554fb7735bc2f3f5d050a8b392e9845403c8c8bbd729737d033978649f9195a97b557875b010d46e35a4538564a2d0dbcce661dbf76
   languageName: node
   linkType: hard
 
@@ -3911,6 +3911,15 @@ __metadata:
   version: 0.7.5
   resolution: "@xmldom/xmldom@npm:0.7.5"
   checksum: 8d7ec35c1ef6183b4f621df08e01d7e61f244fb964a4719025e65fe6ac06fac418919be64fb40fe5908e69158ef728f2d936daa082db326fe04603012b5f2a84
+  languageName: node
+  linkType: hard
+
+"a11y-dialog@npm:^7.5.0":
+  version: 7.5.1
+  resolution: "a11y-dialog@npm:7.5.1"
+  dependencies:
+    focusable-selectors: ^0.3.1
+  checksum: 9b2ae60a431804f4c82efe397a1ad8a07579e7ff0f5a27ca0d9caae5ac5c68687e8d465d8825682cc8bd7b4396ba457a59e31d3698849c681e53853bffe60c7e
   languageName: node
   linkType: hard
 
@@ -5371,9 +5380,9 @@ __metadata:
   linkType: hard
 
 "caniuse-lite@npm:^1.0.30001202, caniuse-lite@npm:^1.0.30001219, caniuse-lite@npm:^1.0.30001228, caniuse-lite@npm:^1.0.30001332, caniuse-lite@npm:^1.0.30001370":
-  version: 1.0.30001374
-  resolution: "caniuse-lite@npm:1.0.30001374"
-  checksum: a75656e971d7ef2af4d2f3529a4620ae1a45d09460601fbc34b26f6867f31bbca006f71d8840291c471a2f01fc1994044f319a5660241ffaf35a2d84535af442
+  version: 1.0.30001375
+  resolution: "caniuse-lite@npm:1.0.30001375"
+  checksum: 6ed9cf7a3f80f5880cb021105864b869dddfdda8490559aa623e77feeca5ce8958a3b7c1cf37322e519176dcb488c99e6358b8c2de2aa4a0e08846ac122c4e75
   languageName: node
   linkType: hard
 
@@ -6011,6 +6020,7 @@ __metadata:
   dependencies:
     "@esbuild-plugins/esm-externals": 0.0.6
     "@lighting-beetle/lighter-hooks": 1.1.0
+    a11y-dialog: ^7.5.0
     classnames: ^2.3.1
     downshift: ^6.1.7
     esbuild: ^0.13.3
@@ -7170,8 +7180,8 @@ __metadata:
   linkType: hard
 
 "downshift@npm:^6.1.7":
-  version: 6.1.7
-  resolution: "downshift@npm:6.1.7"
+  version: 6.1.9
+  resolution: "downshift@npm:6.1.9"
   dependencies:
     "@babel/runtime": ^7.14.8
     compute-scroll-into-view: ^1.0.17
@@ -7180,7 +7190,7 @@ __metadata:
     tslib: ^2.3.0
   peerDependencies:
     react: ">=16.12.0"
-  checksum: 0904ed8f285d31ee00e471dcddd57e72468bee354b191167bcaebe690ec292647fe4c31f483665094d750e72dd71e5d7db695acef33ab5dba6a39fed0112bab6
+  checksum: 5b888b6ebd2083334758d49e9e7b669eb8d0475273cdb5af2aa5f8c363b62f56c79aeca43758c99642056e94f68cbd8086f79a0a96726b3e8b8726cb24fd1d1b
   languageName: node
   linkType: hard
 
@@ -7209,9 +7219,9 @@ __metadata:
   linkType: hard
 
 "electron-to-chromium@npm:^1.3.723, electron-to-chromium@npm:^1.4.202":
-  version: 1.4.212
-  resolution: "electron-to-chromium@npm:1.4.212"
-  checksum: 972eb1b46bce2fa7fa19eb70779d27b84b7113daad01718a67cfbd92e2972c09eaf15bbe5e901467399e5e66c74a17a74891c7aeda8118b1ef655d8c1913ee2a
+  version: 1.4.215
+  resolution: "electron-to-chromium@npm:1.4.215"
+  checksum: 9cee61cc47615f75bc8433eddc6f058cc2a503561bb28d3776acc47d2cb37a0d654c4d63adf715c81ebe9d638b5bdc1dba80eae4a187df3e35244d4b3dba0640
   languageName: node
   linkType: hard
 
@@ -8792,6 +8802,13 @@ __metadata:
   version: 0.3.1
   resolution: "focus-group@npm:0.3.1"
   checksum: 24999d074f05065f8ae96f61ff4f2cc13240a0f7e7813ff8de3cd42deca6182d42e434fa55228dc31568357de63c2334e00fa609235aabb48c63ca0fef658b71
+  languageName: node
+  linkType: hard
+
+"focusable-selectors@npm:^0.3.1":
+  version: 0.3.1
+  resolution: "focusable-selectors@npm:0.3.1"
+  checksum: 79a978f9f9fe059fbbc1602b17c1852d9404658c3fb4618545ad9e9bf398a8d0bf13d4ccb602e423a4cd68b08f165bb260d4806da1a6aedb95fbae4ee3acd4fd
   languageName: node
   linkType: hard
 
@@ -15680,9 +15697,9 @@ __metadata:
   linkType: hard
 
 "pathe@npm:^0.3.2":
-  version: 0.3.3
-  resolution: "pathe@npm:0.3.3"
-  checksum: 4d30221a4354b929bcb41a0f572ec47999d4540c9bf951d7e5725bfea8d3761dce40cc42291d078b0d9a838f166d7e22407ffaa9c01c637ab251cd9371f7d38d
+  version: 0.3.4
+  resolution: "pathe@npm:0.3.4"
+  checksum: 4ebed2a60e5b7e88b2752137606e228570af2f0e06d5964c92f0b47ada3523842a1c73feb9976a054a47b96789a62ab861fb3b8170e5f80c83b4625e1d42c2d7
   languageName: node
   linkType: hard
 
@@ -17890,15 +17907,15 @@ __metadata:
   linkType: hard
 
 "sass@npm:^1.45.0":
-  version: 1.54.3
-  resolution: "sass@npm:1.54.3"
+  version: 1.54.4
+  resolution: "sass@npm:1.54.4"
   dependencies:
     chokidar: ">=3.0.0 <4.0.0"
     immutable: ^4.0.0
     source-map-js: ">=0.6.2 <2.0.0"
   bin:
     sass: sass.js
-  checksum: 9b405f602c0dcdad85e7f216cfa5ca9dfe3f7ded7b3928817cfe8dbfde0cd27b70f4cff724e229b233b3f51a06e71d3fcbbd7d3a0ff92b3e40ac57bc05b90b48
+  checksum: bb6aead09764de450a02b9a66e4ee538f0ba6bc8f2fc3905c71b2c302b5f47e089b510b86cfa7ef2d4139c210c8abf99fe157e7a5bd356c057f10d29e6c4b44c
   languageName: node
   linkType: hard
 
@@ -19948,11 +19965,11 @@ __metadata:
 
 "typescript@patch:typescript@~4.6.2#~builtin<compat/typescript>":
   version: 4.6.4
-  resolution: "typescript@patch:typescript@npm%3A4.6.4#~builtin<compat/typescript>::version=4.6.4&hash=bda367"
+  resolution: "typescript@patch:typescript@npm%3A4.6.4#~builtin<compat/typescript>::version=4.6.4&hash=493e53"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 1cb434fbc637d347be90e3a0c6cd05e33c38f941713c8786d3031faf1842c2c148ba91d2fac01e7276b0ae3249b8633f1660e32686cc7a8c6a8fd5361dc52c66
+  checksum: 8cff08bf66d9ecfbf9fcc5edde04a5a7923e6cac3b21d99b4e9a06973bf5bd7f9a83ec7eed24129c1b9e13fd861de8c1070110d4b9ce9f18ab57c6999e9c9a6f
   languageName: node
   linkType: hard
 
