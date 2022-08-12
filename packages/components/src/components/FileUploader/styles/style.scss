@@ -1,0 +1,32 @@
+@use "../../../tokens";
+
+.file-uploader {
+  &__preview-item {
+    background-color: tokens.color("white");
+    border-radius: 5px;
+    border: 1px solid tokens.color("grey", 100);
+    padding: tokens.space("s");
+    margin-bottom: tokens.space("l");
+  }
+
+  &__area {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    border: 1px dashed tokens.color("grey", 300);
+    padding: tokens.space("s") tokens.space("s");
+    text-align: center;
+    margin-bottom: tokens.space();
+    cursor: pointer;
+  }
+
+  &__area-title {
+    margin-bottom: 0;
+  }
+
+  &--error {
+    border-color: tokens.color("error", 500);
+    color: tokens.color("error", 500);
+  }
+}

@@ -1,0 +1,218 @@
+---
+title: FileUploader
+---
+
+import { Preview, Props } from "@lighting-beetle/lighter-styleguide";
+
+import FileUploader, {
+  FileUploaderArea,
+  FileUploaderButton,
+  FileUploaderError,
+  FileUploaderPreview,
+  FileUploaderField,
+} from ".";
+
+import Icon from "../Icon";
+
+Komponent aktuálne funguje iba v reactovom prostredí.
+
+### Ukážka
+
+<Preview>
+  <FileUploader />
+</Preview>
+
+### Varianty
+
+#### Tlačidlo
+
+<Preview>
+  <FileUploader id="file-uploader-example-1">
+    <FileUploaderPreview onDownload={() => {}} />
+    <FileUploaderButton />
+    <FileUploaderError />
+  </FileUploader>
+</Preview>
+
+#### Custom Input trigger
+
+<Preview>
+  <FileUploader id="file-uploader-example-2">
+    <FileUploaderPreview />
+    <FileUploaderButton className="no-pad" type="link">
+      <Icon className="icon--left" name="heart" />
+      <strong>Priložiť súbor</strong>
+    </FileUploaderButton>
+    <FileUploaderError />
+  </FileUploader>
+</Preview>
+
+#### Drag'n'drop
+
+<Preview>
+  <FileUploader id="file-uploader-example-3">
+    <FileUploaderPreview onDownload={() => {}} />
+    <FileUploaderArea />
+    <FileUploaderError />
+  </FileUploader>
+</Preview>
+
+#### Formulárové pole
+
+<Preview>
+  <form>
+    <FileUploaderField
+      help="This is help"
+      id="file-uploader-field"
+      label="This is label"
+    />
+    <FileUploaderField
+      help="This is help"
+      id="file-uploader-field-help"
+      label="This is required file uploader with help text"
+      required
+    />
+    <FileUploaderField
+      error="This field is required"
+      id="file-uploader-field-error"
+      label="This is required file uploader with error text"
+      required
+    />
+  </form>
+</Preview>
+
+### Stavy
+
+#### Predvyplnená hodnota
+
+<Preview>
+  <FileUploader
+    id="file-uploader-example-4"
+    initialFiles={[
+      {
+        id: "initial-file-id",
+        name: "initial-file.pdf",
+        size: 156456,
+      },
+    ]}
+  >
+    <FileUploaderPreview onDownload={() => {}} />
+    <FileUploaderArea />
+    <FileUploaderError />
+  </FileUploader>
+</Preview>
+
+#### Chybový stav zobrazený ako notifikácia
+
+<Preview>
+  <FileUploader id="file-uploader-example-5">
+    <FileUploaderPreview onDownload={() => {}} />
+    <FileUploaderArea />
+    <FileUploaderError
+      error={
+        <p className="no-mrg-bottom">
+          Súbor presahuje limit <strong>10 MB</strong>. Skúste ho poslať ako
+          .zip.
+        </p>
+      }
+    />
+  </FileUploader>
+</Preview>
+
+#### Chybový stav zobrazený ako správa
+
+<Preview>
+  <FileUploader id="file-uploader-example-6">
+    <FileUploaderPreview onDownload={() => {}} />
+    <FileUploaderArea />
+    <FileUploaderError
+      error={
+        <p className="no-mrg-bottom">
+          Súbor presahuje limit <strong>10 MB</strong>. Skúste ho poslať ako
+          .zip.
+        </p>
+      }
+      type="message"
+    />
+  </FileUploader>
+</Preview>
+
+### Vlastné nastavenia pre React-dropzone
+
+V tejto ukážke `FileUploader` prijíma iba súbory vo formáte `.pdf` s maximálnou veľkosťou `0kb`. Po vybratí akéhokoľvek `.pdf` súboru sa tak zobrazí preddefinované chybové hlásenie o tom, že vybraný súbor je väčší ako nastavený limit.
+
+<Preview>
+  <FileUploader
+    id="file-uploader-example-7"
+    accept={{
+      "application/pdf": [".pdf"],
+    }}
+    dropzoneOptions={{ maxSize: 0 }}
+  >
+    <FileUploaderPreview />
+    <FileUploaderArea />
+    <FileUploaderError />
+  </FileUploader>
+</Preview>
+
+Toto preddefinované chybové hlásenie je možné zmeniť pomocou `fileSizeErrorMessage` propu
+
+<Preview>
+  <FileUploader
+    id="file-uploader-example-8"
+    accept={{
+      "application/pdf": [".pdf"],
+    }}
+    dropzoneOptions={{ maxSize: 0 }}
+  >
+    <FileUploaderPreview />
+    <FileUploaderArea />
+    <FileUploaderError
+      fileSizeErrorMessage={
+        "Custom error message that is shown when uploaded file has bigger size than is accepted."
+      }
+    />
+  </FileUploader>
+</Preview>
+
+V tejto ukážke `FileUploader` prijíma iba súbory vo formáte `.jpeg`. Pre vyvolanie preddefinovaného chybového hlásenia o nesprávnom formáte súboru je potrebné súbor pretiahnuť do označenej oblasti, pretože pri výbere z prieskumníka, ktorý sa zobrazí po kliknutí na `FileUploader` sa zobrazujú iba súbory s povoleným formátom.
+
+<Preview>
+  <FileUploader
+    id="file-uploader-example-9"
+    accept={{ "image/jpg": [".jpg", ".jpeg"] }}
+  >
+    <FileUploaderPreview />
+    <FileUploaderArea />
+    <FileUploaderError />
+  </FileUploader>
+</Preview>
+
+Toto preddefinované chybové hlásenie je možné zmeniť pomocou `acceptedFormatsErrorMessage` propu
+
+<Preview>
+  <FileUploader
+    id="file-uploader-example-10"
+    accept={{ "image/jpg": [".jpg", ".jpeg"] }}
+  >
+    <FileUploaderPreview />
+    <FileUploaderArea />
+    <FileUploaderError
+      acceptedFormatsErrorMessage={
+        "Custom error message that is shown when uploaded file has different format than is accepted."
+      }
+    />
+  </FileUploader>
+</Preview>
+
+### Props
+
+<Props title="<FileUploader />" component={FileUploader} />
+
+<Props title="<FileUploaderArea />" component={FileUploaderArea} />
+
+<Props title="<FileUploaderButton />" component={FileUploaderButton} />
+
+<Props title="<FileUploaderError />" component={FileUploaderError} />
+
+<Props title="<FileUploaderPreview />" component={FileUploaderPreview} />
