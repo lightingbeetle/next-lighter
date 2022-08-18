@@ -2,6 +2,7 @@
   "name": "design-system",
   "version": "1.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "next build && next export",
@@ -20,7 +21,7 @@
     "modern-normalize": "^1.1.0",
     "netlify-cms-app": "~2.15.44",
     "netlify-cms-widget-mdx": "~0.4.4",
-    "next": "~12.2.4",
+    "next": "~12.2.5",
     "next-compose-plugins": "~2.2.1",
     "next-transpile-modules": "~8.0.0",
     "react-docgen-typescript": "^2.2.2"
