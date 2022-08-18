@@ -14,11 +14,6 @@ export default function Home() {
           </Link>
         </li>
         <li>
-          <Link href="/static">
-            <a>Static page example (without React)</a>
-          </Link>
-        </li>
-        <li>
           <Link href="https://next-lighter-styleguide.lbx.sk/">
             <a>Lighter Styleguide docs</a>
           </Link>
