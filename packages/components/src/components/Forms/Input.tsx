@@ -29,6 +29,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
             type="text"
             aria-invalid={errors[name] ? "true" : "false"}
             name={name}
+            required={isRequired}
             {...props}
           />
         </div>

@@ -17,6 +17,7 @@ const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
             id={id}
             aria-invalid={errors[name] ? "true" : "false"}
             name={name}
+            required={isRequired}
             {...props}
           />
         </div>
