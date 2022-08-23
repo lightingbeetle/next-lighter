@@ -1,25 +1,25 @@
-import React from "react";
+import React, { ComponentProps, ReactNode } from "react";
 import Label from "./Label";
-import ErrorMessages, { ErrorMessagesProps } from "./ErrorMessages";
+import ErrorMessages from "./ErrorMessages";
 import FieldContext from "./FieldContext";
 import cx from "classnames";
 
 export type FieldProps = {
-  label: React.ReactNode;
+  label: ReactNode;
   hint?: string;
   id: string;
   isRequired?: boolean;
   hasSeparateLabel?: boolean;
-  messages?: ErrorMessagesProps;
   name: string;
-} & React.ComponentProps<"div">;
+  error?: ComponentProps<typeof ErrorMessages>;
+} & ComponentProps<"div">;
 
 const Field = ({
   label,
   hint,
   id,
   isRequired,
-  messages,
+  error,
   name,
   hasSeparateLabel = true,
   children,
@@ -27,11 +27,11 @@ const Field = ({
 }: FieldProps) => {
   return (
     <div className={cx("form-field", className)}>
-      <FieldContext.Provider value={{ id, name, isRequired }}>
+      <FieldContext.Provider value={{ id, name, isRequired, error }}>
         {hasSeparateLabel && label && <Label>{label}</Label>}
         {hint && <div className="small mb-xxsmall color-gray">{hint}</div>}
         {children}
-        <ErrorMessages {...messages} />
+        {error && <ErrorMessages type={error.type} message={error.message} />}
       </FieldContext.Provider>
     </div>
   );
