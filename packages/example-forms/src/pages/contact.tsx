@@ -1,13 +1,15 @@
 import React from "react";
 import { FormProvider, useForm } from "react-hook-form";
-import { Input, TextArea, Error } from "components";
+import { Error } from "components";
 import MarketingCheckbox from "../components/MarketingCheckbox";
+import Input from "../components/Input";
+import TextArea from "../components/TextArea";
 
 function ContactForm() {
   const methods = useForm({
     defaultValues: {
       name: "",
-      email: "@",
+      email: "",
       phoneNumber: "",
       message: "",
       marketing: false,
@@ -70,10 +72,9 @@ function ContactForm() {
             id="name"
             label="Meno"
             isRequired
-            messages={{
-              required: "Meno je povinný údaj",
-            }}
-            {...methods.register("name", { required: true })}
+            {...methods.register("name", {
+              required: true,
+            })}
           />
           <Input
             type="email"
@@ -81,10 +82,13 @@ function ContactForm() {
             id="email"
             label="Email"
             isRequired
-            messages={{
+            {...methods.register("email", {
               required: "Email je povinný údaj",
-            }}
-            {...methods.register("email", { required: true })}
+              pattern: {
+                value: /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]+$/,
+                message: "Email je v nesprávnom tvare",
+              },
+            })}
           />
           <Input
             type="tel"
@@ -92,11 +96,11 @@ function ContactForm() {
             label="Telefónne číslo"
             hint="Musí začínať 00 alebo +"
             {...methods.register("phoneNumber", {
-              pattern: /^(\+|00)[0-9]{7,32}$/,
+              pattern: {
+                value: /^(\+|00)[0-9]{7,32}$/,
+                message: "Číslo musí byť v medzinárodnom formáte",
+              },
             })}
-            messages={{
-              pattern: "Číslo musí byť v medzinárodnom formáte",
-            }}
           />
           <TextArea
             label="Vaša správa"

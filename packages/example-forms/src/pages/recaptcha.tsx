@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import ReCAPTCHA from "react-google-recaptcha";
-import { Input } from "components";
+import Input from "../components/Input";
 
 function RecaptchaForm() {
   const recaptchaRef = useRef<ReCAPTCHA>(null);
@@ -23,7 +23,7 @@ function RecaptchaForm() {
 
   return (
     <FormProvider {...methods}>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(onSubmit)} noValidate>
         <fieldset>
           <legend>Recaptcha form</legend>
           <Input
@@ -31,10 +31,7 @@ function RecaptchaForm() {
             id="name"
             label="Meno"
             isRequired
-            messages={{
-              required: "Meno je povinný údaj",
-            }}
-            {...methods.register("name", { required: true })}
+            {...methods.register("name", { required: "Meno je povinný údaj" })}
           />
           <ReCAPTCHA
             ref={recaptchaRef}

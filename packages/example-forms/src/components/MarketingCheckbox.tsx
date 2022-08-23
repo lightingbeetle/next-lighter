@@ -1,5 +1,6 @@
 import React from "react";
 import { RadioCheck } from "components";
+import { useFormContext } from "react-hook-form";
 
 const ApprovalCheckbox = React.forwardRef<HTMLInputElement>(
   function ApprovalCheckbox(
@@ -7,6 +8,11 @@ const ApprovalCheckbox = React.forwardRef<HTMLInputElement>(
     ref
   ) {
     const [showDetails, setshowDetails] = React.useState(false);
+    const {
+      formState: { errors },
+    } = useFormContext();
+
+    const error = errors[props.name];
 
     return (
       <>
@@ -41,6 +47,7 @@ const ApprovalCheckbox = React.forwardRef<HTMLInputElement>(
               </details>
             </>
           }
+          error={error}
           {...props}
         />
       </>

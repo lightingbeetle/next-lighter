@@ -1,5 +1,4 @@
 import React from "react";
-// prettier-disable-next-line
 import { FormProvider, useForm } from "react-hook-form";
 import { Input } from "components";
 
@@ -26,10 +25,7 @@ function SimpleForm() {
             id="name"
             label="Meno"
             isRequired
-            messages={{
-              required: "Meno je povinný údaj",
-            }}
-            {...methods.register("name", { required: true })}
+            {...methods.register("name", { required: "Meno je povinný údaj" })}
           />
           <button type="submit">Odoslať</button>
         </form>
