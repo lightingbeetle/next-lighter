@@ -34,7 +34,7 @@ const config = ({ nextConfig } = {}) =>
       noFS(),
     ],
     {
-      pageExtensions: ["js", "jsx", "mdx", "ts", "tsx"],
+      pageExtensions: ["js", "jsx", "mdx", "ts", "tsx", "md"],
       ...nextConfig,
     }
   );
