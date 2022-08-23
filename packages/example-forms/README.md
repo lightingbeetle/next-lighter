@@ -1,6 +1,6 @@
 # Example forms
 
-[See documentation](src/pages/index.mdx)
+[See documentation](src/pages/index.md)
 
 ## Local development
 
