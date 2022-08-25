@@ -8,7 +8,9 @@
   },
   "workspaces": {
     "packages": [
-      "packages/*"
+      "packages/*",
+      "packages/example-blog-strapi/frontend",
+      "packages/example-blog-strapi/backend"
     ]
   },
   "scripts": {
