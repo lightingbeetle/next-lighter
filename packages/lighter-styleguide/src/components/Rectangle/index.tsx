@@ -9,4 +9,6 @@ Rectangle.defaultProps = {
   theme,
 };
 
+Rectangle.displayName = "Rectangle";
+
 export default Rectangle;

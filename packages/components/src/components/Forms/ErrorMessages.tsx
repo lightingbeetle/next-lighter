@@ -1,40 +1,35 @@
 import React from "react";
-import { useFormContext } from "react-hook-form";
-import { useField } from "./useField";
 
 export type ErrorMessagesProps = {
-  pattern?: string;
-  required?: string;
-  maxLength?: string;
-  [type: string]: string;
+  type?: "pattern" | "required" | "maxLength" | string;
+  message?: string;
 };
 
 export const Error = (props: React.ComponentProps<"div">) => (
   <div className="form-error" role="alert" {...props} />
 );
 
-const ErrorMessages = ({
-  pattern = "Toto pole má nesprávny formát",
-  required = "Toto pole je povinný údaj",
-  maxLength = "Presiahli ste maxímálnu dĺžku poľa",
-  ...types
-}: ErrorMessagesProps) => {
-  const { name } = useField();
-  const {
-    formState: { errors },
-  } = useFormContext();
+const ErrorMessages = ({ type, message: messageProps }: ErrorMessagesProps) => {
+  // get default error message if no message was passed
+  let message = messageProps;
+  if (!messageProps || messageProps === "") {
+    message = getDefaultErrorMessage({ type });
+  }
 
-  return (
-    <>
-      {errors?.[name]?.type === "pattern" && <Error>{pattern}</Error>}
-      {errors?.[name]?.type === "required" && <Error>{required}</Error>}
-      {errors?.[name]?.type === "maxLength" && <Error>{maxLength}</Error>}
-      {types[errors?.[name]?.type] ? (
-        <Error>{types[errors?.[name]?.type]}</Error>
-      ) : (
-        <Error>{errors?.[name]?.message}</Error>
-      )}
-    </>
-  );
+  return <Error>{message}</Error>;
 };
+
 export default ErrorMessages;
+
+export function getDefaultErrorMessage({ type }) {
+  switch (type) {
+    case "pattern":
+      return "Toto pole má nesprávny formát";
+    case "required":
+      return "Toto pole je povinný údaj";
+    case "maxLength":
+      return "Presiahli ste maxímálnu dĺžku poľa";
+    default:
+      return "V tomto poli nastala chyba";
+  }
+}

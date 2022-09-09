@@ -2,12 +2,11 @@ import React from "react";
 import fs from "fs";
 import path from "path";
 import glob from "glob";
-
-import { bundleMDX } from "mdx-bundler";
 import { getMDXComponent } from "mdx-bundler/client";
+import bundleMDXLib from "../scripts/bundleMDXLib";
 
 const DesignSystemPage = ({ code }) => {
-  const MDX = React.useMemo(() => getMDXComponent(code), [code]);
+  const MDX = getMDXComponent(code);
 
   return <MDX />;
 };
@@ -19,14 +18,11 @@ export async function getStaticProps({ params }) {
 
   const source = fs.readFileSync(pathToSource).toString();
 
-  const { code, frontmatter } = await bundleMDX({
+  const { code, frontmatter } = await bundleMDXLib(
     source,
-    cwd: path.dirname(pathToSource),
-    esbuildOptions: (options) => {
-      options.platform = "node";
-      return options;
-    },
-  });
+    pathToSource,
+    getBaseNameFromSlugArray(params.slug)
+  );
 
   return {
     props: {
@@ -53,3 +49,10 @@ export async function getStaticPaths() {
 }
 
 export default DesignSystemPage;
+
+function getBaseNameFromSlugArray(slug: string[]) {
+  const lastSlug = slug.slice(-1)[0];
+  const camelCaseSlug = lastSlug.replace(/-./g, (x) => x[1].toUpperCase());
+  // capitalize first letter
+  return camelCaseSlug.charAt(0).toUpperCase() + camelCaseSlug.slice(1);
+}

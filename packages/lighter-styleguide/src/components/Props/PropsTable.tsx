@@ -34,7 +34,7 @@ const PropsTable = () => {
       },
       {
         Header: "Type",
-        accessor: (row) => {
+        accessor: (row: any) => {
           if (row.type.raw === "boolean") {
             return row.type.raw;
           }

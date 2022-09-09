@@ -8,12 +8,15 @@
   },
   "workspaces": {
     "packages": [
-      "packages/*"
+      "packages/*",
+      "packages/example-strapi/frontend",
+      "packages/example-strapi/backend"
     ]
   },
   "scripts": {
     "dev": "yarn workspace example run dev",
     "dev:design-system": "yarn workspace design-system run dev",
+    "dev:example-strapi": "yarn workspace example-strapi run dev",
     "dev:styleguide": "yarn workspace @lighting-beetle/lighter-styleguide run dev",
     "dev:example-wordpress": "yarn workspace example-wordpress run dev",
     "build": "npm-run-all 'build:*'",
@@ -22,6 +25,7 @@
     "build:components": "yarn workspace components run build",
     "build:example": "yarn workspace example run build",
     "build:design-system": "yarn workspace design-system run build",
+    "build:example-strapi": "yarn workspace example-strapi run build",
     "build:example-wordpress": "yarn workspace example-wordpress run build",
     "ci:build:styleguide": "npm-run-all build:styleguide",
     "ci:build:example": "npm-run-all build:example",
@@ -52,7 +56,7 @@
     "@testing-library/user-event": "^13.2.1",
     "@types/jest": "^27.0.2",
     "@types/node": "~16.10.1",
-    "@types/react": "~17.0.24",
+    "@types/react": "~17.0.39",
     "@types/react-dom": "~17.0.9",
     "@typescript-eslint/eslint-plugin": "~4.32.0",
     "@typescript-eslint/parser": "~4.32.0",
