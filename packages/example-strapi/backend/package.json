@@ -1,8 +1,8 @@
 {
-  "name": "my-project",
+  "name": "strapi-backend",
   "private": true,
   "version": "0.1.0",
-  "description": "A Strapi application",
+  "description": "Strapi CMS",
   "scripts": {
     "dev": "strapi develop",
     "start": "strapi start",

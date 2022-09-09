@@ -12511,25 +12511,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"frontend@workspace:packages/example-strapi/frontend":
-  version: 0.0.0-use.local
-  resolution: "frontend@workspace:packages/example-strapi/frontend"
-  dependencies:
-    "@types/node": 18.0.6
-    "@types/qs": ^6.9.7
-    "@types/react": 18.0.15
-    "@types/react-dom": 18.0.6
-    eslint: 8.20.0
-    eslint-config-next: 12.2.2
-    next: 12.2.2
-    next-mdx-remote: ^4.1.0
-    qs: ^6.11.0
-    react: 18.2.0
-    react-dom: 18.2.0
-    typescript: 4.7.4
-  languageName: unknown
-  linkType: soft
-
 "fs-capacitor@npm:^6.2.0":
   version: 6.2.0
   resolution: "fs-capacitor@npm:6.2.0"
@@ -18682,18 +18663,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"my-project@workspace:packages/example-strapi/backend":
-  version: 0.0.0-use.local
-  resolution: "my-project@workspace:packages/example-strapi/backend"
-  dependencies:
-    "@strapi/plugin-graphql": 4.3.8
-    "@strapi/plugin-i18n": 4.3.8
-    "@strapi/plugin-users-permissions": 4.3.8
-    "@strapi/strapi": 4.3.8
-    better-sqlite3: 7.6.2
-  languageName: unknown
-  linkType: soft
-
 "mz@npm:^2.7.0":
   version: 2.7.0
   resolution: "mz@npm:2.7.0"
@@ -24649,6 +24618,37 @@ __metadata:
   checksum: c046af2573ba6e02c9ffcfd5a2c3f94f160404915941be177b93d6d1695078e487293fed6ab4fa95680e75a331eccf0f6dbe0b86babda15056c594e600a99dc4
   languageName: node
   linkType: hard
+
+"strapi-backend@workspace:packages/example-strapi/backend":
+  version: 0.0.0-use.local
+  resolution: "strapi-backend@workspace:packages/example-strapi/backend"
+  dependencies:
+    "@strapi/plugin-graphql": 4.3.8
+    "@strapi/plugin-i18n": 4.3.8
+    "@strapi/plugin-users-permissions": 4.3.8
+    "@strapi/strapi": 4.3.8
+    better-sqlite3: 7.6.2
+  languageName: unknown
+  linkType: soft
+
+"strapi-frontend@workspace:packages/example-strapi/frontend":
+  version: 0.0.0-use.local
+  resolution: "strapi-frontend@workspace:packages/example-strapi/frontend"
+  dependencies:
+    "@types/node": 18.0.6
+    "@types/qs": ^6.9.7
+    "@types/react": 18.0.15
+    "@types/react-dom": 18.0.6
+    eslint: 8.20.0
+    eslint-config-next: 12.2.2
+    next: 12.2.2
+    next-mdx-remote: ^4.1.0
+    qs: ^6.11.0
+    react: 18.2.0
+    react-dom: 18.2.0
+    typescript: 4.7.4
+  languageName: unknown
+  linkType: soft
 
 "stream-browserify@npm:^3.0.0":
   version: 3.0.0

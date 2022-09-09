@@ -3,9 +3,14 @@
   "private": true,
   "version": "0.0.0",
   "scripts": {
-    "dev:backend": "yarn run --cwd backend dev",
-    "dev:frontend": "wait-on http://localhost:1337/admin && yarn --cwd frontend dev",
-    "dev": "cross-env FORCE_COLOR=1 npm-run-all -l -p 'dev:*'"
+    "dev:backend": "yarn workspace strapi-backend run dev",
+    "dev:frontend": "wait-on http://localhost:1337/admin && yarn workspace strapi-frontend dev",
+    "dev": "cross-env FORCE_COLOR=1 npm-run-all -l -p 'dev:*'",
+    "build": "npm-run-all -l -p 'build:*' -r build:frontend",
+    "build:backend": "npm-run-all -s 'build:backend:*'",
+    "build:backend:build": "yarn workspace strapi-backend run build",
+    "build:backend:start": "yarn workspace strapi-backend run start",
+    "build:frontend": "wait-on http://localhost:1337/admin && yarn workspace strapi-frontend build"
   },
   "devDependencies": {
     "cross-env": "7.0.3",
