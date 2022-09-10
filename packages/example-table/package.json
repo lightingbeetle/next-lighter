@@ -2,6 +2,7 @@
   "name": "example-table",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "next build && next export",
@@ -10,10 +11,10 @@
     "lint": "eslint --fix ."
   },
   "dependencies": {
-    "@lighting-beetle/next-lighter-config": "0.1.0",
-    "components": "0.1.0",
+    "@lighting-beetle/next-lighter-config": "workspace:^",
+    "components": "workspace:^",
     "modern-normalize": "^1.1.0",
-    "next": "~11.1.2",
+    "next": "~12.3.0",
     "next-compose-plugins": "~2.2.1",
     "next-query-params": "^2.1.2",
     "next-transpile-modules": "~8.0.0",

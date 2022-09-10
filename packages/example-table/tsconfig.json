@@ -3,10 +3,12 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
+      "components": ["../components/src/index.ts"],
       "components/*": ["../components/src/*"]
     },
     "strict": false,
-    "jsx": "preserve"
+    "jsx": "preserve",
+    "incremental": true
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"]

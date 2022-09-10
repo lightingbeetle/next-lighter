@@ -12,33 +12,12 @@ async function bundleIndex() {
     sourcemap: true,
     outfile: "dist/index.js",
     plugins: [
-      sassPlugin({
-        type: "css",
-        async transform(css, resolveDir) {
-          const {
-            outputFiles: [out],
-          } = await esbuild.build({
-            stdin: {
-              contents: css,
-              resolveDir,
-              loader: "css",
-            },
-            bundle: true,
-            write: false,
-            format: "esm",
-            loader: {
-              ".eot": "dataurl",
-              ".woff": "dataurl",
-              ".ttf": "dataurl",
-              ".svg": "dataurl",
-              ".otf": "dataurl",
-            },
-          });
-          return out.text;
-        },
-      }),
+      sassPlugin(),
       esmExternals({ externals: ["react", "react-dom"] }),
     ],
+    loader: {
+      ".svg": "dataurl",
+    },
     external: ["@lighting-beetle/lighter-styleguide"],
   };
 
