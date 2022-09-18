@@ -1,11 +1,7 @@
-import { useRouter } from "next/dist/client/router";
-import Link from "next/link";
-import React from "react";
-import { parseUrl as parseURLToQuery } from "query-string";
+import React, { ComponentProps } from "react";
 import Icon from "../Icon";
 import PaginationNumber from "./PaginationNumber";
 import cx from "classnames";
-import "./styles/style.scss";
 
 // FIXME:
 // - Focus is not handled properly on click on sibling page after next page appears
@@ -14,9 +10,9 @@ type PaginationProps = {
   page: number;
   totalPages: number;
   onSetPage?: (page: number) => void;
-  getHref?: (page) => React.ComponentProps<typeof Link>["href"];
+  getHref: (page) => ComponentProps<typeof PaginationNumber>["href"];
   replace?: boolean;
-} & React.ComponentProps<"nav">;
+} & ComponentProps<"nav">;
 
 const Pagination = ({
   page,
@@ -27,9 +23,6 @@ const Pagination = ({
   replace,
   ...props
 }: PaginationProps) => {
-  const { pathname, asPath } = useRouter();
-  const { query } = parseURLToQuery(asPath);
-
   const arrayOfPages = getArrayOfPages(page, totalPages);
 
   return (
@@ -40,63 +33,35 @@ const Pagination = ({
     >
       <ul className="pagination__list">
         <li className="pagination__list-item">
-          <Link
-            href={
-              getHref?.(page > 1 ? page - 1 : 1) ?? {
-                pathname,
-                query: {
-                  ...query,
-                  page: page > 1 ? page - 1 : 1,
-                },
-              }
-            }
-            shallow={replace}
-            replace={replace}
-            passHref={page !== 1}
+          <PaginationNumber
+            href={getHref(page > 1 ? page - 1 : 1)}
+            type="arrow"
+            onClick={() => {
+              onSetPage?.(page > 1 ? page - 1 : 1);
+            }}
+            aria-label="Predchádzajúca stránka"
+            isDisabled={page === 1}
           >
-            <PaginationNumber
-              type="arrow"
-              onClick={() => {
-                onSetPage?.(page > 1 ? page - 1 : 1);
-              }}
-              aria-label="Predchádzajúca stránka"
-              isDisabled={page === 1}
-            >
-              <Icon name="chevron-up" />
-            </PaginationNumber>
-          </Link>
+            <Icon name="chevron-up" />
+          </PaginationNumber>
         </li>
         {arrayOfPages.map((pageIndex, index) => {
           if (typeof pageIndex === "number") {
             return (
               <li key={index.toString()} className="pagination__list-item">
-                <Link
-                  href={
-                    getHref?.(pageIndex) ?? {
-                      pathname,
-                      query: {
-                        ...query,
-                        page: pageIndex,
-                      },
-                    }
-                  }
-                  shallow={replace}
-                  replace={replace}
-                  passHref
+                <PaginationNumber
+                  type="number"
+                  href={getHref(pageIndex)}
+                  key={pageIndex}
+                  isActive={page === pageIndex}
+                  onClick={() => {
+                    onSetPage?.(pageIndex);
+                  }}
+                  aria-current={pageIndex === page ? "page" : undefined}
+                  aria-label={`Stránka ${pageIndex}`}
                 >
-                  <PaginationNumber
-                    type="number"
-                    key={pageIndex}
-                    isActive={page === pageIndex}
-                    onClick={() => {
-                      onSetPage?.(pageIndex);
-                    }}
-                    aria-current={pageIndex === page ? "page" : undefined}
-                    aria-label={`Stránka ${pageIndex}`}
-                  >
-                    {pageIndex}
-                  </PaginationNumber>
-                </Link>
+                  {pageIndex}
+                </PaginationNumber>
               </li>
             );
           } else {
@@ -108,31 +73,17 @@ const Pagination = ({
           }
         })}
         <li className="pagination__list-item">
-          <Link
-            href={
-              getHref?.(page < totalPages ? page + 1 : totalPages) ?? {
-                pathname,
-                query: {
-                  ...query,
-                  page: page < totalPages ? page + 1 : totalPages,
-                },
-              }
-            }
-            shallow={replace}
-            replace={replace}
-            passHref={page !== totalPages}
+          <PaginationNumber
+            type="arrow"
+            href={getHref(page < totalPages ? page + 1 : totalPages)}
+            onClick={() => {
+              onSetPage?.(page < totalPages ? page + 1 : totalPages);
+            }}
+            aria-label="Nasledujúca stránka"
+            isDisabled={page === totalPages}
           >
-            <PaginationNumber
-              type="arrow"
-              onClick={() => {
-                onSetPage?.(page < totalPages ? page + 1 : totalPages);
-              }}
-              aria-label="Nasledujúca stránka"
-              isDisabled={page === totalPages}
-            >
-              <Icon name="chevron-down" />
-            </PaginationNumber>
-          </Link>
+            <Icon name="chevron-down" />
+          </PaginationNumber>
         </li>
       </ul>
     </nav>

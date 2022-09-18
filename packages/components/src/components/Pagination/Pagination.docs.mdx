@@ -1,0 +1,27 @@
+---
+title: Pagination
+---
+
+import { Preview, Props } from "@lighting-beetle/lighter-styleguide";
+// useRouter has to be provided as globals in mdx-bundler because it has to be wired up with Next.js page
+import { useRouter } from "next/router";
+import Pagination from ".";
+
+export const DocsPagination = (props) => {
+  const { basePath } = useRouter();
+  return (
+    <Pagination {...props} getHref={(page) => `${basePath}?page=${page}`} />
+  );
+};
+
+# Pagination
+
+Pagination is used for splitting up content or data into several pages, with a control for navigating to the next or previous page.
+
+<DocsPagination page={1} totalPages={5} />
+
+## Props
+
+<Props component={Pagination} />
+
+## Accessibility

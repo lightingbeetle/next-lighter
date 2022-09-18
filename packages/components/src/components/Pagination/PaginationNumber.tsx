@@ -1,11 +1,11 @@
 import cx from "classnames";
-import React from "react";
+import React, { ComponentProps } from "react";
 import Button from "../Button";
 
 type PaginationNumberProps = {
   type: "arrow" | "number";
   isActive?: boolean;
-} & Parameters<typeof Button>[0];
+} & ComponentProps<typeof Button>;
 
 const PaginationNumber = React.forwardRef<
   React.ComponentProps<typeof Button>,
@@ -13,14 +13,13 @@ const PaginationNumber = React.forwardRef<
 >(({ className, type, isActive, ...other }, ref) => {
   return (
     <Button
-      // ref={ref}
+      // TODO: Button should accept ref
       className={cx(
         "pagination__item",
         { [`pagination__item--${type}`]: type },
         isActive && "pagination__item--active",
         className
       )}
-      // isSquare
       {...other}
     />
   );

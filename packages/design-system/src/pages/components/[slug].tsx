@@ -11,6 +11,7 @@ import {
   Rectangle,
   Table,
 } from "@lighting-beetle/lighter-styleguide";
+import { useRouter } from "next/router";
 
 import DesignSystemPage from "../../components/DesignSystemPage";
 import { getDesignSystemRoutes } from "../../utils";
@@ -32,6 +33,7 @@ const ComponentPage: NextPage<ComponentPageProps> = ({
     () =>
       getMDXComponent(code, {
         lighterStyleguide: { Preview, Code, Props, Rectangle, Table },
+        nextRouter: { useRouter },
       }),
     [code]
   );
