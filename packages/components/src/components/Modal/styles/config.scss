@@ -1,10 +1,11 @@
+@use "sass:color";
 @use "../../../tokens";
 @use "../../../styles/utils";
 
 $modal-overlay-z-index: 500;
 
 $modal-overlay: (
-  background-color: tokens.color("transparentBlack"),
+  background-color: color.change(tokens.colorValue("black"), $alpha: 0.5),
   height: 0,
   width: 0,
   top: 0,

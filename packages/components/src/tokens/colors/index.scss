@@ -30,9 +30,6 @@ $colors: (
   "black": (
     500: #000,
   ),
-  "transparentBlack": (
-    500: rgba(0, 0, 0, 0.5),
-  ),
 );
 
 @function color($color, $shade: 500) {
@@ -46,10 +43,12 @@ $colors: (
 }
 
 // TODO if we need this, document it and cover with tests
-// @function colorValue($color, $shade: 500) {
-//   @if not map.has-key($colors, $color, $shade) {
-//     @error "Color '#{$color}.#{$shade}' is not defined in $colors";
-//   }
+@function colorValue($color, $shade: 500) {
+ @if not map.has-key($colors, $color) {
+    @warn "Color '#{$color}' is not defined in $colors";
+  } @else if not map.has-key($colors, $color, $shade) {
+    @warn "Color '#{$color}.#{$shade}' is not defined in $colors";
+  }
 
-//   @return map.get($colors, $color, $shade);
-// }
+  @return map.get($colors, $color, $shade);
+}

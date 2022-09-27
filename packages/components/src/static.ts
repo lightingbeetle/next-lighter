@@ -4,7 +4,7 @@ import domReady from "./utils/domReady";
 import moduleFactory from "./utils/moduleFactory";
 
 domReady(() => {
-  //@ts-ignore
+  //@ts-ignore moduleFactory types don't support classes yet
   moduleFactory(Modal, "[data-modal]");
   moduleFactory(Select, "[data-select]");
 });
