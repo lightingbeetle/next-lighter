@@ -3,6 +3,7 @@ import { useEffect, useCallback, useRef, useMemo } from "react";
 import generateId from "./useId";
 import canUseDom from "./canUseDom";
 
+// TODO: replace this with useId from React 18
 /**
  * Returns unique string for the `id` attribute.
  *

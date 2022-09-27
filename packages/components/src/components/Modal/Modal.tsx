@@ -15,6 +15,8 @@ import ModalFooter from "./ModalFooter";
 import ModalHeader from "./ModalHeader";
 import ModalContent from "./ModalContent";
 
+// TODO: refactor Modal to compound component patter to increase flexibility
+
 type Modal = {
   /** Imperative handle. Don't use uncontrolled modal anymore, it will be removed in the future. Please prefer controlled version. See Použitie section in the docs. */
   ref?: ModalImperativeHandle;
@@ -65,6 +67,7 @@ const Modal = forwardRef<ModalImperativeHandle | undefined, Modal>(
     },
     ref
   ) => {
+    // <div id="root-modals" /> has to be part of the DOM for Modals to work as expected
     const target = usePortal("root-modals");
 
     const [modalRef, modal] = useStatic(ModalStatic, {

@@ -1,22 +1,15 @@
 import cx from "classnames";
-import React from "react";
-import { useFormContext } from "react-hook-form";
-import Field, { FieldProps } from "./Field";
+import React, { ComponentProps } from "react";
+import Field from "./Field";
 
-type RadioCheckProps = FieldProps & {
+type RadioCheckProps = {
   type: "checkbox" | "radio";
   label: React.ReactNode;
-} & React.ComponentProps<"input">;
+} & ComponentProps<"input"> &
+  ComponentProps<typeof Field>;
 
 const RadioCheck = React.forwardRef<HTMLInputElement, RadioCheckProps>(
-  (
-    { type, id, name, isRequired, label, className, messages, ...props },
-    ref
-  ) => {
-    const {
-      formState: { errors },
-    } = useFormContext();
-
+  ({ type, id, name, isRequired, label, className, error, ...props }, ref) => {
     return (
       <Field
         {...{
@@ -25,7 +18,7 @@ const RadioCheck = React.forwardRef<HTMLInputElement, RadioCheckProps>(
           label,
           isRequired,
           hasSeparateLabel: false,
-          messages,
+          error,
           className: cx("form-field-radiocheck", className),
         }}
       >
@@ -34,7 +27,7 @@ const RadioCheck = React.forwardRef<HTMLInputElement, RadioCheckProps>(
             ref={ref}
             id={id}
             type={type}
-            aria-invalid={errors[name] ? "true" : "false"}
+            aria-invalid={error ? "true" : "false"}
             name={name}
             {...props}
           />
