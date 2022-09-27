@@ -5028,9 +5028,9 @@ __metadata:
   linkType: hard
 
 "@types/node@npm:*, @types/node@npm:>=6":
-  version: 18.6.5
-  resolution: "@types/node@npm:18.6.5"
-  checksum: e3e66c9a84b94010a57c1b9dac882c08484278d74f9d120dbe6a3e45d00740d178bd1d34a5deee28197c94b9f4359153b637bab9b305328e865027e9987a0f3d
+  version: 18.7.1
+  resolution: "@types/node@npm:18.7.1"
+  checksum: f1e2b701b107f97be01da4c46845cd23bcdcb2865f9abbb2847546d09587e726ea207daca6f0d1e72196875ef8c62feeeff5f1c1f2070445acd6d1a61d815c7c
   languageName: node
   linkType: hard
 
@@ -5294,13 +5294,13 @@ __metadata:
   linkType: hard
 
 "@types/styled-components@npm:^5.1.14":
-  version: 5.1.25
-  resolution: "@types/styled-components@npm:5.1.25"
+  version: 5.1.26
+  resolution: "@types/styled-components@npm:5.1.26"
   dependencies:
     "@types/hoist-non-react-statics": "*"
     "@types/react": "*"
     csstype: ^3.0.2
-  checksum: 60ce64f13283b01da54fd3a4c5703769d8575c979d5ec6b67ad124c2d4df980c9b96bb91af87e03f6447a816a5d2b0270c63eefad60cfa885091b594984525f5
+  checksum: 84f53b3101739b20d1731554fb7735bc2f3f5d050a8b392e9845403c8c8bbd729737d033978649f9195a97b557875b010d46e35a4538564a2d0dbcce661dbf76
   languageName: node
   linkType: hard
 
@@ -5826,6 +5826,15 @@ __metadata:
   version: 4.2.2
   resolution: "@xtuc/long@npm:4.2.2"
   checksum: 8ed0d477ce3bc9c6fe2bf6a6a2cc316bb9c4127c5a7827bae947fa8ec34c7092395c5a283cc300c05b5fa01cbbfa1f938f410a7bf75db7c7846fea41949989ec
+  languageName: node
+  linkType: hard
+
+"a11y-dialog@npm:^7.5.0":
+  version: 7.5.1
+  resolution: "a11y-dialog@npm:7.5.1"
+  dependencies:
+    focusable-selectors: ^0.3.1
+  checksum: 9b2ae60a431804f4c82efe397a1ad8a07579e7ff0f5a27ca0d9caae5ac5c68687e8d465d8825682cc8bd7b4396ba457a59e31d3698849c681e53853bffe60c7e
   languageName: node
   linkType: hard
 
@@ -8530,6 +8539,7 @@ __metadata:
   dependencies:
     "@esbuild-plugins/esm-externals": 0.0.6
     "@lighting-beetle/lighter-hooks": 1.1.0
+    a11y-dialog: ^7.5.0
     classnames: ^2.3.1
     downshift: ^6.1.7
     esbuild: ^0.13.3
@@ -10009,8 +10019,8 @@ __metadata:
   linkType: hard
 
 "downshift@npm:^6.1.7":
-  version: 6.1.7
-  resolution: "downshift@npm:6.1.7"
+  version: 6.1.9
+  resolution: "downshift@npm:6.1.9"
   dependencies:
     "@babel/runtime": ^7.14.8
     compute-scroll-into-view: ^1.0.17
@@ -10019,7 +10029,7 @@ __metadata:
     tslib: ^2.3.0
   peerDependencies:
     react: ">=16.12.0"
-  checksum: 0904ed8f285d31ee00e471dcddd57e72468bee354b191167bcaebe690ec292647fe4c31f483665094d750e72dd71e5d7db695acef33ab5dba6a39fed0112bab6
+  checksum: 5b888b6ebd2083334758d49e9e7b669eb8d0475273cdb5af2aa5f8c363b62f56c79aeca43758c99642056e94f68cbd8086f79a0a96726b3e8b8726cb24fd1d1b
   languageName: node
   linkType: hard
 
@@ -12337,6 +12347,13 @@ __metadata:
   version: 0.3.1
   resolution: "focus-group@npm:0.3.1"
   checksum: 24999d074f05065f8ae96f61ff4f2cc13240a0f7e7813ff8de3cd42deca6182d42e434fa55228dc31568357de63c2334e00fa609235aabb48c63ca0fef658b71
+  languageName: node
+  linkType: hard
+
+"focusable-selectors@npm:^0.3.1":
+  version: 0.3.1
+  resolution: "focusable-selectors@npm:0.3.1"
+  checksum: 79a978f9f9fe059fbbc1602b17c1852d9404658c3fb4618545ad9e9bf398a8d0bf13d4ccb602e423a4cd68b08f165bb260d4806da1a6aedb95fbae4ee3acd4fd
   languageName: node
   linkType: hard
 
@@ -23595,15 +23612,15 @@ __metadata:
   linkType: hard
 
 "sass@npm:^1.45.0":
-  version: 1.54.3
-  resolution: "sass@npm:1.54.3"
+  version: 1.54.4
+  resolution: "sass@npm:1.54.4"
   dependencies:
     chokidar: ">=3.0.0 <4.0.0"
     immutable: ^4.0.0
     source-map-js: ">=0.6.2 <2.0.0"
   bin:
     sass: sass.js
-  checksum: 9b405f602c0dcdad85e7f216cfa5ca9dfe3f7ded7b3928817cfe8dbfde0cd27b70f4cff724e229b233b3f51a06e71d3fcbbd7d3a0ff92b3e40ac57bc05b90b48
+  checksum: bb6aead09764de450a02b9a66e4ee538f0ba6bc8f2fc3905c71b2c302b5f47e089b510b86cfa7ef2d4139c210c8abf99fe157e7a5bd356c057f10d29e6c4b44c
   languageName: node
   linkType: hard
 

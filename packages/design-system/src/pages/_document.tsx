@@ -1,9 +1,16 @@
 import React from "react";
-import Document from "next/document";
+import Document, {
+  Html,
+  Head,
+  Main,
+  NextScript,
+  DocumentContext,
+} from "next/document";
+
 import { ServerStyleSheet } from "@lighting-beetle/lighter-styleguide";
 
 export default class MyDocument extends Document {
-  static async getInitialProps(ctx) {
+  static async getInitialProps(ctx: DocumentContext) {
     const sheet = new ServerStyleSheet();
     const originalRenderPage = ctx.renderPage;
 
@@ -11,6 +18,7 @@ export default class MyDocument extends Document {
       ctx.renderPage = () =>
         originalRenderPage({
           enhanceApp: (App) => (props) =>
+            // @ts-ignore
             sheet.collectStyles(<App {...props} />),
         });
 
@@ -27,5 +35,20 @@ export default class MyDocument extends Document {
     } finally {
       sheet.seal();
     }
+  }
+
+  render() {
+    return (
+      <Html>
+        <Head />
+        <body>
+          <div id="root">
+            <Main />
+          </div>
+          <div id="root-modals" />
+          <NextScript />
+        </body>
+      </Html>
+    );
   }
 }

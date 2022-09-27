@@ -1,0 +1,34 @@
+@use "sass:map";
+@use "./config";
+@use "../../../styles/utils";
+@use "../../../tokens";
+
+@mixin modal($settings: config.$modal) {
+  @each $breakpoint, $props in $settings {
+    @include tokens.breakpoint($breakpoint) {
+      $radius: map.get($props, "border-radius");
+
+      @include utils.css-map($settings, $breakpoint);
+
+      &__overlay {
+        @include utils.css-map(config.$modal-overlay);
+      }
+    }
+  }
+}
+
+@mixin modal-dialog-content() {
+  @each $breakpoint, $props in config.$modal-spacing {
+    @include tokens.breakpoint($breakpoint) {
+      @each $elem, $value in $props {
+        .modal__#{$elem}#{utils.variant-name($breakpoint)} {
+          padding: $value;
+        }
+      }
+    }
+  }
+}
+
+.modal {
+  @include modal-dialog-content();
+}
