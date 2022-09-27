@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_article_bodies",
+  "info": {
+    "displayName": "Body",
+    "icon": "align-justify"
+  },
+  "options": {},
+  "attributes": {
+    "Content": {
+      "type": "richtext"
+    }
+  }
+}

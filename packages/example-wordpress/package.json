@@ -2,6 +2,7 @@
   "name": "example-wordpress",
   "version": "0.2.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -10,12 +11,9 @@
   "dependencies": {
     "graphql": "~15.6.0",
     "graphql-request": "~3.5.0",
-    "next": "11.1.2",
+    "next": "12.2.5",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "swr": "~1.0.1"
-  },
-  "devDependencies": {
-    "@netlify/plugin-nextjs": "~4.2.7"
   }
 }

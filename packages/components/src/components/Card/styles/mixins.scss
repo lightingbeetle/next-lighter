@@ -4,8 +4,6 @@
 @use "../../../styles/utils";
 
 @mixin card($card: config.$card) {
-  // $border-radius: _map-deep-get($card, "default", "border-radius");
-
   @each $variant, $props in $card {
     &#{utils.variant-name($variant)} {
       @if $variant == "clickable" {
@@ -53,30 +51,6 @@
   flex-flow: column;
   margin-bottom: tokens.space();
   width: 100%;
-
-  &--disable-overflow {
-    overflow: initial;
-  }
-
-  > * + * {
-    border-top: map.get($card, "border");
-  }
-
-  // > * {
-  //   &:first-child {
-  //     border-top-left-radius: $border-radius;
-  //     border-top-right-radius: $border-radius;
-  //   }
-
-  //   &:last-child {
-  //     border-bottom-left-radius: $border-radius;
-  //     border-bottom-right-radius: $border-radius;
-  //   }
-  // }
-
-  .grid__col {
-    flex-direction: column;
-  }
 }
 
 @mixin card-section($card-section: config.$card-section, $grow: 0, $shrink: 0) {
@@ -119,14 +93,6 @@
         background-position-x: center;
         background-position-y: center;
         background-size: cover;
-      }
-
-      &--show-bg-responsive {
-        // stylelint-disable max-nesting-depth
-        @media screen and (min-width: map.get(tokens.$breakpoints, "m")) {
-          background-image: none !important;
-        }
-        // stylelint-enable max-nesting-depth
       }
     }
   }

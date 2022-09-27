@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_shared_page_heroes",
+  "info": {
+    "displayName": "Page hero",
+    "icon": "umbrella-beach"
+  },
+  "options": {},
+  "attributes": {
+    "Title": {
+      "type": "string",
+      "required": true
+    },
+    "Description": {
+      "type": "text"
+    }
+  }
+}
