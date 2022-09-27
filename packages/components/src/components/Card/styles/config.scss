@@ -1,29 +1,37 @@
-// ---------------------------------------------
-// CARD - CONFIGURATION
-// ---------------------------------------------
-
 @use "../../../tokens";
 
-$spacing: tokens.space();
-
 $card: (
-  background-color: tokens.color("white"),
-  border: 1px solid tokens.color("grey", 300),
-  border-radius: 3px,
-  box-shadow: #{tokens.$shadow-ambient-default,
-  tokens.$shadow-direct-default},
-);
-
-$section: (
   default: (
-    padding: tokens.space("s"),
+    background-color: tokens.color("white"),
+    transition: all 120ms linear,
+    border: 1px solid tokens.color("grey", 100),
   ),
-  m: (
-    padding: tokens.space(),
+  clickable: (
+    box-shadow: 0 10px 15px 0 rgba(0, 0, 0, 0.05),
   ),
 );
 
-$header: (
-  background-color: tokens.color("grey", 100),
-  align-items: stretch,
+$card-section: (
+  default: (
+    default: (
+      padding: tokens.space(),
+    ),
+  ),
+  image: (
+    default: (
+      padding: 0,
+    ),
+  ),
+);
+
+$card-section-bg-colors: (
+  white: (
+    background-color: tokens.color("white"),
+  ),
+  secondary: (
+    background-color: tokens.color("secondary"),
+  ),
+  primary: (
+    background-color: tokens.color("primary"),
+  ),
 );

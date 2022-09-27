@@ -2,85 +2,209 @@
 title: Card
 ---
 
+import Link from "next/link";
 import { Preview, Props } from "@lighting-beetle/lighter-styleguide";
-import Card, { CardContent, CardHeader, CardFooter } from ".";
-import Button from "./../Button";
+
+import Icon from "../Icon";
+import Button from "../Button";
+
+import Card, { CardSection, CardSectionImage, CardTitle, CardAction } from ".";
 
 # Card
 
-A card serves as an entry point to more detailed information. Cards may contain rich content, such as photos, text, link, list, tables, you name it.
+Navigačný komponent. Môže obsahovať obrázok, nadpis, text aj button/link.
 
-<Card>
-  <CardContent>
-    <h2>Card</h2>
-    <p>Content</p>
-  </CardContent>
-</Card>
+Karta slúži ako vstupný bod k podrobnejším informáciám. Karty môžu obsahovať bohatý obsah, ako sú fotografie, text, odkaz, zoznam, tabuľky,..
 
-## Variants
-
-### Basic
+### Ukážka
 
 <Preview>
-  <Card>
-    <CardContent>
-      <h2>Card</h2>
-      <p>Content</p>
-    </CardContent>
+  <Card style={{ maxWidth: '320px'}}>
+    <CardSectionImage>
+      <img src="https://images.unsplash.com/photo-1511884642898-4c92249e20b6" alt="Pine forrest in fog" style={{ display: 'block', width: '100%'}} />
+    </CardSectionImage>
+    <CardSection>
+      <CardTitle>Simple card</CardTitle>
+      <p>Card Content</p>
+    </CardSection>
   </Card>
 </Preview>
 
-### Card header and footer
+### Použitie
 
-Card header holds a title and possibly an action button. Card footer is usually used for additional information or confirm/cancellation buttons.
+Pri klikateľnej kartičke je potrebné manuálne poslať do `Card`
+komponentu `isClickable` prop, vďaka ktorému kartička nadobudne štýly,
+ktoré signalizujú, že je klikateľná.
 
-<Preview>
-  <Card>
-    <CardHeader title="Title" />
-    <CardContent>Content</CardContent>
-    <CardFooter>
-      <Button type="primary">CTA</Button>
-    </CardFooter>
-  </Card>
-</Preview>
+Pre nadpis kartičky používajte `CardTitle` komponent. Prebieha tu
+kontrola, či je použitý v kombinácii s `CardAction` komponentom, na
+základe ktorej sa priradzuje `className`, ktorá je potrebná pre
+správne fungovanie klikateľnej kartičky.
 
-### Card header actions
+Pri klikateľnej kartičke je nutné použiť `CardAction` komponent. Slúži ako wrapper nad `Link` alebo `Button`, ktorý je do tohto komponentu poslaný. Následne je pomocou štýlov upravený tak, aby bola celá kartička klikateľná.
 
-To add an action button in card header, a Bar is added to wrap things nicely.
+### Varianty
 
-<Preview>
-  <Card>
-    <CardHeader title="Title" actions={<Button>Action</Button>} />
-    <CardContent>Content</CardContent>
-  </Card>
-</Preview>
-
-### Multiple content sections
-
-Multiple contents helps with visual separation of content.
+#### Základná
 
 <Preview>
   <Card>
-    <CardContent>
-      <h2>Card</h2>
-      <p>Content</p>
-    </CardContent>
-    <CardContent>
-      <p>Second content</p>
-    </CardContent>
+    <CardSection>
+      <CardTitle>Simple card</CardTitle>
+      <p>Card Content</p>
+    </CardSection>
   </Card>
 </Preview>
 
-## Props
+#### Klikateľná
 
-<Props component={Card} />
+<Preview>
+  <Card isClickable>
+    <CardSection>
+      <CardTitle>
+        Card title
+      </CardTitle>
+      <p>Card content</p>
+      <CardAction>
+        <Button type="link" className="no-pad-left" href="#">Zistiť viac <Icon name="heart" size="s" /></Button>
+      </CardAction>
+    </CardSection>
+  </Card>
+</Preview>
 
-<Props component={CardContent} />
+#### S obrázkom na pozadí
 
-<Props component={CardHeader} />
+<Preview>
+  <>
+  <Card>
+    <CardSection bg="primary">
+      <CardTitle>
+        Primary background
+      </CardTitle>
+      <p>Make sure this has enough contrast with background</p>
+    </CardSection>
+  </Card>
+  <Card>
+    <CardSection bg="secondary">
+      <CardTitle>
+        Secondary background
+      </CardTitle>
+      <p>Make sure this has enough contrast with background</p>
+    </CardSection>
+  </Card>
+  </>
+</Preview>
 
-<Props component={CardFooter} />
+#### S obrázkom na pozadí
 
-## Accessibility
+<Preview>
+  <Card>
+    <CardSection bgUrl={"https://images.unsplash.com/photo-1598787150685-363747aea649"} style={{ minHeight: "300px" }} ><h2>Make sure this has enough contrast with background</h2></CardSection>
+  </Card>
+</Preview>
 
-The `<Card />` component is purely presentational and does not carry any semantic meaning. The only thing you should care about is the usage of correct heading level in `<CardHeader title="" />`
+#### S obrázkom ako sekciou karty
+
+<Preview>
+  <Card>
+    <CardSectionImage>
+      <img src="https://images.unsplash.com/photo-1511884642898-4c92249e20b6" alt="Pine forrest in fog" style={{ display: 'block', width: '100%'}} />
+    </CardSectionImage>
+  </Card>
+</Preview>
+
+#### S viacerými obsahovými sekciami
+
+<Preview>
+  <Card>
+    <CardSection>
+      <CardTitle>Card with 2 content sections</CardTitle>
+      <p>
+        Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget
+        lacinia odio sem nec elit.
+      </p>
+    </CardSection>
+    <CardSection>
+      <h4>Card with 2 content sections</h4>
+      <p>Donec id elit non mi porta gravida at eget metus.</p>
+    </CardSection>
+  </Card>
+</Preview>
+
+### JS module reference
+
+All card sections elements with `[data-card-section]` attribute will be initialised automatically.
+
+#### Custom initialisation
+
+```js
+const instance = new window.myApp.CardSection(
+  document.getElementById("my-card-section"),
+  config
+);
+```
+
+#### Config
+
+{/* <TableAPI
+  data={[
+    {
+      prop: "mobileResolution",
+      type: "number",
+      default: "768",
+      description: "Specifies mobile resolution.",
+    },
+  ]}
+/>*/}
+
+#### Methods
+
+```js
+const instance = window.myApp.CardSection.getInstance(el);
+/*
+  instance.method();
+*/
+```
+{/* <TableAPI
+  data={[
+    {
+      prop: "init",
+      type: "func",
+      default: "() => {}",
+      description:
+        "Initialize instance. This is called automatically on `new Plugin(el, config)`",
+    },
+    {
+      prop: "destroy",
+      type: "func",
+      default: "() => {}",
+      description: "Destroy the instance.",
+    },
+    {
+      prop: "update",
+      type: "func",
+      default: "() => {}",
+      description: "Updates the instance (reinitalize).",
+    },
+    {
+      prop: "static getInstance",
+      type: "func",
+      default: "element => {}",
+      description:
+        "Get instance of `CardSection` attached to specific DOM element (usually `[data-card-section]`).",
+    },
+  ]}
+/>
+*/}
+
+### Props
+
+<Props title="<Card />" component={Card} />
+
+<Props title="<CardTitle />" component={CardTitle} />
+
+<Props title="<CardAction />" component={CardAction} />
+
+<Props title="<CardSection />" component={CardSection} />
+
+<Props title="<CardSectionImage />" component={CardSectionImage} />

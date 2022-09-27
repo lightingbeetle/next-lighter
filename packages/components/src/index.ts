@@ -2,7 +2,12 @@ import "./styles/globals.scss";
 
 import Bar, { BarItem, BarBreak } from "./components/Bar";
 import Button from "./components/Button";
-import Card, { CardContent, CardFooter, CardHeader } from "./components/Card";
+import Card, {
+  CardAction,
+  CardSection,
+  CardSectionImage,
+  CardTitle,
+} from "./components/Card";
 import { Input, TextArea, RadioCheck, Error } from "./components/Forms";
 import Icon from "./components/Icon";
 import Select from "./components/Select";
@@ -38,9 +43,10 @@ export {
   BarBreak,
   Button,
   Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
+  CardAction,
+  CardSectionImage,
+  CardSection,
+  CardTitle,
   Modal,
   Icon,
   Select,

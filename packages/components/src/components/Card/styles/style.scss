@@ -1,7 +1,3 @@
-// ---------------------------------------------
-// CARD - STYLES
-// ---------------------------------------------
+@use "./mixins";
 
-@import "./mixins";
-
-@include card-classes;
+@include mixins.card-classes;

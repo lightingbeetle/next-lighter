@@ -1,48 +1,79 @@
-// ---------------------------------------------
-// CARDS - MIXINS
-// ---------------------------------------------
-
 @use "sass:map";
-@use "../../../styles/utils";
-@use "../../../tokens";
 @use "./config";
+@use "../../../tokens";
+@use "../../../styles/utils";
 
 @mixin card($card: config.$card) {
-  $border-radius: map.get($card, "border-radius");
-  @include utils.css-map($card);
+  @each $variant, $props in $card {
+    &#{utils.variant-name($variant)} {
+      @if $variant == "clickable" {
+        &:hover {
+          @include utils.css-map($props);
+        }
 
+        .card__section {
+          .card__action .btn,
+          .card__action .link {
+            position: unset;
+
+            &::after {
+              content: "";
+              position: absolute;
+              left: 0;
+              top: 0;
+              right: 0;
+              bottom: 0;
+            }
+          }
+
+          /*All elements inside clickable card except of link, have to have position:relative to make them selectable by mouse.*/
+          > :not(.card__action) {
+            position: relative;
+            z-index: 1;
+          }
+
+          /*When there is CardAction inside CardTitle position has to be set to unset in favor to make whole card clickable. 
+          Without this, CardTitle's position:relative will stop CardACtion's position: absolute.*/
+          .card__title {
+            &--has-link {
+              position: unset;
+            }
+          }
+        }
+      } @else {
+        @include utils.css-map($props);
+      }
+    }
+  }
+
+  position: relative;
   display: flex;
   flex-flow: column;
-  margin-bottom: config.$spacing;
-
-  > * + * {
-    border-top: map.get($card, "border");
-  }
-
-  > * {
-    &:first-child {
-      border-top-left-radius: $border-radius;
-      border-top-right-radius: $border-radius;
-    }
-
-    &:last-child {
-      border-bottom-left-radius: $border-radius;
-      border-bottom-right-radius: $border-radius;
-    }
-  }
+  margin-bottom: tokens.space();
+  width: 100%;
 }
 
-@mixin card-section($section: config.$section, $grow: 0, $shrink: 0) {
-  @each $breakpoint, $css in $section {
-    @include tokens.breakpoint($breakpoint) {
-      @include utils.css-map($css);
-    }
-  }
-
+@mixin card-section($card-section: config.$card-section, $grow: 0, $shrink: 0) {
   flex: $grow $shrink auto;
 
   > *:last-child {
     margin-bottom: 0;
+  }
+
+  @each $variant, $props in $card-section {
+    &#{utils.variant-name($variant)} {
+      @each $breakpoint, $settings in $props {
+        @include tokens.breakpoint($breakpoint) {
+          @include utils.css-map($settings);
+        }
+      }
+    }
+  }
+
+  @each $variant, $props in config.$card-section-bg-colors {
+    &#{utils.variant-name($variant)} {
+      @include utils.css-map($props);
+    }
   }
 }
 
@@ -50,21 +81,19 @@
   .card {
     @include card;
 
-    &__header {
-      @include card-section;
-      @include utils.css-map(config.$header);
-    }
-
-    &__content {
+    &__section {
       @include card-section();
 
       &--fill {
         flex-grow: 1;
       }
-    }
 
-    &__footer {
-      @include card-section;
+      &--bg-image {
+        background-repeat: no-repeat;
+        background-position-x: center;
+        background-position-y: center;
+        background-size: cover;
+      }
     }
   }
 }
