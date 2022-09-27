@@ -1,15 +1,17 @@
-const nextLighterConfig = require("@lighting-beetle/next-lighter-config");
-const { extend } = require("next-compose-plugins");
-const transpileModules = require("next-transpile-modules");
+import nextLighterConfig from "@lighting-beetle/next-lighter-config";
+import nextComposePlugins from "next-compose-plugins";
+import transpileModules from "next-transpile-modules";
 
-module.exports = extend(
-  nextLighterConfig({
-    nextConfig: {
-      experimental: {
-        externalDir: true,
+export default nextComposePlugins
+  .extend(
+    nextLighterConfig({
+      nextConfig: {
+        experimental: {
+          externalDir: true,
+        },
       },
-    },
-  })
-).withPlugins([
-  transpileModules(["components", "@lighting-beetle/lighter-styleguide"]),
-]);
+    })
+  )
+  .withPlugins([
+    transpileModules(["components", "@lighting-beetle/lighter-styleguide"]),
+  ]);

@@ -1,8 +1,6 @@
-# Example
+# Example forms
 
-[Live demo](https://next-lighter.lbx.sk)
-
-This is example of real project builded with Next.js and Lighter Styleguide.
+[See documentation](src/pages/index.md)
 
 ## Local development
 
