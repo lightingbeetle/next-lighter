@@ -4,8 +4,8 @@ import Bar, { BarItem, BarBreak } from "./components/Bar";
 import Button from "./components/Button";
 import Card, {
   CardAction,
-  CardImage,
   CardSection,
+  CardSectionImage,
   CardTitle,
 } from "./components/Card";
 import { Input, TextArea, RadioCheck, Error } from "./components/Forms";
@@ -44,7 +44,7 @@ export {
   Button,
   Card,
   CardAction,
-  CardImage,
+  CardSectionImage,
   CardSection,
   CardTitle,
   Modal,
