@@ -1,17 +1,20 @@
-import React from "react";
+import React, { ComponentProps } from "react";
 import { useRanger, RangerOptions } from "react-ranger";
 import "./styles/style.scss";
 
-type RangeInputProps = RangerOptions;
+// TODO: Range input could have uncontrolled mode
 
-const RangeInput = ({
+type SliderProps = RangerOptions;
+
+const Slider = ({
   values,
   onChange,
   min,
   max,
   stepSize,
   onDrag,
-}: RangeInputProps) => {
+  ...other
+}: Omit<ComponentProps<"div">, "onChange" | "onDrag"> & SliderProps) => {
   const { getTrackProps, handles, segments } = useRanger({
     values,
     onChange,
@@ -22,11 +25,11 @@ const RangeInput = ({
   });
 
   return (
-    <div className="range-input">
-      <div className="range-input__track" {...getTrackProps({})}>
+    <div className="slider" {...other}>
+      <div className="slider__track" {...getTrackProps({})}>
         {segments.map(({ getSegmentProps }, index) => (
           <div
-            className={`range-input__segment range-input__segment--${index}`}
+            className={`slider__segment slider__segment--${index}`}
             key={index}
             {...getSegmentProps()}
           />
@@ -34,7 +37,7 @@ const RangeInput = ({
         {handles.map(({ getHandleProps }, index) => (
           <button
             key={index}
-            className="range-input__handle"
+            className="slider__handle"
             {...getHandleProps()}
           />
         ))}
@@ -43,4 +46,4 @@ const RangeInput = ({
   );
 };
 
-export default RangeInput;
+export default Slider;

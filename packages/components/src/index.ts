@@ -7,7 +7,7 @@ import { Input, TextArea, RadioCheck, Error } from "./components/Forms";
 import Icon from "./components/Icon";
 import Select from "./components/Select";
 import Table from "./components/Table";
-import RangeInput from "./components/RangeInput";
+import Slider from "./components/Slider";
 import Pagination from "./components/Pagination";
 
 // TODO: Tokens should have own entry
@@ -50,6 +50,6 @@ export {
   TextArea,
   RadioCheck,
   Error,
-  RangeInput,
+  Slider,
   Pagination,
 };

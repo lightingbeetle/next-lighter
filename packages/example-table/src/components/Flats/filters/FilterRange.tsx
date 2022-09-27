@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useFormContext } from "react-hook-form";
-import { Input, RangeInput } from "components";
+import { Input, Slider } from "components";
 
 type FilterRangeProps = {
   onSubmit: (data: any) => void;
@@ -16,7 +16,7 @@ type FilterRangeProps = {
     name: string;
     label: string;
   };
-} & Omit<React.ComponentProps<typeof RangeInput>, "values" | "onChange">;
+} & Omit<React.ComponentProps<typeof Slider>, "values" | "onSubmit">;
 
 const FilterRange = ({
   onSubmit,
@@ -39,7 +39,7 @@ const FilterRange = ({
   return (
     <fieldset className="filter-range form-field">
       <legend className="form-label">{label}</legend>
-      <RangeInput
+      <Slider
         min={min}
         max={max}
         stepSize={stepSize}
