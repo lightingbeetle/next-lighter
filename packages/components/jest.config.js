@@ -7,4 +7,5 @@ module.exports = {
       "<rootDir>/../../packages/lighter-hooks/src/index.js",
   },
   setupFilesAfterEnv: ["<rootDir>/jest-setup.ts"],
+  testEnvironment: "jest-environment-jsdom",
 };

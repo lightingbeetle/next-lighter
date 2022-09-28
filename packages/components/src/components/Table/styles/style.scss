@@ -1,99 +1,54 @@
 @use "../../../tokens";
+@use "../../../styles/utils";
 
 .table {
-  display: block;
-  width: 100%;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
+  overflow: auto;
   margin-bottom: tokens.space();
-  color: tokens.color("black");
-  position: relative;
 
   table {
-    border-collapse: collapse;
+    border-collapse: separate;
     border-spacing: 0;
-
     max-width: 100%;
     width: 100%;
-
-    &.table--sticky {
-      will-change: transform;
-      top: 0;
-      position: absolute;
-      z-index: 2;
-    }
+    border-color: tokens.color("black");
+    border-width: 0 0 1px 1px;
+    border-style: solid;
   }
 
-  tbody tr:hover {
-    cursor: pointer;
-  }
-
-  tbody tr:nth-of-type(odd) {
-    background-color: tokens.color("white");
-  }
-
-  tbody tr:nth-of-type(even) {
-    background-color: tokens.color("grey", 300);
-  }
-
-  thead tr {
-    background-color: tokens.color("grey");
-  }
-
-  th,
-  td {
-    text-align: center;
-  }
-
-  td {
+  &__heading {
     padding: tokens.space("s");
+    text-align: left;
+    border-color: tokens.color("black");
+    border-width: 1px 1px 0 0;
+    border-style: solid;
+
+    //Checkboxes label color cannot be changed with className
+    label {
+      color: tokens.color("secondary", 500);
+    }
   }
 
-  th {
-    padding: tokens.space("s") tokens.space("s");
-    white-space: nowrap;
-    text-transform: uppercase;
+  &__cell {
+    padding: tokens.space("s");
+    border-color: tokens.color("black");
+    border-width: 1px 1px 0 0;
+    border-style: solid;
   }
 
-  &__head-sorter {
-    // this sizes are magic for ponuka bytov table
-    position: relative;
-    width: 7px;
-    display: inline-block;
-    height: 14px;
-    vertical-align: sub;
+  //Prevent checkboxes label wrap under checkbox
+  .radiocheck {
+    flex-wrap: nowrap;
+    //RadioCheck's align-items is set to flex-start in RadioCheck component, so it causes inequality on row and it needs to be set to center
+    align-items: center;
 
-    // triangels are aligned with magic numbers
-    &:before,
-    &:after {
-      content: "";
-      height: 0px;
-      width: 0px;
-      position: absolute;
+    //Checkboxes label has smaller font-size than rest of the table on smaller resolution fix
+    &__label {
+      font-size: tokens.$font-size-default;
     }
+  }
 
-    &:before {
-      left: 5px;
-      top: 0px;
-      border-left: 5px solid transparent;
-      border-right: 5px solid transparent;
-      border-bottom: 5px solid tokens.color("black");
-    }
-
-    &:after {
-      left: 5px;
-      top: 7px;
-      border-left: 5px solid transparent;
-      border-right: 5px solid transparent;
-      border-top: 5px solid tokens.color("black");
-    }
-
-    &--asc:after {
-      display: none;
-    }
-
-    &--desc:before {
-      display: none;
-    }
+  //Checkboxes wrapper has margin-bottom, which is pushing down whole table row a it cant be removed by passing className .no-mrg to checkbox component
+  .form-control {
+    margin-bottom: 0;
   }
 }

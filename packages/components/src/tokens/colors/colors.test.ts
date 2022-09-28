@@ -1,3 +1,8 @@
+/**
+ * // We need this to make renderSync method work with relative imports like "@use "./index.scss" as *;"
+ * @jest-environment node
+ */
+
 import { renderSync } from "sass";
 import { color, colorHex } from ".";
 import scssTestImporter from "../../utils/scssTestImporter";

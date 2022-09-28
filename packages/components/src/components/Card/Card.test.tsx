@@ -1,46 +1,161 @@
-/**
- * @jest-environment jsdom
- */
-
 import React from "react";
 import { render, screen } from "@testing-library/react";
+import { axe } from "jest-axe";
 
-import Card from ".";
+import Card, { CardSection, CardTitle, CardAction, CardSectionImage } from ".";
 
-describe("rendering", () => {
-  describe("initial state", () => {
-    let card;
-
-    beforeEach(() => {
-      render(<Card>Card</Card>);
-      card = screen.getByText("Card");
-    });
-
-    it("has default className", () => {
-      expect(card).toHaveClass("card");
-    });
-  });
-
-  describe("passed props", () => {
-    it("renders children", () => {
-      render(<Card>Card</Card>);
-      expect(screen.getByText("Card")).toBeInTheDocument();
-    });
-
-    it("renders children as node", () => {
+describe("Card", () => {
+  describe("Rendering", () => {
+    it("renders without crashing", () => {
       render(
-        <Card>
-          <span data-testid="child">Children</span>
+        <Card data-testid="card">
+          <CardSection>
+            <CardTitle title="Test title" />
+          </CardSection>
         </Card>
       );
 
-      expect(screen.getByTestId("child")).toBeInTheDocument();
+      const card = screen.getByTestId("card");
+
+      expect(card).toBeInTheDocument();
+    });
+  });
+
+  describe("Props", () => {
+    it("renders link correctly", () => {
+      const { getByText } = render(
+        <Card>
+          <CardSection>
+            <CardTitle>
+              <CardAction>
+                <a href="string-href">Test title</a>
+              </CardAction>
+            </CardTitle>
+          </CardSection>
+        </Card>
+      );
+
+      const link = getByText("Test title");
+
+      expect(link.getAttribute("href")).toBe("string-href");
     });
 
-    it("passes other props", () => {
-      render(<Card data-testid="test">Card</Card>);
+    it("gets correct className when href prop is passed", () => {
+      render(
+        <Card isClickable data-testid="card">
+          <CardSection>
+            <CardTitle>
+              <CardAction>
+                <a href="/">Test title</a>
+              </CardAction>
+            </CardTitle>
+          </CardSection>
+        </Card>
+      );
 
-      expect(screen.getByTestId("test")).toBeInTheDocument();
+      const card = screen.getByTestId("card");
+
+      expect(card).toHaveClass("card--clickable");
     });
+  });
+});
+
+describe("CardSection", () => {
+  describe("Props", () => {
+    it("gets correct className when bg is passed", () => {
+      render(
+        <Card>
+          <CardSection bg="primary" data-testid="card-section">
+            <CardTitle>Test title</CardTitle>
+          </CardSection>
+        </Card>
+      );
+
+      const cardSection = screen.getByTestId("card-section");
+
+      expect(cardSection).toHaveClass("card__section--primary");
+    });
+
+    it("gets correct className when isFilling prop is passed", () => {
+      render(
+        <Card>
+          <CardSection isFilling data-testid="card-section">
+            <CardTitle title="Test title" />
+          </CardSection>
+        </Card>
+      );
+
+      const cardSection = screen.getByTestId("card-section");
+
+      expect(cardSection).toHaveClass("card__section--fill");
+    });
+  });
+});
+
+describe("CardSectionImage", () => {
+  describe("Props", () => {
+    it("renders title correctly", () => {
+      render(
+        <Card>
+          <CardSectionImage data-testid="card-section">
+            <img src="" alt="" />
+          </CardSectionImage>
+        </Card>
+      );
+
+      const cardSection = screen.getByTestId("card-section");
+
+      expect(cardSection).toHaveClass("card__section--image");
+    });
+  });
+});
+
+describe("CardTitle", () => {
+  describe("Props", () => {
+    it("renders title correctly", () => {
+      const { getByText } = render(
+        <Card>
+          <CardSection>
+            <CardTitle>Test title</CardTitle>
+          </CardSection>
+        </Card>
+      );
+
+      const title = getByText("Test title");
+
+      expect(title).toBeInTheDocument();
+      expect(title.tagName).toBe("H2");
+    });
+
+    it("renders gets correct tag", () => {
+      const { getByText } = render(
+        <Card>
+          <CardSection>
+            <CardTitle tag="h4">Test title</CardTitle>
+          </CardSection>
+        </Card>
+      );
+
+      const title = getByText("Test title");
+
+      expect(title).toBeInTheDocument();
+      expect(title.tagName).toBe("H4");
+    });
+  });
+});
+
+describe("Accessibility", () => {
+  it("is accessible", async () => {
+    render(
+      <Card data-testid="card">
+        <CardSection>
+          <CardTitle title="Test title" />
+        </CardSection>
+      </Card>
+    );
+
+    const card = screen.getByTestId("card");
+
+    expect(await axe(card)).toHaveNoViolations();
   });
 });

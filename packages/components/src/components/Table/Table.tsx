@@ -1,140 +1,82 @@
-/* eslint-disable react/jsx-key */
-import cx from "classnames";
-import React, { useEffect } from "react";
-import { useTable, useSortBy, Column, SortingRule } from "react-table";
-import useStickyTable from "./useSticky";
-import "./styles/style.scss";
+import React, { ComponentProps } from "react";
 
-// TODO: types coudl better with generic insted of any
-// TODO: add tests
+import TableWrapper from "./TableWrapper";
+import TableHead from "./TableHead";
+import TableRow from "./TableRow";
+import TableHeading from "./TableHeading";
+import TableBody from "./TableBody";
+import TableCell from "./TableCell";
 
-type TableProps = {
-  className?: string;
-  data: any[];
-  columns: Column<any>[];
-  onRowClick?: (row: any) => void;
-  onSort?: (sortBy: SortingRule<string>[]) => void;
-  sortBy: SortingRule<string>[];
-  disableSortBy?: boolean;
+type CellContent = React.ReactNode;
+
+type Column = {
+  Header: React.ReactNode;
+  accessor: string;
+  Cell?: (value: React.ReactNode) => React.ReactNode;
 };
+
+type Row = {
+  [index: string]: CellContent;
+};
+
+type Table = {
+  /** Labels for columns in the table. Value of the accessor in columns match with the key name in data */
+  columns: Column[];
+  /** Data to print out in the table. */
+  data: Row[];
+  /** Table caption, which is required due to accessibility of the table. It should always start with capitalized word */
+  caption: string;
+  /** If set to true, caption will be visually hidden, but remains in DOM due to accessibility  */
+  hiddenCaption?: boolean;
+} & ComponentProps<"table">;
 
 const Table = ({
-  data,
   columns,
-  onSort,
-  sortBy: _sortBy,
-  onRowClick,
+  data,
   className,
-  disableSortBy,
-}: TableProps) => {
-  const {
-    getTableProps,
-    getTableBodyProps,
-    headerGroups,
-    rows,
-    prepareRow,
-    state: { sortBy },
-  } = useTable(
-    {
-      columns,
-      data,
-      manualSortBy: true,
-      disableSortBy,
-      disableMultiSort: true,
-      initialState: { sortBy: _sortBy },
-    },
-    useSortBy
-  );
-
-  const { tableRef, tableStickyRef, isSticky, top } = useStickyTable();
-
-  useEffect(() => {
-    onSort?.(sortBy);
-  }, [onSort, sortBy]);
-
-  const renderHeader = () => {
-    return (
-      <thead>
-        {headerGroups.map((headerGroup) => (
-          <tr {...headerGroup.getHeaderGroupProps()}>
-            {headerGroup.headers.map((column) => (
-              <th
-                {...column.getHeaderProps(
-                  column.canSort &&
-                    column.getSortByToggleProps({
-                      title: undefined,
-                      // @ts-ignore I don't know how to define types for this
-                      "aria-label": "prepnúť triedenie",
-                    })
-                )}
-              >
-                {column.render("Header")}
-                {column.canSort && (
-                  <span
-                    className={cx(
-                      "table__head-sorter",
-                      column.isSorted
-                        ? column.isSortedDesc
-                          ? "table__head-sorter--desc"
-                          : "table__head-sorter--asc"
-                        : ""
-                    )}
-                  />
-                )}
-              </th>
-            ))}
-          </tr>
-        ))}
-      </thead>
-    );
-  };
-
+  caption,
+  hiddenCaption = false,
+  ...other
+}: Table) => {
   return (
-    <div className={cx("table", className)}>
-      <table
-        tabIndex={-1}
-        ref={tableStickyRef}
-        className={cx("table--sticky")}
-        hidden={!isSticky}
-        style={{
-          transform: `translate3d(0, ${top}px, 0)`,
-        }}
-      >
-        {renderHeader()}
-      </table>
-      <table {...getTableProps()} ref={tableRef}>
-        {renderHeader()}
-        <tbody {...getTableBodyProps()}>
-          <TableBody {...{ rows, prepareRow, onRowClick }} />
-        </tbody>
-      </table>
-    </div>
+    <TableWrapper
+      className={className}
+      caption={caption}
+      hiddenCaption={hiddenCaption}
+      {...other}
+    >
+      <TableHead>
+        <TableRow>
+          {columns.map((column, i) => {
+            return <TableHeading key={i}>{column.Header}</TableHeading>;
+          })}
+        </TableRow>
+      </TableHead>
+      <TableBody>
+        {data.map((row, i) => {
+          return (
+            <TableRow key={i}>
+              {columns.map((column, i) => {
+                return (
+                  <TableCell key={i}>
+                    {column.Cell
+                      ? column.Cell({
+                          value: row[column.accessor],
+                          row: row,
+                          column: column,
+                        })
+                      : row[column.accessor]}
+                  </TableCell>
+                );
+              })}
+            </TableRow>
+          );
+        })}
+      </TableBody>
+    </TableWrapper>
   );
 };
 
-const TableBody = React.memo(
-  ({
-    rows,
-    prepareRow,
-    onRowClick,
-  }: {
-    rows: any;
-    prepareRow: (row: any) => void;
-    onRowClick: (row: any) => void;
-  }) => {
-    return rows.map((row) => {
-      prepareRow(row);
-      return (
-        <tr {...row.getRowProps()} onClick={() => onRowClick?.(row.original)}>
-          {row.cells.map((cell) => {
-            return <td {...cell.getCellProps()}>{cell.render("Cell")}</td>;
-          })}
-        </tr>
-      );
-    });
-  }
-);
-
-TableBody.displayName = "TableBody";
+Table.displayName = "Table";
 
 export default Table;
