@@ -1,7 +1,6 @@
 import React, { ComponentProps } from "react";
-import cx from "classnames";
 
-import TableComponent from "./TableComponent";
+import TableWrapper from "./TableWrapper";
 import TableHead from "./TableHead";
 import TableRow from "./TableRow";
 import TableHeading from "./TableHeading";
@@ -25,7 +24,6 @@ type Table = {
   columns: Column[];
   /** Data to print out in the table. */
   data: Row[];
-
   /** Table caption, which is required due to accessibility of the table. It should always start with capitalized word */
   caption: string;
   /** If set to true, caption will be visually hidden, but remains in DOM due to accessibility  */
@@ -40,13 +38,9 @@ const Table = ({
   hiddenCaption = false,
   ...other
 }: Table) => {
-  const classes = cx({
-    [`${className}`]: className,
-  });
-
   return (
-    <TableComponent
-      className={classes}
+    <TableWrapper
+      className={className}
       caption={caption}
       hiddenCaption={hiddenCaption}
       {...other}
@@ -79,7 +73,7 @@ const Table = ({
           );
         })}
       </TableBody>
-    </TableComponent>
+    </TableWrapper>
   );
 };
 

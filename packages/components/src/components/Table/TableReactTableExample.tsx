@@ -5,7 +5,7 @@ import React from "react";
 import { useTable, useRowSelect } from "react-table";
 
 //Import jednotlivých častí tabuľky
-import TableComponent from "./TableComponent";
+import TableWrapper from "./TableWrapper";
 import TableHead from "./TableHead";
 import TableRow from "./TableRow";
 import TableHeading from "./TableHeading";
@@ -81,7 +81,7 @@ const TableReactTableExample = () => {
   //Použitie metód z useTable hooku na jednotlivé časti tabuľky
   return (
     <>
-      <TableComponent {...getTableProps()} caption="Názov tabuľky">
+      <TableWrapper {...getTableProps()} caption="Názov tabuľky">
         <TableHead>
           {headerGroups.map((headerGroup, i) => (
             <TableRow {...headerGroup.getHeaderGroupProps()}>
@@ -109,7 +109,7 @@ const TableReactTableExample = () => {
             );
           })}
         </TableBody>
-      </TableComponent>
+      </TableWrapper>
 
       {/*Výpis všetkých údajov z jednotlivých riadkov po tom, ako sú označené / odznačené */}
       <p>Označené riadky: {Object.keys(selectedRowIds).length}</p>

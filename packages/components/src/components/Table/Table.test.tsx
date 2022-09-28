@@ -4,7 +4,7 @@ import "@testing-library/jest-dom/extend-expect";
 import { axe } from "jest-axe";
 
 import Table, {
-  TableComponent,
+  TableWrapper,
   TableBody,
   TableRow,
   TableHeading,
@@ -166,7 +166,7 @@ describe("Table", () => {
   });
 });
 
-describe("TableComponent", () => {
+describe("TableWrapper", () => {
   describe("Rendering", () => {
     it("renders caption correctly", () => {
       const { getByText } = render(
@@ -285,13 +285,13 @@ describe("TableComponent", () => {
   describe("Props", () => {
     it("gets passed attributes", () => {
       render(
-        <TableComponent
+        <TableWrapper
           className="test-class"
           data-testid="table"
           caption="Názov tabuľky"
         >
           <TableBody data-testid="tbody" />
-        </TableComponent>
+        </TableWrapper>
       );
 
       const table = screen.getByTestId("table");
@@ -303,9 +303,9 @@ describe("TableComponent", () => {
   describe("Accessibility", () => {
     it("is accessible", async () => {
       render(
-        <TableComponent data-testid="table" caption="Názov tabuľky">
+        <TableWrapper data-testid="table" caption="Názov tabuľky">
           <TableBody data-testid="tbody" />
-        </TableComponent>
+        </TableWrapper>
       );
 
       const table = screen.getByTestId("table");
@@ -319,9 +319,9 @@ describe("TableHead", () => {
   describe("Rendering", () => {
     it("renders thead tag correctly", () => {
       render(
-        <TableComponent caption="Názov tabuľky">
+        <TableWrapper caption="Názov tabuľky">
           <TableHead data-testid="thead" />
-        </TableComponent>
+        </TableWrapper>
       );
 
       const tableHead = screen.getByTestId("thead");
@@ -334,9 +334,9 @@ describe("TableHead", () => {
   describe("Props", () => {
     it("gets passed attributes", () => {
       render(
-        <TableComponent caption="Názov tabuľky">
+        <TableWrapper caption="Názov tabuľky">
           <TableHead className="test-class" data-testid="thead" />
-        </TableComponent>
+        </TableWrapper>
       );
 
       const tableHead = screen.getByTestId("thead");
@@ -348,9 +348,9 @@ describe("TableHead", () => {
   describe("Accessibility", () => {
     it("is accessible", async () => {
       render(
-        <TableComponent caption="Názov tabuľky">
+        <TableWrapper caption="Názov tabuľky">
           <TableHead data-testid="thead" />
-        </TableComponent>
+        </TableWrapper>
       );
 
       const tableHead = screen.getByTestId("thead");
@@ -364,11 +364,11 @@ describe("TableRow", () => {
   describe("Rendering", () => {
     it("renders tr tag correctly", () => {
       render(
-        <TableComponent caption="Názov tabuľky">
+        <TableWrapper caption="Názov tabuľky">
           <TableBody>
             <TableRow data-testid="tr" />
           </TableBody>
-        </TableComponent>
+        </TableWrapper>
       );
 
       const tableRow = screen.getByTestId("tr");
@@ -381,11 +381,11 @@ describe("TableRow", () => {
   describe("Props", () => {
     it("gets passed attributes", () => {
       render(
-        <TableComponent caption="Názov tabuľky">
+        <TableWrapper caption="Názov tabuľky">
           <TableBody>
             <TableRow className="test-class" data-testid="tr" />
           </TableBody>
-        </TableComponent>
+        </TableWrapper>
       );
 
       const tableRow = screen.getByTestId("tr");
@@ -397,11 +397,11 @@ describe("TableRow", () => {
   describe("Accessibility", () => {
     it("is accessible", async () => {
       render(
-        <TableComponent caption="Názov tabuľky">
+        <TableWrapper caption="Názov tabuľky">
           <TableBody>
             <TableRow data-testid="tr" />
           </TableBody>
-        </TableComponent>
+        </TableWrapper>
       );
 
       const tableRow = screen.getByTestId("tr");
@@ -415,13 +415,13 @@ describe("TableHeading", () => {
   describe("Rendering", () => {
     it("renders th tag correctly", () => {
       render(
-        <TableComponent caption="Názov tabuľky">
+        <TableWrapper caption="Názov tabuľky">
           <TableHead>
             <TableRow>
               <TableHeading data-testid="th" />
             </TableRow>
           </TableHead>
-        </TableComponent>
+        </TableWrapper>
       );
 
       const tableHeading = screen.getByTestId("th");
@@ -434,13 +434,13 @@ describe("TableHeading", () => {
   describe("Props", () => {
     it("gets passed attributes", () => {
       render(
-        <TableComponent caption="Názov tabuľky">
+        <TableWrapper caption="Názov tabuľky">
           <TableHead>
             <TableRow>
               <TableHeading rowSpan={3} data-testid="th" />
             </TableRow>
           </TableHead>
-        </TableComponent>
+        </TableWrapper>
       );
 
       const tableHeading = screen.getByTestId("th");
@@ -452,13 +452,13 @@ describe("TableHeading", () => {
   describe("Accessibility", () => {
     it("is accessible", async () => {
       render(
-        <TableComponent caption="Názov tabuľky">
+        <TableWrapper caption="Názov tabuľky">
           <TableHead>
             <TableRow>
               <TableHeading data-testid="th" />
             </TableRow>
           </TableHead>
-        </TableComponent>
+        </TableWrapper>
       );
 
       const tableHeading = screen.getByTestId("th");
@@ -472,9 +472,9 @@ describe("TableBody", () => {
   describe("Rendering", () => {
     it("renders tbody tag correctly", () => {
       render(
-        <TableComponent caption="Názov tabuľky">
+        <TableWrapper caption="Názov tabuľky">
           <TableBody data-testid="tbody" />
-        </TableComponent>
+        </TableWrapper>
       );
 
       const tableBody = screen.getByTestId("tbody");
@@ -487,9 +487,9 @@ describe("TableBody", () => {
   describe("Props", () => {
     it("gets passed attributes", () => {
       render(
-        <TableComponent caption="Názov tabuľky">
+        <TableWrapper caption="Názov tabuľky">
           <TableBody className="test-class" data-testid="tbody" />
-        </TableComponent>
+        </TableWrapper>
       );
 
       const tableBody = screen.getByTestId("tbody");
@@ -501,9 +501,9 @@ describe("TableBody", () => {
   describe("Accessibility", () => {
     it("is accessible", async () => {
       render(
-        <TableComponent caption="Názov tabuľky">
+        <TableWrapper caption="Názov tabuľky">
           <TableBody data-testid="tbody" />
-        </TableComponent>
+        </TableWrapper>
       );
 
       const tableBody = screen.getByTestId("tbody");
@@ -517,13 +517,13 @@ describe("TableCell", () => {
   describe("Rendering", () => {
     it("renders td tag correctly", () => {
       render(
-        <TableComponent caption="Názov tabuľky">
+        <TableWrapper caption="Názov tabuľky">
           <TableHead>
             <TableRow>
               <TableCell data-testid="td" />
             </TableRow>
           </TableHead>
-        </TableComponent>
+        </TableWrapper>
       );
 
       const tableCell = screen.getByTestId("td");
@@ -536,13 +536,13 @@ describe("TableCell", () => {
   describe("Props", () => {
     it("gets passed attributes", () => {
       render(
-        <TableComponent caption="Názov tabuľky">
+        <TableWrapper caption="Názov tabuľky">
           <TableHead>
             <TableRow>
               <TableCell colSpan={3} data-testid="td" />
             </TableRow>
           </TableHead>
-        </TableComponent>
+        </TableWrapper>
       );
 
       const tableCell = screen.getByTestId("td");
@@ -554,13 +554,13 @@ describe("TableCell", () => {
   describe("Accessibility", () => {
     it("is accessible", async () => {
       render(
-        <TableComponent caption="Názov tabuľky">
+        <TableWrapper caption="Názov tabuľky">
           <TableHead>
             <TableRow>
               <TableCell data-testid="td" />
             </TableRow>
           </TableHead>
-        </TableComponent>
+        </TableWrapper>
       );
 
       const tableCell = screen.getByTestId("td");
