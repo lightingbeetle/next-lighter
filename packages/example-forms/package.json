@@ -2,6 +2,7 @@
   "name": "example-forms",
   "version": "0.1.1",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "next build && next export",
@@ -10,13 +11,13 @@
     "lint": "eslint --fix ."
   },
   "dependencies": {
-    "@lighting-beetle/next-lighter-config": "0.2.0",
-    "components": "0.2.0",
+    "@lighting-beetle/next-lighter-config": "workspace:^",
+    "components": "workspace:^",
     "micromatch": "~4.0.4",
     "modern-normalize": "^1.1.0",
-    "next": "~11.1.2",
+    "next": "~12.2.5",
     "next-compose-plugins": "~2.2.1",
-    "next-transpile-modules": "~8.0.0",
+    "next-transpile-modules": "~9.0.0",
     "react-google-recaptcha": "^2.1.0",
     "react-hook-form": "^7.20.5"
   },

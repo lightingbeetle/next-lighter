@@ -4,8 +4,6 @@ $card: (
   default: (
     background-color: tokens.color("white"),
     transition: all 120ms linear,
-  ),
-  bordered: (
     border: 1px solid tokens.color("grey", 100),
   ),
   clickable: (
@@ -16,29 +14,12 @@ $card: (
 $card-section: (
   default: (
     default: (
-      padding: tokens.space("s"),
-    ),
-    s: (
       padding: tokens.space(),
-    ),
-    m: (
-      padding: tokens.space("xl"),
-    ),
-    l: (
-      padding: tokens.space("xxl") tokens.space("xxxl"),
     ),
   ),
   image: (
     default: (
       padding: 0,
-    ),
-  ),
-  condensed: (
-    default: (
-      padding: tokens.space("s"),
-    ),
-    m: (
-      padding: tokens.space("l"),
     ),
   ),
 );

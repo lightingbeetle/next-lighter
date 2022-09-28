@@ -3,4 +3,4 @@
 "design-system": minor
 ---
 
-Add Modal component from DDS
+Add Modal component from projects
