@@ -1,26 +1,34 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import { Accept } from "react-dropzone";
 
 import { useFileUploaderContext } from "./FileUploader";
 
+type ErrorType = "file-invalid-type" | "file-too-large" | string | ReactNode;
+
 type FileUploaderError = {
   /** Error message text */
-  error?: React.ReactNode;
-  /** Option to show error message as Message or Notification */
-  type?: "message" | "notification";
+  error?: ErrorType;
   /** Option to rewrite generic maximum file size error message */
   fileSizeErrorMessage?: React.ReactNode;
   /** Option to rewrite generic accepted file formats error message */
   acceptedFormatsErrorMessage?: React.ReactNode;
 };
 
-const handleErrorMessages = (
-  type: string,
-  accept?: Accept,
-  maxSize?: number,
-  fileSizeErrorMessage?: React.ReactNode,
-  acceptedFormatsErrorMessage?: React.ReactNode
-) => {
+// TODO: FileUploaderError should just stright forward display errors and leave messages to be handled outside - but could provide helper function similar to handleErrorMessages
+
+const handleErrorMessages = ({
+  error,
+  accept,
+  maxSize,
+  fileSizeErrorMessage,
+  acceptedFormatsErrorMessage,
+}: {
+  error: ErrorType;
+  accept?: Accept;
+  maxSize?: number;
+  fileSizeErrorMessage?: React.ReactNode;
+  acceptedFormatsErrorMessage?: React.ReactNode;
+}) => {
   const FILE_TYPES_NZPZS = accept
     ? accept
     : {
@@ -30,7 +38,7 @@ const handleErrorMessages = (
       };
   const MAX_FILE_SIZE = maxSize ? maxSize : 10485760;
 
-  switch (type) {
+  switch (error) {
     case "file-invalid-type":
       return acceptedFormatsErrorMessage
         ? acceptedFormatsErrorMessage
@@ -42,13 +50,12 @@ const handleErrorMessages = (
         ? fileSizeErrorMessage
         : `Súbor musí byť menší ako ${MAX_FILE_SIZE / 1000} Kb`;
     default:
-      return type;
+      return error;
   }
 };
 
 const FileUploaderError = ({
   error: errorProp,
-  type = "notification",
   fileSizeErrorMessage,
   acceptedFormatsErrorMessage,
 }: FileUploaderError) => {
@@ -64,46 +71,23 @@ const FileUploaderError = ({
 
   const errors = !Array.isArray(error) ? [error] : error;
 
-  // TODO notification and message should look different
-  if (type === "notification") {
-    return (
-      <>
-        {errors.map((error, index) => {
-          return (
-            <div key={index}>
-              {handleErrorMessages(
-                error,
-                accept,
-                maxSize,
-                fileSizeErrorMessage,
-                acceptedFormatsErrorMessage
-              )}
-            </div>
-          );
-        })}
-      </>
-    );
-  }
-
-  if (type === "message") {
-    return (
-      <>
-        {errors.map((error, index) => (
+  return (
+    <>
+      {errors.map((error, index) => {
+        return (
           <div key={index}>
-            {handleErrorMessages(
+            {handleErrorMessages({
               error,
               accept,
               maxSize,
               fileSizeErrorMessage,
-              acceptedFormatsErrorMessage
-            )}
+              acceptedFormatsErrorMessage,
+            })}
           </div>
-        ))}
-      </>
-    );
-  }
-
-  return null;
+        );
+      })}
+    </>
+  );
 };
 
 FileUploaderError.displayName = "FileUploaderError";

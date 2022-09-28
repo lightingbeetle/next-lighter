@@ -51,7 +51,7 @@ export const FileUploaderFieldMessage = () => {
       {/** TODO styles for specific messages */}
       {help && <div>{help}</div>}
       {warning && <div>{warning}</div>}
-      <FileUploaderError error={error} type="message" />
+      <FileUploaderError error={error} />
     </>
   );
 };

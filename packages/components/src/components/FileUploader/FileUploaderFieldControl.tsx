@@ -17,9 +17,7 @@ const FileUploaderFieldControl = ({
 
   const error = errorProp || files?.some((file) => file.error);
 
-  const formControlClasses = cx({
-    [`form-control`]: true,
-    [`form-control--file`]: true,
+  const formControlClasses = cx("form-control", "form-control--file", {
     [`is-error`]: error,
     [`is-warning`]: warning,
   });

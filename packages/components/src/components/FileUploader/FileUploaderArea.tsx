@@ -24,16 +24,19 @@ const FileUploaderArea = ({
   const { files, getRootProps, input } = useFileUploaderContext();
 
   // check if some file have error
-  const classes = cx("file-uploader__area", {
-    [`file-uploader--error`]: errorProp || files?.some((file) => file.error),
-    [`${className}`]: className,
-  });
+  const classes = cx(
+    "file-uploader__area",
+    {
+      [`file-uploader--error`]: errorProp || files?.some((file) => file.error),
+    },
+    className
+  );
 
   return (
     <div {...getRootProps?.()} className={classes} {...other}>
-      <p className="file-uploader__area-title">
+      <span className="file-uploader__area-title">
         {areaTexts?.text ?? "Presuňte súbor sem alebo kliknite na"}
-      </p>
+      </span>
       <Button type="link" className="no-mrg-bottom">
         <Icon name="heart" /> {areaTexts?.label ?? "Priložiť súbor"}
       </Button>

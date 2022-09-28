@@ -3,4 +3,4 @@
 "design-system": minor
 ---
 
-Add FileUploader component from DDS
+Add FileUploader component from project
