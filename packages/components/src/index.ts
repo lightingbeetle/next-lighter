@@ -8,6 +8,12 @@ import Card, {
   CardSectionImage,
   CardTitle,
 } from "./components/Card";
+import FileUploader, {
+  FileUploaderArea,
+  FileUploaderButton,
+  FileUploaderError,
+  FileUploaderPreview,
+} from "./components/FileUploader";
 import { Input, TextArea, RadioCheck, Error } from "./components/Forms";
 import Icon from "./components/Icon";
 import Select from "./components/Select";
@@ -48,6 +54,11 @@ export {
   CardSectionImage,
   CardSection,
   CardTitle,
+  FileUploader,
+  FileUploaderArea,
+  FileUploaderButton,
+  FileUploaderError,
+  FileUploaderPreview,
   Modal,
   Icon,
   Select,

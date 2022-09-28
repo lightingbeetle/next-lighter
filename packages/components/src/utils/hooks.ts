@@ -126,4 +126,15 @@ function usePortal(id: string) {
   return canUseDom() ? useGetRootElementForPortal(id) : null;
 }
 
-export { useUniqueId, useStatic, usePortal };
+const useIsComponentMounted = (): boolean => {
+  const mounted = useRef<boolean>(false);
+  useEffect(() => {
+    mounted.current = true;
+    return () => {
+      mounted.current = false;
+    };
+  }, []);
+  return mounted.current;
+};
+
+export { useUniqueId, useStatic, usePortal, useIsComponentMounted };
