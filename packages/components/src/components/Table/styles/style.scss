@@ -1,0 +1,54 @@
+@use "../../../tokens";
+@use "../../../styles/utils";
+
+.table {
+  overflow: auto;
+  margin-bottom: tokens.space();
+
+  table {
+    border-collapse: separate;
+    border-spacing: 0;
+    max-width: 100%;
+    width: 100%;
+    border-color: tokens.color("black");
+    border-width: 0 0 1px 1px;
+    border-style: solid;
+  }
+
+  &__heading {
+    padding: tokens.space("s");
+    text-align: left;
+    border-color: tokens.color("black");
+    border-width: 1px 1px 0 0;
+    border-style: solid;
+
+    //Checkboxes label color cannot be changed with className
+    label {
+      color: tokens.color("secondary", 500);
+    }
+  }
+
+  &__cell {
+    padding: tokens.space("s");
+    border-color: tokens.color("black");
+    border-width: 1px 1px 0 0;
+    border-style: solid;
+  }
+
+  //Prevent checkboxes label wrap under checkbox
+  .radiocheck {
+    flex-wrap: nowrap;
+    //RadioCheck's align-items is set to flex-start in RadioCheck component, so it causes inequality on row and it needs to be set to center
+    align-items: center;
+
+    //Checkboxes label has smaller font-size than rest of the table on smaller resolution fix
+    &__label {
+      font-size: tokens.$font-size-default;
+    }
+  }
+
+  //Checkboxes wrapper has margin-bottom, which is pushing down whole table row a it cant be removed by passing className .no-mrg to checkbox component
+  .form-control {
+    margin-bottom: 0;
+  }
+}

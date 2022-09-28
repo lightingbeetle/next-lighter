@@ -1,0 +1,358 @@
+---
+title: Table
+---
+
+import { Preview, Props } from "@lighting-beetle/lighter-styleguide";
+
+import {
+  tableAppColumns,
+  tableAppData,
+  tableAppDataPaginationExample,
+} from "./TableExampleData";
+
+import Table from "./Table";
+import TableWrapper from "./TableWrapper";
+import TableHead from "./TableHead";
+import TableHeading from "./TableHeading";
+import TableRow from "./TableRow";
+import TableBody from "./TableBody";
+import TableCell from "./TableCell";
+
+import TableReactTableExample from "./TableReactTableExample";
+
+# Table
+
+V aplikáciach používame prevažne tabuľku, ktorá kladie väčší dôraz na obsah, je kompaktnejšia, prehľadnejšia, s možnosťou pridávania rôznych akcií, stavov vrámci jedného riadku.
+
+Komponent je aktuálne vo verzii draft a môže sa ešte zmeniť.
+
+### Ukážka
+
+{/* Data has to be filtered out of Preview JSX code due issues with rendering react component as object prop inside array causing infinite loop. */}
+
+<Preview JSXOptions={{ filterProps: ["data"] }}>
+  <Table
+    columns={tableAppColumns}
+    data={tableAppData}
+    caption="Názov tabuľky"
+  />
+</Preview>
+
+### Použitie
+
+V prípadoch, že tabuľka má vačšie množstvo riadkov, pouvažujte nad použitím stránkovania. 
+
+Komponent je možné použiť dvoma spôsobmi:
+
+#### Ako celok
+
+<Preview JSXOptions={{ filterProps: ["data"] }}>
+  <Table
+    columns={tableAppColumns}
+    data={tableAppData}
+    caption="Názov tabuľky"
+  />
+</Preview>
+
+#### S použitím jednotlivých častí
+
+Tabuľku je možné vyskladať z jej jednotlivých častí, ktoré sú rozdelené do komponentov:
+
+- `TableWrapper` vracia `table` tag
+- `TableHead` vracia `thead` tag
+- `TableRow` vracia `tr` tag
+- `TableBody` vracia `tbody` tag
+- `TableHeading` vracia `th` tag
+- `TableCell` vracia `td` tag
+
+<Preview JSXOptions={{ filterProps: ["data"] }}>
+  <TableWrapper caption="Názov tabuľky">
+    <TableHead>
+      <TableRow>
+        {tableAppColumns.map((column, i) => {
+          return <TableHeading key={i}>{column.Header}</TableHeading>;
+        })}
+      </TableRow>
+    </TableHead>
+    <TableBody>
+      {tableAppData.map((row, i) => {
+        return (
+          <TableRow key={i}>
+            {tableAppColumns.map((column, i) => {
+              if (column.Cell) {
+                return (
+                  <TableCell key={i}>
+                    {column.Cell({ value: row[column.accessor] })}
+                  </TableCell>
+                );
+              }
+              return <TableCell key={i}>{row[column.accessor]}</TableCell>;
+            })}
+          </TableRow>
+        );
+      })}
+    </TableBody>
+  </TableWrapper>
+</Preview>
+
+Štruktúra dát, ktoré sa do tabuľky posielajú je stanovená nasledovne:
+
+```js
+//Columns je pole objektov, kde
+export const tableAppColumns = [
+  //prvou položkou je Header, a teda funkcia, ktorá vracia obsah, ktorý sa zobrazí v hlavičke tabuľky
+  //druhou položkou je accessor, ktorý sa musí zhodovať s názvom key v data
+  //treťou voliteľnou položkou je Cell, ktorá sa môže použiť ako custom renderer pre column
+  {
+    Header: "Meno",
+    accessor: "meno",
+  },
+  { Header: "Dátum vypracovania", accessor: "datum" },
+  {
+    Header: "Status",
+    accessor: "status",
+    Cell: ({ value }: any) => (
+      <div className="d-flex align-item-center">
+        <Icon
+          name={value === "vypracované" ? "check" : "error"}
+          size="medium"
+          className={`text-color-${
+            value === "vypracované" ? "primary" : "error"
+          }`}
+          style={{ marginRight: "0.5rem" }}
+        />
+        {value}
+      </div>
+    ),
+  },
+  {
+    Header: "",
+    accessor: "confirm",
+    Cell: ({ value }: any) => (
+      <Button size="xs" className="no-mrg text-nowrap">
+        <Icon className="icon--left" name="check" size="small" />
+        {value}
+      </Button>
+    ),
+  },
+  {
+    Header: "",
+    accessor: "delete",
+    Cell: ({ value }: any) => (
+      <Button
+        type="link"
+        size="xs"
+        className="text-color-error no-mrg text-nowrap"
+      >
+        <Icon className="icon--left" name="trash" size="small" />
+        {value}
+      </Button>
+    ),
+  },
+];
+
+//Data je pole objektov
+export const tableAppData = [
+  {
+    meno: "Kristin Watson",
+    datum: "December 19, 2013",
+    status: "vypracované",
+    confirm: "Potvrdiť",
+    delete: "Odstrániť",
+  },
+  {
+    meno: "Courtney Henry",
+    datum: "July 14, 2015",
+    status: "po termíne",
+    confirm: "Potvrdiť",
+    delete: "Odstrániť",
+  },
+  {
+    meno: "Bessie Cooper",
+    datum: "December 2, 2018",
+    status: "vypracované",
+    confirm: " Potvrdiť",
+    delete: "Odstrániť",
+  },
+];
+```
+
+### Varianty
+
+#### Základná
+
+<Preview JSXOptions={{ filterProps: ["data"] }}>
+  <Table
+    columns={tableAppColumns}
+    data={tableAppData}
+    caption="Názov tabuľky"
+  />
+</Preview>
+
+#### So stránkovaním
+
+{/* TODO: pridat strankovanie */}
+
+<Preview JSXOptions={{ filterProps: ["data"] }}>
+  <Table
+    columns={tableAppColumns}
+    data={tableAppDataPaginationExample}
+    caption="Názov tabuľky"
+  />
+</Preview>
+
+#### S použitím knižnice react-table
+
+Pre použitie knižnice React-table je potrebné `columns` a `data` memoizovať pomocou `React.useMemo()`, aby nedochádzalo pri akejkoľvek interakcii s tabuľkou k nechcenému rerenderu.
+
+Po importovaní hooku `useTable` z knižnice React-table si zvolíte metódy, ktoré sú potrebné k tomu, čo s tabuľkou potrebujete vykonať.
+
+V tomto príklade sa jedná o funkcionalitu [row-selection](https://react-table.tanstack.com/docs/examples/row-selection).
+
+Následne zvolené metódy použijeme podľa dokumentácie na jednotlivé časti tabuľky.
+
+Ďalšie možnosti použitia tejto knižnice nájdete v [React-table dokumentácii](https://react-table.tanstack.com/).
+
+```ts
+import React from "react";
+
+//Import hookov z react-table knižnice
+import { useTable, useRowSelect } from "react-table";
+
+//Import jednotlivých častí tabuľky
+import TableWrapper from "./TableWrapper";
+import TableHead from "./TableHead";
+import TableRow from "./TableRow";
+import TableHeading from "./TableHeading";
+import TableBody from "./TableBody";
+import TableCell from "./TableCell";
+
+//Import dát, ktoré budú do tabuľky vykreslené
+import { tableAppColumns, tableAppData } from "../Table/TableExampleData";
+
+const TableReactTableExample = () => {
+  //Memoizácia dát, ktoré budú do tabuľky vykreslené. Bez nej by nastával nechcený rerender pri akejkoľvek interakcii s tabuľkou
+  const columns = React.useMemo(() => tableAppColumns, []) as any;
+  const data = React.useMemo(() => tableAppData, []) as any;
+
+  //Zvolenie metód z useTable hooku
+  const {
+    getTableProps,
+    getTableBodyProps,
+    headerGroups,
+    rows,
+    prepareRow,
+    selectedFlatRows,
+    state: { selectedRowIds },
+  } = useTable(
+    {
+      columns,
+      data,
+    },
+    useRowSelect,
+    (hooks) => {
+      hooks.visibleColumns.push((columns) => [
+        // Vytvorenie nového stĺpca pre checkboxy
+        {
+          id: "selection",
+          // Pre vykreslenie checkboxu v hlavičke tabuľky môžeme použiť metódu getToggleAllRowsSelectedProps
+          Header: ({ getToggleAllRowsSelectedProps }) => {
+            return (
+              <div>
+                <input
+                  type="checkbox"
+                  id={"selection-header"}
+                  {...getToggleAllRowsSelectedProps()}
+                  onChange={(_, e) =>
+                    // @ts-ignore
+                    getToggleAllRowsSelectedProps().onChange(e)
+                  }
+                  title="Označiť všetky riadky"
+                />
+              </div>
+            );
+          },
+          // Pre vykreslenie checkboxu v jednotlivých riadkoch tabuľky môžeme použiť metódu getToggleRowSelectedProps
+          Cell: ({ row }) => (
+            <>
+              <input
+                type="checkbox"
+                id={"selection" + row.id}
+                {...row.getToggleRowSelectedProps()}
+                onChange={(_, e) =>
+                  // @ts-ignore
+                  row.getToggleRowSelectedProps().onChange(e)
+                }
+                title="Označiť riadok"
+              />
+            </>
+          ),
+        },
+        ...columns,
+      ]);
+    }
+  );
+
+  //Použitie metód z useTable hooku na jednotlivé časti tabuľky
+  return (
+    <>
+      <TableWrapper {...getTableProps()} caption="Názov tabuľky">
+        <TableHead>
+          {headerGroups.map((headerGroup, i) => (
+            <TableRow {...headerGroup.getHeaderGroupProps()}>
+              {headerGroup.headers.map((column) => (
+                <TableHeading {...column.getHeaderProps()}>
+                  {column.render("Header")}
+                </TableHeading>
+              ))}
+            </TableRow>
+          ))}
+        </TableHead>
+        <TableBody {...getTableBodyProps()}>
+          {rows.slice(0, 10).map((row, i) => {
+            prepareRow(row);
+            return (
+              <TableRow {...row.getRowProps()}>
+                {row.cells.map((cell) => {
+                  return (
+                    <TableCell {...cell.getCellProps()}>
+                      {cell.render("Cell")}
+                    </TableCell>
+                  );
+                })}
+              </TableRow>
+            );
+          })}
+        </TableBody>
+      </TableWrapper>
+
+      {/*Výpis všetkých údajov z jednotlivých riadkov po tom, ako sú označené / odznačené */}
+      <p>Označené riadky: {Object.keys(selectedRowIds).length}</p>
+      <pre>
+        <code>
+          {JSON.stringify(
+            {
+              selectedRowIds: selectedRowIds,
+              "selectedFlatRows[].original": selectedFlatRows.map(
+                (d) => d.original
+              ),
+            },
+            null,
+            2
+          )}
+        </code>
+      </pre>
+    </>
+  );
+};
+
+export default TableReactTableExample;
+```
+
+<Preview JSXOptions={{ filterProps: ["data"] }}>
+  <TableReactTableExample />
+</Preview>
+
+### Props
+
+<Props title="<Table />" component={Table} />

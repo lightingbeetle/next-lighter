@@ -11,6 +11,7 @@ import Card, {
 import { Input, TextArea, RadioCheck, Error } from "./components/Forms";
 import Icon from "./components/Icon";
 import Select from "./components/Select";
+import Table from "./components/Table";
 import Modal from "./components/Modal";
 
 // TODO: Tokens should have own entry
@@ -50,6 +51,7 @@ export {
   Modal,
   Icon,
   Select,
+  Table,
   Input,
   TextArea,
   RadioCheck,
