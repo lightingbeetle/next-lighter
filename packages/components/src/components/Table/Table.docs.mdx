@@ -11,7 +11,7 @@ import {
 } from "./TableExampleData";
 
 import Table from "./Table";
-import TableComponent from "./TableComponent";
+import TableWrapper from "./TableWrapper";
 import TableHead from "./TableHead";
 import TableHeading from "./TableHeading";
 import TableRow from "./TableRow";
@@ -19,6 +19,8 @@ import TableBody from "./TableBody";
 import TableCell from "./TableCell";
 
 import TableReactTableExample from "./TableReactTableExample";
+
+# Table
 
 V aplikáciach používame prevažne tabuľku, ktorá kladie väčší dôraz na obsah, je kompaktnejšia, prehľadnejšia, s možnosťou pridávania rôznych akcií, stavov vrámci jedného riadku.
 
@@ -38,10 +40,7 @@ Komponent je aktuálne vo verzii draft a môže sa ešte zmeniť.
 
 ### Použitie
 
-<p>
-  V prípade, že zabuľka prekročí 10 riadkov použijeme stránkovanie. V niektorých
-  prípadoch môžeme použiť tzv. infinite scroll.
-</p>
+V prípadoch, že tabuľka má vačšie množstvo riadkov, pouvažujte nad použitím stránkovania. 
 
 Komponent je možné použiť dvoma spôsobmi:
 
@@ -59,7 +58,7 @@ Komponent je možné použiť dvoma spôsobmi:
 
 Tabuľku je možné vyskladať z jej jednotlivých častí, ktoré sú rozdelené do komponentov:
 
-- `TableComponent` vracia `table` tag
+- `TableWrapper` vracia `table` tag
 - `TableHead` vracia `thead` tag
 - `TableRow` vracia `tr` tag
 - `TableBody` vracia `tbody` tag
@@ -67,7 +66,7 @@ Tabuľku je možné vyskladať z jej jednotlivých častí, ktoré sú rozdelen�
 - `TableCell` vracia `td` tag
 
 <Preview JSXOptions={{ filterProps: ["data"] }}>
-  <TableComponent caption="Názov tabuľky">
+  <TableWrapper caption="Názov tabuľky">
     <TableHead>
       <TableRow>
         {tableAppColumns.map((column, i) => {
@@ -93,7 +92,7 @@ Tabuľku je možné vyskladať z jej jednotlivých častí, ktoré sú rozdelen�
         );
       })}
     </TableBody>
-  </TableComponent>
+  </TableWrapper>
 </Preview>
 
 Štruktúra dát, ktoré sa do tabuľky posielajú je stanovená nasledovne:
@@ -192,6 +191,8 @@ export const tableAppData = [
 
 #### So stránkovaním
 
+{/* TODO: pridat strankovanie */}
+
 <Preview JSXOptions={{ filterProps: ["data"] }}>
   <Table
     columns={tableAppColumns}
@@ -202,9 +203,9 @@ export const tableAppData = [
 
 #### S použitím knižnice react-table
 
-Pre použitie knižnice React-table je potrebné <code>columns</code> a <code>data</code> memoizovať pomocou <code>React.useMemo()</code>, aby nedochádzalo pri akejkoľvek interakcii s tabuľkou k nechcenému rerenderu.
+Pre použitie knižnice React-table je potrebné `columns` a `data` memoizovať pomocou `React.useMemo()`, aby nedochádzalo pri akejkoľvek interakcii s tabuľkou k nechcenému rerenderu.
 
-Po importovaní hooku <code>useTable</code> z knižnice React-table si zvolíte metódy, ktoré sú potrebné k tomu, čo s tabuľkou potrebujete vykonať.
+Po importovaní hooku `useTable` z knižnice React-table si zvolíte metódy, ktoré sú potrebné k tomu, čo s tabuľkou potrebujete vykonať.
 
 V tomto príklade sa jedná o funkcionalitu [row-selection](https://react-table.tanstack.com/docs/examples/row-selection).
 
@@ -219,7 +220,7 @@ import React from "react";
 import { useTable, useRowSelect } from "react-table";
 
 //Import jednotlivých častí tabuľky
-import TableComponent from "./TableComponent";
+import TableWrapper from "./TableWrapper";
 import TableHead from "./TableHead";
 import TableRow from "./TableRow";
 import TableHeading from "./TableHeading";
@@ -295,7 +296,7 @@ const TableReactTableExample = () => {
   //Použitie metód z useTable hooku na jednotlivé časti tabuľky
   return (
     <>
-      <TableComponent {...getTableProps()} caption="Názov tabuľky">
+      <TableWrapper {...getTableProps()} caption="Názov tabuľky">
         <TableHead>
           {headerGroups.map((headerGroup, i) => (
             <TableRow {...headerGroup.getHeaderGroupProps()}>
@@ -323,7 +324,7 @@ const TableReactTableExample = () => {
             );
           })}
         </TableBody>
-      </TableComponent>
+      </TableWrapper>
 
       {/*Výpis všetkých údajov z jednotlivých riadkov po tom, ako sú označené / odznačené */}
       <p>Označené riadky: {Object.keys(selectedRowIds).length}</p>

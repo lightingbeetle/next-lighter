@@ -1,5 +1,5 @@
 import Table from "./Table";
-import TableComponent from "./TableComponent";
+import TableWrapper from "./TableWrapper";
 import TableBody from "./TableBody";
 import TableCell from "./TableCell";
 import TableHead from "./TableHead";
@@ -8,7 +8,7 @@ import TableHeading from "./TableHeading";
 
 export default Table;
 export {
-  TableComponent,
+  TableWrapper,
   TableBody,
   TableCell,
   TableHead,

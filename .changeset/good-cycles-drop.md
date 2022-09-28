@@ -3,4 +3,4 @@
 "design-system": minor
 ---
 
-Add Table component from DDS
+Add Table component from project
