@@ -7,15 +7,21 @@ type Data = {
   finished: boolean;
 }[];
 
-export default function handler(
+export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
+  await timeout(2000);
+
   res.status(200).json(
-    [...Array(30)].map((_item, index) => ({
-      id: `${index}`,
-      position: `${index}`,
+    [...Array(10)].map((_item, index) => ({
+      id: `${index + 1}`,
+      position: `${index + 1}`,
       finished: !!(index % 2),
     }))
   );
+}
+
+function timeout(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
 }

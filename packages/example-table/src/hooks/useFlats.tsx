@@ -1,33 +1,19 @@
-import React, { createContext, useCallback, useContext, useRef } from "react";
-import { useRouter } from "next/dist/client/router";
-import { useEffect, useMemo, useState } from "react";
-import { SortingRule } from "react-table";
+import React, { createContext, useCallback, useContext } from "react";
+import { useMemo } from "react";
 import {
   useQueryParams,
   NumberParam,
   BooleanParam,
-  StringParam,
   ArrayParam,
   withDefault,
   encodeQueryParams,
-} from "next-query-params";
+} from "use-query-params";
 import useSWR from "swr";
 import { getAvailableFlats } from "../queries/flats";
 import { stringify } from "query-string";
+import { useRouter } from "next/router";
 
 type FlatsFilterBase = {
-  project: { [projectName: string]: number };
-  building: { [buildingName: string]: number };
-  status: {
-    P: number;
-    R: number;
-    S: number;
-    Y: number;
-  };
-  type: {
-    APA: number;
-    BYT: number;
-  };
   rooms: {
     "1": number;
     "2": number;
@@ -36,34 +22,24 @@ type FlatsFilterBase = {
     "5": number;
     "1,5": number;
   };
-  price_from: string;
-  price_to: string;
-  area_from: string;
-  area_to: string;
-  floor_from: string;
-  floor_to: string;
-  has_balcony: number;
-  has_terrace: number;
-  finished_indicator: number;
-  new_in_sale_indicator: number;
-  top_floor_indicator: number;
-  lowest_floor_indicator: number;
+  price_from: number;
+  price_to: number;
+  has_balcony: boolean;
 };
 
 type FlatsFilter = {
-  price_from: string;
-  price_to: string;
+  price_from: number;
+  price_to: number;
   has_balcony: boolean;
   rooms: string[];
 };
 
 type UseFlatsData = {
   data: any[];
+  filter?: FlatsFilter;
   error: Error;
-  filter: FlatsFilter;
-  filterBase: FlatsFilterBase;
+  filterBase?: FlatsFilterBase;
   page: number;
-  sortBy: SortingRule<string>[];
   totalPages: number;
   countOfActiveFilters: number;
   resetFilter: () => void;
@@ -72,7 +48,6 @@ type UseFlatsData = {
 
 type UseFlatsCallbacks = {
   setPage: (page: UseFlatsData["page"]) => void;
-  setSortBy: (sortBy: UseFlatsData["sortBy"]) => void;
   setFilter: (filter: UseFlatsData["filter"]) => void;
 };
 
@@ -80,185 +55,125 @@ type UseFlats = UseFlatsData & UseFlatsCallbacks;
 
 const FlatsContext = createContext<UseFlats>(undefined);
 
+const queryParamsTypes = {
+  has_balcony: BooleanParam,
+  price_from: NumberParam,
+  price_to: NumberParam,
+  rooms: ArrayParam,
+  page: withDefault(NumberParam, 1),
+};
+
 export const UseFlatsProvider = ({
   children,
 }: {
   children: React.ReactNode;
 }) => {
-  /*
-  / Parse URL initial to states
-  */
-  const { query: routerQuery } = useRouter();
+  // we need to be sure that next/router is ready to be sure query string is sync
+  const { isReady: queryIsReady } = useRouter();
 
-  // This is the reason why query is empty on first render
-  // https://stackoverflow.com/questions/66909552/userouter-query-object-is-empty
-  const queryParamsTypes = {
-    has_balcony: BooleanParam,
-    price_from: StringParam,
-    price_to: StringParam,
-    rooms: ArrayParam,
-    page: withDefault(NumberParam, 1),
-    sort: StringParam,
-    sortOrder: StringParam,
-  };
+  /*
+  / 1. Get query from url
+  / Goal here is to store all filters in the URL (and not useState), so state of filter could be read from URL as well, when user want's to visit page with prefiltered data
+  */
   const [query, setQuery] = useQueryParams(queryParamsTypes);
 
-  // then state is used to current query params
-  const [filter, setFilter] = useState<UseFlats["filter"]>({
-    has_balcony: undefined,
-    price_from: undefined,
-    price_to: undefined,
-    rooms: undefined,
-  });
-
-  const [filterBase, setfilterBase] = useState<FlatsFilterBase>();
-  const [page, setPage] = useState<UseFlats["page"]>(query.page);
-  const [sortBy, setSortBy] = useState<UseFlats["sortBy"]>(
-    getSortBy({ query })
-  );
-
   /*
-  / Fetch data of current state
+  / 2. Fetch data for current query
   */
-  const { data, error } = useSWR(
-    // [`https://api.slnecnice.sk/api/flats?${stringify(encodeQueryParams(queryParamsTypes, query))}`],
-    `/flats?${stringify(encodeQueryParams(queryParamsTypes, query))}`,
+  const { data: fetchedData, error } = useSWR(
+    // don't fetch data until query (next/router) is ready
+    queryIsReady &&
+      `/flats?${stringify(encodeQueryParams(queryParamsTypes, query))}`,
     getAvailableFlats
   );
 
-  const memoizedData = useMemo(() => data?.data, [data?.data]);
-
-  const totalPages = Math.ceil(parseInt(data?.count) / 15);
-
   /*
-  / Cound some data based on current state
+  / 3. Derivate all information from fetched data - data, filterBase, filter and totalPages
   */
+  // Data about flats
+  // useMemo hook helps to make variabiles stable but it's probably not necessary
+  const data = useMemo(() => fetchedData?.data, [fetchedData?.data]);
+
+  // Data about flats filter base eg. available options, min/max-es etc.
+  const filterBase = useMemo(() => {
+    if (!fetchedData?.filter) {
+      return undefined;
+    }
+
+    return {
+      rooms: fetchedData?.filter.rooms,
+      price_from: parseInt(fetchedData?.filter.price_from),
+      price_to: parseInt(fetchedData?.filter.price_to),
+      has_balcony: !!fetchedData?.filter.has_balcony,
+    };
+  }, [fetchedData?.filter]);
+
+  // current state of the filter
+  const filter = useMemo(() => {
+    if (!fetchedData?.filter) {
+      return undefined;
+    }
+
+    return getFilterQuery({ filter: query, filterBase });
+  }, [query, filterBase, fetchedData?.filter]);
+
   // We count only filter parameters from url so count is recalculated only on filter change
   const countOfActiveFilters = useMemo(
     () => getCountOfActiveFilters({ query }),
     [query]
   );
 
-  /**
-   * We need to wait for the first render because on the first render
-   * is routerQuery empty, so the server side and client side are same pages
-   *
-   * On the second render we can use routerQuery and parse url if possible
-   */
-  const isFirstRender = useRef(true);
-  const isQueryParsed = useRef(false);
-
-  // Parse URL and set states
-  useEffect(() => {
-    if (!isFirstRender.current && !isQueryParsed.current) {
-      // parse only if url has some params to avoid reseting values
-      if (Object.keys(routerQuery).length !== 0) {
-        const { has_balcony, price_from, price_to, rooms } = routerQuery;
-        setFilter({
-          has_balcony: !!has_balcony || undefined,
-          price_from: (price_from as string) || undefined,
-          price_to: (price_to as string) || undefined,
-          rooms: rooms ? (!Array.isArray(rooms) ? [rooms] : rooms) : undefined,
-        });
-        setSortBy(getSortBy({ query: routerQuery }));
-      }
-      isQueryParsed.current = true;
-    }
-    isFirstRender.current = false;
-  }, [routerQuery, isFirstRender.current, isQueryParsed.current]);
-
-  /**
-   * Replace URL params with current state values
-   * but after first render and parsing a first query
-   */
-  useEffect(() => {
-    if (!isFirstRender.current && isQueryParsed.current) {
-      setQuery({
-        ...getFilterQuery({ filter, filterBase }),
-        ...getPageQuery({ page }),
-        ...getSortQuery({ sortBy }),
-      });
-    }
-    // page is not here, becasue we use Link to change page due accesibility reasons and Link will update URL params by themself
-  }, [
-    sortBy,
-    filter,
-    filterBase,
-    isFirstRender.current,
-    isQueryParsed.current,
-  ]);
+  // total pages
+  const totalPages = Math.ceil(parseInt(fetchedData?.count) / 15);
 
   /*
-  / Set current filter shape and update default base on that shape
+  / 4. Actions
   */
-  useEffect(() => {
-    if (data?.filter) {
-      setfilterBase({ ...data?.filter });
-
-      // set default base on the shape
-      setFilter({
-        ...filter,
-        ...(filter.price_from === undefined && {
-          price_from: data?.filter.price_from,
-        }),
-        ...(filter.price_to === undefined && {
-          price_to: data?.filter.price_to,
-        }),
-      });
-    }
-  }, [data]);
-
-  /*
-  / Ability to reset filter
-  */
-
   const resetFilter = useCallback(() => {
-    setFilter({
-      price_from: filterBase?.price_from,
-      price_to: filterBase?.price_to,
+    setQuery({
+      price_from: undefined,
+      price_to: undefined,
       has_balcony: undefined,
       rooms: undefined,
+      page: undefined,
     });
-
-    setPage(1);
-  }, [filterBase]);
+  }, [setQuery]);
 
   /*
-  / Put data and state into context
+  / 5. Provider value to consume by consumers
   */
   const value = useMemo(
     () => ({
-      data: memoizedData,
+      data,
       error,
       filter,
       filterBase,
-      page,
+      page: query.page,
       setFilter: (value) => {
         // reset page after filtering, because we don't know how many pages we will get back
-        setPage(1);
-        setFilter(value);
+        setQuery({
+          ...getFilterQuery({ filter: value, filterBase }),
+          page: undefined,
+        });
       },
-      setPage,
-      setSortBy,
-      sortBy,
+      setPage: (page) => {
+        setQuery(getPageQuery({ page }));
+      },
       totalPages,
       countOfActiveFilters,
       resetFilter,
       isLoading: !filterBase,
     }),
     [
-      data,
-      error,
       filter,
+      error,
       filterBase,
-      page,
-      setFilter,
-      setPage,
-      setSortBy,
-      sortBy,
+      query.page,
       totalPages,
       countOfActiveFilters,
       resetFilter,
+      data,
+      setQuery,
     ]
   );
 
@@ -279,17 +194,23 @@ export function useFlats() {
 
 export default useFlats;
 
-const getFilterQuery = ({ filter, filterBase }) => {
+const getFilterQuery = ({
+  filter,
+  filterBase,
+}: {
+  filter: FlatsFilter;
+  filterBase: FlatsFilterBase;
+}) => {
   return {
-    has_balcony: !!filter?.has_balcony || undefined,
+    has_balcony: filter?.has_balcony || undefined,
     price_from:
-      parseInt(filter?.price_from) === parseInt(filterBase?.price_from)
+      filter?.price_from === filterBase?.price_from
         ? undefined
-        : filter?.price_from,
+        : filter?.price_from || filterBase?.price_from,
     price_to:
-      parseInt(filter?.price_to) === parseInt(filterBase?.price_to)
+      filter?.price_to === filterBase?.price_to
         ? undefined
-        : filter.price_to,
+        : filter.price_to || filterBase?.price_to,
     rooms:
       makeEmptyAndAllParamsSame(
         Object.entries(filterBase?.rooms || {}).map((room) => room[0]) ?? [],
@@ -301,25 +222,6 @@ const getFilterQuery = ({ filter, filterBase }) => {
 const getPageQuery = ({ page }) => {
   return { page: page !== 1 ? page : undefined };
 };
-
-const getSortQuery = ({ sortBy }) => {
-  return {
-    sort: sortBy.length
-      ? `${sortBy[0].desc ? "-" : ""}${sortBy[0].id}`
-      : undefined,
-  };
-};
-
-function getSortBy({ query }) {
-  return query.sort
-    ? [
-        {
-          id: query.sort as string,
-          desc: query.sortOrder === "DSC",
-        },
-      ]
-    : [];
-}
 
 function makeEmptyAndAllParamsSame(
   availableParams: string[],

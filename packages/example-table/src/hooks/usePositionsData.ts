@@ -1,12 +1,11 @@
 import { useMemo } from "react";
 import useSWR from "swr";
-import { Column } from "react-table";
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
 const usePositionsData = () => {
   const { data, error } = useSWR("/api/positions", fetcher);
-  const memoizedColumns = useMemo<Column<any>[]>(
+  const memoizedColumns = useMemo(
     () => [
       {
         Header: "ID",

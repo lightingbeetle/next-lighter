@@ -10,9 +10,7 @@ const Index = () => {
   if (!data) return "Načítavam...";
   if (data?.length === 0) return "Tabuľka je prázdna";
 
-  return (
-    <Table columns={memoizedColumns} data={data} sortBy={[]} disableSortBy />
-  );
+  return <Table columns={memoizedColumns} data={data} caption="Positions" />;
 };
 
 export default Index;

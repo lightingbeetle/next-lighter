@@ -396,7 +396,7 @@ export const data = [
     price: 63283.2,
     price_without_vat: 52736,
     project: "",
-    rooms: "1",
+    rooms: "2",
     status_code: "S",
     status_name: "predan\u00e1",
     street: "Zuzany Chalupovej 16/A",

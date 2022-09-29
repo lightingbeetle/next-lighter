@@ -11899,11 +11899,13 @@ __metadata:
     modern-normalize: ^1.1.0
     next: ~12.3.0
     next-compose-plugins: ~2.2.1
-    next-query-params: ^2.1.2
+    next-query-params: ^4.0.0
     next-transpile-modules: ~8.0.0
     query-string: ^7.0.1
     react-hook-form: ^7.20.5
     react-table: ^7.7.0
+    swr: ^1.3.0
+    use-query-params: ^2.1.1
     wnumb: ^1.2.0
   languageName: unknown
   linkType: soft
@@ -19599,15 +19601,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"next-query-params@npm:^2.1.2":
-  version: 2.2.1
-  resolution: "next-query-params@npm:2.2.1"
+"next-query-params@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "next-query-params@npm:4.0.0"
   dependencies:
-    use-query-params: 1.2.3
+    tslib: ^2.0.3
   peerDependencies:
     next: ^10.0.0 || ^11.0.0 || ^12.0.0
-    react: ^16.8.0 || ^17.0.0
-  checksum: c252d9704be19f605684b6fdd6e4cdc296b8f55926b3deb1e9a897796955da80a2de8abf0478b1383a0489d67ed4821757f7b9474a1c13fa5d8739c22f85cf8e
+    react: ^16.8.0 || ^17.0.0 || ^18.0.0
+    use-query-params: ^2.0.0
+  checksum: d53c35b7555b851e4304c5c1c89bd3c8810ea4ba42ada8dbb36adfaccdfba453a3aa3f7822eed19740b80b152bfec72233b7c4822fe648dfb548e66cb0bb830f
   languageName: node
   linkType: hard
 
@@ -24062,12 +24065,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"serialize-query-params@npm:^1.3.5":
-  version: 1.3.6
-  resolution: "serialize-query-params@npm:1.3.6"
-  peerDependencies:
-    query-string: ">=5.1.1"
-  checksum: 72b496836c8cd16b8bd4f7b86ed6d3b003576e3c0cda1c0f7718b4573d51fce77d177cb30f0b47f7d3a21cba7f9e933d82f0d19f6711bf5760089d43107eacf5
+"serialize-query-params@npm:^2.0.0":
+  version: 2.0.1
+  resolution: "serialize-query-params@npm:2.0.1"
+  checksum: 72a8042bb3aa767a8fdf8e5ba59e1faa94f860a5e42e7dde2809d69080fcca09dfc7517d201f378f29f125f9fd97b8c3198db3dcf51c5c3e3a9bf4d8976c47d1
   languageName: node
   linkType: hard
 
@@ -25434,6 +25435,15 @@ __metadata:
     lower-case: ^1.1.1
     upper-case: ^1.1.1
   checksum: 37b0c4988e12520fba54018f7fe259d62902e97349366209d2af9b1d5e741692c8f17da9d5e780c7bd1a56864bbb51d53eaf1a101a11afdfcae157912a3691d8
+  languageName: node
+  linkType: hard
+
+"swr@npm:^1.3.0":
+  version: 1.3.0
+  resolution: "swr@npm:1.3.0"
+  peerDependencies:
+    react: ^16.11.0 || ^17.0.0 || ^18.0.0
+  checksum: e7a184f0d560e9c8be85c023cc8e65e56a88a6ed46f9394b301b07f838edca23d2e303685319a4fcd620b81d447a7bcb489c7fa0a752c259f91764903c690cdb
   languageName: node
   linkType: hard
 
@@ -26827,16 +26837,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"use-query-params@npm:1.2.3":
-  version: 1.2.3
-  resolution: "use-query-params@npm:1.2.3"
+"use-query-params@npm:^2.1.1":
+  version: 2.1.1
+  resolution: "use-query-params@npm:2.1.1"
   dependencies:
-    serialize-query-params: ^1.3.5
+    serialize-query-params: ^2.0.0
   peerDependencies:
-    query-string: ">=5.1.1"
     react: ">=16.8.0"
     react-dom: ">=16.8.0"
-  checksum: a2312f7d3064708ab094e85265d04f8e36c52f0d578946667a2de0fbe44dd89ad8559aeda5fe9da06aa15782d46e79300e2de32aa3747dd96c172c777e15a6e8
+  checksum: 7a3e88b14125d87089db67e6e7cd572fd888e8fe675b0d9e1ea8b9f5c9b90c73ff54a858e60a6d2778771cb7753d4e05204821a69e4697b48df07c609ff7e366
   languageName: node
   linkType: hard
 

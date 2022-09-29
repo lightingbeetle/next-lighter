@@ -16,11 +16,13 @@
     "modern-normalize": "^1.1.0",
     "next": "~12.3.0",
     "next-compose-plugins": "~2.2.1",
-    "next-query-params": "^2.1.2",
+    "next-query-params": "^4.0.0",
     "next-transpile-modules": "~8.0.0",
     "query-string": "^7.0.1",
     "react-hook-form": "^7.20.5",
     "react-table": "^7.7.0",
+    "swr": "^1.3.0",
+    "use-query-params": "^2.1.1",
     "wnumb": "^1.2.0"
   },
   "browserslist": ">1%, not ie 11, not op_mini all"

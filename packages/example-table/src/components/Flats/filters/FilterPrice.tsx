@@ -8,16 +8,16 @@ const FilterPrice = () => {
   return (
     <FilterRange
       label="Cena s DPH"
-      min={parseInt(filterBase?.price_from)}
-      max={parseInt(filterBase?.price_to)}
+      min={filterBase?.price_from}
+      max={filterBase?.price_to}
       stepSize={10000}
       from={{
-        value: parseInt(filter?.price_from),
+        value: filter?.price_from,
         name: "price_from",
         label: "Cena od",
       }}
       to={{
-        value: parseInt(filter?.price_to),
+        value: filter?.price_to,
         name: "price_to",
         label: "Cena do",
       }}

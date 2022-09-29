@@ -2,10 +2,11 @@
 # Table examples
 
 How to use tables in projects
-- [With fetched data](/fetched)
-- [With filter](/filter)
+- [Basic example of fetched data in the table](/fetched)
+- [Exampe of table filters](/filter)
 - [With static data](/static)
 
 ## Insight
 
 - Working with URLSearchParams is not very ergonomic (with symbols API, set/append) You have to go through hoops and loops to make [arrays](https://dev.to/nerdyman/replacing-query-string-with-native-urlsearchparams-4kdg) works and they have to be in [specific format](https://blog.shalvah.me/posts/fun-stuff-representing-arrays-and-objects-in-query-strings). [query-string](https://www.npmjs.com/package/query-string) is much simplier and stright forward to work with especially when you have set how URL params must look like (arrays, objects) because of how some API works.
+- Active table data filters should be stored as query in the URL (not in local state) so URL is single source of the truth. URL is also navigatable so user can visit prefiltred data.

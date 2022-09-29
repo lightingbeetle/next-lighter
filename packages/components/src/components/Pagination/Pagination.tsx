@@ -9,9 +9,11 @@ import cx from "classnames";
 type PaginationProps = {
   page: number;
   totalPages: number;
-  onSetPage?: (page: number) => void;
+  onSetPage?: (
+    page: number,
+    e: React.MouseEvent<HTMLAnchorElement, MouseEvent>
+  ) => void;
   getHref: (page) => ComponentProps<typeof PaginationNumber>["href"];
-  replace?: boolean;
 } & ComponentProps<"nav">;
 
 const Pagination = ({
@@ -20,7 +22,6 @@ const Pagination = ({
   onSetPage,
   className,
   getHref,
-  replace,
   ...props
 }: PaginationProps) => {
   const arrayOfPages = getArrayOfPages(page, totalPages);
@@ -36,8 +37,8 @@ const Pagination = ({
           <PaginationNumber
             href={getHref(page > 1 ? page - 1 : 1)}
             type="arrow"
-            onClick={() => {
-              onSetPage?.(page > 1 ? page - 1 : 1);
+            onClick={(e) => {
+              onSetPage?.(page > 1 ? page - 1 : 1, e);
             }}
             aria-label="Predchádzajúca stránka"
             isDisabled={page === 1}
@@ -54,8 +55,8 @@ const Pagination = ({
                   href={getHref(pageIndex)}
                   key={pageIndex}
                   isActive={page === pageIndex}
-                  onClick={() => {
-                    onSetPage?.(pageIndex);
+                  onClick={(e) => {
+                    onSetPage?.(pageIndex, e);
                   }}
                   aria-current={pageIndex === page ? "page" : undefined}
                   aria-label={`Stránka ${pageIndex}`}
@@ -76,8 +77,8 @@ const Pagination = ({
           <PaginationNumber
             type="arrow"
             href={getHref(page < totalPages ? page + 1 : totalPages)}
-            onClick={() => {
-              onSetPage?.(page < totalPages ? page + 1 : totalPages);
+            onClick={(e) => {
+              onSetPage?.(page < totalPages ? page + 1 : totalPages, e);
             }}
             aria-label="Nasledujúca stránka"
             isDisabled={page === totalPages}
