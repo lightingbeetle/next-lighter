@@ -26,7 +26,7 @@
     "test": "NODE_ENV=test jest --maxWorkers=1"
   },
   "dependencies": {
-    "@lighting-beetle/lighter-hooks": "1.1.0",
+    "@lighting-beetle/lighter-hooks": "workspace:^",
     "a11y-dialog": "^7.5.0",
     "classnames": "^2.3.1",
     "downshift": "^6.1.7",
