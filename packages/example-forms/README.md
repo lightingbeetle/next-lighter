@@ -8,5 +8,5 @@
 
 ## Build
 
-* `npm run build` in this package
-* `npm run build:example` in the root of this project
+- `npm run build` in this package
+- `npm run build:example` in the root of this project

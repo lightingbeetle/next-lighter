@@ -11,7 +11,7 @@ type CellContent = React.ReactNode;
 
 type Column = {
   Header: React.ReactNode;
-  accessor: string;
+  accessor: string | ((originalRow: any, rowIndex: number) => any);
   Cell?: (value: React.ReactNode) => React.ReactNode;
 };
 
@@ -61,11 +61,16 @@ const Table = ({
                   <TableCell key={i}>
                     {column.Cell
                       ? column.Cell({
-                          value: row[column.accessor],
+                          value:
+                            typeof column.accessor === "string"
+                              ? row[column.accessor]
+                              : column.accessor(row, i),
                           row: row,
                           column: column,
                         })
-                      : row[column.accessor]}
+                      : typeof column.accessor === "string"
+                      ? row[column.accessor]
+                      : column.accessor(row, i)}
                   </TableCell>
                 );
               })}

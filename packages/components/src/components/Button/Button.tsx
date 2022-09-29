@@ -1,12 +1,12 @@
 import React, { ComponentProps } from "react";
 import cx from "classnames";
-// import "./styles/style.scss";
+import { UrlObject } from "url";
 
 type ButtonProps = {
   /** Button with same width as height */
   square?: boolean;
   /** Link with href attribute rendered visually as button. */
-  href?: string;
+  href?: string | UrlObject;
   /** Active state */
   isActive?: boolean;
   /** Disabled state */

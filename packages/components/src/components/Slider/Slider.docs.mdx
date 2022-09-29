@@ -1,0 +1,30 @@
+---
+title: Slider
+---
+
+import { Preview, Props } from "@lighting-beetle/lighter-styleguide";
+// useRouter has to be provided as globals in mdx-bundler because it has to be wired up with Next.js page
+import { useRouter } from "next/router";
+import Slider from "./Slider.tsx";
+
+export const DocsSlider = ({ values: valuesFromProps, ...other}) => {
+  const [values, setValues] = React.useState(valuesFromProps);
+  return (
+    <>
+      <Slider values={values} onChange={setValues} onDrag={setValues} {...other} />
+      <div>Values: {JSON.stringify(values)}</div>
+    </>
+  );
+};
+
+# Slider
+
+A range lets users choose an approximate value on a slider.
+
+<DocsSlider values={[50]} min={1} max={100} stepSize={1} />
+
+## Props
+
+<Props component={Slider} />
+
+## Accessibility

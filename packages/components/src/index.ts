@@ -18,6 +18,8 @@ import { Input, TextArea, RadioCheck, Error } from "./components/Forms";
 import Icon from "./components/Icon";
 import Select from "./components/Select";
 import Table from "./components/Table";
+import Slider from "./components/Slider";
+import Pagination from "./components/Pagination";
 import Modal from "./components/Modal";
 
 // TODO: Tokens should have own entry
@@ -67,4 +69,6 @@ export {
   TextArea,
   RadioCheck,
   Error,
+  Slider,
+  Pagination,
 };

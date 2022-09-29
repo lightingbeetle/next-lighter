@@ -21,7 +21,7 @@ const PropsTable = () => {
     [props]
   );
 
-  const columns: Column[] = useMemo(
+  const columns = useMemo<Column<any>[]>(
     () => [
       {
         Header: "Required",

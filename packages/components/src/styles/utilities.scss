@@ -1,1 +1,6 @@
+@use './utils';
 @import "../tokens/font/utilities.scss";
+
+.visually-hidden {
+  @include utils.visually-hidden();
+}

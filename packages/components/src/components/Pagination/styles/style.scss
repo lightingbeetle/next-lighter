@@ -1,0 +1,51 @@
+@use "../../../tokens";
+
+.pagination {
+  margin-bottom: tokens.space();
+
+  &__list {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    > li {
+      margin-bottom: 0;
+
+      /* Fixes VoiceOver no announcing unordered lists */
+      &::before {
+        content: "\200B";
+        position: absolute;
+        width: 0;
+        height: 0;
+      }
+    }
+  }
+
+  &__list-item {
+    &:not(last-child) {
+      margin-right: tokens.space("s");
+    }
+
+    & > *:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &__item {
+    padding: tokens.space("s") tokens.space("s");
+
+    &--active {
+      background-color: tokens.color("primary", 600);
+    }
+
+    &--arrow {
+      color: tokens.color("primary");
+
+      .icon {
+        transform: rotate(-90deg);
+      }
+    }
+  }
+}

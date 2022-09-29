@@ -18,6 +18,11 @@ export default async function getMDXCode(
         namedExports: ["Preview", "Code", "Props", "Rectangle", "Table"],
         defaultExport: false,
       },
+      "next/router": {
+        varName: "nextRouter",
+        namedExports: ["useRouter"],
+        defaultExport: false,
+      },
     },
     esbuildOptions: (options) => {
       options.loader = {

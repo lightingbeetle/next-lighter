@@ -15,6 +15,9 @@ async function bundleIndex() {
       sassPlugin(),
       esmExternals({ externals: ["react", "react-dom"] }),
     ],
+    loader: {
+      ".svg": "dataurl",
+    },
     external: ["@lighting-beetle/lighter-styleguide"],
   };
 
