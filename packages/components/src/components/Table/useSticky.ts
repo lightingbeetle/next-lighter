@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { useWindowSize } from "usehooks-ts";
 
+// TODO: add example of Table with sticky header
 const useStickyHeader = (defaultSticky = false) => {
   const [isSticky, setIsSticky] = useState(defaultSticky);
   const [top, setTop] = useState(0);

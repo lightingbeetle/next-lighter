@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import { stringify } from "query-string";
 
 const FlatsPagination = () => {
-  const { page, totalPages, setPage } = useFlats();
+  const { page, totalPages } = useFlats();
   const { basePath, query, push } = useRouter();
 
   function handleSetPage(

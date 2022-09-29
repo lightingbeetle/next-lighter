@@ -1,6 +1,5 @@
 import React, { ComponentProps } from "react";
 import { useRanger, RangerOptions } from "react-ranger";
-import "./styles/style.scss";
 
 // TODO: Range input could have uncontrolled mode
 

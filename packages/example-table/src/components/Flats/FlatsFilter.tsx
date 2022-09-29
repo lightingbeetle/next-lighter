@@ -34,7 +34,7 @@ const FlatsFilterForms = () => {
 
 const FlatsFilterForm = ({ hideHeader }: { hideHeader?: boolean }) => {
   const { reset, handleSubmit } = useFormContext();
-  const { resetFilter, countOfActiveFilters, setFilter, filter } = useFlats();
+  const { resetFilter, countOfActiveFilters, setFilter } = useFlats();
 
   return (
     <div className="flats-filter">

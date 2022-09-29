@@ -1,7 +1,6 @@
 import React, { ComponentProps } from "react";
 import cx from "classnames";
 import { UrlObject } from "url";
-// import "./styles/style.scss";
 
 type ButtonProps = {
   /** Button with same width as height */

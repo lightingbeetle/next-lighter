@@ -1,14 +1,13 @@
 # Example
 
-[Live demo](https://next-lighter.lbx.sk)
-
-This is example of real project builded with Next.js and Lighter Styleguide.
+This is example of table usage from real projects.
 
 ## Local development
 
-`npm run dev` for local development of pages and components.
+- `npm run dev` for local development of pages and components.
+- `yarn workspace example-table run dev` in the root of this project
 
 ## Build
 
-- `npm run build` in this package
-- `npm run build:example` in the root of this project
+- `yarn run build` in this package
+- `yarn workspace example-table run build` in the root of this project

@@ -6,9 +6,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build && next export",
-    "start": "next start",
-    "test": "jest --runInBand --config ./jest.config.js",
-    "lint": "eslint --fix ."
+    "start": "next start"
   },
   "dependencies": {
     "@lighting-beetle/next-lighter-config": "workspace:^",
