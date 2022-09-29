@@ -1,10 +1,17 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-  reactStrictMode: true,
-  swcMinify: true,
-  images: {
-    unoptimized: true,
-  },
-};
+import nextLighterConfig from "@lighting-beetle/next-lighter-config";
+import nextComposePlugins from "next-compose-plugins";
+import transpileModules from "next-transpile-modules";
 
-module.exports = nextConfig;
+export default nextComposePlugins
+  .extend(
+    nextLighterConfig({
+      nextConfig: {
+        reactStrictMode: true,
+        swcMinify: true,
+        images: {
+          unoptimized: true,
+        },
+      },
+    })
+  )
+  .withPlugins([transpileModules(["components"])]);

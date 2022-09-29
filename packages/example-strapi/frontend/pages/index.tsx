@@ -2,6 +2,7 @@ import React from "react";
 import type { InferGetStaticPropsType } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { Card, CardSection, CardSectionImage } from "components";
 import { fetchAPIWithAuth, getStrapiURL } from "../lib/api";
 
 type Article = {
@@ -42,21 +43,30 @@ const ArticleCard = ({
   };
 }) => {
   return (
-    <div>
-      <Image src={getStrapiURL(src)} alt={alt} width={width} height={height} />
-      <h2>
-        <Link href={`/blog/${id}/${slug}`}>
-          <a>{title}</a>
-        </Link>
-      </h2>
-      <p>{excerpt}</p>
-    </div>
+    <Card>
+      <CardSectionImage>
+        <Image
+          src={getStrapiURL(src)}
+          alt={alt}
+          width={width}
+          height={height}
+        />
+      </CardSectionImage>
+      <CardSection>
+        <h2>
+          <Link href={`/blog/${id}/${slug}`}>
+            <a>{title}</a>
+          </Link>
+        </h2>
+        <p>{excerpt}</p>
+      </CardSection>
+    </Card>
   );
 };
 
 const Home = ({ articles }: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
-    <ul>
+    <ul style={{ listStyle: "none", margin: 0, padding: 0 }}>
       {articles.map(({ id, attributes: { slug, title, excerpt, image } }) => (
         <li key={slug}>
           <ArticleCard
@@ -82,6 +92,8 @@ export async function getStaticProps() {
   const [articles] = await Promise.all([
     fetchAPIWithAuth<{ data: Article[] }>("/articles", { populate: "*" }),
   ]);
+
+  console.log(articles.data);
 
   return {
     props: {

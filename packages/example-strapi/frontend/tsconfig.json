@@ -1,17 +1,12 @@
 {
+  "extends": "../../../tsconfig.json",
   "compilerOptions": {
-    "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "allowJs": true,
-    "skipLibCheck": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "noEmit": true,
-    "esModuleInterop": true,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
+    "baseUrl": "./",
+    "paths": {
+      "components": ["../../components/src/index.ts"],
+      "components/*": ["../../components/src/*"]
+    },
+    "strict": false,
     "jsx": "preserve",
     "incremental": true
   },
