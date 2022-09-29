@@ -3117,7 +3117,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@lighting-beetle/lighter-hooks@1.1.0, @lighting-beetle/lighter-hooks@workspace:packages/lighter-hooks":
+"@lighting-beetle/lighter-hooks@workspace:^, @lighting-beetle/lighter-hooks@workspace:packages/lighter-hooks":
   version: 0.0.0-use.local
   resolution: "@lighting-beetle/lighter-hooks@workspace:packages/lighter-hooks"
   dependencies:
@@ -8720,7 +8720,7 @@ __metadata:
   resolution: "components@workspace:packages/components"
   dependencies:
     "@esbuild-plugins/esm-externals": 0.0.6
-    "@lighting-beetle/lighter-hooks": 1.1.0
+    "@lighting-beetle/lighter-hooks": "workspace:^"
     "@types/jest-axe": ^3.5.4
     "@types/react-ranger": ^2.0.1
     "@types/react-table": ^7.7.2
