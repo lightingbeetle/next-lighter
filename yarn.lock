@@ -5341,14 +5341,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:18.0.15":
-  version: 18.0.15
-  resolution: "@types/react@npm:18.0.15"
+"@types/react@npm:18.0.21":
+  version: 18.0.21
+  resolution: "@types/react@npm:18.0.21"
   dependencies:
     "@types/prop-types": "*"
     "@types/scheduler": "*"
     csstype: ^3.0.2
-  checksum: e22cc388d1c145aa184787e44dc28db4789976c704cd5db475c170bb76a560eb81def5f346cfe750949bb3d43ad88822b8cbb9f19b1286e3795892a8263e7715
+  checksum: 36c1a7c9d507e81e2e629c1ad3db51d7b84d8b010c2d5008da411874286c6a5ccc711ae1d4c470efc0bdc77153cc8804a40e927e929e5164c669ca41b84b846d
   languageName: node
   linkType: hard
 
@@ -24967,7 +24967,7 @@ __metadata:
     "@lighting-beetle/next-lighter-config": "workspace:^"
     "@types/node": 18.0.6
     "@types/qs": ^6.9.7
-    "@types/react": 18.0.15
+    "@types/react": 18.0.21
     "@types/react-dom": 18.0.6
     components: "workspace:^"
     eslint: 8.20.0

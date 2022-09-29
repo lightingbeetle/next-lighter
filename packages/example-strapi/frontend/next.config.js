@@ -11,6 +11,9 @@ export default nextComposePlugins
         images: {
           unoptimized: true,
         },
+        typescript: {
+          ignoreBuildErrors: true,
+        },
       },
     })
   )
