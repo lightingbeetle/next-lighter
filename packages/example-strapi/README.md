@@ -2,6 +2,8 @@
 
 This is example of integration between Strapi CMS backend and Next.js frontend.
 
+[Live admin demo](https://next-lighter-production.up.railway.app/admin/) (ask Adam for access)
+
 ## Includes:
 - Blog articles displaying Strapi MDX content with help of `next-mdx-remote` package via Rest API
 
