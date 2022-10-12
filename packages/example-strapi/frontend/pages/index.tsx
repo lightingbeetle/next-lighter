@@ -66,24 +66,33 @@ const ArticleCard = ({
 
 const Home = ({ articles }: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
-    <ul style={{ listStyle: "none", margin: 0, padding: 0 }}>
-      {articles.map(({ id, attributes: { slug, title, excerpt, image } }) => (
-        <li key={slug}>
-          <ArticleCard
-            id={id}
-            title={title}
-            slug={slug}
-            excerpt={excerpt}
-            image={{
-              src: image.data.attributes.url,
-              alt: image.data.attributes.alternativeText,
-              width: image.data.attributes.width,
-              height: image.data.attributes.height,
-            }}
-          />
-        </li>
-      ))}
-    </ul>
+    <div className="container">
+      <h1>Example Strapi blog</h1>
+      <p>
+        <a href="https://github.com/lightingbeetle/next-lighter/blob/main/packages/example-strapi/README.md">
+          Readme
+        </a>
+      </p>
+      <h2>Articles</h2>
+      <ul className="articles">
+        {articles.map(({ id, attributes: { slug, title, excerpt, image } }) => (
+          <li key={slug}>
+            <ArticleCard
+              id={id}
+              title={title}
+              slug={slug}
+              excerpt={excerpt}
+              image={{
+                src: image.data.attributes.url,
+                alt: image.data.attributes.alternativeText,
+                width: image.data.attributes.width,
+                height: image.data.attributes.height,
+              }}
+            />
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 };
 
@@ -92,8 +101,6 @@ export async function getStaticProps() {
   const [articles] = await Promise.all([
     fetchAPIWithAuth<{ data: Article[] }>("/articles", { populate: "*" }),
   ]);
-
-  console.log(articles.data);
 
   return {
     props: {

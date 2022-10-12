@@ -23,25 +23,13 @@ const Article = ({
   content: MDXRemoteSerializeResult;
 }) => {
   return (
-    <>
-      <div>
-        <Image
-          src={getStrapiURL(src)}
-          alt={alt}
-          width={width}
-          height={height}
-        />
-        <h1>{title}</h1>
-        <p>{excerpt}</p>
-        <hr />
-        <MDXRemote {...content} />
-      </div>
-      <div>
-        <Link href="/">
-          <a>Back to homepage</a>
-        </Link>
-      </div>
-    </>
+    <div className="article">
+      <Image src={getStrapiURL(src)} alt={alt} width={width} height={height} />
+      <h1>{title}</h1>
+      <p>{excerpt}</p>
+      <hr />
+      <MDXRemote {...content} />
+    </div>
   );
 };
 
@@ -71,17 +59,24 @@ const BlogPage = ({ article }: { article: ArticleStrapi }) => {
     attributes: { title, excerpt, image, content },
   } = article;
   return (
-    <Article
-      content={content as MDXRemoteSerializeResult}
-      title={title}
-      excerpt={excerpt}
-      image={{
-        src: image.data.attributes.url,
-        alt: image.data.attributes.alternativeText,
-        width: image.data.attributes.width,
-        height: image.data.attributes.height,
-      }}
-    />
+    <div className="container container--center">
+      <Article
+        content={content as MDXRemoteSerializeResult}
+        title={title}
+        excerpt={excerpt}
+        image={{
+          src: image.data.attributes.url,
+          alt: image.data.attributes.alternativeText,
+          width: image.data.attributes.width,
+          height: image.data.attributes.height,
+        }}
+      />
+      <div>
+        <Link href="/">
+          <a>Back to homepage</a>
+        </Link>
+      </div>
+    </div>
   );
 };
 

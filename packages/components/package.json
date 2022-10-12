@@ -9,7 +9,8 @@
     ".": "./dist/index.module.js",
     "./static": "./dist/static.module.js",
     "./styles.css": "./dist/index.css",
-    "./styles.scss": "./src/styles/index.scss"
+    "./styles.scss": "./src/styles/index.scss",
+    "./tokens.scss": "./src/tokens/index.scss"
   },
   "style": "./dist/index.css",
   "files": [
