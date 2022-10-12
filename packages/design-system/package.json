@@ -24,7 +24,9 @@
     "next": "~12.2.5",
     "next-compose-plugins": "~2.2.1",
     "next-transpile-modules": "~8.0.0",
-    "react-docgen-typescript": "^2.2.2"
+    "react": "~17.0.2",
+    "react-docgen-typescript": "^2.2.2",
+    "react-dom": "~17.0.2"
   },
   "browserslist": ">1%, not ie 11, not op_mini all",
   "devDependencies": {
