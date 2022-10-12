@@ -1,0 +1,29 @@
+@use 'components/tokens.scss' as tokens;
+
+.container {
+  padding: 0 tokens.space('xl');
+
+  &--center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.articles {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); 
+  gap: tokens.space();
+
+  > * {
+    display: flex;
+  }
+}
+
+.article {
+  max-width: 600px;
+}

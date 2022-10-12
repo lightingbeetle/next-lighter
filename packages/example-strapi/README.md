@@ -2,15 +2,19 @@
 
 This is example of integration between Strapi CMS backend and Next.js frontend.
 
-[Live admin demo](https://next-lighter-production.up.railway.app/admin/) (ask Adam for access)
+[Live admin demo](https://example-strapi.onrender.com/admin) (ask Adam for access)
 
-## Includes:
-- Blog articles displaying Strapi MDX content with help of `next-mdx-remote` package via Rest API
+## Features
 
-## Ideas of examples
-
-- Integration of Strapi with contact form from `example-forms`
-- Multilanguage support
+- [x] Blog articles displaying Strapi MDX content with help of `next-mdx-remote` package via Rest API
+- [ ] Add SEO tags and settings for Strapi
+- [ ] Add support for categories and tags
+- [ ] Add [ISR](https://nextjs.org/docs/basic-features/data-fetching/incremental-static-regeneration) and [on-demand revalidition](https://nextjs.org/docs/basic-features/data-fetching/incremental-static-regeneration#on-demand-revalidation)
+- [ ] Integration of Strapi with contact form from `example-forms` (maybe migrate it here?) or similar
+- [ ] Preview articles with [Next.js Preview mode](https://nextjs.org/docs/advanced-features/preview-mode)
+- [ ] Add example of Strapi custom fields
+- [ ] Multilanguage support
+- [ ] Add support of having custom components in blog body (eg. videos, contact forms)
 
 ## Local development
 
