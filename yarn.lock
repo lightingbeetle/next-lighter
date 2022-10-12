@@ -3308,14 +3308,14 @@ __metadata:
   linkType: hard
 
 "@mdx-js/loader@npm:^2.1.3":
-  version: 2.1.4
-  resolution: "@mdx-js/loader@npm:2.1.4"
+  version: 2.1.5
+  resolution: "@mdx-js/loader@npm:2.1.5"
   dependencies:
     "@mdx-js/mdx": ^2.0.0
     source-map: ^0.7.0
   peerDependencies:
     webpack: ">=4"
-  checksum: 2753254fe79eee44c3a887e050fa1ca9b08582c1aaacb336dadc44506af64a6443acb61a8fd5172dd2d98b6bd6d97fdd05e480801a7476e8e201615383320d6b
+  checksum: a4108e5ba8075a7369d0279e8bee09dcee4483474e7a621a805fc4e3af53b79b5b59219dc78249a8c97906b15a1e47b036626725697d8cf227c849fafaf7d3d1
   languageName: node
   linkType: hard
 
@@ -3367,8 +3367,8 @@ __metadata:
   linkType: hard
 
 "@mdx-js/mdx@npm:^2.0.0":
-  version: 2.1.4
-  resolution: "@mdx-js/mdx@npm:2.1.4"
+  version: 2.1.5
+  resolution: "@mdx-js/mdx@npm:2.1.5"
   dependencies:
     "@types/estree-jsx": ^1.0.0
     "@types/mdx": ^2.0.0
@@ -3387,7 +3387,7 @@ __metadata:
     unist-util-stringify-position: ^3.0.0
     unist-util-visit: ^4.0.0
     vfile: ^5.0.0
-  checksum: 041dcbb49e38387c813077fb14a90a7b342de659f31e7286faf69bd16f81190f933bb492a1daa427fa007d12e6069992d5414315e80fe26d2e8b37d8797531dc
+  checksum: 51b8b40aafbbeee618fd289ef6e0311e28e2598c514016aefb094237fa9cdf3e1c1407267a08dc7f8da9673de354b5b946f3ceb7ba5735bdf869d18c2a49117d
   languageName: node
   linkType: hard
 
@@ -3401,14 +3401,14 @@ __metadata:
   linkType: hard
 
 "@mdx-js/react@npm:^2.0.0":
-  version: 2.1.4
-  resolution: "@mdx-js/react@npm:2.1.4"
+  version: 2.1.5
+  resolution: "@mdx-js/react@npm:2.1.5"
   dependencies:
     "@types/mdx": ^2.0.0
     "@types/react": ">=16"
   peerDependencies:
     react: ">=16"
-  checksum: 85e62e32fdb36983bdfd94193112e00456480f32ac1277e22fc3a811c65fda249a684e8cf110954d1ab26f4fe19e5c9121ff554b1ee25d5d5a670c972f2e94a8
+  checksum: e47fb7086a4dd3e4d75d9ef0bf530009f72437a5ea91048e65d2e2f53955015a8c81b5058ac56fa00f401843305518e9f298183645d56c7e34336df4cc0b62bf
   languageName: node
   linkType: hard
 
@@ -4179,9 +4179,9 @@ __metadata:
   linkType: hard
 
 "@sinclair/typebox@npm:^0.24.1":
-  version: 0.24.44
-  resolution: "@sinclair/typebox@npm:0.24.44"
-  checksum: 773d9efc85cea69129659239ebda902c1b09e3e82f19358e5cd0f60ba21203ea694afce71bca1062376550b2bd99de6eeea98e6c273eb233d25daca95357f0cf
+  version: 0.24.46
+  resolution: "@sinclair/typebox@npm:0.24.46"
+  checksum: 19d708fe93a42dce4ed6452a58909c841ad3484a6388a5b5d82e7ab11f8bfbd013bf34c32d6234a55532e4ff5f8ab9e1df17bb13b389aca038c7f05a8950a72a
   languageName: node
   linkType: hard
 
@@ -8627,9 +8627,9 @@ __metadata:
   linkType: hard
 
 "camelize@npm:^1.0.0":
-  version: 1.0.0
-  resolution: "camelize@npm:1.0.0"
-  checksum: 769f8d10071f57b974d9a51dc02f589dd7fb07ea6a7ecde1a57b52ae68657ba61fe85c60d50661b76c7dbb76b6474fbfd3356aee33cf5f025cd7fd6fb2811b73
+  version: 1.0.1
+  resolution: "camelize@npm:1.0.1"
+  checksum: 91d8611d09af725e422a23993890d22b2b72b4cabf7239651856950c76b4bf53fe0d0da7c5e4db05180e898e4e647220e78c9fbc976113bd96d603d1fcbfcb99
   languageName: node
   linkType: hard
 
@@ -10964,9 +10964,9 @@ __metadata:
   linkType: hard
 
 "electron-to-chromium@npm:^1.4.251":
-  version: 1.4.277
-  resolution: "electron-to-chromium@npm:1.4.277"
-  checksum: 05002adf87dbaa6beb3895b7d64a1ee9442d46d5765582c71fc47c9aa8a4e710ada9939ce33bcd92da7c6fe61099462e036890b2edd21200c7f694309b31ea08
+  version: 1.4.279
+  resolution: "electron-to-chromium@npm:1.4.279"
+  checksum: f98f592ad6acb34a63a7c804b21a14c0f05e85bc2892812e8d20019493b6bd5425c401bfd00363015ca953fb0489136c02cc60140cd9ad59e2b299531faa9d2f
   languageName: node
   linkType: hard
 
@@ -22902,15 +22902,15 @@ __metadata:
   linkType: hard
 
 "react-dropzone@npm:^14.2.2":
-  version: 14.2.2
-  resolution: "react-dropzone@npm:14.2.2"
+  version: 14.2.3
+  resolution: "react-dropzone@npm:14.2.3"
   dependencies:
     attr-accept: ^2.2.2
     file-selector: ^0.6.0
     prop-types: ^15.8.1
   peerDependencies:
     react: ">= 16.8 || 18.0.0"
-  checksum: ef9ea7b3b5734e8eade2d29efc26da410dd7d6d046216331f6a51e2df4459c35f3a8f950fa7f723f3db6b0ead8aa68f58f6adbd39b98575c9fc8d8dfe02b671f
+  checksum: 174b744d5ca898cf3d84ec1aeb6cef5211c446697e45dc8ece8287a03d291f8d07253206d5a1247ef156fd385d65e7de666d4d5c2986020b8543b8f2434e8b40
   languageName: node
   linkType: hard
 
@@ -24068,12 +24068,12 @@ __metadata:
   linkType: hard
 
 "remark-mdx@npm:^2.0.0":
-  version: 2.1.4
-  resolution: "remark-mdx@npm:2.1.4"
+  version: 2.1.5
+  resolution: "remark-mdx@npm:2.1.5"
   dependencies:
     mdast-util-mdx: ^2.0.0
     micromark-extension-mdxjs: ^1.0.0
-  checksum: 31efbcdbfe3c143eca7872a41d285f1da8c91c222601f6669b36995ad158c30235109875773b58c0b3408eb75539cc14e166e303ac5fe37dc6b50473ce547ca5
+  checksum: a5b2ccaa2bdb9d236e418e4b1868539b3dc4f8df0476b5574c9beb0cc8cf8a09573fa91aeb24f56a5c3bb4ed00d9b6db6afe36a53450985fdbdcf9736bed115b
   languageName: node
   linkType: hard
 
