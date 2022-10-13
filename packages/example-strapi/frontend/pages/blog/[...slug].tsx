@@ -2,9 +2,10 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ParsedUrlQuery } from "querystring";
-import { fetchAPIWithAuth, getStrapiURL } from "../../lib/api";
+import { fetchAPI, getStrapiURL } from "../../lib/api";
 import { serialize } from "next-mdx-remote/serialize";
 import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
+import { getArticleBySlug } from "../../queries/articles";
 
 const Article = ({
   title,
@@ -87,30 +88,43 @@ interface IParams extends ParsedUrlQuery {
 }
 
 export async function getStaticProps({ params }: { params: IParams }) {
-  const article = await fetchAPIWithAuth<{ data: ArticleStrapi }>(
-    `/articles/${params.slug[0]}`,
-    { populate: "*" }
-  );
+  const article = await getArticleBySlug({ slug: params.slug[1] });
 
-  article.data.attributes.content = await serialize(
-    article.data.attributes.content as string
-  );
+  // TODO: content should be modified to MDXRemoteSerializeResult
+  article.attributes.content = (await serialize(
+    article.attributes.content
+  )) as any;
 
   return {
     props: {
-      article: article.data,
+      article,
     },
   };
 }
 
 export const getStaticPaths = async () => {
-  const postPathsData = await fetchAPIWithAuth<{ data: ArticleStrapi[] }>(
-    "/articles"
+  const articlesPathsData = await fetchAPI<{
+    articles: { data: { id: string; attributes: { slug: string } }[] };
+  }>(
+    `
+      query getArticlesSlugs {
+        articles {
+          data {
+            id
+            attributes {
+              slug
+            }
+          }
+        }
+      }
+      `
   );
 
-  const paths = postPathsData.data.map(({ id, attributes: { slug } }) => ({
-    params: { slug: [id.toString(), slug] },
-  }));
+  const paths = articlesPathsData.articles.data.map(
+    ({ id, attributes: { slug } }) => ({
+      params: { slug: [id.toString(), slug] },
+    })
+  );
 
   return {
     paths: [...paths],

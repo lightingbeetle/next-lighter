@@ -3,26 +3,8 @@ import type { InferGetStaticPropsType } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { Card, CardSection, CardSectionImage } from "components";
-import { fetchAPIWithAuth, getStrapiURL } from "../lib/api";
-
-type Article = {
-  id: string;
-  attributes: {
-    title: string;
-    excerpt: string;
-    slug: string;
-    image: {
-      data: {
-        attributes: {
-          alternativeText: string;
-          url: string;
-          width: string;
-          height: string;
-        };
-      };
-    };
-  };
-};
+import { getStrapiURL } from "../lib/api";
+import { getArticles } from "../queries/articles";
 
 const ArticleCard = ({
   id,
@@ -98,13 +80,11 @@ const Home = ({ articles }: InferGetStaticPropsType<typeof getStaticProps>) => {
 
 export async function getStaticProps() {
   // Run API calls in parallel
-  const [articles] = await Promise.all([
-    fetchAPIWithAuth<{ data: Article[] }>("/articles", { populate: "*" }),
-  ]);
+  const [articles] = await Promise.all([getArticles()]);
 
   return {
     props: {
-      articles: articles.data,
+      articles,
     },
   };
 }
