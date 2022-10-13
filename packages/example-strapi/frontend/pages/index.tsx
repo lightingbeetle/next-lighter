@@ -46,9 +46,18 @@ const ArticleCard = ({
   );
 };
 
-const Home = ({ articles }: InferGetStaticPropsType<typeof getStaticProps>) => {
+const Home = ({
+  articles,
+  preview,
+}: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
     <div className="container">
+      {preview && (
+        <>
+          This page is a preview. <a href="/api/exit-preview">Click here</a> to
+          exit preview mode.
+        </>
+      )}
       <h1>Example Strapi blog</h1>
       <p>
         <a href="https://github.com/lightingbeetle/next-lighter/blob/main/packages/example-strapi/README.md">
@@ -78,13 +87,14 @@ const Home = ({ articles }: InferGetStaticPropsType<typeof getStaticProps>) => {
   );
 };
 
-export async function getStaticProps() {
+export async function getStaticProps({ preview = false }) {
   // Run API calls in parallel
   const [articles] = await Promise.all([getArticles()]);
 
   return {
     props: {
       articles,
+      preview,
     },
   };
 }

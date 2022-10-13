@@ -63,11 +63,17 @@ export async function getArticles({
   return articlesData.articles.data;
 }
 
-export async function getArticleBySlug({ slug }: { slug: string }) {
+export async function getArticleBySlug({
+  slug,
+  draft,
+}: {
+  slug: string;
+  draft?: boolean;
+}) {
   const articleData = await fetchAPI<{ articles: { data: Article[] } }>(
     `
-      query GetArticleBySlug($slug: String) {
-        articles(filters: { slug: { eq: $slug }}) {
+      query GetArticleBySlug($slug: String, $preview: PublicationState) {
+        articles(filters: { slug: { eq: $slug }}, publicationState: $preview) {
           data {
             id
             attributes {
@@ -93,6 +99,7 @@ export async function getArticleBySlug({ slug }: { slug: string }) {
     {
       variables: {
         slug,
+        preview: draft ? "PREVIEW" : "LIVE",
       },
     }
   );

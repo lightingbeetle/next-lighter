@@ -55,12 +55,24 @@ type ArticleStrapi = {
 };
 
 // FIXME: Not sure why InferGetStaticPropsType not working here
-const BlogPage = ({ article }: { article: ArticleStrapi }) => {
+const BlogPage = ({
+  article,
+  preview,
+}: {
+  article: ArticleStrapi;
+  preview: boolean;
+}) => {
   const {
     attributes: { title, excerpt, image, content },
   } = article;
   return (
     <div className="container container--center">
+      {preview && (
+        <>
+          This page is a preview. <a href="/api/exit-preview">Click here</a> to
+          exit preview mode.
+        </>
+      )}
       <Article
         content={content as MDXRemoteSerializeResult}
         title={title}
@@ -87,8 +99,17 @@ interface IParams extends ParsedUrlQuery {
   slug: [id: string, slug: string];
 }
 
-export async function getStaticProps({ params }: { params: IParams }) {
-  const article = await getArticleBySlug({ slug: params.slug[1] });
+export async function getStaticProps({
+  params,
+  preview = false,
+}: {
+  params: IParams;
+  preview: boolean;
+}) {
+  const article = await getArticleBySlug({
+    slug: params.slug[1],
+    draft: preview,
+  });
 
   // TODO: content should be modified to MDXRemoteSerializeResult
   article.attributes.content = (await serialize(
@@ -98,6 +119,7 @@ export async function getStaticProps({ params }: { params: IParams }) {
   return {
     props: {
       article,
+      preview,
     },
   };
 }
