@@ -9,4 +9,23 @@ module.exports = ({ env }) => ({
       roles: ["strapi-super-admin"],
     },
   },
+  "preview-button": {
+    config: {
+      contentTypes: [
+        {
+          uid: "api::article.article",
+          draft: {
+            url: `${env("FRONTEND_URL")}/api/preview`,
+            query: {
+              slug: "{slug}",
+              secret: env("STRAPI_PREVIEW_SECRET"),
+            },
+          },
+          published: {
+            url: `${env("FRONTEND_URL")}/blog/{id}/{slug}`,
+          },
+        },
+      ],
+    },
+  },
 });

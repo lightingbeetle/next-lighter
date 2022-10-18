@@ -2,9 +2,10 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ParsedUrlQuery } from "querystring";
-import { fetchAPIWithAuth, getStrapiURL } from "../../lib/api";
+import { fetchAPI, getStrapiURL } from "../../lib/api";
 import { serialize } from "next-mdx-remote/serialize";
 import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
+import { getArticleBySlug } from "../../queries/articles";
 
 const Article = ({
   title,
@@ -54,12 +55,24 @@ type ArticleStrapi = {
 };
 
 // FIXME: Not sure why InferGetStaticPropsType not working here
-const BlogPage = ({ article }: { article: ArticleStrapi }) => {
+const BlogPage = ({
+  article,
+  preview,
+}: {
+  article: ArticleStrapi;
+  preview: boolean;
+}) => {
   const {
     attributes: { title, excerpt, image, content },
   } = article;
   return (
     <div className="container container--center">
+      {preview && (
+        <>
+          This page is a preview. <a href="/api/exit-preview">Click here</a> to
+          exit preview mode.
+        </>
+      )}
       <Article
         content={content as MDXRemoteSerializeResult}
         title={title}
@@ -86,31 +99,54 @@ interface IParams extends ParsedUrlQuery {
   slug: [id: string, slug: string];
 }
 
-export async function getStaticProps({ params }: { params: IParams }) {
-  const article = await fetchAPIWithAuth<{ data: ArticleStrapi }>(
-    `/articles/${params.slug[0]}`,
-    { populate: "*" }
-  );
+export async function getStaticProps({
+  params,
+  preview = false,
+}: {
+  params: IParams;
+  preview: boolean;
+}) {
+  const article = await getArticleBySlug({
+    slug: params.slug[1],
+    draft: preview,
+  });
 
-  article.data.attributes.content = await serialize(
-    article.data.attributes.content as string
-  );
+  // TODO: content should be modified to MDXRemoteSerializeResult
+  article.attributes.content = (await serialize(
+    article.attributes.content
+  )) as any;
 
   return {
     props: {
-      article: article.data,
+      article,
+      preview,
     },
   };
 }
 
 export const getStaticPaths = async () => {
-  const postPathsData = await fetchAPIWithAuth<{ data: ArticleStrapi[] }>(
-    "/articles"
+  const articlesPathsData = await fetchAPI<{
+    articles: { data: { id: string; attributes: { slug: string } }[] };
+  }>(
+    `
+      query getArticlesSlugs {
+        articles {
+          data {
+            id
+            attributes {
+              slug
+            }
+          }
+        }
+      }
+      `
   );
 
-  const paths = postPathsData.data.map(({ id, attributes: { slug } }) => ({
-    params: { slug: [id.toString(), slug] },
-  }));
+  const paths = articlesPathsData.articles.data.map(
+    ({ id, attributes: { slug } }) => ({
+      params: { slug: [id.toString(), slug] },
+    })
+  );
 
   return {
     paths: [...paths],
