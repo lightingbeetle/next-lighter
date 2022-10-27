@@ -11,7 +11,7 @@ This is example of integration between Strapi CMS backend and Next.js frontend.
 - [ ] Add support for categories and tags
 - [ ] Add [ISR](https://nextjs.org/docs/basic-features/data-fetching/incremental-static-regeneration) and [on-demand revalidition](https://nextjs.org/docs/basic-features/data-fetching/incremental-static-regeneration#on-demand-revalidation)
 - [ ] Integration of Strapi with contact form from `example-forms` (maybe migrate it here?) or similar
-- [ ] Preview articles with [Next.js Preview mode](https://nextjs.org/docs/advanced-features/preview-mode)
+- [x] Preview articles with [Next.js Preview mode](https://nextjs.org/docs/advanced-features/preview-mode)
 - [ ] Add example of Strapi custom fields
 - [ ] Multilanguage support
 - [ ] Add support of having custom components in blog body (eg. videos, contact forms)
