@@ -3198,7 +3198,6 @@ __metadata:
     gray-matter: ~4.0.3
     modern-normalize: ^1.1.0
     next: ~12.2.5
-    next-compose-plugins: ~2.2.1
     npm-run-all: ^4.1.5
     polished: ^4.1.3
     pretty: ~2.0.0
@@ -3219,14 +3218,13 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@lighting-beetle/next-lighter-config@workspace:packages/next-lighter-config"
   dependencies:
-    "@mdx-js/loader": ^2.1.3
-    "@next/mdx": ^12.2.5
-    next-compose-plugins: ~2.2.1
+    "@mdx-js/loader": ~2.1.5
+    "@next/mdx": ~13.0.1
     react-docgen-typescript-loader: ~3.7.2
-    remark-frontmatter: ^4.0.1
-    remark-mdx-frontmatter: ^2.0.3
-    sass: ~1.42.1
-    stringify-object: ~3.3.0
+    remark-frontmatter: ~4.0.1
+    remark-mdx-frontmatter: ~2.1.1
+    sass: ~1.55.0
+    stringify-object: ~4.0.1
   languageName: unknown
   linkType: soft
 
@@ -3309,7 +3307,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mdx-js/loader@npm:^2.1.3":
+"@mdx-js/loader@npm:~2.1.5":
   version: 2.1.5
   resolution: "@mdx-js/loader@npm:2.1.5"
   dependencies:
@@ -3492,13 +3490,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@next/mdx@npm:^12.2.5":
-  version: 12.3.1
-  resolution: "@next/mdx@npm:12.3.1"
+"@next/mdx@npm:~13.0.1":
+  version: 13.0.1
+  resolution: "@next/mdx@npm:13.0.1"
   peerDependencies:
     "@mdx-js/loader": ">=0.15.0"
     "@mdx-js/react": "*"
-  checksum: ee103a80b7ee4a35b277bdaaff8e0d2bbd7f6429ef55d7f7480583734d3ae83386b62f19ba8c8d05c15203d24dd4d0dc75c4eb6c875f2e2be45e54a699bb084d
+  checksum: 6812036c05e07c53dec2f50a7c56b649e86c539f863cabcec327bee99f01534b4a27951260ad618b8b459854502311163bf9346a9357b002f6c880ee21f529b2
   languageName: node
   linkType: hard
 
@@ -10153,7 +10151,6 @@ __metadata:
     netlify-cms-app: ~2.15.44
     netlify-cms-widget-mdx: ~0.4.4
     next: ~12.2.5
-    next-compose-plugins: ~2.2.1
     next-transpile-modules: ~8.0.0
     react: ~17.0.2
     react-docgen-typescript: ^2.2.2
@@ -12124,6 +12121,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"estree-util-value-to-estree@npm:^2.0.0":
+  version: 2.1.0
+  resolution: "estree-util-value-to-estree@npm:2.1.0"
+  dependencies:
+    "@types/estree": ^1.0.0
+    is-plain-obj: ^4.0.0
+  checksum: 6a930e9c8b85c27845ecca010b5b6b64d3b3a4e7d61117d8342fad7b2b595d7052c671616d1c2269e0954a200666834227ce0abb8488ded49700dfde54167ebb
+  languageName: node
+  linkType: hard
+
 "estree-util-visit@npm:^1.0.0":
   version: 1.2.0
   resolution: "estree-util-visit@npm:1.2.0"
@@ -12210,7 +12217,6 @@ __metadata:
     micromatch: ~4.0.4
     modern-normalize: ^1.1.0
     next: ~12.2.5
-    next-compose-plugins: ~2.2.1
     next-transpile-modules: ~9.0.0
     react: ~17.0.2
     react-dom: ~17.0.2
@@ -12237,7 +12243,6 @@ __metadata:
     components: "workspace:^"
     modern-normalize: ^1.1.0
     next: ~12.3.0
-    next-compose-plugins: ~2.2.1
     next-query-params: ^4.0.0
     next-transpile-modules: ~8.0.0
     query-string: ^7.0.1
@@ -12272,7 +12277,6 @@ __metadata:
     components: "workspace:^"
     modern-normalize: ^1.1.0
     next: ~12.2.5
-    next-compose-plugins: ~2.2.1
     next-transpile-modules: ~9.0.0
     react: ~17.0.2
     react-dom: ~17.0.2
@@ -13217,7 +13221,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"get-own-enumerable-property-symbols@npm:^3.0.0":
+"get-own-enumerable-property-symbols@npm:^3.0.0, get-own-enumerable-property-symbols@npm:^3.0.2":
   version: 3.0.2
   resolution: "get-own-enumerable-property-symbols@npm:3.0.2"
   checksum: 8f0331f14159f939830884799f937343c8c0a2c330506094bc12cbee3665d88337fe97a4ea35c002cc2bdba0f5d9975ad7ec3abb925015cdf2a93e76d4759ede
@@ -15224,6 +15228,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"is-obj@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "is-obj@npm:3.0.0"
+  checksum: 75e97a99ed0b0884778887f8e913791864151307774914283b068b06b57ca86f695b024aa1ba5ed04411918edef93e2bfd8f84d68c6b6aab417802cc76f5061b
+  languageName: node
+  linkType: hard
+
 "is-path-cwd@npm:^2.2.0":
   version: 2.2.0
   resolution: "is-path-cwd@npm:2.2.0"
@@ -15312,6 +15323,13 @@ __metadata:
   version: 1.0.0
   resolution: "is-regexp@npm:1.0.0"
   checksum: be692828e24cba479ec33644326fa98959ec68ba77965e0291088c1a741feaea4919d79f8031708f85fd25e39de002b4520622b55460660b9c369e6f7187faef
+  languageName: node
+  linkType: hard
+
+"is-regexp@npm:^3.0.0":
+  version: 3.1.0
+  resolution: "is-regexp@npm:3.1.0"
+  checksum: d39dbd9892f0a25d01ee1a8e650c3f2e045bf7b1fa87eafb50b31dd29342869aa9135fd372628202254398956bf7f4b62094bdda39283ec2a9bb749fbb7f427c
   languageName: node
   linkType: hard
 
@@ -19898,13 +19916,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"next-compose-plugins@npm:~2.2.1":
-  version: 2.2.1
-  resolution: "next-compose-plugins@npm:2.2.1"
-  checksum: 771762fda2b12b81daf10431cbb494816cff96be02b44009692c6c0eefbacd62cbf51ddb93af8d3380ec00254c6a95d64d10f744d4b9ddadefc21efee7dc69fc
-  languageName: node
-  linkType: hard
-
 "next-mdx-remote@npm:^4.1.0":
   version: 4.1.0
   resolution: "next-mdx-remote@npm:4.1.0"
@@ -23488,7 +23499,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"remark-frontmatter@npm:^4.0.1":
+"remark-frontmatter@npm:^4.0.1, remark-frontmatter@npm:~4.0.1":
   version: 4.0.1
   resolution: "remark-frontmatter@npm:4.0.1"
   dependencies:
@@ -23522,17 +23533,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"remark-mdx-frontmatter@npm:^2.0.3":
-  version: 2.0.3
-  resolution: "remark-mdx-frontmatter@npm:2.0.3"
+"remark-mdx-frontmatter@npm:~2.1.1":
+  version: 2.1.1
+  resolution: "remark-mdx-frontmatter@npm:2.1.1"
   dependencies:
     "@types/mdast": ^3.0.0
     estree-util-is-identifier-name: ^2.0.0
-    estree-util-value-to-estree: ^1.0.0
+    estree-util-value-to-estree: ^2.0.0
     toml: ^3.0.0
     unified: ^10.0.0
     yaml: ^2.0.0
-  checksum: c81388c3724e4bda7695e37dae652498bec6ff0324eb0b4efa8e02842fa050b9ee21638555f2029c6da504e3975dbf3ea1412b30d0f7885e306ca5a930d04a27
+  checksum: 079a06445476ed7ed31481d393de1efd2d2bc3597a7f1bae8f437529a9710cbb02984351a2617e0becd6c6f19ce64127a453f20aa2d9c8aa26704ad914673414
   languageName: node
   linkType: hard
 
@@ -24259,7 +24270,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"sass@npm:^1.45.0":
+"sass@npm:^1.45.0, sass@npm:~1.55.0":
   version: 1.55.0
   resolution: "sass@npm:1.55.0"
   dependencies:
@@ -25317,7 +25328,6 @@ __metadata:
     eslint: 8.20.0
     eslint-config-next: 12.2.2
     next: 12.3.0
-    next-compose-plugins: ~2.2.1
     next-mdx-remote: ^4.1.0
     next-transpile-modules: ~8.0.0
     qs: ^6.11.0
@@ -25576,7 +25586,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"stringify-object@npm:^3.3.0, stringify-object@npm:~3.3.0":
+"stringify-object@npm:^3.3.0":
   version: 3.3.0
   resolution: "stringify-object@npm:3.3.0"
   dependencies:
@@ -25584,6 +25594,17 @@ __metadata:
     is-obj: ^1.0.1
     is-regexp: ^1.0.0
   checksum: 6827a3f35975cfa8572e8cd3ed4f7b262def260af18655c6fde549334acdac49ddba69f3c861ea5a6e9c5a4990fe4ae870b9c0e6c31019430504c94a83b7a154
+  languageName: node
+  linkType: hard
+
+"stringify-object@npm:~4.0.1":
+  version: 4.0.1
+  resolution: "stringify-object@npm:4.0.1"
+  dependencies:
+    get-own-enumerable-property-symbols: ^3.0.2
+    is-obj: ^3.0.0
+    is-regexp: ^3.0.0
+  checksum: 97fc5473bc726effe8b39e7eb96009fc573716497a0b00005bb68250150c4d086682356f4cee1823d404ac40ac36c0e643d5b9960ecfd3e96bb1ae20225e467b
   languageName: node
   linkType: hard
 

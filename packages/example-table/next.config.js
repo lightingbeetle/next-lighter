@@ -1,7 +1,11 @@
-import nextLighterConfig from "@lighting-beetle/next-lighter-config";
-import nextComposePlugins from "next-compose-plugins";
+import { createConfig } from "@lighting-beetle/next-lighter-config";
 import transpileModules from "next-transpile-modules";
 
-export default nextComposePlugins
-  .extend(nextLighterConfig())
-  .withPlugins([transpileModules(["components"])]);
+export default createConfig({
+  nextConfig: {
+    experimental: {
+      externalDir: true,
+    },
+  },
+  plugins: [transpileModules(["components"])],
+});
