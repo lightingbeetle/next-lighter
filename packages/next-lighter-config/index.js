@@ -1,5 +1,5 @@
-import withPlugins from "next-compose-plugins";
 import mdx from "@next/mdx";
+import bundleAnalyzer from "@next/bundle-analyzer";
 import remarkFrontmatter from "remark-frontmatter";
 import remarkMdxFrontmatter from "remark-mdx-frontmatter";
 
@@ -20,23 +20,33 @@ const noFS =
     });
   };
 
-const config = ({ nextConfig } = {}) =>
-  withPlugins(
-    [
-      [
-        mdx({
-          extension: /\.mdx?$/,
-          options: {
-            remarkPlugins: [remarkFrontmatter, remarkMdxFrontmatter],
-          },
-        }),
-      ],
-      noFS(),
-    ],
-    {
+const createConfig =
+  ({ nextConfig = {}, plugins = [], analyzeBundle = false }) =>
+  () => {
+    const defaultConfig = {
+      // our custom config
       pageExtensions: ["js", "jsx", "mdx", "ts", "tsx", "md"],
+      // user passed config
       ...nextConfig,
-    }
-  );
+    };
 
-export default config;
+    const defaultPlugins = [
+      mdx({
+        extension: /\.mdx?$/,
+        options: {
+          remarkPlugins: [remarkFrontmatter, remarkMdxFrontmatter],
+        },
+      }),
+      noFS(),
+      bundleAnalyzer({
+        enabled: analyzeBundle,
+      }),
+    ];
+
+    return [...defaultPlugins, ...plugins].reduce(
+      (acc, plugin) => plugin(acc),
+      defaultConfig
+    );
+  };
+
+export { createConfig };
