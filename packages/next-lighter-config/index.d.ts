@@ -6,4 +6,5 @@ export declare function createConfig({
 }: {
   nextConfig?: NextConfig;
   plugins?: ((any) => any)[];
+  analyzeBundle?: boolean;
 }): NextConfig;

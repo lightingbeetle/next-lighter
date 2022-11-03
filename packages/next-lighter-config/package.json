@@ -6,6 +6,7 @@
   "types": "index.d.ts",
   "dependencies": {
     "@mdx-js/loader": "~2.1.5",
+    "@next/bundle-analyzer": "^13.0.1",
     "@next/mdx": "~13.0.1",
     "react-docgen-typescript-loader": "~3.7.2",
     "remark-frontmatter": "~4.0.1",

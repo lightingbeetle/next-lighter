@@ -1,4 +1,5 @@
 import mdx from "@next/mdx";
+import bundleAnalyzer from "@next/bundle-analyzer";
 import remarkFrontmatter from "remark-frontmatter";
 import remarkMdxFrontmatter from "remark-mdx-frontmatter";
 
@@ -20,7 +21,7 @@ const noFS =
   };
 
 const createConfig =
-  ({ nextConfig = {}, plugins = [] }) =>
+  ({ nextConfig = {}, plugins = [], analyzeBundle = false }) =>
   () => {
     const defaultConfig = {
       // our custom config
@@ -37,6 +38,9 @@ const createConfig =
         },
       }),
       noFS(),
+      bundleAnalyzer({
+        enabled: analyzeBundle,
+      }),
     ];
 
     return [...defaultPlugins, ...plugins].reduce(
