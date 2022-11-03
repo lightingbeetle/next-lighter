@@ -15,6 +15,7 @@ export default createConfig();
 
 - MDX with frontMatter support
 - CSS/SCSS
+- Analyze bundle size
 
 ## Options
 
@@ -23,7 +24,11 @@ export default createConfig();
 import { createConfig } from "@lighting-beetle/next-lighter-config";
 
 export default createConfig({
+  /* Next.js custom config */
   nextConfig: { /* your custom next config */ },
+  /* Next.js plugins */
   plugins: [/* your custom next plugins */],
+  /* analyze bundle with @next/bundle-analyzer */
+  analyzeBundle: false /* boolean */,
 });
 ```
