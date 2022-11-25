@@ -1,4 +1,4 @@
-import scssVarsToMap from "../../utils/scssVarsToMap";
+import scssVarsToMap from "../../../utils/scssVarsToMap";
 import colorsFromSCSS from "./export.module.scss";
 
 export const colors = scssVarsToMap(colorsFromSCSS);

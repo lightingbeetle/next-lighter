@@ -1,6 +1,6 @@
 @use "sass:map";
 @use "./config";
-@use "../../../tokens";
+@use "../../../styles/tokens";
 @use "../../../styles/utils";
 
 @mixin card($card: config.$card) {

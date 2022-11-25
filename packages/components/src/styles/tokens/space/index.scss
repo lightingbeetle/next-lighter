@@ -1,7 +1,7 @@
 @use "sass:meta";
 @use "sass:map";
 @use "sass:list";
-@use "./../../styles/utils.scss";
+@use "../../utils.scss";
 
 $spaces: (
   default: 16px,

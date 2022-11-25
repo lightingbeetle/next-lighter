@@ -6,7 +6,12 @@
     "**/*.tsx",
     "./react-table-config.d.ts"
   ],
-  "exclude": ["node_modules", "dist", "out", "src/tokens/TokensTable.tsx"],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "out",
+    "src/styles/tokens/TokensTable.tsx"
+  ],
   "compilerOptions": {
     "target": "ES2018"
   },

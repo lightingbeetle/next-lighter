@@ -1,7 +1,7 @@
 @use "sass:map";
 @use "sass:list";
 @use "sass:math";
-@use "../tokens/font";
+@use "./tokens/font";
 
 /// Base on -zf-map-next https://github.com/zurb/foundation-sites/blob/develop/scss/util/_breakpoint.scss
 /// Find the next key in a map.
