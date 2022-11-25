@@ -1,4 +1,10 @@
+// normalize
+@import "modern-normalize/modern-normalize.css";
+
+// globals
 @import "./globals";
+
+// component styles
 @import "./../components/Bar/styles/style.scss";
 @import "./../components/Button/styles/style.scss";
 @import "./../components/Card/styles/style.scss";
@@ -10,5 +16,7 @@
 @import "./../components/Select/styles/style.scss";
 @import "./../components/Slider/styles/style.scss";
 @import "./../components/Table/styles/style.scss";
+
+// utilites and overrides
 @import "./utilities.scss";
 @import "./layout.scss";

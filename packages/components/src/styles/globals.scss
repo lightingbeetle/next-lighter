@@ -1,3 +1,4 @@
+// NOTE: tokens create css variables in the :root so make sure you are importing globals only once and preferably here so we don't pollute .css files with multiple variabile definitions
 @import "./tokens/colors/globals";
 @import "./tokens/space/globals";
 @import "./tokens/font/globals";

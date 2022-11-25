@@ -11,6 +11,31 @@ See [example](../example)
 - `npm run build` in this package
 - `npm run build:components` in the root of this project
 
+### How to use components on projects
+
+#### Styles
+
+1. Install [sass](https://www.npmjs.com/package/sass) and [modern-normalize](https://www.npmjs.com/package/modern-normalize)
+2. Copy `/styles` folder to your project
+    - (Optional) If you want to preserve JS exports and functions install [polished](https://www.npmjs.com/package/polished)
+    - (Optional) If you want to preserve tests, they are written for [jest](https://www.npmjs.com/package/jest) and you must not mock `index.scss` imports (like with `moduleNameMapper` in jest config)
+3. Remove unwanted component styles from `styles/index.scss` and add yours project specfic
+4. Update configs in `styles/tokens/**/index.scss` according your project needs
+5. Import `styles/index.scss` to your project (like in `_app.tsx` in Next.js)
+6. Use styles in your components like on the examples
+
+    ```scss
+    @use '../../styles/tokens';
+
+    .my-class {
+      color: tokens.color('primary');
+    }
+    ```
+
+    ```jsx
+    const MyComponent = () => <span className="text-color-primary">text</span>
+    ```
+
 ## Principles
 
 ### Headless UI components
