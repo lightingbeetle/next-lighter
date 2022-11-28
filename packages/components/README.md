@@ -18,11 +18,11 @@ See [example](../example)
 1. Install [sass](https://www.npmjs.com/package/sass) and [modern-normalize](https://www.npmjs.com/package/modern-normalize)
 2. Copy `/styles` folder to your project
     - (Optional) If you want to preserve JS exports and functions install [polished](https://www.npmjs.com/package/polished)
-    - (Optional) If you want to preserve tests, they are written for [jest](https://www.npmjs.com/package/jest) and you must not mock `index.scss` imports (like with `moduleNameMapper` in jest config)
-3. Remove unwanted component styles from `styles/index.scss` and add yours project specfic
-4. Update configs in `styles/tokens/**/index.scss` according your project needs
+    - (Optional) If you want to preserve tests, they are written in [jest](https://www.npmjs.com/package/jest) and you must not mock `index.scss` imports (like with `moduleNameMapper` in jest config)
+3. Remove unwanted component styles from `styles/index.scss` and add yours project specific
+4. Update configs in `styles/tokens/**/index.scss` according to your project needs
 5. Import `styles/index.scss` to your project (like in `_app.tsx` in Next.js)
-6. Use styles in your components like on the examples
+6. Use styles in your components like in the examples
 
     ```scss
     @use '../../styles/tokens';
