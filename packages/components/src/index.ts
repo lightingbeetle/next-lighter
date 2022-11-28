@@ -31,7 +31,7 @@ import {
   spaces,
   fonts,
   shadows,
-} from "./tokens";
+} from "./styles/tokens";
 
 import "./styles/utilities.scss";
 import "./styles/layout.scss";

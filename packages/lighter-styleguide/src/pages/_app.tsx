@@ -1,7 +1,6 @@
 import React from "react";
 import NextLink from "next/link";
 import Styleguide from "../components/Styleguide";
-import "modern-normalize/modern-normalize.css";
 
 const routes = [
   {

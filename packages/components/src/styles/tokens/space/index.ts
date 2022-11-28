@@ -1,5 +1,5 @@
-import { rem } from "../../styles";
-import scssVarsToMap from "../../utils/scssVarsToMap";
+import { rem } from "../..";
+import scssVarsToMap from "../../../utils/scssVarsToMap";
 import spacesFromSCSS from "./export.module.scss";
 
 export const spaces = scssVarsToMap(spacesFromSCSS);

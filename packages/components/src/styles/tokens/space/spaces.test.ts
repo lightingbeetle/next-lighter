@@ -5,7 +5,7 @@
 
 import { renderSync } from "sass";
 import { space, spaceValue } from ".";
-import scssTestImporter from "../../utils/scssTestImporter";
+import scssTestImporter from "../../../utils/scssTestImporter";
 
 function renderSass(args) {
   return renderSync({

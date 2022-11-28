@@ -3,7 +3,7 @@
 // ---------------------------------------------
 
 @use "./config";
-@use "../../../tokens";
+@use "../../../styles/tokens";
 @use "../../../styles/utils";
 
 @mixin bar {
