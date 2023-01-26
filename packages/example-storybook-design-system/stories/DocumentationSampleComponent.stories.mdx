@@ -1,44 +1,28 @@
-import {Canvas, Meta, Story} from "@storybook/addon-docs";
+import { Meta } from "@storybook/addon-docs";
 
-import {DocumentationSampleComponent} from "./DocumentationSampleComponent";
+import { DocumentationSampleComponent } from "./DocumentationSampleComponent";
 
 # DocumentationSampleComponent
+
 <Meta
-    title="Example/DocumentationSampleComponent/Documentation"
-    component={DocumentationSampleComponent}
-    argTypes={{
-        variant: {
-            control: "select",
-            options: ["small", "large"],
-        }
-    }}
+  title="Example/DocumentationSampleComponent/Documentation"
 />
 
 ## Usage
+
 Use this component to render a paragraph with custom text by passing it as `children` prop to the component.
 Optionally specify `variant` prop to control the size of font in the paragraph.
 
-export const Template = (args) => <DocumentationSampleComponent {...args} />;
-
 ## Variants
+
 ### Small
-<Story
-    name="small"
-    args={{
-        variant: "small",
-        children: "This is a paragraph in small variant."
-    }}
->
-    {Template.bind({})}
-</Story>
+
+<DocumentationSampleComponent variant="small">
+  This is a paragraph in small variant.
+</DocumentationSampleComponent>
 
 ### Large
-<Story
-    name="large"
-    args={{
-        variant: "large",
-        children: "This is a paragraph in large variant."
-    }}
->
-    {Template.bind({})}
-</Story>
+
+<DocumentationSampleComponent variant="small">
+    This is a paragraph in large variant.
+</DocumentationSampleComponent>
