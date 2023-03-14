@@ -1,0 +1,31 @@
+@use "../../../styles/tokens";
+@use "../../../styles/utils";
+@use './config';
+@use './mixins';
+
+.dialog {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-color: tokens.color('white');
+
+  border: 1px solid tokens.color('grey', 100)
+}
+
+.dialog__header {
+  @include mixins.dialog-section($settings: config.$dialog-header);
+  display: flex;
+  justify-content: space-between;
+}
+
+.dialog__title {
+  margin: 0;
+}
+
+.dialog__content {
+  @include mixins.dialog-section($settings: config.$dialog-section);
+}
+
+.dialog__footer {
+  @include mixins.dialog-section($settings: config.$dialog-footer);
+}

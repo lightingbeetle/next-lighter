@@ -1,0 +1,136 @@
+// ---------------------------------------------
+// LAYOUT UTILITIES
+// ---------------------------------------------
+
+@use './utils';
+@use './tokens';
+
+// mixin for utilities with layout targeting
+@mixin spacing-reset-classes($breakpoint: "") {
+  .no-mrg#{$breakpoint} {
+    margin: 0 !important;
+  }
+  .no-mrg-top#{$breakpoint} {
+    margin-top: 0 !important;
+  }
+  .no-mrg-bottom#{$breakpoint} {
+    margin-bottom: 0 !important;
+  }
+  .no-mrg-left#{$breakpoint} {
+    margin-left: 0 !important;
+  }
+  .no-mrg-right#{$breakpoint} {
+    margin-right: 0 !important;
+  }
+
+  .no-mrg-vertical#{$breakpoint} {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+  }
+
+  .no-mrg-horizontal#{$breakpoint} {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  .no-pad#{$breakpoint} {
+    padding: 0 !important;
+  }
+  .no-pad-top#{$breakpoint} {
+    padding-top: 0 !important;
+  }
+  .no-pad-bottom#{$breakpoint} {
+    padding-bottom: 0 !important;
+  }
+  .no-pad-left#{$breakpoint} {
+    padding-left: 0 !important;
+  }
+  .no-pad-right#{$breakpoint} {
+    padding-right: 0 !important;
+  }
+
+  .no-pad-vertical#{$breakpoint} {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+  }
+
+  .no-pad-horizontal#{$breakpoint} {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+}
+
+@mixin spacing-utilities() {
+  @each $spaceName, $spaceSize in tokens.$spaces {
+    .mb#{utils.variant-name($spaceName, "-")} {
+      margin-bottom: $spaceSize !important;
+    }
+  }
+}
+
+@include spacing-utilities;
+
+@each $breakpoint, $size in tokens.$breakpoints {
+  @include tokens.breakpoint($breakpoint) {
+    @include spacing-reset-classes(utils.variant-name($breakpoint));
+  }
+}
+
+// Flexbox alignment classes
+@mixin alignment-classes() {
+  // Children horizontal alignment
+  .align-items-right {
+    justify-content: flex-end;
+  }
+  .align-items-center {
+    justify-content: center;
+  }
+  .align-items-spaced {
+    justify-content: space-around;
+  }
+  .align-items-justify {
+    justify-content: space-between;
+  }
+  // Children vertcial alignment
+  .align-items-top {
+    align-items: flex-start;
+  }
+  .align-items-bottom {
+    align-items: flex-end;
+  }
+  .align-items-middle {
+    align-items: center;
+  }
+
+  // Selft horizontal alignmnet
+  .align-self-left {
+    margin-left: 0;
+    margin-right: auto;
+  }
+
+  .align-self-right {
+    margin-left: auto;
+    margin-right: 0;
+  }
+
+  .align-self-center {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  // Self vertical alignmnet
+  .align-self-top {
+    align-self: flex-start;
+  }
+  .align-self-bottom {
+    align-self: flex-end;
+  }
+  .align-self-middle {
+    align-self: center;
+  }
+  .align-self-stretch {
+    align-self: stretch;
+  }
+}
+
+@include alignment-classes;

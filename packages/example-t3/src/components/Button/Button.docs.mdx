@@ -1,0 +1,168 @@
+---
+title: Button
+---
+
+import { Preview, Props } from "@lighting-beetle/lighter-styleguide";
+import Button from "./Button";
+import Icon from "../Icon";
+
+# Button
+
+Buttons are control elements used for navigating and operating a page and form submission.
+
+<Button>Button</Button>
+
+## Variants
+
+### Basic
+
+The `<Button />` component can render as `<a>` or `<button>`. Take care to always use the appropriate element:
+
+- `<a>` if it takes you somewhere (on page or elsewhere)
+- `<button>` if it does something (controls a section, submits a form, etc.)
+
+<Preview>
+  <Button>Button</Button>
+  <Button href="#">Anchor</Button>
+</Preview>
+
+### States
+
+There are four button states: normal, hover (shows on mousehover), active (onclick), disabled.
+
+<Preview>
+  <Button>Normal</Button>
+  <Button isActive>Normal</Button>
+  <Button isDisabled>Normal</Button>
+</Preview>
+
+### Sizes
+
+There are three main sizes of buttons: medium (default), large and small. Size is set with additional class like `.btn--[l/s]`.
+
+<Preview>
+  <Button size="l">Large</Button>
+  <Button>Default</Button>
+  <Button size="s">Small</Button>
+</Preview>
+
+### Purpose
+
+There are 3 main buttons purpose variatons: default (CTA), secondary and link. Purpose variation on button are set with additional class like `.btn--[secondary/link]`.
+
+#### Default
+
+<Preview>
+  <Button>Default / CTA</Button>
+  <Button isActive>Default / CTA</Button>
+  <Button isDisabled>Default / CTA</Button>
+</Preview>
+
+#### Secondary
+
+<Preview>
+  <Button purpose="secondary">Secondary</Button>
+  <Button purpose="secondary" isActive>
+    Secondary
+  </Button>
+  <Button purpose="secondary" isDisabled>
+    Secondary
+  </Button>
+</Preview>
+
+#### Link
+
+<Preview>
+  <Button purpose="link">Link</Button>
+  <Button purpose="link" isActive>
+    Link
+  </Button>
+  <Button purpose="link" isDisabled>
+    Link
+  </Button>
+</Preview>
+
+### Variant
+
+#### Plain
+
+<Preview>
+  <Button variant="plain">Default / CTA</Button>
+  <Button variant="plain" purpose="secondary">
+    Default / CTA
+  </Button>
+  <Button variant="plain" purpose="link">
+    Default / CTA
+  </Button>
+</Preview>
+
+### Inline icons
+
+Inline icons sit in line with text.
+
+#### Icon and text
+
+<Preview>
+  <Button>
+    <Icon name="heart" size="s" />
+    Button
+  </Button>
+  <Button type="primary">
+    Button
+    <Icon name="heart" size="s" />
+  </Button>
+  <Button type="primary" size="s">
+    <Icon name="heart" size="s" />
+    Button
+  </Button>
+  <Button size="l">
+    Button
+    <Icon name="heart" size="medium" />
+  </Button>
+</Preview>
+
+#### Only icons
+
+Button with just icon without text should be square.
+
+<Preview>
+  <Button square size="s" aria-label="Go home">
+    <Icon name="home" alt={null} />
+  </Button>
+  <Button square size="s" aria-label="Go home">
+    <Icon name="home" alt={null} />
+  </Button>
+  <Button square type="primary" aria-label="Go home">
+    <Icon name="home" alt={null} />
+  </Button>
+  <Button square type="primary" size="l" aria-label="Go home">
+    <Icon name="home" alt={null} />
+  </Button>
+</Preview>
+
+## Props
+
+<Props component={Button} />
+
+## Accessibility
+
+The `<Button />` component can render as `<a>` or `<button>`. Take care to always use the appropriate element. The rule of thumb is to use `<a>` if it takes you somewhere, `<button>` if it does something and `<button type="submit">` if it's used for submitting a form. Check the articles below for more information.
+
+### Don't disable buttons
+
+Especially form submit buttons. A disabled button is not keyboard focusable. Instead of using the `[disabled]` attribute, it's advised to rather use `[aria-disabled=true]` - it still remains focusable, and a screenreader can find it and announce it's contents, along with the information that it's disabled.
+
+Users should be able to submit incomplete and invalid forms, and should get relevant validation feedback, which explains what went wrong and how to fix it. It's considered a bad practice to let the user figure out thier errors themselves.
+
+### Icons
+
+While it's recommended to always show a textual label acompanying an icon, this rule is often broken. When this happens, always make sure there is a textual alternative readable by assistive technology. There are three options:
+
+- `[aria-label]` on the button element OR
+- alt attribute on the icon OR
+- a visually visually hidden but accessible element (e.g. `.sr-only`)
+
+### Additional resources:
+
+- [When Is A Button Not A Button?](https://www.smashingmagazine.com/2019/02/buttons-interfaces/)
+- [Anchors, Buttons, And Accessibility](https://formidable.com/blog/2014/05/08/anchors-buttons-and-accessibility/)

@@ -1,0 +1,33 @@
+// ---------------------------------------------
+// MODALS - CONFIGURATION
+// ---------------------------------------------
+
+@use "sass:color";
+@use '../../../styles/tokens';
+@use '../../../styles/utils';
+
+
+$modal-overlay-bg-color: rgba(tokens.colorValue("black"), $alpha: 0.5) !default;
+$modal-overlay-z-index: 500 !default;
+$modal-overlay-e: 0.4s ease 0s !default;
+
+$modal-overlay: (
+  background-color: $modal-overlay-bg-color,
+);
+
+$modal: (
+  default: (
+    height: auto,
+    max-height: calc(100% - #{tokens.space() * 2}),
+    width: calc(100% - #{tokens.space() * 2}),
+    background-color: tokens.color('white'),
+    z-index: $modal-overlay-z-index + 1,
+  ),
+  "m": (
+    width: utils.rem(480px),
+  ),
+  "l": (
+    width: utils.rem(800px),
+  ),
+);
+

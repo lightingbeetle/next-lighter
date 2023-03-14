@@ -1,0 +1,16 @@
+@use "../../styles/tokens";
+
+.page-header {
+  height: 60px;
+  background: tokens.color('white');
+  border-bottom: 1px solid tokens.color('black');
+  
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 tokens.space();
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 4;
+}

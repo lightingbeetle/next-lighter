@@ -1,0 +1,29 @@
+@use "./index" as *;
+
+.text-color-primary {
+  color: $font-color-primary !important;
+}
+
+.text-color-secondary {
+  color: $font-color-secondary !important;
+}
+
+.text-color-grey {
+  color: $font-color-grey !important;
+}
+
+.text-color-black {
+  color: $font-color-black !important;
+}
+
+.text-color-white {
+  color: $font-color-white !important;
+}
+
+.text-color-error {
+  color: $font-color-error !important;
+}
+
+.text-color-success {
+  color: $font-color-success !important;
+}

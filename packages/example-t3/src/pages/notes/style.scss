@@ -1,0 +1,19 @@
+@use "../../styles/tokens";
+
+.notes-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 1fr;
+
+  gap: tokens.space();
+
+  // make the notes equal height
+  .card {
+    height: 100%;
+
+    // strech first section
+    &__section:first-child {
+      flex: 1;
+    }
+  }
+}

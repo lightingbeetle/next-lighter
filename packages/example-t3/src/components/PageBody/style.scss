@@ -1,0 +1,10 @@
+@use "../../styles/tokens";
+
+.page-body {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 1240px;
+  margin: tokens.space() auto;
+  padding: 0 tokens.space();
+}

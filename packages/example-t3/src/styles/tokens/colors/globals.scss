@@ -1,0 +1,9 @@
+@use "./index.scss" as colors;
+
+:root {
+  @each $name, $color in colors.$colors {
+    @each $shade, $value in $color {
+      --color-#{$name}-#{$shade}: #{$value};
+    }
+  }
+}

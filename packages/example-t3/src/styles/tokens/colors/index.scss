@@ -1,0 +1,54 @@
+@use "sass:meta";
+@use "sass:map";
+
+$colors: (
+  "primary": (
+    100: #ffcfc1,
+    500: #ff5722,
+    600: #e64e1f,
+  ),
+  "secondary": (
+    500: #21a2ff,
+  ),
+  "error": (
+    500: #fa5252,
+    50: #fff5f5,
+    100: #ffe3e3,
+    300: #ff6b6b,
+  ),
+  "success": (
+    500: #3adb76,
+  ),
+  "grey": (
+    100: #eff0f2,
+    300: #ced3d7,
+    500: #adb5bd,
+  ),
+  "white": (
+    500: #fff,
+  ),
+  "black": (
+    500: #000,
+  ),
+);
+
+@function color($color, $shade: 500) {
+  @if not map.has-key($colors, $color) {
+    @warn "Color '#{$color}' is not defined in $colors";
+  } @else if not map.has-key($colors, $color, $shade) {
+    @warn "Color '#{$color}.#{$shade}' is not defined in $colors";
+  }
+
+  @return var(--color-#{$color}-#{$shade});
+}
+
+// TODO if we need this, document it and cover with tests
+@function colorValue($color, $shade: 500) {
+ @if not map.has-key($colors, $color) {
+    @warn "Color '#{$color}' is not defined in $colors";
+  } @else if not map.has-key($colors, $color, $shade) {
+    @warn "Color '#{$color}.#{$shade}' is not defined in $colors";
+  }
+
+  @return map.get($colors, $color, $shade);
+}

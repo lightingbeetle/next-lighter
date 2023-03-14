@@ -1,0 +1,104 @@
+@use "sass:meta";
+@use "sass:map";
+@use "sass:list";
+@use "./../../helpers.scss";
+
+$breakpoints: (
+  xs: 0,
+  m: 768px,
+  l: 1280px,
+);
+
+@mixin breakpoint($breakpoint, $param: false) {
+  @if (
+    ($breakpoint == list.nth(map.keys($breakpoints), 1) and not $param) or
+      (not $breakpoint) or
+      ($breakpoint == "default")
+  ) {
+    @content;
+  } @else if not $param {
+    // no param, just a standard mobile first media query
+    @if map.has-key($breakpoints, $breakpoint) {
+      // breakpoint is in $breakpoints map, let's use stored value
+      @media screen and (min-width: map.get($breakpoints, $breakpoint)) {
+        @content;
+      }
+    } @else {
+      // breakpoint is not in $breakpoints map, let's use custom value
+      @media screen and (min-width: $breakpoint) {
+        @content;
+      }
+    }
+  } @else if ($param == "down" and helpers.map-next($breakpoints, $breakpoint)) {
+    @media screen and (max-width: helpers.map-next($breakpoints, $breakpoint) - 1px) {
+      @content;
+    }
+  } @else if ($param == "down" and not map.has-key($breakpoints, $breakpoint)) {
+    @media screen and (max-width: $breakpoint) {
+      @content;
+    }
+  } @else if ($param == "only" and helpers.map-next($breakpoints, $breakpoint)) {
+    @media screen and (min-width: map.get($breakpoints, $breakpoint)) and (max-width: helpers.map-next($breakpoints, $breakpoint) - 1px) {
+      @content;
+    }
+  } @else if
+    (
+      map.has-key($breakpoints, $param) and
+        map.has-key($breakpoints, $breakpoint)
+    )
+  {
+    @media screen and (min-width: map.get($breakpoints, $breakpoint)) and (max-width: map.get($breakpoints, $param) - 1px) {
+      @content;
+    }
+  } @else if
+    (
+      $param ==
+        "downfrom" and
+        map.get($breakpoints, $breakpoint) >
+        0 and
+        $breakpoint !=
+        "xs"
+    )
+  {
+    @media screen and (max-width: map.get($breakpoints, $breakpoint) - 1px) {
+      @content;
+    } // -1
+  } @else if (meta.type-of($param) == "number") {
+    @if map.has-key($breakpoints, $breakpoint) {
+      // breakpoint is in $breakpoints map
+      @media screen and (min-width: map.get($breakpoints, $breakpoint)) and (max-width: $param) {
+        @content;
+      }
+    } @else {
+      // breakpoint is not in $breakpoints map, let's use custom value
+      @media screen and (min-width: $breakpoint) and (max-width: $param) {
+        @content;
+      }
+    }
+  } @else if
+    (
+      not
+        (
+          $breakpoint ==
+            list.nth(map-keys($breakpoints), -1) and
+            $param ==
+            "down"
+        ) and not
+        (
+          $breakpoint ==
+            list.nth(map-keys($breakpoints), -1) and
+            $param ==
+            "only"
+        ) and not
+        (
+          $breakpoint ==
+            list.nth(map-keys($breakpoints), 1) and
+            $param ==
+            "downfrom"
+        )
+    )
+  {
+    // do nothing on known edge cases. we just dont generate any code.
+    @warn 'Breakpoint is not configured properly #{$breakpoint}, #{$param}';
+  }
+}

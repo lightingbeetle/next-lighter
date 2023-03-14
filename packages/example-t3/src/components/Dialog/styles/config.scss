@@ -1,0 +1,21 @@
+@use '../../../styles/tokens';
+
+$dialog-section: ();
+
+$dialog-section-spacing: (
+  default: (
+    padding: tokens.space("s"),
+  ),
+  "m": (
+    padding: tokens.space(),
+  ),
+);
+
+$dialog-header: (
+  background-color: tokens.color("grey", 100),
+);
+
+$dialog-footer: (
+  padding-top: tokens.space(),
+  padding-bottom: tokens.space(),
+);

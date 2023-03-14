@@ -1,0 +1,15 @@
+// ---------------------------------------------
+// BAR - CONFIGURATION
+// ---------------------------------------------
+@use "../../../styles/tokens";
+
+$spacing: (
+  default: tokens.space(),
+  small: tokens.space("s"),
+);
+
+$spacing-vertical: (
+  default: tokens.space("s"),
+);
+
+$break-height: 0;

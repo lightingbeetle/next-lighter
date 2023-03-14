@@ -1,0 +1,8 @@
+@use "./index.scss" as font;
+@use "sass:meta";
+
+:export {
+  @each $name, $value in meta.module-variables(font) {
+    #{$name}: #{$value};
+  }
+}

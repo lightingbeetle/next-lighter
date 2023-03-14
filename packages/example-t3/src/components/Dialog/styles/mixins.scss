@@ -1,0 +1,17 @@
+@use "../../../styles/utils";
+@use './config';
+
+@mixin dialog-section(
+  $settings,
+  $spacing: config.$dialog-section-spacing
+) {
+  @include utils.css-map($settings);
+  @include utils.variants-responsive($spacing);
+
+  width: 100%;
+  flex: 0 0 auto;
+
+  > *:last-child {
+    margin-bottom: 0;
+  }
+}

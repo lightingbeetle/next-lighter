@@ -1,0 +1,130 @@
+// TODO: rename this to functions?
+
+@use "sass:map";
+@use "sass:list";
+@use "sass:math";
+@use "./tokens/font";
+@use "./tokens/breakpoints";
+
+@function rem($size, $base: font.$font-size-default) {
+  @return math.div($size, $base) * 1rem;
+}
+
+/// Get prefixed variant name
+/// @param {String} $name - Variant name
+/// @return {String} - Return a prefixed variant name or empty string, for default variants
+/// @example scss
+///   variant-name('primary') // 'primary'
+///   variant-name('default') // ''
+///
+@function variant-name($name, $prefix: "--", $suffix: "") {
+  @if not $name or $name == default or $name == xs {
+    @return "";
+  }
+
+  @return #{$prefix + $name + $suffix};
+}
+
+/// Get css propeties from map
+///
+/// @param {Map} $map - Map
+/// @param {Arglist} $keys - Keys to fetch
+///
+/// @example
+/// $map: (
+///   background-color: #fff,
+///   color: #000
+/// );
+///
+/// .example {
+///   @include css-map($map);
+///  }
+///
+/// Output:
+/// .example {
+///   background-color: #fff;
+///   color: #000;
+/// }
+@mixin css-map($map, $keys...) {
+  $_map: $map;
+
+  @if (list.length($keys) == 1) {
+    $_map: map.get($map, list.nth($keys, 1));
+  }
+
+  @if (list.length($keys) > 1) {
+    $_map: map.get($map, list.nth($keys, 1), map.remove($keys, $key));
+  }
+
+  @each $prop, $value in $_map {
+    #{$prop}: #{$value};
+  }
+}
+
+/// Get variants of elemnt from map
+///
+/// @param {Map} $map - map
+/// @param {Map} $className - class name of element
+/// @param {Map} $classSuffix - suffix for class name of element
+@mixin variants($map, $className: "", $classSuffix: "") {
+  @each $variant, $props in $map {
+    #{$className + variant-name($variant) + $classSuffix} {
+      @include css-map($props);
+    }
+  }
+}
+
+/// Get responsive variants of elemnt from map
+///
+/// @param {Map} $map - map
+/// @param {Map} $className - class name of element
+/// @param {Map} $classSuffix - suffix for class name of element
+@mixin variants-responsive($map, $className: "", $classSuffix: "") {
+  @each $breakpoint, $props in $map {
+    @include breakpoints.breakpoint($breakpoint) {
+      &#{$className + $classSuffix} {
+        @include css-map($props);
+      }
+    }
+  }
+}
+
+// /// Get responsive variants of element from deep map
+@mixin variants-responsive-deep($map, $className: "", $classSuffix: "") {
+  @each $breakpoint, $prop in $map {
+    @each $property, $value in $prop {
+      @include breakpoints.breakpoint($breakpoint) {
+        #{$property}#{$className + $classSuffix} {
+          @include css-map($value);
+        }
+      }
+    }
+  }
+}
+
+// Hide visually, still visible to screenreaders
+@mixin visually-hidden {
+  height: 1px;
+  width: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  position: absolute;
+  overflow: hidden;
+  clip: rect(1px 1px 1px 1px);
+  clip: rect(1px, 1px, 1px, 1px);
+}
+
+@mixin clearfix {
+  *zoom: 1; // For IE 6/7 (trigger hasLayout)
+  &::before,
+  &::after {
+    // For modern browsers
+    content: "";
+    display: table;
+  }
+
+  &::after {
+    clear: both;
+  }
+}

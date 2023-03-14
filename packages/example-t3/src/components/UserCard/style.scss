@@ -1,0 +1,8 @@
+@use "../../styles/tokens";
+
+.user-card {
+  padding: tokens.space();
+  margin-bottom: tokens.space();
+
+  border: 1px solid tokens.color('grey', 100)
+}

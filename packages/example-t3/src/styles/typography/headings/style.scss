@@ -1,0 +1,15 @@
+@use "../../utils";
+@use "./config.scss";
+
+%headline {
+  @include utils.css-map(config.$heading-base);
+}
+
+@include utils.variants-responsive-deep(config.$heading-settings);
+
+@each $heading in config.$heading-tags {
+  #{$heading},
+  .#{$heading} {
+    @extend %headline;
+  }
+}

@@ -1,0 +1,318 @@
+---
+title: Bar
+---
+
+import { Preview, Props, Rectangle } from "@lighting-beetle/lighter-styleguide";
+import Bar, { BarItem, BarBreak } from ".";
+
+# Bar
+
+Bar is used for creation of horizontal flexible width layouts with automatic
+spacing between items.
+
+<Bar>
+  <BarItem>
+    <Rectangle>Item</Rectangle>
+  </BarItem>
+  <BarItem>
+    <Rectangle>Item</Rectangle>
+  </BarItem>
+  <BarItem>
+    <Rectangle>Item</Rectangle>
+  </BarItem>
+</Bar>
+
+## Children
+
+The `<Bar />` component accepts `<BarItem />` or `<BarBreak />` components as
+a possible children.
+
+### Without a break
+
+This example uses only `<BarItem />` components as children to create a layout.
+
+<Preview>
+  <Bar>
+    <BarItem>
+      <Rectangle>Item</Rectangle>
+    </BarItem>
+    <BarItem>
+      <Rectangle>Item</Rectangle>
+    </BarItem>
+    <BarItem>
+      <Rectangle>Item</Rectangle>
+    </BarItem>
+  </Bar>
+</Preview>
+
+### With a break
+
+This example uses `<BarItem />` as well as `<BarBreak />` components as children
+to create a layout which is broken to two separate lines.
+
+<Preview>
+  <Bar>
+    <BarItem>
+      <Rectangle>Item</Rectangle>
+    </BarItem>
+    <BarItem>
+      <Rectangle>Item</Rectangle>
+    </BarItem>
+    <BarBreak />
+    <BarItem>
+      <Rectangle>Item after break</Rectangle>
+    </BarItem>
+  </Bar>
+</Preview>
+
+## Variants
+
+There is a possibility to adjust properties of this component.
+
+### No wrapping
+
+By default `<Bar />` is wrapping on horizontal overflow.
+
+<Bar>
+  {[...Array(5)].map((item, index) => (
+    <BarItem key={index.toString()}>
+      <Rectangle>Wide item to create horizontal width</Rectangle>
+    </BarItem>
+  ))}
+</Bar>
+
+We can stop this by setting `canWrap` property to `false`.
+
+<Preview>
+  <Bar canWrap={false}>
+    {[...Array(5)].map((item, index) => (
+      <BarItem key={index.toString()}>
+        <Rectangle>Wide item to create horizontal width</Rectangle>
+      </BarItem>
+    ))}
+  </Bar>
+</Preview>
+
+Best way to use no wrap is with flexible width items
+
+### Flexible width
+
+If you use element that has width which can overflow a parent container, you
+can use flexible properties for children items.
+
+#### Fill
+
+`<BarItem />` can fill a possible space in container with `isFilling` property set to `true`.
+
+<Preview>
+  <Bar>
+    <BarItem>
+      <Rectangle>Item</Rectangle>
+    </BarItem>
+    <BarItem isFilling>
+      <Rectangle>Filling item</Rectangle>
+    </BarItem>
+    <BarItem>
+      <Rectangle>Item</Rectangle>
+    </BarItem>
+  </Bar>
+</Preview>
+
+#### Shrink
+
+`<BarItem />` can shrink to smallest possible width with `canShrink` property set to `true`.
+
+<Preview>
+  <Bar canWrap={false}>
+    <BarItem>
+      <Rectangle>Item</Rectangle>
+    </BarItem>
+    <BarItem>
+      <Rectangle>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium
+        deleniti dignissimos recusandae nesciunt perferendis cupiditate
+        perspiciatis harum odit eaque aspernatur dolorem rerum ratione
+        repudiandae qui alias assumenda saepe, atque reiciendis?
+      </Rectangle>
+    </BarItem>
+    <BarItem>
+      <Rectangle>Item</Rectangle>
+    </BarItem>
+  </Bar>
+</Preview>
+
+<Preview>
+  <Bar canWrap={false}>
+    <BarItem>
+      <Rectangle>Item</Rectangle>
+    </BarItem>
+    <BarItem canShrink>
+      <Rectangle>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium
+        deleniti dignissimos recusandae nesciunt perferendis cupiditate
+        perspiciatis harum odit eaque aspernatur dolorem rerum ratione
+        repudiandae qui alias assumenda saepe, atque reiciendis?
+      </Rectangle>
+    </BarItem>
+    <BarItem>
+      <Rectangle>Item</Rectangle>
+    </BarItem>
+  </Bar>
+</Preview>
+
+### Custom spacing
+
+There is an additional `small` size for space between an items.
+
+<Preview>
+  <Bar>
+    <BarItem>
+      <Rectangle>Default</Rectangle>
+    </BarItem>
+    <BarItem>
+      <Rectangle>Spacing</Rectangle>
+    </BarItem>
+    <BarItem>
+      <Rectangle>Between</Rectangle>
+    </BarItem>
+    <BarItem>
+      <Rectangle>Items</Rectangle>
+    </BarItem>
+  </Bar>
+  <Bar space="small">
+    <BarItem>
+      <Rectangle>Small</Rectangle>
+    </BarItem>
+    <BarItem>
+      <Rectangle>Spacing</Rectangle>
+    </BarItem>
+    <BarItem>
+      <Rectangle>Between</Rectangle>
+    </BarItem>
+    <BarItem>
+      <Rectangle>Items</Rectangle>
+    </BarItem>
+  </Bar>
+</Preview>
+
+### Vertical alignment
+
+There are three types (`top` | `middle` | `bottom`) of vertical aligment for items.
+
+<Preview>
+  <Bar align="top">
+    <BarItem>
+      <Rectangle>Top</Rectangle>
+    </BarItem>
+    <BarItem isFilling>
+      <Rectangle>
+        {" "}
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque, ipsum deleniti
+        quia iure similique mollitia quam excepturi laudantium architecto, aperiam
+        magnam exercitationem magni commodi laborum molestiae dolore. Corrupti, officia
+        perferendis?
+      </Rectangle>
+    </BarItem>
+    <BarItem>
+      <Rectangle>Item</Rectangle>
+    </BarItem>
+  </Bar>
+  <Bar align="middle">
+    <BarItem>
+      <Rectangle>Middle</Rectangle>
+    </BarItem>
+    <BarItem isFilling>
+      <Rectangle>
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque, ipsum
+        deleniti quia iure similique mollitia quam excepturi laudantium
+        architecto, aperiam magnam exercitationem magni commodi laborum
+        molestiae dolore. Corrupti, officia perferendis?
+      </Rectangle>
+    </BarItem>
+    <BarItem>
+      <Rectangle>Item</Rectangle>
+    </BarItem>
+  </Bar>
+  <Bar align="bottom">
+    <BarItem>
+      <Rectangle>Bottom</Rectangle>
+    </BarItem>
+    <BarItem isFilling>
+      <Rectangle>
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque, ipsum
+        deleniti quia iure similique mollitia quam excepturi laudantium
+        architecto, aperiam magnam exercitationem magni commodi laborum
+        molestiae dolore. Corrupti, officia perferendis?
+      </Rectangle>
+    </BarItem>
+    <BarItem>
+      <Rectangle>Item</Rectangle>
+    </BarItem>
+  </Bar>
+</Preview>
+
+### Direction
+
+Default Bar flows in a `horizontal` direction by default. This can be changed.
+
+There is a possibility to change direction to `vertical`. This will change
+direction for all viewports.
+
+<Preview>
+  <Bar direction="vertical">
+    <BarItem>
+      <Rectangle>Item</Rectangle>
+    </BarItem>
+    <BarItem isFilling>
+      <Rectangle tag="p">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi, incidunt
+        veniam minima quasi eligendi amet ullam explicabo laborum aperiam
+        accusantium hic laboriosam doloremque expedita odit ex consequatur
+        voluptas aliquid soluta.
+      </Rectangle>
+    </BarItem>
+    <BarItem>
+      <Rectangle>Item</Rectangle>
+    </BarItem>
+  </Bar>
+</Preview>
+
+#### Responsive
+
+There is a possibility to change direction for each viewport (breakpoint).
+This can be done with simple object which specifies smallest viewport name with
+a direction as a value.
+
+This examples specifies `vertical` direction for viewports from `XS` (smallest)
+size and switches to `horizontal` as soon as `L` size of viewport is reached. If
+you change width of your window you can see it change.
+
+We have a separate documentation for [breakpoints](/utilities/breakpoints)
+
+<Preview>
+  <Bar direction={{ xs: "vertical", l: "horizontal" }}>
+    <BarItem>
+      <Rectangle>Item</Rectangle>
+    </BarItem>
+    <BarItem isFilling>
+      <Rectangle>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus
+        soluta voluptatum magni, consequuntur quia odio ad est dicta
+        consequatur, nobis modi omnis qui quam magnam ab quo, similique quae
+        itaque.
+      </Rectangle>
+    </BarItem>
+    <BarItem>
+      <Rectangle>Item</Rectangle>
+    </BarItem>
+  </Bar>
+</Preview>
+
+## Props
+
+If you are a developer, this would give you more information at once, about what
+is possible with these components and what is not.
+
+<Props component={Bar} />
+<Props component={BarItem} />
+<Props component={BarBreak} />

@@ -1,0 +1,46 @@
+@use './config.scss';
+@use '../../utils';
+@use '../../tokens';
+
+@include utils.variants-responsive-deep(config.$typography-settings);
+
+.text-desc {
+  @include utils.css-map(config.$desc-text);
+}
+
+a {
+  text-decoration: none;
+  cursor: pointer;
+  color: config.$default-text-color;
+
+  &[disabled],
+  &.is-disabled {
+    pointer-events: none;
+  }
+}
+
+.link,
+a:not([class]) {
+  @include utils.css-map(config.$link, "default");
+
+  cursor: pointer;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  -ms-word-break: break-all;
+  word-break: break-word;
+  hyphens: auto;
+
+  &:focus,
+  &:hover,
+  &.is-active {
+    @include utils.css-map(config.$link, "focus");
+  }
+}
+
+address {
+  font-style: normal;
+}
+
+abbr {
+  cursor: help;
+}
