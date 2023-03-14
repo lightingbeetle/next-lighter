@@ -1,7 +1,7 @@
 import React from "react";
 import { toast } from "react-toastify";
 import { trpc } from "../../utils/trpc";
-import Bar, { BarItem } from "../Bar";
+import { Bar, BarItem } from "components";
 import Button from "../Button";
 import Card, { CardSection, CardTitle } from "../Card";
 import ModalTrigger from "../Modal/ModalTrigger";

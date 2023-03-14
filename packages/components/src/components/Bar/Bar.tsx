@@ -1,6 +1,8 @@
+// TODO: Bar should support other tags then `div` like `ul`
+
 import React from "react";
 import cx from "classnames";
-import { Responsive } from "../../utils/responsive";
+import type { Responsive } from "../../utils/responsive";
 import { genResponsiveClasses } from "../../utils/classes";
 
 type DirectionDescriptor = "horizontal" | "vertical";

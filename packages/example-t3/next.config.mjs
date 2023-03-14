@@ -16,5 +16,6 @@ const config = {
     defaultLocale: "en",
   },
   pageExtensions: ["page.tsx", "page.ts", "page.jsx", "page.js"],
+  transpilePackages: ["components"],
 };
 export default config;

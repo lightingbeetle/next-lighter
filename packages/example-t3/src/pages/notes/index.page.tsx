@@ -1,5 +1,5 @@
 import React from "react";
-import Bar, { BarItem } from "../../components/Bar";
+import { Bar, BarItem } from "components";
 import Button from "../../components/Button";
 import ModalTrigger from "../../components/Modal/ModalTrigger";
 import Note from "../../components/Note/Note";

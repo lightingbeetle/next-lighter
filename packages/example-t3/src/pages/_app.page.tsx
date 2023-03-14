@@ -4,6 +4,7 @@ import { SessionProvider } from "next-auth/react";
 
 import { trpc } from "../utils/trpc";
 
+import "components/styles.scss";
 import "../styles/index.scss";
 import ProtectedPage from "../components/ProtectedPage";
 import PageHeader from "../components/PageHeader";
