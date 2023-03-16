@@ -1,6 +1,32 @@
 # components
 
+## 0.3.0
+
+### Minor Changes
+
+- 9427cfb: - Remove `react-hook-form` from UI components
+  - Replace `messages` prop on form elements in favor of `error` to streamline integration with `react-hook-form`
+  - Improve contact form handling (validation, error handling)
+  - Improve documentation of form code
+  - Improve documentation of `example-forms` with examples from our work
+- 0f2e580: Add Table component from project
+- 263e969: Replaced Card component with Card from project and setup jest-axe for tests
+- bc2a839: Move to Yarn 3 workspaces to enable independed builds
+- aa55eba: Add FileUploader component from project
+- d915717: Add Modal component from projects
+- 8f04d19: Export scss tokens from package as `components/tokens.scss` entry
+- 8e10f47: - add Slider, Pagination component
+  - add example of usage of tables with fetch data & filters
+  - provide next/router access to design-system .mdx pages
+  - fix in PropsTable
+
+### Patch Changes
+
+- Updated dependencies [bc2a839]
+  - @lighting-beetle/lighter-hooks@1.2.0
+
 ## 0.2.0
+
 ### Minor Changes
 
 - d444729: Updated deps
