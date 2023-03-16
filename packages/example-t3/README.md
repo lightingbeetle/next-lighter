@@ -15,6 +15,7 @@ This is an app bootstrapped according to the [init.tips](https://init.tips) stac
 - [ ] custom styled [auth pages](https://next-auth.js.org/configuration/pages)](https://next-auth.js.org/configuration/pages)
 - [ ] add the possibility to log in with [credentials](https://next-auth.js.org/configuration/providers/credentials)
 - [ ] migration guide to PostgreSQL
+- [ ] migrate new and updated componentes to componentes package
 
 ## How do I deploy this?
 
