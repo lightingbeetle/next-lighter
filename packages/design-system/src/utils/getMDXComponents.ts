@@ -12,6 +12,7 @@ const { tokens, ...appComponents } = components;
 
 // FIXME: there is error with implicit export type connected to Preview react-element-to-jsx-string usage
 export default function getMDXComponents(): Record<string, React.ReactNode> {
+  // @ts-expect-error not sure what is not working
   return {
     ...styleguideComponents,
     ...appComponents,

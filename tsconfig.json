@@ -14,6 +14,7 @@
     "noEmit": true,
     "forceConsistentCasingInFileNames": true,
     "baseUrl": ".",
+    "downlevelIteration": true,
     "paths": {
       "@lighting-beetle/lighter-hooks": [
         "./packages/lighter-hooks/src/index.js"

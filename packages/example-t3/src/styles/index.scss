@@ -1,0 +1,27 @@
+// normalize
+@import "modern-normalize/modern-normalize.css";
+
+// globals
+@import "./vars.scss";
+
+@import "./globals.scss";
+
+@import "./typography/headings/style.scss";
+@import "./typography/text/style.scss";
+@import "./typography/lists/style.scss";
+
+// component styles
+@import "./../components/PageHeader/style.scss";
+@import "./../components/PageBody/style.scss";
+@import "./../components/Modal/styles/style.scss";
+@import "./../components/Button/styles/style.scss";
+@import "./../components/DropdownMenu/styles/style.scss";
+@import "./../components/Dialog/styles/style.scss";
+@import "./../components/UserCard/style.scss";
+
+// pages
+@import "./../pages/notes/style.scss";
+
+// utilites and overrides
+@import "./utilities.scss";
+@import "./layout.scss";

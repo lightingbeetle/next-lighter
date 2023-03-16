@@ -1,0 +1,28 @@
+@use "sass:meta";
+@use "sass:map";
+@use "sass:list";
+@use "../../utils.scss";
+
+$spaces: (
+  default: 16px,
+  s: 8px,
+  l: 24px,
+  xl: 32px,
+);
+
+/// Get space size from $spaces.
+/// @param {String} $size ['default'] - Size of space
+/// @example
+///   space();
+///   space('small');
+///   space('default');
+@function space($size: "default") {
+  @if map-has-key($spaces, $size) {
+    $space: map.get($spaces, $size);
+
+    @return utils.rem($space);
+  }
+
+  @warn "Space '#{$size}' is not defined in $spaces";
+  @return null;
+}

@@ -1,0 +1,131 @@
+// ---------------------------------------------
+// BUTTONS - CONFIGURATION
+// ---------------------------------------------
+
+@use "sass:map";
+@use "../../../styles/tokens";
+@use "../../../styles/utils";
+
+$button: (
+  default: (
+    border: 1px solid currentColor,
+    font-weight: 600,
+    line-height: 1.25,
+    transition: 200ms all ease-out,
+    box-shadow: #{tokens.$shadow-direct-default,
+    tokens.$shadow-ambient-default},
+    margin-bottom: tokens.space(),
+  ),
+  focus: (
+    box-shadow: #{tokens.$shadow-direct-l,
+    tokens.$shadow-ambient-l},
+  ),
+  active: (
+    box-shadow: #{tokens.$shadow-direct-default,
+    tokens.$shadow-ambient-s},
+  ),
+  disabled: (
+    opacity: 0.5,
+    box-shadow: none,
+  ),
+);
+
+/// Generates button sizes. Each key is a suffix added to btn- (except default), and each value is the button font size.
+/// @type Map
+/// @prop {Length} button-size.font-size
+$button-sizes: (
+  default: (
+    padding: utils.rem(9px),
+    font-size: utils.rem(tokens.$font-size-default),
+    min-height: utils.rem(40px),
+  ),
+  s: (
+    padding: utils.rem(6.5px),
+    font-size: utils.rem(tokens.$font-size-s),
+    min-height: utils.rem(32px),
+  ),
+  l: (
+    padding: utils.rem(12px),
+    font-size: utils.rem(tokens.$font-size-l),
+    min-height: utils.rem(50px),
+  ),
+);
+
+// NOTE: this could be replaced with sizes exported from icon component
+//  default: map.get(icons.$icon-sizes, "s"),
+//  s: map.get(icons.$icon-sizes, "s"),
+//  l: map.get(icons.$icon-sizes, "default"),
+$button-icon-sizes: (
+  default: utils.rem(24px),
+  s: utils.rem(16px),
+  l: utils.rem(32px),
+);
+
+/// Generates button visual variants.
+/// @type Map
+/// @prop {Map} variant - Button variant name (".btn--ghost"). "default" is applied to generic ".btn" class
+/// all props in button-styles.variant are settings of the button style mixin. @mixin button-style
+/// @example
+///   $button-styles:
+///     ghost: (
+///       default: (
+///         text-color: primary
+///         background: transparent
+///       ),
+///       focus: (...),
+///       ...
+///     ),
+///   );
+
+$button-variants: (
+  plain: (
+    default: (
+      padding: 0,
+    ),
+  ),
+);
+
+$button-purposes: (
+  default: (
+    default: (
+      color: tokens.color("white"),
+      border-color: tokens.color("primary"),
+      background-color: tokens.color("primary"),
+    ),
+    focus: (
+      background-color: tokens.color("primary", 600),
+    ),
+    disabled: (
+      box-shadow: none,
+    ),
+  ),
+  secondary: (
+    default: (
+      color: tokens.color("primary"),
+      border-color: tokens.color("white"),
+      background-color: tokens.color("white"),
+    ),
+    focus: (
+      color: tokens.color("primary"),
+      border-color: tokens.color("primary", 100),
+      background-color: tokens.color("primary", 100),
+    ),
+  ),
+  link: (
+    default: (
+      color: tokens.color("primary"),
+      border-color: transparent,
+      background-color: transparent,
+      box-shadow: none,
+      text-decoration: underline,
+    ),
+    focus: (
+      border-color: tokens.color("primary", 100),
+      background-color: tokens.color("primary", 100),
+      box-shadow: none,
+    ),
+    active: (
+      box-shadow: none,
+    ),
+  ),
+);

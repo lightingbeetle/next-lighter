@@ -1,0 +1,65 @@
+@use "../../tokens";
+@use "../../utils";
+
+$default-text-color: tokens.color("black");
+
+$typography-settings: (
+  default: (
+    "html": (
+      line-height: 1.5,
+    ),
+    "body": (
+      font-size: utils.rem(tokens.$font-size-default, 16px),
+    ),
+    "p": (
+      font-size: tokens.$font-size-default,
+      margin-top: 0,
+      margin-bottom: tokens.space(),
+    ),
+    "small, .text-small": (
+      font-size: utils.rem(tokens.$font-size-s),
+    ),
+    ".text-large": (
+      font-size: utils.rem(tokens.$font-size-l),
+    ),
+  ),
+  m: (
+    "p": (
+      font-size: tokens.$font-size-l,
+    ),
+  ),
+);
+
+$desc-text: (
+  color: tokens.color("primary"),
+  font-style: italic,
+);
+
+$link: (
+  default: (
+    text-decoration: none,
+    border-bottom: 1px solid transparent,
+    color: tokens.color("primary", 500),
+    transition: #{color 0.4s ease 0s,
+    border 0.4s ease 0s},
+  ),
+  focus: (
+    color: tokens.color("primary", 400),
+    border-bottom-color: tokens.color("primary", 400),
+  ),
+);
+
+$blockquote: (
+  margin: 0 0 tokens.space(),
+  padding: tokens.space("s") tokens.space() 0,
+  border-left: 3px solid tokens.color("grey", 500),
+);
+
+$cite: (
+  font-size: tokens.$font-size-s,
+  color: tokens.color("primary"),
+);
+
+$hr: (
+  border-top: 1px solid tokens.color("grey", 300),
+);

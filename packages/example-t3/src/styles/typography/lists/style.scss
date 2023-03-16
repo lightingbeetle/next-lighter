@@ -1,0 +1,84 @@
+@use "../../../styles/tokens";
+@use "../../../styles/utils";
+@use './config.scss';
+@use './mixins.scss';
+
+ul,
+ol,
+dl {
+  margin: 0 0 tokens.space();
+
+  ul,
+  ol,
+  dl {
+    margin-bottom: 0;
+  }
+}
+
+.list--unstyled {
+  @include mixins.list-unstyled;
+}
+
+.list--no-offset {
+  padding-left: tokens.space();
+  list-style-position: outside;
+}
+
+.list--expanded {
+  li {
+    margin-bottom: tokens.space("s");
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.list-inline--line {
+  margin: 0;
+  display: inline-block;
+
+  > li {
+    @include utils.css-map(config.$inline-list, "line");
+
+    vertical-align: middle;
+  }
+}
+
+.list-inline--expanded {
+  > li {
+    @include utils.css-map(config.$inline-list-item, "expanded");
+  }
+}
+
+dl {
+  dt {
+    font-weight: bold;
+  }
+
+  dd {
+    margin-left: 0;
+    margin-bottom: tokens.space();
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+} // definition list
+
+.dl-inline {
+  @include utils.clearfix;
+
+  dt,
+  dd {
+    float: left;
+    margin: 0;
+  }
+
+  dt {
+    clear: both;
+  }
+
+  dd {
+    margin-left: tokens.space("s");
+  }
+}

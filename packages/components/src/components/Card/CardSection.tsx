@@ -1,16 +1,16 @@
 import React, { forwardRef } from "react";
 import cx from "classnames";
 
-type CardSection = {
+type CardSectionProps = {
   /** Background color */
   bg?: "white" | "secondary" | "primary";
   /** Url becomes value of section's background-image CSS property */
   bgUrl?: string;
   /** Content will fill available vertical space */
   isFilling?: boolean;
-} & JSX.IntrinsicElements["div"];
+} & React.ComponentProps<"div">;
 
-const CardSection = forwardRef<HTMLDivElement, CardSection>(
+const CardSection = forwardRef<HTMLDivElement, CardSectionProps>(
   ({ children, className, style, bg, isFilling, bgUrl, ...other }, ref) => {
     const classes = cx(
       "card__section",

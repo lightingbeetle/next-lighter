@@ -1,0 +1,8 @@
+@use "./index.scss" as shadows;
+@use "sass:meta";
+
+:root {
+  @each $name, $value in meta.module-variables(shadows) {
+    --#{$name}: #{$value};
+  }
+}

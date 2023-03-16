@@ -9,17 +9,21 @@ import TableCell from "./TableCell";
 
 type CellContent = React.ReactNode;
 
-type Column = {
-  Header: React.ReactNode;
-  accessor: string | ((originalRow: any, rowIndex: number) => any);
-  Cell?: (value: React.ReactNode) => React.ReactNode;
-};
-
 type Row = {
   [index: string]: CellContent;
 };
 
-type Table = {
+type Column = {
+  Header: React.ReactNode;
+  accessor: string | ((originalRow: any, rowIndex: number) => any);
+  Cell?: (opts: {
+    value: React.ReactNode;
+    row: Row;
+    column: Column;
+  }) => React.ReactNode;
+};
+
+type TableProps = {
   /** Labels for columns in the table. Value of the accessor in columns match with the key name in data */
   columns: Column[];
   /** Data to print out in the table. */
@@ -37,7 +41,7 @@ const Table = ({
   caption,
   hiddenCaption = false,
   ...other
-}: Table) => {
+}: TableProps) => {
   return (
     <TableWrapper
       className={className}

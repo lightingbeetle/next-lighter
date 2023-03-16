@@ -1,0 +1,9 @@
+// This file is intended to be used only to import variables to .js file and has to be named export.scss
+
+@use "./index.scss" as spaces;
+
+:export {
+  @each $name, $value in spaces.$spaces {
+    space-#{$name}: #{$value};
+  }
+}

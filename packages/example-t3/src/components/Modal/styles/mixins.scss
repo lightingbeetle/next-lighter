@@ -1,0 +1,59 @@
+// ---------------------------------------------
+// MODALS - MIXINS
+// ---------------------------------------------
+
+@use "sass:map";
+@use "../../../styles/utils";
+@use "../../../styles/tokens";
+@use "./config";
+
+@mixin modal-overlay($settings: config.$modal-overlay) {
+  @include utils.css-map($settings);
+
+  width: 100% !important;
+  height: 100% !important;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: config.$modal-overlay-z-index;
+  opacity: 1;
+  transform: scale(1, 1);
+  background-color: config.$modal-overlay-bg-color;
+  transition: opacity config.$modal-overlay-e, transform config.$modal-overlay-e;
+  transition-delay: 0s;
+  backface-visibility: hidden;
+
+  // center modal
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin modal(
+  $settings: config.$modal
+) {
+  display: flex;
+  flex-flow: column;
+  margin: auto;
+  position: fixed;
+  top: 50%;
+  left: 0;
+  right: 0;
+  transform: translateY(-50%);
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+
+  //TODO: could this be replaced with utils.variants?
+  @each $breakpoint, $props in $settings {
+    @include tokens.breakpoint($breakpoint) {
+      $radius: map.get($props, "border-radius");
+
+      @include utils.css-map($settings, $breakpoint);
+
+      > * + * {
+        border-top: map.get($props, "border");
+      }
+    }
+  }
+}
+

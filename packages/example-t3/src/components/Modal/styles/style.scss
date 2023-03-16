@@ -1,0 +1,14 @@
+// ---------------------------------------------
+// MODALS - STYLES
+// ---------------------------------------------
+
+@use "./config";
+@use "./mixins";
+
+.modal__overlay {
+  @include mixins.modal-overlay;
+}
+
+.modal {
+  @include mixins.modal;
+}
