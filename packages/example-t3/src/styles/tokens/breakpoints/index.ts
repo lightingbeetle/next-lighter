@@ -6,7 +6,6 @@ import breakpointsFromSCSS from "./export.module.scss";
 export const breakpoints = scssVarsToMap(breakpointsFromSCSS);
 
 export function breakpoint(name: string, _breakpoints = breakpoints): string {
-  // @ts-expect-error -- not right types
   const value = _breakpoints[name];
 
   if (!value) {

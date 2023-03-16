@@ -1,9 +1,8 @@
 import React from "react";
 import { toast } from "react-toastify";
 import { trpc } from "../../utils/trpc";
-import { Bar, BarItem } from "components";
+import { Bar, BarItem, Card, CardSection, CardTitle } from "components";
 import Button from "../Button";
-import Card, { CardSection, CardTitle } from "../Card";
 import ModalTrigger from "../Modal/ModalTrigger";
 import NoteEditDialog from "./NoteEditDialog";
 import { Note } from "./types";

@@ -17,7 +17,8 @@ export const formatErrors = (
 if (!_clientEnv.success) {
   console.error(
     "❌ Invalid environment variables:\n",
-    ...formatErrors(_clientEnv.error.format()),
+    // @ts-expect-error not sure why error in types or how to fix it
+    ...formatErrors(_clientEnv.error.format())
   );
   throw new Error("Invalid environment variables");
 }

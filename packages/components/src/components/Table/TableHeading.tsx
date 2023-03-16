@@ -10,7 +10,7 @@ const TableHeading = ({
 
   return (
     <th className={classes} {...other}>
-      {typeof children === "function" ? children() : children}
+      {children}
     </th>
   );
 };

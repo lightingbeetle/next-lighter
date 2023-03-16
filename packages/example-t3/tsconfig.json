@@ -1,12 +1,10 @@
 {
   "extends": "../../tsconfig.json",
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules", "components"],
   "compilerOptions": {
     "strict": false,
-    "jsx": "preserve",
     "incremental": true,
-    "preserveSymlinks": true,
-    "declaration": false
-  },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules"]
+    "jsx": "preserve"
+  }
 }

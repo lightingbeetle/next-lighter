@@ -5,7 +5,6 @@ import spacesFromSCSS from "./export.module.scss";
 export const spaces = scssVarsToMap(spacesFromSCSS);
 
 export function spaceValue(name: string, _spaces = spaces): string {
-  // @ts-expect-error -- types are not correct
   const value = _spaces[name];
 
   if (!value) {

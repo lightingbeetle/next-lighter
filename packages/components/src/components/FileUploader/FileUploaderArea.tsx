@@ -10,17 +10,17 @@ export interface AreaTextProps {
   text?: string;
 }
 
-type FileUploaderArea = {
+type FileUploaderAreaProps = {
   areaTexts?: AreaTextProps;
   error?: React.ReactNode;
-} & JSX.IntrinsicElements["div"];
+} & React.ComponentProps<"div">;
 
 const FileUploaderArea = ({
   areaTexts,
   className,
   error: errorProp,
   ...other
-}: FileUploaderArea) => {
+}: FileUploaderAreaProps) => {
   const { files, getRootProps, input } = useFileUploaderContext();
 
   // check if some file have error

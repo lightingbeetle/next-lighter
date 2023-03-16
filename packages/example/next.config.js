@@ -11,5 +11,4 @@ export default createConfig({
     },
   },
   plugins: [transpileModules(["components"])],
-  analyzeBundle: true,
 });

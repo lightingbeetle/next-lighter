@@ -2,8 +2,10 @@ import * as components from "components";
 
 const { tokens, ...appComponents } = components;
 
-export default function getMDXScope() {
+// FIXME: provide return type, infering is not working here
+export default function getMDXScope(): object {
   const allComponentDocgens = Object.entries(appComponents).reduce(
+    // @ts-expect-error not sure what is the problem here
     (
       docgens,
       [ComponentName, Component]: [string, { __docgenInfo: object }]
@@ -15,6 +17,7 @@ export default function getMDXScope() {
     }),
     {}
   );
+
   return {
     ...allComponentDocgens,
     selectItems: [

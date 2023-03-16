@@ -1,3 +1,4 @@
+import React from "react";
 import { useRouter } from "next/router";
 import UserCard from "../../components/UserCard";
 import { trpc } from "../../utils/trpc";

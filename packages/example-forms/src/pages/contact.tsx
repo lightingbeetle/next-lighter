@@ -13,9 +13,6 @@ function ContactForm() {
       phoneNumber: "",
       message: "",
       marketing: false,
-      // This is just to make the "field" available in TypeScript. It will never
-      // have a value assigned to it and JSON.stringify will filter it out.
-      serverError: undefined,
     },
   });
 
@@ -37,13 +34,15 @@ function ContactForm() {
       },
     });
 
-    const { status, error } = await response.json();
+    const responseData = await response.json();
 
-    if (!status || error) {
+    console.log(responseData);
+
+    if (response.status > 200) {
       // this could be more granularised if we do server side validation of fields for example
-      setError("serverError", {
-        type: "server",
-        message: error,
+      setError("root.serverError", {
+        type: response.status.toString(),
+        message: responseData.message,
       });
 
       return;
@@ -60,6 +59,8 @@ function ContactForm() {
       <p>Vaša správa bola úspešne odoslaná. Čoskoro vás budeme kontaktovať.</p>
     </div>
   );
+
+  console.log(errors);
 
   return (
     <>
@@ -116,8 +117,10 @@ function ContactForm() {
             </a>
           </p>
           <MarketingCheckbox {...methods.register("marketing")} />
-          {errors?.serverError && <Error>{errors.serverError.message}</Error>}
-          <button onClick={() => clearErrors("serverError")} type="submit">
+          {errors?.root?.serverError && (
+            <Error>{errors.root.serverError.message}</Error>
+          )}
+          <button onClick={() => clearErrors("root.serverError")} type="submit">
             Odoslať
           </button>
         </form>
