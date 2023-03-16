@@ -37,7 +37,7 @@
     "test:hooks": "yarn workspace @lighting-beetle/lighter-hooks run test",
     "lint": "eslint .",
     "prepare": "husky install",
-    "pre-commit": "tsc --noEmit && lint-staged && yarn test"
+    "pre-push": "tsc --noEmit && lint-staged && yarn test"
   },
   "devDependencies": {
     "@babel/core": "^7.15.5",
