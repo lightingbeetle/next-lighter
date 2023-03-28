@@ -43,6 +43,9 @@
   overflow: auto;
   -webkit-overflow-scrolling: touch;
 
+  // TODO: we have clash of styles comming from @components .modal and .modal in this component - we should idially migrate this modal component to @components to fix this. Until than here are some overrides to make modal work as expected
+  visibility: visible;
+
   //TODO: could this be replaced with utils.variants?
   @each $breakpoint, $props in $settings {
     @include tokens.breakpoint($breakpoint) {
