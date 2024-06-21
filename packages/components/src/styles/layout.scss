@@ -3,7 +3,7 @@
 // ---------------------------------------------
 
 @use './utils';
-@use '../tokens';
+@use './tokens';
 
 // mixin for utilities with layout targeting
 @mixin spacing-reset-classes($breakpoint: "") {

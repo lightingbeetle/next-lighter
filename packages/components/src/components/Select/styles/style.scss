@@ -1,6 +1,6 @@
 @use "./config";
 @use "../../../styles/utils";
-@use "../../../tokens";
+@use "../../../styles/tokens";
 
 // Replace letters
 @function str-replace($string, $search, $replace: "") {

@@ -14,7 +14,6 @@
     "@lighting-beetle/next-lighter-config": "workspace:^",
     "components": "workspace:^",
     "micromatch": "~4.0.4",
-    "modern-normalize": "^1.1.0",
     "next": "~12.2.5",
     "next-transpile-modules": "~9.0.0",
     "react": "~17.0.2",

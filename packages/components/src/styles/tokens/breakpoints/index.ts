@@ -1,6 +1,6 @@
 // TODO: useBreakpoint hook can be probaly useful here
 
-import scssVarsToMap from "../../utils/scssVarsToMap";
+import scssVarsToMap from "../../../utils/scssVarsToMap";
 import breakpointsFromSCSS from "./export.module.scss";
 
 export const breakpoints = scssVarsToMap(breakpointsFromSCSS);

@@ -5,8 +5,8 @@
 import React, { useMemo } from "react";
 
 import { Table, Code } from "@lighting-beetle/lighter-styleguide";
-import flattenObject from "../utils/flattenObject";
-import { SCSSVarsMap } from "../utils/scssVarsToMap";
+import flattenObject from "../../utils/flattenObject";
+import { SCSSVarsMap } from "../../utils/scssVarsToMap";
 import { Column } from "react-table";
 
 type UsageFormatFunc = ({
