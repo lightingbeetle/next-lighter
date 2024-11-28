@@ -1,7 +1,7 @@
 {
   "name": "example-strapi",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.1.0",
   "scripts": {
     "dev:backend": "yarn workspace strapi-backend run dev",
     "dev:frontend": "wait-on http://localhost:1337/admin && yarn workspace strapi-frontend dev",

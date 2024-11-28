@@ -1,6 +1,6 @@
 {
   "name": "@lighting-beetle/next-lighter-config",
-  "version": "0.2.0",
+  "version": "1.0.0",
   "type": "module",
   "main": "index.js",
   "types": "index.d.ts",

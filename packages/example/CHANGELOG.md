@@ -1,6 +1,36 @@
 # example
 
+## 0.3.0
+
+### Minor Changes
+
+- f3a1427: Update @lighting-beetle/next-lighter-config to ESM
+- bc2a839: Move to Yarn 3 workspaces to enable independed builds
+- f3a1427: Remove support for static scope from @lighting-beetle/next-lighter-config
+
+### Patch Changes
+
+- 9fb1016: fix TS issues
+- 9e1aa80: Replace `next-compose-plugins` with `createConfig` function
+- Updated dependencies [9faecce]
+- Updated dependencies [9427cfb]
+- Updated dependencies [f3a1427]
+- Updated dependencies [0f2e580]
+- Updated dependencies [263e969]
+- Updated dependencies [bc2a839]
+- Updated dependencies [f3a1427]
+- Updated dependencies [aa55eba]
+- Updated dependencies [9fb1016]
+- Updated dependencies [d915717]
+- Updated dependencies [9e1aa80]
+- Updated dependencies [8f04d19]
+- Updated dependencies [8e10f47]
+- Updated dependencies [9e1aa80]
+  - @lighting-beetle/next-lighter-config@1.0.0
+  - components@0.3.0
+
 ## 0.2.0
+
 ### Minor Changes
 
 - 45733fe: add wordpress example
